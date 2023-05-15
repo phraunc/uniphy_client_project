@@ -8,7 +8,7 @@ const router = express.Router();
 /**
  * GET route template
  */
-router.get("/", (req, res) => {
+router.get("/", rejectUnauthenticated, (req, res) => {
   // GET route code here
   const sqlText = `SELECT * FROM food;`;
   pool

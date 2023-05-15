@@ -7,7 +7,7 @@ function Food() {
   const dispatch = useDispatch();
 
   const handleHome = () => {
-    console.log("history test");
+    // console.log("history test");
     history.push("/home");
   };
 

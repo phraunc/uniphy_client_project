@@ -20,6 +20,7 @@ import LandingPage from "../LandingPage/LandingPage";
 import LoginPage from "../LoginPage/LoginPage";
 import RegisterPage from "../RegisterPage/RegisterPage";
 import Food from "../Food/Food";
+import FoodForm from "../Food/FoodForm";
 
 import "./App.css";
 
@@ -92,6 +93,9 @@ function App() {
           </Route>
           <Route exact path="/food">
             {user.id ? <Food /> : <Redirect to="/home" />}
+          </Route>
+          <Route exact path="/foodform">
+            {user.id ? <FoodForm /> : <Redirect to="/home" />}
           </Route>
 
           <Route exact path="/home">
