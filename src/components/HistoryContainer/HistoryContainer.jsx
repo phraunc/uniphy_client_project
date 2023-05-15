@@ -1,4 +1,4 @@
-import HistoryCardComponent from "../HistoryCardComponent/HistoryCardComponent";
+import HistoryCardFood from "../HistoryCardComponent/HistoryCardFood";
 
 function HistoryContainer({ item }) {
   return (
@@ -6,7 +6,7 @@ function HistoryContainer({ item }) {
       {item.map((single, i) => {
         return (
           <div class="col">
-            <HistoryCardComponent key={i} prop={single} />
+            <HistoryCardFood key={i} prop={single} />
           </div>
         );
       })}
