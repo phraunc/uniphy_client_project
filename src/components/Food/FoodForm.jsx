@@ -33,9 +33,32 @@ function FoodForm() {
     history.push("/home");
   };
 
-  const addFood = () => {
-    console.log("adFood");
+  const addFood = (event) => {
+    event.preventDefault();
+
+    dispatch({
+        type:'POST_FOOD',
+        payload: {
+            quality: addQuality,
+            quantity: addQuantity,
+            snack: addSnack,
+            water: addWater, 
+            fasting:addFasting,
+        }
+    })
+    setAddQuality(1)
+    setAddQuantity(0)
+    setAddSnack(0)
+    setAddWater(0)
+    setAddFasting(0)
+
+    history.push("/food");
+
   };
+
+  const cancelFood = ()=>{
+    history.push("/food")
+  }
  
   return (
     <>
@@ -142,6 +165,16 @@ function FoodForm() {
                 justifyContent="flex-end"
                 alignItems="flex-end">
             <Button variant="contained"  type="submit" >Submit</Button>
+            </Box>
+            <br/>
+            <br/>
+            <Box
+                m={1}
+                mt={3}
+                display="flex"
+                justifyContent="flex-end"
+                alignItems="flex-end">
+            <Button variant="contained" onClick={cancelFood} >Cancel</Button>
             </Box>
           </Box>
       

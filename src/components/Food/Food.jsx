@@ -11,6 +11,10 @@ function Food() {
     history.push("/home");
   };
 
+  const foodForm = () => {
+    history.push("/foodform");
+  }
+
   return (
     <>
       <h1>Food</h1>
@@ -21,7 +25,7 @@ function Food() {
         <p>History</p>
       </div>
       <div>
-        <button>Add Food</button>
+        <button onClick={foodForm}>Add Food</button>
       </div>
     </>
   );
