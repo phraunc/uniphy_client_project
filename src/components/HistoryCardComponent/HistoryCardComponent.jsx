@@ -1,7 +1,8 @@
-function HistoryCardComponent({ item }) {
-  return (
-    <p>sam</p>
-  )
+function HistoryCardComponent({ prop }) {
+  return (<>
+    <p>Quality: {prop.quality}</p>
+    <p>Quantity: {prop.quantity}</p>
+    </>)
 }
 
 export default HistoryCardComponent;
