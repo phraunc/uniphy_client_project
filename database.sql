@@ -63,7 +63,7 @@ CREATE TABLE food (
     score_f INT,
     date DATE DEFAULT current_date,
     quality INT,
-    quanity INT,
+    quantity INT,
     snack INT,
     water INT,
     fasting INT,
@@ -106,7 +106,7 @@ VALUES ('1', 'Friends', 'Quick hang before dinner', '45', 'false');
 INSERT INTO occupation (user_id, title, duration, description)
 VALUES ('1', 'Relaxing', '45', 'Teen murder mystery The Naturals');
 
-INSERT INTO food (user_id, quality, quanity, snack, water, fasting)
+INSERT INTO food (user_id, quality, quantity, snack, water, fasting)
 VALUES ('1', '79', '2', '5', '8', '0');
 
 INSERT INTO sleep (user_id, quality, duration, screen_time)
