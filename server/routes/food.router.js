@@ -63,4 +63,28 @@ router.delete("/:id", rejectUnauthenticated, (req, res) => {
     });
 });
 
+router.put("/:id", rejectUnauthenticated, (req, res) => {
+  const sqlText = `UPDATE "food"
+    SET "quality"=$1, "quantity"=$2, "snack"=$3, "water"=$4, "fasting"=$5
+    WHERE "food".id = $6;`;
+  sqlValue = [
+    req.body.quality,
+    req.body.quantity,
+    req.body.snack,
+    req.body.water,
+    req.body.fasting,
+    req.params.id,
+  ];
+
+  pool
+    .query(sqlText, sqlValue)
+    .then(() => {
+      res.sendStatus(200);
+    })
+    .catch((err) => {
+      console.log("error in the put food router", err);
+      res.sendStatus(500);
+    });
+});
+
 module.exports = router;
