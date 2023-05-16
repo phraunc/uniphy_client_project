@@ -64,7 +64,16 @@ function HistoryCardFood({ prop }) {
   return (
     <>
       <Box sx={{ minWidth: 275 }}>
-        <Card variant="outlined" sx={{ borderColor: 'black' }}>{card}</Card>
+        <Card variant="outlined"
+          sx={{
+            cursor: 'grab',
+            transition: 'all 0.2s ease-in-out',
+            '&:hover': {
+              backgroundColor: 'rgba(32, 119, 212, 0.6)',
+              boxShadow: '0px 0px 0px 5px rgba(0,0,0,0.5)',
+              transform: 'scale(1.05)'
+            }
+          }}>{card}</Card>
       </Box>
     </>
   );
