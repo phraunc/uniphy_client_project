@@ -12,10 +12,11 @@ function* getSleepId(action) {
 }
 
 function* getSleep(action) {
+  console.log('inside gor getSleep saga')
   try {
-    const foodPillar = yield axios.get("./api/sleep", action.payload);
-    yield put({ type: "SET_SLEEP", payload: foodPillar.data });
-    console.log('this is our sleep data', foodPillar.data)
+    const sleepPillar = yield axios.get("./api/sleep", action.payload);
+    yield put({ type: 'SET_SLEEP', payload: sleepPillar.data });
+    console.log('this is our sleep data', sleepPillar.data)
   } catch (err) {
     console.log("error in Sleep GET_Saga", err);
   }
@@ -49,7 +50,7 @@ function* deleteSleep(action) {
   }
 }
 
-function* foodSaga() {
+function* sleepSaga() {
   yield takeEvery("GET_SLEEP", getSleep);
   yield takeEvery("POST_SLEEP", postSleep);
   yield takeEvery("UPDATE_SLEEP", putSleep);
@@ -57,4 +58,4 @@ function* foodSaga() {
   yield takeLatest("GET_SLEEP_ID", getSleepId)
 }
 
-export default foodSaga;
+export default sleepSaga;

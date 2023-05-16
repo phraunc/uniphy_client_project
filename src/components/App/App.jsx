@@ -25,6 +25,7 @@ import FoodForm from "../Food/FoodForm";
 import "./App.css";
 import EditFood from "../Food/FoodEditForm";
 import Sleep from "../Sleep/Sleep";
+import SleepForm from "../Sleep/SleepForm";
 
 function App() {
   const dispatch = useDispatch();
@@ -106,6 +107,9 @@ function App() {
           </Route>
           <Route exact path="/sleep">
             {user.id ? <Sleep /> : <Redirect to="/home" />}
+          </Route>
+          <Route exact path="/sleepform">
+            {user.id ? <SleepForm /> : <Redirect to="/home" />}
           </Route>
 
           <Route exact path="/home">

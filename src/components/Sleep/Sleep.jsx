@@ -2,7 +2,7 @@ import backIcon from '../img/backIcon.png';
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import HistoryContainer from "../HistoryContainer/HistoryContainer";
+import SleepHistoryContainer from "../HistoryContainer/SleepHistoryContainer";
 import manualAddSleep from '../img/manualAddSleepBtn.png'
 
 
@@ -16,7 +16,7 @@ function Sleep() {
 
     useEffect(() => {
         dispatch({
-            type: "GET_FOOD"
+            type: "GET_SLEEP"
         })
     }, [])
 
@@ -27,7 +27,7 @@ function Sleep() {
 
 
     const sleepForm = () => {
-
+        history.push('/sleepform')
     }
 
     return (
@@ -37,7 +37,7 @@ function Sleep() {
             </div>
             <div key={1} style={{ backgroundColor: "white" }}>
                 <div>
-                    <HistoryContainer item={sleepStore} />
+                    <SleepHistoryContainer item={sleepStore} />
                 </div>
                 <div style={{ display: "flex", justifyContent: "center" }}>
                     <img src={manualAddSleep} alt="addSleepButton" onClick={sleepForm} width={300} />
