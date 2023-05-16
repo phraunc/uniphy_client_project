@@ -39,12 +39,12 @@ function HistoryCardSleep({ prop }) {
     justifyContent: 'flex-end', // Align content to the right
   });
 
-  function editFoodItem() {
+  function editSleepItem() {
     dispatch({
-      type: "GET_FOOD_ID",
+      type: "GET_SLEEP_ID",
       payload: prop.id
     })
-    history.push(`/food/details/${prop.id}`)
+    history.push(`/sleep/details/${prop.id}`)
   }
 
 
@@ -85,7 +85,7 @@ function HistoryCardSleep({ prop }) {
 
   return (
     <>
-      <Box sx={{ minWidth: 275 }} onClick={editFoodItem}>
+      <Box sx={{ minWidth: 275 }} onClick={editSleepItem}>
         <Card variant="outlined"
           sx={{
             cursor: 'grab',

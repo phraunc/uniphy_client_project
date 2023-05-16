@@ -19,43 +19,47 @@ import {
 } from "@mui/material";
 
 
-function FoodForm() {
+function EditSleep() {
     const history = useHistory();
     const dispatch = useDispatch();
+    const sleepId = useSelector(store => store.rootSleepReducer.sleepReducerSingle)
 
     const [addQuality, setAddQuality] = useState(2);
     const [addScreenTime, setScreenTime] = useState(0);
     const [addStartSleep, setStartSleep] = useState();
     const [addEndSleep, setEndSleep] = useState();
 
-    function cancelSleep () {
+    function cancelSleep() {
         history.push("/sleep")
     }
 
-    function addSleep (event) {
+    function saveChanges(event) {
         event.preventDefault()
         dispatch({
-            type: 'POST_SLEEP',
+            type: 'UPDATE_SLEEP',
             payload: {
-              quality: addQuality,
-              screen_time: addScreenTime,
-              start_sleep: addStartSleep,
-              end_sleep: addEndSleep,
+                id: sleepId[0].id,
+                quality: addQuality,
+                screen_time: addScreenTime,
+                start_sleep: addStartSleep,
+                end_sleep: addEndSleep,
             }
-          })
-          setAddQuality(2)
-          setScreenTime(0)
-          setEndSleep(0)
-          setStartSleep(0)
-          history.push('/sleep')
-
+        })
+        history.push('/sleep')
+    }
+    function DeleteSleep () {
+        dispatch({
+            type: 'DELETE_SLEEP',
+            payload: sleepId[0].id
+        })
+        history.push('/food')
     }
 
 
     return (<>
         <h1>Sleep Form</h1>
         <div>
-            <form onSubmit={addSleep}>
+            <form onSubmit={saveChanges}>
                 <Box sx={{ minWidth: 120 }}>
                     <FormControl fullWidth>
                         <InputLabel id="demo-simple-select-label">Screen Time</InputLabel>
@@ -125,7 +129,18 @@ function FoodForm() {
                         display="flex"
                         justifyContent="flex-end"
                         alignItems="flex-end">
-                        <Button variant="contained" type="submit" >Submit</Button>
+                        <Button variant="contained" sx={{ backgroundColor: 'red', mr: 15 }} onClick={DeleteSleep}>Delete</Button>
+                        <Button variant="contained" type="submit" >Save Changes</Button>
+                    </Box>
+                    <br />
+                    <br />
+                    <Box
+                        m={1}
+                        mt={3}
+                        display="flex"
+                        justifyContent="flex-end"
+                        alignItems="flex-end">
+                        <Button variant="contained" type="submit" >Save Changes</Button>
                     </Box>
                     <br />
                     <br />
@@ -143,4 +158,4 @@ function FoodForm() {
     </>)
 }
 
-export default FoodForm;
+export default EditSleep;

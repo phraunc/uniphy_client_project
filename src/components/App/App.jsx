@@ -26,6 +26,7 @@ import "./App.css";
 import EditFood from "../Food/FoodEditForm";
 import Sleep from "../Sleep/Sleep";
 import SleepForm from "../Sleep/SleepForm";
+import EditSleep from "../Sleep/SleepEditForm";
 
 function App() {
   const dispatch = useDispatch();
@@ -109,7 +110,10 @@ function App() {
             {user.id ? <Sleep /> : <Redirect to="/home" />}
           </Route>
           <Route exact path="/sleepform">
-            {user.id ? <SleepForm /> : <Redirect to="/home" />}
+            {user.id ? <SleepForm /> : <Redirect to="/sleep" />}
+          </Route>
+          <Route exact path="/sleep/details/:id">
+            {user.id ? <EditSleep /> : <Redirect to="/sleep" />}
           </Route>
 
           <Route exact path="/home">

@@ -23,6 +23,7 @@ function* getSleep(action) {
 }
 
 function* postSleep(action) {
+  console.log('this is our post sleep payload in sleep saga', action.payload)
   try {
     yield axios.post("./api/sleep", action.payload);
     yield put({ type: "GET_SLEEP" });
