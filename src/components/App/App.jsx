@@ -20,7 +20,8 @@ import FoodForm from "../Food/FoodForm";
 import "./App.css";
 import EditFood from "../Food/FoodEditForm";
 import SocialActivity from "../SocialActivity/SocialActivity";
-import SocialForm from "../SocialActivity/SocialActivityForm";
+import SocialForm from  '../SocialActivity/SocialActivityForm';
+import EditSocial from '../SocialActivity/SocialActivityEditForm';
 
 
 function App() {
@@ -109,9 +110,9 @@ function App() {
           <Route exact path="/socialform">
             {user.id ? <SocialForm /> : <Redirect to="/social" />}
           </Route>
-          {/* <Route exact path="/social/details/:id">
+          <Route exact path="/social/details/:id">
             {user.id ? <EditSocial /> : <Redirect to="/social" />}
-          </Route> */}
+          </Route>
 
 
           <Route exact path="/home">

@@ -5,7 +5,7 @@ import HistoryContainerSocial from "../HistoryContainer/HistoryContainerSocial";
 import backIcon from '../img/backIcon.png'
 import manualAddFood from '../img/manualAddFoodBtn.png'
 import manualAddSocial from '../img/manualAddSocialBtn.png'
-import SocialActivityEditForm from "./SocialActivityEditForm";
+import SocialActivityEditForm from "./SocialActivityEditForm.jsx";
 
 function SocialActivity() {
   const history = useHistory();
