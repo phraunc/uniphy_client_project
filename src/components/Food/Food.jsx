@@ -4,11 +4,13 @@ import { useHistory } from "react-router-dom";
 import HistoryContainer from "../HistoryContainer/HistoryContainer";
 import backIcon from '../img/backIcon.png'
 import manualAddFood from '../img/manualAddFoodBtn.png'
+import EditFood from "./FoodEditForm";
 
 function Food() {
   const history = useHistory();
   const dispatch = useDispatch();
-  const foodStore = useSelector(store => store.foodReducer)
+  const foodStore = useSelector(store => store.rootFoodReducer.foodReducer)
+  const [keyValue, setKeyValue] = useState(0)
 
   useEffect(() => {
     dispatch({
@@ -25,16 +27,22 @@ function Food() {
     history.push("/foodform");
   }
 
+
+
+
   return (
     <>
       <div>
         <img src={backIcon} alt="backButton" onClick={handleHome} />
       </div>
-      <div style={{ backgroundColor: "white" }}>
-        <HistoryContainer item={foodStore} />
-      </div>
-      <div style={{ display: "flex", justifyContent: "center" }}>
-        <img src={manualAddFood} alt="addFoodButton" onClick={foodForm} width={300} />
+      <div key={keyValue} style={{ backgroundColor: "white" }}>
+        <div>
+          <HistoryContainer item={foodStore} />
+        </div>
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          <img src={manualAddFood} alt="addFoodButton" onClick={foodForm} width={300} />
+        </div>
+
       </div>
     </>
   );

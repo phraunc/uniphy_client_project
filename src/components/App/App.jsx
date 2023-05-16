@@ -23,6 +23,7 @@ import Food from "../Food/Food";
 import FoodForm from "../Food/FoodForm";
 
 import "./App.css";
+import EditFood from "../Food/FoodEditForm";
 
 function App() {
   const dispatch = useDispatch();
@@ -97,7 +98,10 @@ function App() {
             {user.id ? <Food /> : <Redirect to="/home" />}
           </Route>
           <Route exact path="/foodform">
-            {user.id ? <FoodForm /> : <Redirect to="/home" />}
+            {user.id ? <FoodForm /> : <Redirect to="/food" />}
+          </Route>
+          <Route exact path="/food/details/:id">
+            {user.id ? <EditFood /> : <Redirect to="/food" />}
           </Route>
 
           <Route exact path="/home">

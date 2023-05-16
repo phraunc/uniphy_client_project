@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
+import EditFood from "./FoodEditForm";
 
 import {
   Radio,
@@ -21,12 +22,14 @@ import {
 function FoodForm() {
   const history = useHistory();
   const dispatch = useDispatch();
+  
 
-  const [addQuality, setAddQuality] = useState(1);
+  const [addQuality, setAddQuality] = useState(0);
   const [addQuantity, setAddQuantity] = useState(0);
   const [addSnack, setAddSnack] = useState(0);
   const [addWater, setAddWater] = useState(0);
   const [addFasting, setAddFasting] = useState(0);
+  
 
   const handleHome = () => {
     // console.log("history test");
@@ -37,14 +40,14 @@ function FoodForm() {
     event.preventDefault();
 
     dispatch({
-        type:'POST_FOOD',
-        payload: {
-            quality: addQuality,
-            quantity: addQuantity,
-            snack: addSnack,
-            water: addWater, 
-            fasting:addFasting,
-        }
+      type: 'POST_FOOD',
+      payload: {
+        quality: addQuality,
+        quantity: addQuantity,
+        snack: addSnack,
+        water: addWater,
+        fasting: addFasting,
+      }
     })
     setAddQuality(1)
     setAddQuantity(0)
@@ -56,12 +59,13 @@ function FoodForm() {
 
   };
 
-  const cancelFood = ()=>{
+  const cancelFood = () => {
     history.push("/food")
   }
- 
+
   return (
     <>
+      
       <h1>Food Form</h1>
       <div>
         <form onSubmit={addFood}>
@@ -180,8 +184,8 @@ function FoodForm() {
       
 
         </form>
-      </div>
-    </>
+      </div> 
+  </>
   );
 }
 
