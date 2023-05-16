@@ -1,8 +1,12 @@
 import * as React from "react";
 import { Box, Card, CardActions, CardContent, Button, Typography, Paper, Grid, styled } from "@mui/material";
 import foodQualityIcon from '../img/foodQualityIcon.png'
+import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 function HistoryCardFood({ prop }) {
+  const dispatch = useDispatch();
+  const history = useHistory();
 
   const bull = (
     <Box
@@ -34,6 +38,16 @@ function HistoryCardFood({ prop }) {
     justifyContent: 'flex-end', // Align content to the right
   });
 
+  function editFoodItem() {
+    dispatch({
+      type: "GET_FOOD_ID",
+      payload: prop.id
+    })
+    history.push(`/food/details/${prop.id}`)
+  }
+
+
+
   const card = (
     <React.Fragment>
       <CardContent>
@@ -61,9 +75,12 @@ function HistoryCardFood({ prop }) {
     </React.Fragment>
   );
 
+
+
+
   return (
     <>
-      <Box sx={{ minWidth: 275 }}>
+      <Box sx={{ minWidth: 275 }} onClick={editFoodItem}>
         <Card variant="outlined"
           sx={{
             cursor: 'grab',

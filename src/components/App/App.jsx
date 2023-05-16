@@ -97,7 +97,10 @@ function App() {
             {user.id ? <Food /> : <Redirect to="/home" />}
           </Route>
           <Route exact path="/foodform">
-            {user.id ? <FoodForm /> : <Redirect to="/home" />}
+            {user.id ? <FoodForm /> : <Redirect to="/food" />}
+          </Route>
+          <Route exact path="/food/details/:id">
+            {user.id ? <FoodForm /> : <Redirect to="/food" />}
           </Route>
 
           <Route exact path="/home">

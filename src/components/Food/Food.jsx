@@ -9,8 +9,7 @@ import EditFood from "./FoodEditForm";
 function Food() {
   const history = useHistory();
   const dispatch = useDispatch();
-  const foodStore = useSelector(store => store.foodReducer)
-  const [toggleEdit, setToggleEdit] = useState(false)
+  const foodStore = useSelector(store => store.rootFoodReducer.foodReducer)
   const [keyValue, setKeyValue] = useState(0)
 
   useEffect(() => {
@@ -28,12 +27,6 @@ function Food() {
     history.push("/foodform");
   }
 
-  const ToEditForm = (event) => {
-    event.preventDefault()
-    setToggleEdit(true)
-    let value = keyValue + 1
-    setKeyValue(value)
-  }
 
 
 
@@ -43,17 +36,13 @@ function Food() {
         <img src={backIcon} alt="backButton" onClick={handleHome} />
       </div>
       <div key={keyValue} style={{ backgroundColor: "white" }}>
-        {toggleEdit ?
-        <div onClick={()=> setToggleEdit(false)}>
-        <EditFood />
-        </div> :
-          <div onClick={ToEditForm}>
-            <HistoryContainer  item={foodStore} />
-          </div>
-        }
-      </div>
-      <div style={{ display: "flex", justifyContent: "center" }}>
-        <img src={manualAddFood} alt="addFoodButton" onClick={foodForm} width={300} />
+        <div>
+          <HistoryContainer item={foodStore} />
+        </div>
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          <img src={manualAddFood} alt="addFoodButton" onClick={foodForm} width={300} />
+        </div>
+
       </div>
     </>
   );

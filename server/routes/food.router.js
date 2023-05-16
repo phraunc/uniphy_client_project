@@ -22,6 +22,23 @@ router.get("/", rejectUnauthenticated, (req, res) => {
     });
 });
 
+// Get by ID route
+router.get('/:id', rejectUnauthenticated, (req, res)=> {
+  const sqlText = `SELECT * FROM food WHERE food.id = $1`
+  const sqlValue = [req.params.id]
+
+  pool.query(sqlText, sqlValue)
+  .then((result) => {
+    res.send(result.rows)
+  })
+  .catch((err) => {
+    console.log('error in our food get by id route', err)
+    res.sendStatus(500)
+  })
+
+})
+
+
 /**
  * POST route template
  */
