@@ -42,7 +42,7 @@ function* putFood(action) {
 
 function* deleteFood(action) {
   try {
-    yield axios.delete("./api/food", action.payload);
+    yield axios.delete(`./api/food/${action.payload}`);
     yield put({ type: "GET_FOOD" });
   } catch (err) {
     console.log("error in Food delete_Saga", err);

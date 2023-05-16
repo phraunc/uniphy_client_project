@@ -30,7 +30,7 @@ function EditFood() {
     const [addSnack, setAddSnack] = useState(0);
     const [addWater, setAddWater] = useState(0);
     const [addFasting, setAddFasting] = useState(0);
-    
+
 
     const cancelFood = () => {
         history.push('/food')
@@ -48,6 +48,14 @@ function EditFood() {
                 water: addWater,
                 fasting: addFasting,
             }
+        })
+        history.push('/food')
+    }
+
+    function DeleteFood () {
+        dispatch({
+            type: 'DELETE_FOOD',
+            payload: foodItemID[0].id
         })
         history.push('/food')
     }
@@ -157,6 +165,7 @@ function EditFood() {
                         display="flex"
                         justifyContent="flex-end"
                         alignItems="flex-end">
+                        <Button variant="contained" sx={{ backgroundColor: 'red', mr: 15 }} onClick={DeleteFood}>Delete</Button>
                         <Button variant="contained" type="submit" >Save Changes</Button>
                     </Box>
                     <br />
