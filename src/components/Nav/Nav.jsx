@@ -36,6 +36,10 @@ function Nav() {
               Food
             </Link>
 
+            <Link className="navLink" to="/occupation">
+              Occupation
+            </Link>
+
             <LogOutButton className="navLink" />
           </>
         )}

@@ -24,6 +24,9 @@ import FoodForm from "../Food/FoodForm";
 
 import "./App.css";
 import EditFood from "../Food/FoodEditForm";
+import Occupation from "../Occupation/Occupation";
+import OccupationForm from "../Occupation/OccupationForm";
+import EditOccupation from "../Occupation/OccupationEditForm";
 
 function App() {
   const dispatch = useDispatch();
@@ -102,6 +105,16 @@ function App() {
           </Route>
           <Route exact path="/food/details/:id">
             {user.id ? <EditFood /> : <Redirect to="/food" />}
+          </Route>
+
+          <Route exact path="/occupation">
+            {user.id ? <Occupation /> : <Redirect to="/home" />}
+          </Route>
+          <Route exact path="/occupationform">
+            {user.id ? <OccupationForm /> : <Redirect to="/occupation" />}
+          </Route>
+          <Route exact path="/occupation/details/:id">
+            {user.id ? <EditOccupation /> : <Redirect to="/occupation" />}
           </Route>
 
           <Route exact path="/home">
