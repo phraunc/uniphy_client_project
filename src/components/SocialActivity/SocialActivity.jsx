@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import HistoryContainer from "../HistoryContainer/HistoryContainer";
+import HistoryContainerSocial from "../HistoryContainer/HistoryContainerSocial";
 import backIcon from '../img/backIcon.png'
 import manualAddFood from '../img/manualAddFoodBtn.png'
 import manualAddSocial from '../img/manualAddSocialBtn.png'
-// import EditFood from "./FoodEditForm";
+import SocialActivityEditForm from "./SocialActivityEditForm";
 
 function SocialActivity() {
   const history = useHistory();
@@ -25,7 +25,7 @@ function SocialActivity() {
   };
 
   const socialForm = () => {
-    history.push("/socialform");//⭐️need to make form to go to 
+    history.push("/socialform");
   }
 
 
@@ -38,7 +38,7 @@ function SocialActivity() {
       </div>
       <div key={keyValue} style={{ backgroundColor: "white" }}>
         <div>
-          <HistoryContainer item={socialStore} />
+          <HistoryContainerSocial item={socialStore} />
         </div>
         <div style={{ display: "flex", justifyContent: "center" }}>
           <img src={manualAddSocial} alt="addFoodButton" onClick={socialForm} width={300} />

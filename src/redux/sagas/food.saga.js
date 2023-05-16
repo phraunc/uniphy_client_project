@@ -2,7 +2,7 @@ import { put, takeEvery, takeLatest } from "redux-saga/effects";
 import axios from "axios";
 
 function* getFoodId(action) {
-  console.log('here is our payload for getfoodID', action.payload)
+  // console.log('here is our payload for getfoodID', action.payload)
   try{
     const foodID = yield axios.get(`./api/food/details/${action.payload}`);
     yield put({ type: 'SET_FOOD_ID', payload: foodID.data})
@@ -31,7 +31,7 @@ function* postFood(action) {
 }
 
 function* putFood(action) {
-  console.log('here is our data to update:', action.payload)
+  // console.log('here is our data to update:', action.payload)
   try {
     yield axios.put(`./api/food/${action.payload.id}`, action.payload);
     yield put({ type: "GET_FOOD" });

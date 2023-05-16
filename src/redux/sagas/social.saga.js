@@ -13,15 +13,16 @@ function* getSocialId(action) {
 
 function* getSocial(action) {
   try {
-    const foodPillar = yield axios.get("./api/social", action.payload);
-    yield put({ type: "SET_SOCIAL", payload: foodPillar.data });
-    console.log('this is our social data', foodPillar.data)
+    const socialPillar = yield axios.get("./api/social", action.payload);
+    yield put({ type: "SET_SOCIAL", payload: socialPillar.data });
+    console.log('this is our social data', socialPillar.data)
   } catch (err) {
     console.log("error in Social GET_Saga", err);
   }
 }
 
 function* postSocial(action) {
+  console.log('TESTTESTTESTTESTTEST')
   try {
     yield axios.post("./api/social", action.payload);
     yield put({ type: "GET_SOCIAL" });
