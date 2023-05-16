@@ -4,7 +4,7 @@ import axios from "axios";
 function* getOccupationId(action) {
   console.log('here is our payload for getOccupationID', action.payload)
   try{
-    const foodID = yield axios.get(`./api/occupation/details/${action.payload}`);
+    const occupationID = yield axios.get(`./api/occupation/details/${action.payload}`);
     yield put({ type: 'SET_OCCUPATION_ID', payload: occupationID.data})
   } catch (err) {
     console.log("error in get Occupation ID saga.", err)

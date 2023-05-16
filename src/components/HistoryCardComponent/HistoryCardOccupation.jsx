@@ -16,6 +16,12 @@ function HistoryCardOccupation({ prop }) {
         </Box>
     );
 
+    const formatDate = (dateString) => {
+        const date = new Date(dateString);
+        const options = { month: "2-digit", day: "2-digit", year: "2-digit" };
+        return date.toLocaleDateString(undefined, options);
+      };
+
     const Item = styled(Paper)(({ theme }) => ({
         backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
         ...theme.typography.body2,
@@ -40,28 +46,26 @@ function HistoryCardOccupation({ prop }) {
         history.push(`/occupation/details/${prop.id}`)
     }
 
-
-
     const card = (
         <React.Fragment>
             <CardContent>
                 <Box sx={{ flexGrow: 1 }}>
                     <Grid container spacing={2} sx={{ border: "none" }}>
                         <Grid item xs={6}>
-                            <Item>1</Item>
+                            <Item>{formatDate(prop.date)}</Item>
                         </Grid>
                         <Grid item xs={6}>
-                            <RightAlignedItem>2</RightAlignedItem>
+                            <RightAlignedItem>{prop.title}</RightAlignedItem>
                         </Grid>
                         <Grid item xs={6}>
                             <Item><img src={hourglassIcon}
                                 alt="hourglass icon"
-                                style={{ width: "50px" }}
+                                style={{ width: "20px" }}
                             />
-                                3</Item>
+                                {prop.duration}</Item>
                         </Grid>
                         <Grid item xs={6}>
-                            <RightAlignedItem>4</RightAlignedItem>
+                            <RightAlignedItem></RightAlignedItem>
                         </Grid>
                     </Grid>
                 </Box>

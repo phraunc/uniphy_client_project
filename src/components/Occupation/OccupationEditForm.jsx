@@ -18,145 +18,75 @@ import {
     TextField,
 } from "@mui/material";
 
-
-
 function EditOccupation() {
     const dispatch = useDispatch();
     const occupationItemID = useSelector(store => store.rootOccupationReducer.occupationReducerSingle)
     const history = useHistory();
 
-    const [addQuality, setAddQuality] = useState(1);
-    const [addQuantity, setAddQuantity] = useState(0);
-    const [addSnack, setAddSnack] = useState(0);
-    const [addWater, setAddWater] = useState(0);
-    const [addFasting, setAddFasting] = useState(0);
+    const [addTitle, setAddTitle] = useState(0);
+    const [addDuration, setAddDuration] = useState(0);
+    const [addDescription, setAddDescription] = useState(0);
 
 
-    const cancelFood = () => {
-        history.push('/food')
+    const cancelOccupation = () => {
+        history.push("/occupation")
     }
 
     const saveChanges = () => {
-        console.log('This is the foodItem.id that we are sending our payload', foodItemID)
+        console.log('This is the occupationItem.id that we are sending our payload', occupationItemID)
         dispatch({
-            type: 'UPDATE_FOOD',
+            type: 'UPDATE_OCCUPATION',
             payload: {
-                id: foodItemID[0].id,
-                quality: addQuality,
-                quantity: addQuantity,
-                snack: addSnack,
-                water: addWater,
-                fasting: addFasting,
+                id: occupationItemID[0].id,
+                title: addTitle,
+                duration: addDuration,
+                description: addDescription,
             }
         })
-        history.push('/food')
+        history.push('/occupation')
     }
 
-    function DeleteFood () {
+    function DeleteOccupation() {
         dispatch({
-            type: 'DELETE_FOOD',
-            payload: foodItemID[0].id
+            type: 'DELETE_OCCUPATION',
+            payload: occupationItemID[0].id
         })
-        history.push('/food')
+        history.push('/occupation')
     }
-
-
 
     return (<>
-        <h1>Food Form</h1>
+        <h1>Occupation Form</h1>
         <div>
             <form onSubmit={saveChanges}>
                 <TextField
-                    label="Food Quality"
+                    label="Occupation title"
                     variant="outlined"
-                    type="number"
-                    placeholder="1-100"
-                    min="1"
-                    max="100"
-                    value={addQuality}
-                    onChange={(event) => setAddQuality(event.target.value)}
+                    type="text"
+                    placeholder=""
+                    value={addTitle}
+                    onChange={(event) => setAddTitle(event.target.value)}
                 />
                 <br />
                 <br />
                 <Box sx={{ minWidth: 120 }}>
-                    <FormControl fullWidth>
-                        <InputLabel id="demo-simple-select-label">Quantity</InputLabel>
-                        <Select
-                            labelId="demo-simple-select-label"
-                            id="demo-simple-select"
-                            value={addQuantity}
-                            label="quantity"
-                            onChange={(event) => setAddQuantity(event.target.value)}
-                        >
-                            <MenuItem value={-5}>Very Hungry</MenuItem>
-                            <MenuItem value={-4}>Moderately Hungry</MenuItem>
-                            <MenuItem value={-3}>Somewhat Hungry</MenuItem>
-                            <MenuItem value={-2}>Hungry</MenuItem>
-                            <MenuItem value={-1}>A Little Hungry</MenuItem>
-                            <MenuItem value={0}>Feeling Good</MenuItem>
-                            <MenuItem value={1}>A Little Too Much</MenuItem>
-                            <MenuItem value={2}>Too Much</MenuItem>
-                            <MenuItem value={3}>Somewhat Too Much</MenuItem>
-                            <MenuItem value={4}>Moderately Too Much</MenuItem>
-                            <MenuItem value={5}>Very Full...AMERICA!!</MenuItem>
-                        </Select>
-                    </FormControl>
+                    <TextField
+                        label="Occupation duration"
+                        variant="outlined"
+                        type="text"
+                        placeholder=""
+                        value={addDuration}
+                        onChange={(event) => setAddDuration(event.target.value)}
+                    />
                     <br />
                     <br />
-                    <FormControl fullWidth>
-                        <InputLabel id="demo-simple-select-label">Snacks</InputLabel>
-                        <Select
-                            labelId="demo-simple-select-label"
-                            id="demo-simple-select"
-                            value={addSnack}
-                            label="snacks"
-                            onChange={(event) => setAddSnack(event.target.value)}
-                        >
-                            <MenuItem value={0}>No Snacks</MenuItem>
-                            <MenuItem value={1}>One Snack</MenuItem>
-                            <MenuItem value={2}>Two Snacks</MenuItem>
-                            <MenuItem value={3}>Three Snacks</MenuItem>
-                            <MenuItem value={4}>Four Snacks</MenuItem>
-                            <MenuItem value={5}>Five or More Snacks</MenuItem>
-                        </Select>
-                    </FormControl>
-                    <br />
-                    <br />
-                    <FormControl fullWidth>
-                        <InputLabel id="demo-simple-select-label">Water</InputLabel>
-                        <Select
-                            labelId="demo-simple-select-label"
-                            id="demo-simple-select"
-                            value={addWater}
-                            label="water"
-                            onChange={(event) => setAddWater(event.target.value)}
-                        >
-                            <MenuItem value={0}>0 Ltr</MenuItem>
-                            <MenuItem value={1}>.5 Ltr</MenuItem>
-                            <MenuItem value={2}>1 Ltr</MenuItem>
-                            <MenuItem value={3}>1.5 Ltr</MenuItem>
-                            <MenuItem value={4}>2 Ltr</MenuItem>
-                            <MenuItem value={5}>2.5 Ltr</MenuItem>
-                        </Select>
-                    </FormControl>
-                    <br />
-                    <br />
-                    <FormControl fullWidth>
-                        <InputLabel id="demo-simple-select-label">Fasting</InputLabel>
-                        <Select
-                            labelId="demo-simple-select-label"
-                            id="demo-simple-select"
-                            value={addFasting}
-                            label="fasting"
-                            onChange={(event) => setAddFasting(event.target.value)}
-                        >
-                            <MenuItem value={0}>Fewer Then 12</MenuItem>
-                            <MenuItem value={1}>12-14 Hrs</MenuItem>
-                            <MenuItem value={2}>14-16 Hrs</MenuItem>
-                            <MenuItem value={3}>16-24 Hrs</MenuItem>
-                            <MenuItem value={4}>24+ Hrs</MenuItem>
-                        </Select>
-                    </FormControl>
+                    <TextField
+                        label="Occupation description"
+                        variant="outlined"
+                        type="text"
+                        placeholder=""
+                        value={addDescription}
+                        onChange={(event) => setAddDescription(event.target.value)}
+                    />
                     <br />
                     <br />
                     <Box
@@ -165,7 +95,7 @@ function EditOccupation() {
                         display="flex"
                         justifyContent="flex-end"
                         alignItems="flex-end">
-                        <Button variant="contained" sx={{ backgroundColor: 'red', mr: 15 }} onClick={DeleteFood}>Delete</Button>
+                        <Button variant="contained" sx={{ backgroundColor: 'red', mr: 15 }} onClick={DeleteOccupation}>Delete</Button>
                         <Button variant="contained" type="submit" >Save Changes</Button>
                     </Box>
                     <br />
@@ -176,11 +106,9 @@ function EditOccupation() {
                         display="flex"
                         justifyContent="flex-end"
                         alignItems="flex-end">
-                        <Button variant="contained" onClick={cancelFood} >Cancel</Button>
+                        <Button variant="contained" onClick={cancelOccupation} >Cancel</Button>
                     </Box>
                 </Box>
-
-
             </form>
         </div>
     </>)
