@@ -31,8 +31,9 @@ function* postFood(action) {
 }
 
 function* putFood(action) {
+  console.log('here is our data to update:', action.payload)
   try {
-    yield axios.put("./api/food", action.payload);
+    yield axios.put(`./api/food/${action.payload.id}`, action.payload);
     yield put({ type: "GET_FOOD" });
   } catch (err) {
     console.log("error in Food PUT_Saga", err);

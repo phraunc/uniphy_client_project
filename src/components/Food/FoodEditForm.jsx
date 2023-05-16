@@ -20,8 +20,10 @@ import {
 
 
 
-function EditFood({setToggleEdit, toggleEdit}) {
+function EditFood() {
     const dispatch = useDispatch();
+    const foodItemID = useSelector(store => store.rootFoodReducer.foodReducerSingle)
+    const history = useHistory();
 
     const [addQuality, setAddQuality] = useState(1);
     const [addQuantity, setAddQuantity] = useState(0);
@@ -31,13 +33,15 @@ function EditFood({setToggleEdit, toggleEdit}) {
     
 
     const cancelFood = () => {
-        setToggleEdit(!toggleEdit)
+        history.push('/food')
     }
 
-    const saveChanges = (id) => {
+    const saveChanges = () => {
+        console.log('This is the foodItem.id that we are sending our payload', foodItemID)
         dispatch({
             type: 'UPDATE_FOOD',
             payload: {
+                id: foodItemID[0].id,
                 quality: addQuality,
                 quantity: addQuantity,
                 snack: addSnack,
@@ -45,6 +49,7 @@ function EditFood({setToggleEdit, toggleEdit}) {
                 fasting: addFasting,
             }
         })
+        history.push('/food')
     }
 
 

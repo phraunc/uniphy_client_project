@@ -22,8 +22,9 @@ import {
 function FoodForm() {
   const history = useHistory();
   const dispatch = useDispatch();
+  
 
-  const [addQuality, setAddQuality] = useState(1);
+  const [addQuality, setAddQuality] = useState(0);
   const [addQuantity, setAddQuantity] = useState(0);
   const [addSnack, setAddSnack] = useState(0);
   const [addWater, setAddWater] = useState(0);

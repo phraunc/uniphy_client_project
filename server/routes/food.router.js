@@ -23,7 +23,7 @@ router.get("/", rejectUnauthenticated, (req, res) => {
 });
 
 // Get by ID route
-router.get('/:id', rejectUnauthenticated, (req, res)=> {
+router.get('/details/:id', rejectUnauthenticated, (req, res)=> {
   const sqlText = `SELECT * FROM food WHERE food.id = $1`
   const sqlValue = [req.params.id]
 
