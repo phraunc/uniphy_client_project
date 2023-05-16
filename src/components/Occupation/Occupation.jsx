@@ -34,7 +34,7 @@ function Occupation() {
       </div>
       <div key={keyValue} style={{ backgroundColor: "white" }}>
         <div>
-          <HistoryContainer item={foodStore} />
+          <HistoryContainer item={occupationStore} />
         </div>
         <div style={{ display: "flex", justifyContent: "center" }}>
           <img src={manualAddOccupation} alt="addOccupationButton" onClick={occupationForm} width={300} />

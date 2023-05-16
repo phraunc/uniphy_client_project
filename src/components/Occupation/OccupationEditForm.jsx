@@ -22,7 +22,7 @@ import {
 
 function EditOccupation() {
     const dispatch = useDispatch();
-    const foodItemID = useSelector(store => store.rootFoodReducer.foodReducerSingle)
+    const occupationItemID = useSelector(store => store.rootOccupationReducer.occupationReducerSingle)
     const history = useHistory();
 
     const [addQuality, setAddQuality] = useState(1);
