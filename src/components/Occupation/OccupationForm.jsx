@@ -49,7 +49,6 @@ function OccupationForm() {
         setAddDescription(0)
 
         history.push("/occupation");
-
     };
 
     const cancelOccupation = () => {
@@ -91,7 +90,6 @@ function OccupationForm() {
                             value={addDescription}
                             onChange={(event) => setAddDescription(event.target.value)}
                         />
-
                         <br />
                         <br />
                         <Box
@@ -113,8 +111,6 @@ function OccupationForm() {
                             <Button variant="contained" onClick={cancelOccupation} >Cancel</Button>
                         </Box>
                     </Box>
-
-
                 </form>
             </div>
         </>

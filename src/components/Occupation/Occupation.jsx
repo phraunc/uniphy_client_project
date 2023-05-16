@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import HistoryContainer from "../HistoryContainer/HistoryContainer";
+import OccupationHistoryContainer from "../HistoryContainer/OccupationHistoryContainer";
 import backIcon from '../img/backIcon.png'
 import manualAddOccupation from '../img/manualAddNewOccBtn.png'
 import EditOccupation from "./OccupationEditForm";
@@ -34,7 +34,7 @@ function Occupation() {
       </div>
       <div key={keyValue} style={{ backgroundColor: "white" }}>
         <div>
-          <HistoryContainer item={occupationStore} />
+          <OccupationHistoryContainer item={occupationStore} />
         </div>
         <div style={{ display: "flex", justifyContent: "center" }}>
           <img src={manualAddOccupation} alt="addOccupationButton" onClick={occupationForm} width={300} />
