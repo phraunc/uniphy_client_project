@@ -10,8 +10,6 @@ function Food() {
   const dispatch = useDispatch();
   const foodStore = useSelector(store => store.foodReducer)
 
-
-
   useEffect(() => {
     dispatch({
       type: "GET_FOOD"
@@ -29,11 +27,10 @@ function Food() {
 
   return (
     <>
-
       <div>
         <img src={backIcon} alt="backButton" onClick={handleHome} />
       </div>
-      <div>
+      <div style={{ backgroundColor: "white" }}>
         <HistoryContainer item={foodStore} />
       </div>
       <div style={{ display: "flex", justifyContent: "center" }}>

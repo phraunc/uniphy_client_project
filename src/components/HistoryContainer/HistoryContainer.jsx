@@ -5,7 +5,7 @@ function HistoryContainer({ item }) {
     <div class="flex-grid-quarters">
       {item.map((single, i) => {
         return (
-          <div class="container1">
+          <div class="container">
             <HistoryCardFood key={i} prop={single} />
           </div>
         );

@@ -7,7 +7,7 @@ function HistoryCardFood({ prop }) {
   const bull = (
     <Box
       component="span"
-      sx={{ display: "inline-block", mx: "2px", transform: "scale(0.8)"}}
+      sx={{ display: "inline-block", mx: "2px", transform: "scale(0.8)" }}
     >
     </Box>
   );
@@ -37,8 +37,8 @@ function HistoryCardFood({ prop }) {
   const card = (
     <React.Fragment>
       <CardContent>
-        <Box sx={{ flexGrow: 1}}>
-          <Grid container spacing={2} sx={{border: "none"}}>
+        <Box sx={{ flexGrow: 1 }}>
+          <Grid container spacing={2} sx={{ border: "none" }}>
             <Grid item xs={6}>
               <Item>{formatDate(prop.date)}</Item>
             </Grid>
