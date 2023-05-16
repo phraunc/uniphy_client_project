@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import HistoryContainer from "../HistoryContainer/HistoryContainer";
+import backIcon from '../img/backIcon.png'
+import manualAddFood from '../img/manualAddFoodBtn.png'
 
 function Food() {
   const history = useHistory();
@@ -12,7 +14,7 @@ function Food() {
 
   useEffect(() => {
     dispatch({
-        type: "GET_FOOD"
+      type: "GET_FOOD"
     })
   }, [])
 
@@ -27,15 +29,15 @@ function Food() {
 
   return (
     <>
-      <h1>Food</h1>
+
       <div>
-        <button onClick={handleHome}>back</button>
+        <img src={backIcon} alt="backButton" onClick={handleHome} />
       </div>
       <div>
-        <HistoryContainer item={foodStore}/>
+        <HistoryContainer item={foodStore} />
       </div>
-      <div>
-        <button onClick={foodForm}>Add Food</button>
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <img src={manualAddFood} alt="addFoodButton" onClick={foodForm} width={300} />
       </div>
     </>
   );

@@ -1,42 +1,70 @@
 import * as React from "react";
-import Box from "@mui/material/Box";
-import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
-import CardContent from "@mui/material/CardContent";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
+import { Box, Card, CardActions, CardContent, Button, Typography, Paper, Grid, styled } from "@mui/material";
+import foodQualityIcon from '../img/foodQualityIcon.png'
 
 function HistoryCardFood({ prop }) {
+
   const bull = (
     <Box
       component="span"
-      sx={{ display: "inline-block", mx: "2px", transform: "scale(0.8)" }}
+      sx={{ display: "inline-block", mx: "2px", transform: "scale(0.8)"}}
     >
-      •
     </Box>
   );
+
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const options = { month: "2-digit", day: "2-digit", year: "2-digit" };
+    return date.toLocaleDateString(undefined, options);
+  };
+
+  const Item = styled(Paper)(({ theme }) => ({
+    backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+    ...theme.typography.body2,
+    padding: theme.spacing(1),
+    textAlign: 'left',
+    color: theme.palette.text.secondary,
+    display: 'flex',
+    alignItems: 'center',
+    height: 30,
+
+  }));
+
+  const RightAlignedItem = styled(Item)({
+    justifyContent: 'flex-end', // Align content to the right
+  });
 
   const card = (
     <React.Fragment>
       <CardContent>
-        <Typography variant="body2">
-          <p>Quality: {prop.quality}</p>
-          <p>Quantity: {prop.quantity}</p>
-          <p>Snack: {prop.snack}</p>
-          <p>Water: {prop.water}</p>
-          <p>Fasting: {prop.fasting}</p>
-        </Typography>
+        <Box sx={{ flexGrow: 1}}>
+          <Grid container spacing={2} sx={{border: "none"}}>
+            <Grid item xs={6}>
+              <Item>{formatDate(prop.date)}</Item>
+            </Grid>
+            <Grid item xs={6}>
+              <RightAlignedItem>Fasting: {prop.fasting}</RightAlignedItem>
+            </Grid>
+            <Grid item xs={6}>
+              <Item><img src={foodQualityIcon}
+                alt="foodIcon"
+                style={{ width: "50px" }}
+              />
+                {prop.quality}</Item>
+            </Grid>
+            <Grid item xs={6}>
+              <RightAlignedItem>Snacks: {prop.snack}</RightAlignedItem>
+            </Grid>
+          </Grid>
+        </Box>
       </CardContent>
-      <CardActions>
-        <Button size="small">Learn More</Button>
-      </CardActions>
     </React.Fragment>
   );
 
   return (
     <>
-      <Box sx={{ minWidth: 275}}>
-        <Card variant="outlined" sx={{borderColor: 'black'}}>{card}</Card>
+      <Box sx={{ minWidth: 275 }}>
+        <Card variant="outlined" sx={{ borderColor: 'black' }}>{card}</Card>
       </Box>
     </>
   );

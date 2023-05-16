@@ -17,10 +17,10 @@ CREATE TABLE balance_score (
     score_s INT
 );
 
-CREATE TABLE users (
+CREATE TABLE "user" (
     id SERIAL PRIMARY KEY,
     username VARCHAR,
-    pass_word VARCHAR
+    "password" VARCHAR
 );
 
 CREATE TABLE movement (
@@ -94,7 +94,7 @@ CREATE TABLE work_school (
     total_points INT 
 );
 
-INSERT INTO users (username)
+INSERT INTO user (username)
 VALUES ('sarahMgellar');
 
 INSERT INTO movement (user_id, title, duration, intensity)
