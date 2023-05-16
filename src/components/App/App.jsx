@@ -21,9 +21,14 @@ import LoginPage from "../LoginPage/LoginPage";
 import RegisterPage from "../RegisterPage/RegisterPage";
 import Food from "../Food/Food";
 import FoodForm from "../Food/FoodForm";
+import Movement from "../Movement/Movement";
+import MovementForm from "../Movement/MovementForm"
+
+
 
 import "./App.css";
 import EditFood from "../Food/FoodEditForm";
+import EditMovement from "../Movement/MovementEditForm";
 
 function App() {
   const dispatch = useDispatch();
@@ -102,6 +107,16 @@ function App() {
           </Route>
           <Route exact path="/food/details/:id">
             {user.id ? <EditFood /> : <Redirect to="/food" />}
+          </Route>
+
+          <Route exact path="/movement">
+            {user.id ? <Movement /> : <Redirect to="/home" />}
+          </Route>
+          <Route exact path="/movementform">
+            {user.id ? <MovementForm /> : <Redirect to="/movement" />}
+          </Route>
+          <Route exact path="/movement/details/:id">
+            {user.id ? <EditMovement /> : <Redirect to="/movement" />}
           </Route>
 
           <Route exact path="/home">

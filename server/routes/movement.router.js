@@ -22,6 +22,22 @@ router.get("/", rejectUnauthenticated, (req, res) => {
     });
 });
 
+router.get('/details/:id', rejectUnauthenticated, (req, res)=> {
+    const sqlText = `SELECT * FROM movement WHERE movement.id = $1`
+    const sqlValue = [req.params.id]
+  
+    pool.query(sqlText, sqlValue)
+    .then((result) => {
+      res.send(result.rows)
+    })
+    .catch((err) => {
+      console.log('error in our movement get by id route', err)
+      res.sendStatus(500)
+    })
+  
+  })
+  
+
 /**
  * POST route template
  */

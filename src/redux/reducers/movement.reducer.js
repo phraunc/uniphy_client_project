@@ -9,7 +9,7 @@ const MovementReducer = (state = [], action) => {
   };
   
 const MovementReducerSingle = (state = {}, action) => {
-   console.log('this is our movement food item', action.payload)
+   console.log('Movement item', action.payload)
    if (action.type === 'SET_MOVEMENT_ID') {
       return action.payload
    }

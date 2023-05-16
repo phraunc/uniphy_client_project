@@ -12,6 +12,7 @@ function* getMovementId(action) {
 }
 
 function* getMovement(action) {
+    console.log('inside GET saga movement')
   try {
     const movementPillar = yield axios.get("./api/movement", action.payload);
     yield put({ type: "SET_MOVEMENT", payload: movementPillar.data });

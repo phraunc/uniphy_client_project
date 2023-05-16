@@ -1,14 +1,17 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import HistoryContainer from "../HistoryContainer/HistoryContainer";
+import HistoryContainerMovement from "../Movement/HistoryContainerMovement";
 import backIcon from '../img/backIcon.png'
-import manualAddMovement from '../img/manualAddMovementBtn.png' //what is this?
+import manualAddMovement from '../img/manualAddMovementBtn.png' 
+import Stopwatch from "../Movement/Stopwatch.jsx";
+
+
 
 function Movement() {
   const history = useHistory();
   const dispatch = useDispatch();
-  const movementStore = useSelector(store => store.rootMovementReducer.movementReducer)
+  const movementStore = useSelector(store => store.rootMovementReducer.MovementReducer)
   const [keyValue, setKeyValue] = useState(0);
 
 
@@ -35,7 +38,7 @@ function Movement() {
       </div>
       <div key={keyValue} style={{ backgroundColor: "white" }}></div>
       <div>
-        <HistoryContainer item={movementStore} />
+        <HistoryContainerMovement item={movementStore} />
       </div>
       <div style={{ display: "flex", justifyContent: "center" }}>
         <img src={manualAddMovement} alt="addMovementButton" onClick={movementForm} width={300} />
