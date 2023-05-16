@@ -73,9 +73,6 @@ function HistoryCardOccupation({ prop }) {
         </React.Fragment>
     );
 
-
-
-
     return (
         <>
             <Box sx={{ minWidth: 275 }} onClick={editOccupationItem}>

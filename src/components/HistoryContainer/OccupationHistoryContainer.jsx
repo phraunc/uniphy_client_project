@@ -2,11 +2,11 @@ import HistoryCardOccupation from "../HistoryCardComponent/HistoryCardOccupation
 
 function OccupationHistoryContainer({ item }) {
   return (
-    <div class="flex-grid-quarters">
+    <div className="flex-grid-quarters">
       {item.map((single, i) => {
         return (
-          <div class="container">
-            <HistoryCardOccupation key={i} prop={single} />
+          <div className="container" key={i}>
+            <HistoryCardOccupation  prop={single} />
           </div>
         );
       })}
