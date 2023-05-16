@@ -50,11 +50,11 @@ function* deleteFood(action) {
 }
 
 function* foodSaga() {
-  yield takeEvery("GET_SOCIAL", getFood);
-  yield takeEvery("POST_SOCIAL", postFood);
-  yield takeEvery("UPDATE_SOCIAL", putFood);
-  yield takeEvery("DELETE_SOCIAL", deleteFood);
-  yield takeLatest("GET_SOCIAL_ID", getFoodId)
+  yield takeEvery("GET_FOOD", getFood);
+  yield takeEvery("POST_FOOD", postFood);
+  yield takeEvery("UPDATE_FOOD", putFood);
+  yield takeEvery("DELETE_FOOD", deleteFood);
+  yield takeLatest("GET_FOOD_ID", getFoodId)
 }
 
 export default foodSaga;

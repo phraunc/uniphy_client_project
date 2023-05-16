@@ -98,7 +98,7 @@ router.put("/:id", rejectUnauthenticated, (req, res) => {
       res.sendStatus(200);
     })
     .catch((err) => {
-      console.log("error in the PUT socail_activity router", err);
+      console.log("error in the PUT social_activity router", err);
       res.sendStatus(500);
     });
 });
