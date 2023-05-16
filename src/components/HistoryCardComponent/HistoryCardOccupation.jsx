@@ -20,7 +20,7 @@ function HistoryCardOccupation({ prop }) {
         const date = new Date(dateString);
         const options = { month: "2-digit", day: "2-digit", year: "2-digit" };
         return date.toLocaleDateString(undefined, options);
-      };
+    };
 
     const Item = styled(Paper)(({ theme }) => ({
         backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -62,10 +62,10 @@ function HistoryCardOccupation({ prop }) {
                                 alt="hourglass icon"
                                 style={{ width: "20px" }}
                             />
-                                {prop.duration}</Item>
+                                {prop.duration} minutes</Item>
                         </Grid>
                         <Grid item xs={6}>
-                            <RightAlignedItem></RightAlignedItem>
+                            <RightAlignedItem>{prop.description}</RightAlignedItem>
                         </Grid>
                     </Grid>
                 </Box>

@@ -23,18 +23,18 @@ router.get("/", rejectUnauthenticated, (req, res) => {
 });
 
 // Get by ID route
-router.get('/details/:id', rejectUnauthenticated, (req, res)=> {
+router.get('/details/:id', rejectUnauthenticated, (req, res) => {
   const sqlText = `SELECT * FROM occupation WHERE occupation.id = $1`
   const sqlValue = [req.params.id]
 
   pool.query(sqlText, sqlValue)
-  .then((result) => {
-    res.send(result.rows)
-  })
-  .catch((err) => {
-    console.log('error in GET by ID Occupation Route', err)
-    res.sendStatus(500)
-  })
+    .then((result) => {
+      res.send(result.rows)
+    })
+    .catch((err) => {
+      console.log('error in GET by ID Occupation Route', err)
+      res.sendStatus(500)
+    })
 
 })
 

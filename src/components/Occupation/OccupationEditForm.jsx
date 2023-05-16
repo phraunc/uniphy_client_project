@@ -22,7 +22,6 @@ function EditOccupation() {
     const dispatch = useDispatch();
     const occupationItemID = useSelector(store => store.rootOccupationReducer.occupationReducerSingle)
     const history = useHistory();
-
     const [addTitle, setAddTitle] = useState(0);
     const [addDuration, setAddDuration] = useState(0);
     const [addDescription, setAddDescription] = useState(0);
