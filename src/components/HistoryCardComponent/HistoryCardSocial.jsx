@@ -57,7 +57,7 @@ function HistoryCardSocial({ prop }) {
               <Item>{formatDate(prop.date)}</Item>
             </Grid>
             <Grid item xs={6}>
-              <RightAlignedItem>{prop.whom}</RightAlignedItem>
+              <RightAlignedItem>With: {prop.whom}</RightAlignedItem>
             </Grid>
             <Grid item xs={6}>
               <Item><img src={hourglass}
@@ -67,7 +67,7 @@ function HistoryCardSocial({ prop }) {
                 {prop.duration}</Item>
             </Grid>
             <Grid item xs={6}>
-              <RightAlignedItem> {prop.description}</RightAlignedItem>
+              <RightAlignedItem>Notes: {prop.description}</RightAlignedItem>
             </Grid>
           </Grid>
         </Box>

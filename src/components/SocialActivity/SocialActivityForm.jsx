@@ -86,7 +86,7 @@ function SocialActivityForm() {
                         label="Notes"
                         variant="outlined"
                         type="text"
-                        placeholder="Whom was it with"
+                        placeholder="Notes about it"
 
                         value={addDescription}
                         onChange={(event) => setAddDescription(event.target.value)}
