@@ -5,14 +5,10 @@ import {
   Route,
   Switch,
 } from "react-router-dom";
-
 import { useDispatch, useSelector } from "react-redux";
-
 import Nav from "../Nav/Nav";
 import Footer from "../Footer/Footer";
-
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
-
 import AboutPage from "../AboutPage/AboutPage";
 import UserPage from "../UserPage/UserPage";
 import InfoPage from "../InfoPage/InfoPage";
@@ -21,17 +17,20 @@ import LoginPage from "../LoginPage/LoginPage";
 import RegisterPage from "../RegisterPage/RegisterPage";
 import Food from "../Food/Food";
 import FoodForm from "../Food/FoodForm";
+import "./App.css";
+import EditFood from "../Food/FoodEditForm";
+import SocialActivity from "../SocialActivity/SocialActivity";
+import SocialForm from  '../SocialActivity/SocialActivityForm';
+import EditSocial from '../SocialActivity/SocialActivityEditForm';
 import Movement from "../Movement/Movement";
 import MovementForm from "../Movement/MovementForm"
-
-
-
 import "./App.css";
 import EditFood from "../Food/FoodEditForm";
 import Sleep from "../Sleep/Sleep";
 import SleepForm from "../Sleep/SleepForm";
 import EditSleep from "../Sleep/SleepEditForm";
 import EditMovement from "../Movement/MovementEditForm";
+
 
 function App() {
   const dispatch = useDispatch();
@@ -130,6 +129,18 @@ function App() {
           <Route exact path="/movement/details/:id">
             {user.id ? <EditMovement /> : <Redirect to="/movement" />}
           </Route>
+
+                {/* Paths for Social Activity */}
+          <Route exact path="/social">
+            {user.id ? <SocialActivity /> : <Redirect to="/home" />}
+          </Route>
+          <Route exact path="/socialform">
+            {user.id ? <SocialForm /> : <Redirect to="/social" />}
+          </Route>
+          <Route exact path="/social/details/:id">
+            {user.id ? <EditSocial /> : <Redirect to="/social" />}
+          </Route>
+
 
           <Route exact path="/home">
             {user.id ? (

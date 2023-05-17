@@ -38,7 +38,7 @@ function FoodForm() {
 
   const addFood = (event) => {
     event.preventDefault();
-
+console.log('hello')
     dispatch({
       type: 'POST_FOOD',
       payload: {
