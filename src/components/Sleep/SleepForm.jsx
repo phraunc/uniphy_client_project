@@ -27,6 +27,7 @@ function FoodForm() {
     const [addScreenTime, setScreenTime] = useState(0);
     const [addStartSleep, setStartSleep] = useState();
     const [addEndSleep, setEndSleep] = useState();
+    const [addDuration, setAddDuration] = useState();
 
     function cancelSleep () {
         history.push("/sleep")
@@ -37,6 +38,7 @@ function FoodForm() {
         dispatch({
             type: 'POST_SLEEP',
             payload: {
+              duration: addDuration,
               quality: addQuality,
               screen_time: addScreenTime,
               start_sleep: addStartSleep,
@@ -97,6 +99,18 @@ function FoodForm() {
                         max="100"
                         value={addEndSleep}
                         onChange={(event) => setEndSleep(event.target.value)}
+                    />
+                    <br />
+                    <br />
+                    <TextField
+                        label="Duration"
+                        variant="outlined"
+                        type="number"
+                        placeholder="1-100"
+                        min="1"
+                        max="100"
+                        value={addDuration}
+                        onChange={(event) => setAddDuration(event.target.value)}
                     />
                     <br />
                     <br />

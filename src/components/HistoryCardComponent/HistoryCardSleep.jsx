@@ -69,7 +69,7 @@ function HistoryCardSleep({ prop }) {
                 alt="foodIcon"
                 style={{ width: "25px" }}
               />
-                {prop.start_sleep}</Item>
+                {prop.duration}</Item>
             </Grid>
             <Grid item xs={6}>
               <RightAlignedItem>Screen Time: {prop.screen_time}</RightAlignedItem>

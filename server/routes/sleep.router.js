@@ -45,10 +45,10 @@ router.get('/details/:id', rejectUnauthenticated, (req, res)=> {
 router.post("/", rejectUnauthenticated, (req, res) => {
   // POST route code here
   const sqlText = `INSERT INTO sleep (user_id, duration, quality, screen_time, start_sleep, end_sleep)
-  VALUES ($1, '1', $2, $3, $4, $5);`;
+  VALUES ($1, $2, $3, $4, $5, $6);`;
   const sqlValue = [
     req.user.id,
-    // req.body.duration,
+    req.body.duration,
     req.body.quality,
     req.body.screen_time,
     req.body.start_sleep,
