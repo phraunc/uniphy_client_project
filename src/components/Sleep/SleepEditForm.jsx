@@ -54,7 +54,7 @@ function EditSleep() {
             type: 'DELETE_SLEEP',
             payload: sleepId[0].id
         })
-        history.push('/food')
+        history.push('/sleep')
     }
 
 
