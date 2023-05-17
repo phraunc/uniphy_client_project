@@ -20,7 +20,7 @@ import {
 
 function EditWork() {
     const dispatch = useDispatch();
-    const workItemID = useSelector(store => store.rootWorkReducer.occupationReducerSingle)
+    const workItemID = useSelector(store => store.rootWorkReducer.workReducerSingle)
     const history = useHistory();
    const [addNote, setAddNote] = useState(0)
    const [addWorkload, setAddWorkload] = useState(0)
@@ -72,7 +72,7 @@ function EditWork() {
                         label="workload"
                         variant="outlined"
                         type="text"
-                        placeholder=""
+                        placeholder="Workload"
                         value={addWorkload}
                         onChange={(event) => setAddWorkload(event.target.value)}
                     />
@@ -82,7 +82,7 @@ function EditWork() {
                         label="Work Fullfillment"
                         variant="outlined"
                         type="text"
-                        placeholder=""
+                        placeholder="Fullfilled?"
                         value={addFullfillment}
                         onChange={(event) => setAddFullfillment(event.target.value)}
                     />

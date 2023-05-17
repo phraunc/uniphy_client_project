@@ -3,7 +3,6 @@ import { Box, Card, CardActions, CardContent, Button, Typography, Paper, Grid, s
 import WorkIcon from '@mui/icons-material/Work';
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { Work } from "@mui/icons-material";
 
 function HistoryCardWork({ prop }) {
     const dispatch = useDispatch();
@@ -59,11 +58,9 @@ function HistoryCardWork({ prop }) {
                             <RightAlignedItem>{prop.note}</RightAlignedItem>
                         </Grid>
                         <Grid item xs={6}>
-                            <Item><img src={WorkIcon}
-                                alt="work icon"
-                                style={{ width: "20px" }}
-                            />
-                                {prop.workload} Workload</Item>
+                            <Item>
+                            <WorkIcon/>
+                                 Workload {prop.workload}</Item>
                         </Grid>
                         <Grid item xs={6}>
                             <RightAlignedItem>Fullfillment: {prop.fullfillment}</RightAlignedItem>

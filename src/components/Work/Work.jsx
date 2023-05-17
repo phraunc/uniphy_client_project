@@ -4,7 +4,6 @@ import { useHistory } from "react-router-dom";
 import HistoryWorkContainer from "../HistoryContainer/HistoryWorkContainer"
 import backIcon from '../img/backIcon.png'
 import manualAddWorkBtn from '../img/manualAddWorkBtn.png';
-
 function Work() {
     const history = useHistory();
     const dispatch = useDispatch();

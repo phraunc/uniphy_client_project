@@ -66,7 +66,7 @@ function WorkForm() {
                         label="Work Note"
                         variant="outlined"
                         type="text"
-                        placeholder=""
+                        placeholder="Notes"
                         value={addNote}
                         onChange={(event) => setAddNote(event.target.value)}
                     />
@@ -74,10 +74,12 @@ function WorkForm() {
                     <br />
                     <Box sx={{ minWidth: 120 }}>
                         <TextField
-                            label="Work Workload"
+                            label="Workload"
                             variant="outlined"
-                            type="text"
-                            placeholder=""
+                            type="number"
+                            placeholder="Workload?"
+                            min="1"
+                            max="10"
                             value={addWorkload}
                             onChange={(event) => setAddWorkload(event.target.value)}
                         />
@@ -86,8 +88,10 @@ function WorkForm() {
                         <TextField
                             label="Work Fullfillment"
                             variant="outlined"
-                            type="text"
-                            placeholder=""
+                            type="number"
+                            placeholder="Fullfilled?"
+                            min="1"
+                            max="10"
                             value={addFullfillment}
                             onChange={(event) => setAddFullfillment(event.target.value)}
                         />
