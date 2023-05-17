@@ -23,6 +23,7 @@ function* getFood(action) {
 }
 
 function* postFood(action) {
+  console.log('here is our post food data:', action.payload)
   try {
     yield axios.post("./api/food", action.payload);
     yield put({ type: "GET_FOOD" });

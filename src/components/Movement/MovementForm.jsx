@@ -55,6 +55,11 @@ const [addTime, setAddTime] = useState(0);
   const cancelMovement = ()=>{
     history.push("/movement")
   }
+
+  async function movementScoreCalc() {
+    let intensityPoints = 0
+    let activityPoints = addtime
+  }
  
   return (
     <>

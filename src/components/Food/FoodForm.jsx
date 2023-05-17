@@ -29,8 +29,6 @@ function FoodForm() {
   const [addSnack, setAddSnack] = useState(0);
   const [addWater, setAddWater] = useState(0);
   const [addFasting, setAddFasting] = useState(0);
-  const [foodScore, setFoodScore] = useState();
-  const [totalPoints, setTotalPoints] = useState();
 
   const handleHome = () => {
     // console.log("history test");
@@ -74,37 +72,37 @@ function FoodForm() {
     let totalBalancePoints = 0
     switch (addQuantity) {
       case -5:
-        quantityPoints = -75
+        quantityPoints = 75
         break;
       case -4:
-        quantityPoints = -60
+        quantityPoints = 60
         break;
       case -3:
-        quantityPoints = -45
+        quantityPoints = 45
         break;
       case -2:
-        quantityPoints = -30
+        quantityPoints = 30
         break;
       case -1:
-        quantityPoints = -15
+        quantityPoints = 15
         break;
       case 0:
         quantityPoints = 0
         break;
       case 1:
-        quantityPoints = -15
+        quantityPoints = 15
         break;
       case 2:
-        quantityoints = -30
+        quantityoints = 30
         break;
       case 3:
-        quantityPoints = -45
+        quantityPoints = 45
         break;
       case 4:
-        quantityPoints = -60
+        quantityPoints = 60
         break;
       case 5:
-        quantityPoints = -75
+        quantityPoints = 75
         break;
       default:
         quantityPoints = 0
@@ -114,19 +112,19 @@ function FoodForm() {
         snackPoints = 0
         break;
       case 1:
-        snackPoints = -10
+        snackPoints = 10
         break;
       case 2:
-        snackPoints = -20
+        snackPoints = 20
         break;
       case 3:
-        snackPoints = -30
+        snackPoints = 30
         break;
       case 4:
-        snackPoints = -40
+        snackPoints = 40
         break;
       case 5:
-        snackPoints = -50
+        snackPoints = 50
         break;
       default:
         snackPoints = 0
@@ -151,10 +149,14 @@ function FoodForm() {
         fastingPoints = 1
     }
     totalBalancePoints = Number(((qualityPoints - snackPoints - quantityPoints) * fastingPoints).toFixed(2))
-    setTotalPoints(totalBalancePoints)
-    console.log('totalBalancePoints:', totalBalancePoints)
-    console.log('FoodScore:', foodScore)
-    let fScore = totalBalancePoints > 100 ? 100 : totalBalancePoints
+    let fScore = 0
+    if(totalBalancePoints > 100) {
+      fScore = 100
+    } else if (totalBalancePoints < 0) {
+      fScore = 0
+    } else {
+      fScore = totalBalancePoints
+    }
     return (
         {
             fScore,

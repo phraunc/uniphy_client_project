@@ -29,8 +29,7 @@ function FoodForm() {
     const [addStartSleep, setStartSleep] = useState();
     const [addEndSleep, setEndSleep] = useState();
     const [addDuration, setAddDuration] = useState();
-    const [sleepScore, setSleepScore] = useState();
-    const [totalPoints, setTotalPoints] = useState();
+
 
     function cancelSleep() {
         history.push("/sleep")
@@ -104,11 +103,14 @@ function FoodForm() {
         }
 
         totalBalancePoints = Number((durationPoints * qualityPoints * screenPoints).toFixed(2))
-        setTotalPoints(totalBalancePoints)
-
-        console.log('totalBalancePoints:', totalBalancePoints)
-        console.log('SleepScore:', sleepScore)
-        let sScore = totalBalancePoints > 100 ? 100 : totalBalancePoints
+        let sScore = 0
+        if (totalBalancePoints > 100) {
+            sScore = 100
+        } else if (totalBalancePoints < 0) {
+            sScore = 0
+        } else {
+            sScore = totalBalancePoints
+        }
         return (
             {
                 sScore,
