@@ -11,6 +11,7 @@ const passport = require('./strategies/user.strategy');
 const userRouter = require('./routes/user.router');
 const foodRouter = require('./routes/food.router');
 const sleepRouter = require('./routes/sleep.router')
+const movementRouter = require('./routes/movement.router')
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -27,12 +28,13 @@ app.use(passport.session());
 app.use('/api/user', userRouter);
 app.use('/api/food', foodRouter);
 app.use('/api/sleep', sleepRouter)
+app.use('/api/movement', movementRouter);
 
 // Serve static files
 app.use(express.static('build'));
 
 // App Set //
-const PORT = process.env.PORT || 8000;
+const PORT = process.env.PORT || 5000;
 
 /** Listen * */
 app.listen(PORT, () => {

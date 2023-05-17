@@ -38,6 +38,8 @@ function Nav() {
 
             <Link className="navLink" to="/sleep">
               Sleep
+            <Link className="navLink" to="/movement">
+              Movement
             </Link>
 
             <LogOutButton className="navLink" />
