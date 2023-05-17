@@ -23,7 +23,6 @@ import {
 function EditMovement() {
     const dispatch = useDispatch();
     const movementItemID = useSelector(store => store.rootMovementReducer.MovementReducerSingle)
-    console.log('MOVEMENTItemId', movementItemID[0])
     const history = useHistory();
 
     const [addTitle, setAddTitle] = useState("");
@@ -45,18 +44,18 @@ function EditMovement() {
                 title: addTitle,
                 duration: addTime,
                 intensity: addIntensity,
-                    }
-                })
-                
-                setAddTitle("")
-                setAddTime(0)
-                setAddIntensity(0)
-            
-                history.push("/movement");
-            
-              };
+            }
+        })
 
-    function DeleteMovement () {
+        setAddTitle("")
+        setAddTime(0)
+        setAddIntensity(0)
+
+        history.push("/movement");
+
+    };
+
+    function DeleteMovement() {
         dispatch({
             type: 'DELETE_MOVEMENT',
             payload: movementItemID[0].id
@@ -70,38 +69,36 @@ function EditMovement() {
         <h1>Movement Form</h1>
         <div>
             <form onSubmit={saveChanges}>
-            <TextField
-          label="Activity"
-          variant="outlined"
-            type="text"
-            placeholder="Workout Title"
-            // min="1"
-            // max="100"
-            value={addTitle}
-            onChange={(event) => setAddTitle(event.target.value)}/>
-          <br/>
-          <br/>
-            <Stopwatch addTime={addTime} setAddTime={setAddTime}/> {/* Pass addTime and setAddTime as props */}
-            <br/>
-            <br/>
-          <Box sx={{ minWidth: 120 }}>
-            <FormControl fullWidth>
-              <InputLabel id="demo-simple-select-label">Intensity</InputLabel>
-              <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                value={addIntensity}
-                label="snacks"
-                onChange={(event)=>setAddIntensity(event.target.value)}
-              > <MenuItem value={0}>Intensity</MenuItem>
-                <MenuItem value={1}>Low Intensity</MenuItem>
-                <MenuItem value={2}>Medium Intensity</MenuItem>
-                <MenuItem value={3}>Medium/High Intensity</MenuItem>
-                <MenuItem value={4}>High Intensity</MenuItem>
-                <MenuItem value={5}>Extrem Intensity</MenuItem>
-              </Select>
-            </FormControl>
-     
+                <TextField
+                    label="Activity"
+                    variant="outlined"
+                    type="text"
+                    placeholder="Workout Title"
+                    value={addTitle}
+                    onChange={(event) => setAddTitle(event.target.value)} />
+                <br />
+                <br />
+                <Stopwatch addTime={addTime} setAddTime={setAddTime} /> {/* Pass addTime and setAddTime as props */}
+                <br />
+                <br />
+                <Box sx={{ minWidth: 120 }}>
+                    <FormControl fullWidth>
+                        <InputLabel id="demo-simple-select-label">Intensity</InputLabel>
+                        <Select
+                            labelId="demo-simple-select-label"
+                            id="demo-simple-select"
+                            value={addIntensity}
+                            label="snacks"
+                            onChange={(event) => setAddIntensity(event.target.value)}
+                        > <MenuItem value={0}>Intensity</MenuItem>
+                            <MenuItem value={1}>Low Intensity</MenuItem>
+                            <MenuItem value={2}>Medium Intensity</MenuItem>
+                            <MenuItem value={3}>Medium/High Intensity</MenuItem>
+                            <MenuItem value={4}>High Intensity</MenuItem>
+                            <MenuItem value={5}>Extrem Intensity</MenuItem>
+                        </Select>
+                    </FormControl>
+
                     <br />
                     <br />
                     <Box
