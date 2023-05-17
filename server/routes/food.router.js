@@ -44,15 +44,17 @@ router.get('/details/:id', rejectUnauthenticated, (req, res)=> {
  */
 router.post("/", rejectUnauthenticated, (req, res) => {
   // POST route code here
-  const sqlText = `INSERT INTO food (user_id, quality, quantity, snack, water, fasting)
-  VALUES ($1, $2, $3, $4, $5, $6);`;
+  const sqlText = `INSERT INTO food (user_id, score_f, quality, quantity, snack, water, fasting, total_points)
+  VALUES ($1, $2, $3, $4, $5, $6, $7, $8);`;
   const sqlValue = [
     req.user.id,
+    req.body.score_f,
     req.body.quality,
     req.body.quantity,
     req.body.snack,
     req.body.water,
     req.body.fasting,
+    req.body.total_points
   ];
   pool
     .query(sqlText, sqlValue)

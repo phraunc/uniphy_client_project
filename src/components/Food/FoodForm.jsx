@@ -22,31 +22,34 @@ import {
 function FoodForm() {
   const history = useHistory();
   const dispatch = useDispatch();
-  
+
 
   const [addQuality, setAddQuality] = useState(0);
   const [addQuantity, setAddQuantity] = useState(0);
   const [addSnack, setAddSnack] = useState(0);
   const [addWater, setAddWater] = useState(0);
   const [addFasting, setAddFasting] = useState(0);
-  
+  const [foodScore, setFoodScore] = useState();
+  const [totalPoints, setTotalPoints] = useState();
 
   const handleHome = () => {
     // console.log("history test");
     history.push("/home");
   };
 
-  const addFood = (event) => {
+  async function addFood  (event)  {
     event.preventDefault();
-console.log('hello')
+    const calculatedFoodScore = await foodScoreCalc()
     dispatch({
       type: 'POST_FOOD',
       payload: {
+        score_f: calculatedFoodScore.fScore,
         quality: addQuality,
         quantity: addQuantity,
         snack: addSnack,
         water: addWater,
         fasting: addFasting,
+        total_points: calculatedFoodScore.totalBalancePoints
       }
     })
     setAddQuality(1)
@@ -63,15 +66,113 @@ console.log('hello')
     history.push("/food")
   }
 
+  async function foodScoreCalc() {
+    let qualityPoints = addQuality
+    let quantityPoints = 0
+    let snackPoints = 0
+    let fastingPoints = 0
+    let totalBalancePoints = 0
+    switch (addQuantity) {
+      case -5:
+        quantityPoints = -75
+        break;
+      case -4:
+        quantityPoints = -60
+        break;
+      case -3:
+        quantityPoints = -45
+        break;
+      case -2:
+        quantityPoints = -30
+        break;
+      case -1:
+        quantityPoints = -15
+        break;
+      case 0:
+        quantityPoints = 0
+        break;
+      case 1:
+        quantityPoints = -15
+        break;
+      case 2:
+        quantityoints = -30
+        break;
+      case 3:
+        quantityPoints = -45
+        break;
+      case 4:
+        quantityPoints = -60
+        break;
+      case 5:
+        quantityPoints = -75
+        break;
+      default:
+        quantityPoints = 0
+    }
+    switch (addSnack) {
+      case 0:
+        snackPoints = 0
+        break;
+      case 1:
+        snackPoints = -10
+        break;
+      case 2:
+        snackPoints = -20
+        break;
+      case 3:
+        snackPoints = -30
+        break;
+      case 4:
+        snackPoints = -40
+        break;
+      case 5:
+        snackPoints = -50
+        break;
+      default:
+        snackPoints = 0
+    }
+    switch (addFasting) {
+      case 0:
+        fastingPoints = 1
+        break;
+      case 1:
+        fastingPoints = 1.22
+        break;
+      case 2:
+        fastingPoints = 1.33
+        break;
+      case 3:
+        fastingPoints = 1.44
+        break;
+      case 4:
+        fastingPoints = 1.5
+        break;
+      default:
+        fastingPoints = 1
+    }
+    totalBalancePoints = Number(((qualityPoints - snackPoints - quantityPoints) * fastingPoints).toFixed(2))
+    setTotalPoints(totalBalancePoints)
+    console.log('totalBalancePoints:', totalBalancePoints)
+    console.log('FoodScore:', foodScore)
+    let fScore = totalBalancePoints > 100 ? 100 : totalBalancePoints
+    return (
+        {
+            fScore,
+            totalBalancePoints
+        }
+
+    )
+  }
+
   return (
     <>
-      
+
       <h1>Food Form</h1>
       <div>
         <form onSubmit={addFood}>
           <TextField
-          label="Food Quality"
-          variant="outlined"
+            label="Food Quality"
+            variant="outlined"
             type="number"
             placeholder="1-100"
             min="1"
@@ -79,8 +180,8 @@ console.log('hello')
             value={addQuality}
             onChange={(event) => setAddQuality(event.target.value)}
           />
-          <br/>
-          <br/>
+          <br />
+          <br />
           <Box sx={{ minWidth: 120 }}>
             <FormControl fullWidth>
               <InputLabel id="demo-simple-select-label">Quantity</InputLabel>
@@ -89,7 +190,7 @@ console.log('hello')
                 id="demo-simple-select"
                 value={addQuantity}
                 label="quantity"
-                onChange={(event)=> setAddQuantity(event.target.value)}
+                onChange={(event) => setAddQuantity(event.target.value)}
               >
                 <MenuItem value={-5}>Very Hungry</MenuItem>
                 <MenuItem value={-4}>Moderately Hungry</MenuItem>
@@ -113,7 +214,7 @@ console.log('hello')
                 id="demo-simple-select"
                 value={addSnack}
                 label="snacks"
-                onChange={(event)=>setAddSnack(event.target.value)}
+                onChange={(event) => setAddSnack(event.target.value)}
               >
                 <MenuItem value={0}>No Snacks</MenuItem>
                 <MenuItem value={1}>One Snack</MenuItem>
@@ -132,7 +233,7 @@ console.log('hello')
                 id="demo-simple-select"
                 value={addWater}
                 label="water"
-                onChange={(event)=>setAddWater(event.target.value)}
+                onChange={(event) => setAddWater(event.target.value)}
               >
                 <MenuItem value={0}>0 Ltr</MenuItem>
                 <MenuItem value={1}>.5 Ltr</MenuItem>
@@ -151,7 +252,7 @@ console.log('hello')
                 id="demo-simple-select"
                 value={addFasting}
                 label="fasting"
-                onChange={(event)=>setAddFasting(event.target.value)}
+                onChange={(event) => setAddFasting(event.target.value)}
               >
                 <MenuItem value={0}>Fewer Then 12</MenuItem>
                 <MenuItem value={1}>12-14 Hrs</MenuItem>
@@ -160,32 +261,32 @@ console.log('hello')
                 <MenuItem value={4}>24+ Hrs</MenuItem>
               </Select>
             </FormControl>
-            <br/>
-            <br/>
+            <br />
+            <br />
             <Box
-                m={1}
-                mt={3}
-                display="flex"
-                justifyContent="flex-end"
-                alignItems="flex-end">
-            <Button variant="contained"  type="submit" >Submit</Button>
+              m={1}
+              mt={3}
+              display="flex"
+              justifyContent="flex-end"
+              alignItems="flex-end">
+              <Button variant="contained" type="submit" >Submit</Button>
             </Box>
-            <br/>
-            <br/>
+            <br />
+            <br />
             <Box
-                m={1}
-                mt={3}
-                display="flex"
-                justifyContent="flex-end"
-                alignItems="flex-end">
-            <Button variant="contained" onClick={cancelFood} >Cancel</Button>
+              m={1}
+              mt={3}
+              display="flex"
+              justifyContent="flex-end"
+              alignItems="flex-end">
+              <Button variant="contained" onClick={cancelFood} >Cancel</Button>
             </Box>
           </Box>
-      
+
 
         </form>
-      </div> 
-  </>
+      </div>
+    </>
   );
 }
 
