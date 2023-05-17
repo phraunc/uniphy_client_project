@@ -14,6 +14,7 @@ const occupationRouter = require('./routes/occupation.router')
 const socialRouter = require('./routes/social.router');
 const sleepRouter = require('./routes/sleep.router')
 const movementRouter = require('./routes/movement.router')
+const balancescoreRouter = require('./routes/balancescore.router')
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -33,13 +34,14 @@ app.use('/api/occupation', occupationRouter)
 app.use('/api/social', socialRouter);
 app.use('/api/sleep', sleepRouter)
 app.use('/api/movement', movementRouter);
+app.use('/api/balancescore', balancescoreRouter);
 
 
 // Serve static files
 app.use(express.static('build'));
 
 // App Set //
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 8000;
 
 /** Listen * */
 app.listen(PORT, () => {
