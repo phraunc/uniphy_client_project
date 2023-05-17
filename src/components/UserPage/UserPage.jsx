@@ -14,11 +14,13 @@ function UserPage({ bgcolor, progress, height, onClick }) {
   const user = useSelector((store) => store.user);
   const BS = useSelector((store) => store.balanceScoreReducer);
 
+  const manageDay = useSelector((store) => store.dayReducer);
+  const { day, showPillar } = manageDay;
+
+
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const [day, setDay] = useState(false);
-  const [showPillar, setShowPillar] = useState(false);
   const [value, changeValue] = useState(20);
 
   useEffect(() => {
@@ -30,7 +32,10 @@ function UserPage({ bgcolor, progress, height, onClick }) {
   }, [value]);
 
   function startDay(){
-    console.log('inside startDay')
+    console.log('INSIDE startDay')
+    dispatch({
+      type: 'START_DAY'
+    })
     dispatch({
       type: 'POST_BALANCE_SCORE',
       payload: {
@@ -41,13 +46,12 @@ function UserPage({ bgcolor, progress, height, onClick }) {
         score_s: 0
       }
     })
-    setDay(true);
-    setShowPillar(true);
   }
 
   function endDay(){
-    setDay(false);
-    setShowPillar(false);
+    dispatch({
+      type: 'END_DAY'
+    })
   }
 
   return (
@@ -69,14 +73,13 @@ function UserPage({ bgcolor, progress, height, onClick }) {
         size={250}
         max={120}
         gradientColorFrom="#ec008c"
-        gradientColorTo="#fc6767"
+        gradientColorTo="#31356e"
         knobRadius={20}
         circleWidth={20}
       />
     </div>
     </center>
 
-     
 
       <div className="App">
         {/* <h3 className="heading">Pillars </h3> */}
@@ -94,7 +97,6 @@ function UserPage({ bgcolor, progress, height, onClick }) {
         <Progressbar bgcolor="grey" progress={BS.score_f} height={40}/>
         <Progressbar bgcolor="grey" progress={BS.score_s} height={40}/>
         </> }
-
       </div>
 
      {!day ?

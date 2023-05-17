@@ -7,6 +7,7 @@ import rootSocialReducer from './social.reducer'
 import rootSleepReducer from './sleep.reducer';
 import rootMovementReducer from './movement.reducer';
 import balanceScoreReducer from './balance_score.reducer';
+import dayReducer from './manage_day.reducer';
 
 
 // rootReducer is the primary reducer for our entire project
@@ -24,6 +25,7 @@ const rootReducer = combineReducers({
   rootSleepReducer,
   rootMovementReducer,
   balanceScoreReducer,
+  dayReducer,
 });
 
 export default rootReducer;
