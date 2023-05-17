@@ -10,21 +10,21 @@ const router = express.Router();
  */
 router.get("/", rejectUnauthenticated, (req, res) => {
   // GET route code here
-  const sqlText = `SELECT * FROM food;`;
+  const sqlText = `SELECT * FROM sleep;`;
   pool
     .query(sqlText)
     .then((result) => {
       res.send(result.rows);
     })
     .catch((err) => {
-      console.log("error in get rout food", err);
+      console.log("error in get route sleep", err);
       res.sendStatus(500);
     });
 });
 
 // Get by ID route
 router.get('/details/:id', rejectUnauthenticated, (req, res)=> {
-  const sqlText = `SELECT * FROM food WHERE food.id = $1`
+  const sqlText = `SELECT * FROM sleep WHERE sleep.id = $1`
   const sqlValue = [req.params.id]
 
   pool.query(sqlText, sqlValue)
@@ -32,7 +32,7 @@ router.get('/details/:id', rejectUnauthenticated, (req, res)=> {
     res.send(result.rows)
   })
   .catch((err) => {
-    console.log('error in our food get by id route', err)
+    console.log('error in our sleep get by id route', err)
     res.sendStatus(500)
   })
 
@@ -44,15 +44,15 @@ router.get('/details/:id', rejectUnauthenticated, (req, res)=> {
  */
 router.post("/", rejectUnauthenticated, (req, res) => {
   // POST route code here
-  const sqlText = `INSERT INTO food (user_id, quality, quantity, snack, water, fasting)
+  const sqlText = `INSERT INTO sleep (user_id, duration, quality, screen_time, start_sleep, end_sleep)
   VALUES ($1, $2, $3, $4, $5, $6);`;
   const sqlValue = [
     req.user.id,
+    req.body.duration,
     req.body.quality,
-    req.body.quantity,
-    req.body.snack,
-    req.body.water,
-    req.body.fasting,
+    req.body.screen_time,
+    req.body.start_sleep,
+    req.body.end_sleep,
   ];
   pool
     .query(sqlText, sqlValue)
@@ -60,13 +60,13 @@ router.post("/", rejectUnauthenticated, (req, res) => {
       res.sendStatus(200);
     })
     .catch((err) => {
-      console.log("error in post rout food", err);
+      console.log("error in post route sleep", err);
       res.sendStatus(500);
     });
 });
 
 router.delete("/:id", rejectUnauthenticated, (req, res) => {
-  const sqlText = `DELETE FROM "food" WHERE "food".id = $1;`;
+  const sqlText = `DELETE FROM "sleep" WHERE "sleep".id = $1;`;
   const sqlValue = [req.params.id];
 
   pool
@@ -75,21 +75,21 @@ router.delete("/:id", rejectUnauthenticated, (req, res) => {
       res.sendStatus(200);
     })
     .catch((err) => {
-      console.log("err deleting router food", err);
+      console.log("err deleting router sleep", err);
       res.sendStatus(500);
     });
 });
 
 router.put("/:id", rejectUnauthenticated, (req, res) => {
-  const sqlText = `UPDATE "food"
-    SET "quality"=$1, "quantity"=$2, "snack"=$3, "water"=$4, "fasting"=$5
-    WHERE "food".id = $6;`;
+  const sqlText = `UPDATE "sleep"
+    SET "duration"=$1, "quality"=$2, "screen_time"=$3, "start_sleep"=$4, "end_sleep"=$5
+    WHERE "sleep".id = $6;`;
   sqlValue = [
+    req.body.duration,
     req.body.quality,
-    req.body.quantity,
-    req.body.snack,
-    req.body.water,
-    req.body.fasting,
+    req.body.screen_time,
+    req.body.start_sleep,
+    req.body.end_sleep,
     req.params.id,
   ];
 
@@ -99,7 +99,7 @@ router.put("/:id", rejectUnauthenticated, (req, res) => {
       res.sendStatus(200);
     })
     .catch((err) => {
-      console.log("error in the put food router", err);
+      console.log("error in the put sleep router", err);
       res.sendStatus(500);
     });
 });

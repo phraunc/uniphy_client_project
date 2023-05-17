@@ -31,13 +31,25 @@ function Nav() {
             <Link className="navLink" to="/info">
               Info Page
             </Link>
-            
+
             <Link className="navLink" to="/food">
               Food
             </Link>
 
             <Link className="navLink" to="/occupation">
               Occupation
+            </Link>
+
+            <Link className="navLink" to="/social">
+              Social Activity
+            </Link>
+
+            <Link className="navLink" to="/sleep">
+              Sleep
+            </Link>
+          
+            <Link className="navLink" to="/movement">
+              Movement
             </Link>
 
             <LogOutButton className="navLink" />

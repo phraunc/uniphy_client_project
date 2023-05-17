@@ -1,3 +1,4 @@
+
 const express = require("express");
 const pool = require("../modules/pool");
 const {
@@ -10,21 +11,21 @@ const router = express.Router();
  */
 router.get("/", rejectUnauthenticated, (req, res) => {
   // GET route code here
-  const sqlText = `SELECT * FROM food;`;
+  const sqlText = `SELECT * FROM social_activity;`;
   pool
     .query(sqlText)
     .then((result) => {
       res.send(result.rows);
     })
     .catch((err) => {
-      console.log("error in get rout food", err);
+      console.log("error in GET route social_activity", err);
       res.sendStatus(500);
     });
 });
 
 // Get by ID route
 router.get('/details/:id', rejectUnauthenticated, (req, res)=> {
-  const sqlText = `SELECT * FROM food WHERE food.id = $1`
+  const sqlText = `SELECT * FROM social_activity WHERE social_activity.id = $1`
   const sqlValue = [req.params.id]
 
   pool.query(sqlText, sqlValue)
@@ -32,7 +33,7 @@ router.get('/details/:id', rejectUnauthenticated, (req, res)=> {
     res.send(result.rows)
   })
   .catch((err) => {
-    console.log('error in our food get by id route', err)
+    console.log('error in our social_activity GET by id route', err)
     res.sendStatus(500)
   })
 
@@ -44,15 +45,14 @@ router.get('/details/:id', rejectUnauthenticated, (req, res)=> {
  */
 router.post("/", rejectUnauthenticated, (req, res) => {
   // POST route code here
-  const sqlText = `INSERT INTO food (user_id, quality, quantity, snack, water, fasting)
-  VALUES ($1, $2, $3, $4, $5, $6);`;
+  const sqlText = `INSERT INTO social_activity (user_id, whom, description, duration, online)
+  VALUES ($1, $2, $3, $4, $5);`;
   const sqlValue = [
     req.user.id,
-    req.body.quality,
-    req.body.quantity,
-    req.body.snack,
-    req.body.water,
-    req.body.fasting,
+    req.body.whom,
+    req.body.description,
+    req.body.duration,
+    req.body.online,
   ];
   pool
     .query(sqlText, sqlValue)
@@ -60,13 +60,13 @@ router.post("/", rejectUnauthenticated, (req, res) => {
       res.sendStatus(200);
     })
     .catch((err) => {
-      console.log("error in post rout food", err);
+      console.log("error in POST route social_activity", err);
       res.sendStatus(500);
     });
 });
 
 router.delete("/:id", rejectUnauthenticated, (req, res) => {
-  const sqlText = `DELETE FROM "food" WHERE "food".id = $1;`;
+  const sqlText = `DELETE FROM "social_activity" WHERE "social_activity".id = $1;`;
   const sqlValue = [req.params.id];
 
   pool
@@ -75,21 +75,20 @@ router.delete("/:id", rejectUnauthenticated, (req, res) => {
       res.sendStatus(200);
     })
     .catch((err) => {
-      console.log("err deleting router food", err);
+      console.log("err in DELETING router social_activity", err);
       res.sendStatus(500);
     });
 });
 
 router.put("/:id", rejectUnauthenticated, (req, res) => {
-  const sqlText = `UPDATE "food"
-    SET "quality"=$1, "quantity"=$2, "snack"=$3, "water"=$4, "fasting"=$5
-    WHERE "food".id = $6;`;
+  const sqlText = `UPDATE "social_activity"
+    SET "whom"=$1, "description"=$2, "duration"=$3, "online"=$4
+    WHERE "social_activity".id = $5;`;
   sqlValue = [
-    req.body.quality,
-    req.body.quantity,
-    req.body.snack,
-    req.body.water,
-    req.body.fasting,
+    req.body.whom,
+    req.body.description,
+    req.body.duration,
+    req.body.online,
     req.params.id,
   ];
 
@@ -99,7 +98,7 @@ router.put("/:id", rejectUnauthenticated, (req, res) => {
       res.sendStatus(200);
     })
     .catch((err) => {
-      console.log("error in the put food router", err);
+      console.log("error in the PUT social_activity router", err);
       res.sendStatus(500);
     });
 });
