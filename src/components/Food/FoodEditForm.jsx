@@ -37,7 +37,7 @@ function EditFood() {
     }
 
     const saveChanges = () => {
-        console.log('This is the foodItem.id that we are sending our payload', foodItemID)
+        //console.log('This is the foodItem.id that we are sending our payload', foodItemID)
         dispatch({
             type: 'UPDATE_FOOD',
             payload: {
