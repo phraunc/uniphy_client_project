@@ -40,18 +40,21 @@ function UserPage({ bgcolor, progress, height, onClick }) {
       <div className="textContainer">
         {value}
       </div>
-      <CircleSlider
-        ref={slider}
-        value={value}
-        stepSize={5}
-        onChange={value => changeValue(value)}
-        size={250}
-        max={500}
-        gradientColorFrom="#ec008c"
-        gradientColorTo="#fc6767"
-        knobRadius={20}
-        circleWidth={20}
-      />
+      <center>
+        <CircleSlider
+          ref={slider}
+          value={value}
+          stepSize={5}
+          onChange={value => changeValue(value)}
+          size={250}
+          max={500}
+          gradientColorFrom="#ec008c"
+          gradientColorTo="#fc6767"
+          knobRadius={15}
+          circleWidth={25}
+        />
+      </center>
+
       <h3>components below</h3>
 
       <div className="App">
