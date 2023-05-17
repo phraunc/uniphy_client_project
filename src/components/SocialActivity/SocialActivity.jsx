@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import HistoryContainerSocial from "../HistoryContainer/HistoryContainerSocial";
 import backIcon from '../img/backIcon.png'
 import manualAddFood from '../img/manualAddFoodBtn.png'
 import manualAddSocial from '../img/manualAddSocialBtn.png'
 import SocialActivityEditForm from "./SocialActivityEditForm.jsx";
-
+import HistoryContainerSocial from '../HistoryContainer/HistoryContainerSocial'
 function SocialActivity() {
   const history = useHistory();
   const dispatch = useDispatch();

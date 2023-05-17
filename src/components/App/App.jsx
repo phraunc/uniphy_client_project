@@ -25,7 +25,6 @@ import EditSocial from '../SocialActivity/SocialActivityEditForm';
 import Movement from "../Movement/Movement";
 import MovementForm from "../Movement/MovementForm"
 import "./App.css";
-import EditFood from "../Food/FoodEditForm";
 import Sleep from "../Sleep/Sleep";
 import SleepForm from "../Sleep/SleepForm";
 import EditSleep from "../Sleep/SleepEditForm";
