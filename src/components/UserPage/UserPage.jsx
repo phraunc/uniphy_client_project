@@ -6,9 +6,10 @@ import { CircleSlider } from "react-circle-slider";
 import Progressbar from './ProgressBar';
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom';
+import { Box, Button } from '@mui/material';
 
 function UserPage({ bgcolor, progress, height, onClick }) {
-
+  const slider = useRef(null);
 
   const user = useSelector((store) => store.user);
   const BS = useSelector((store) => store.balanceScoreReducer);
@@ -16,10 +17,9 @@ function UserPage({ bgcolor, progress, height, onClick }) {
   const dispatch = useDispatch();
   const history = useHistory();
 
-
-
+  const [day, setDay] = useState(false);
+  const [showPillar, setShowPillar] = useState(false);
   const [value, changeValue] = useState(20);
-  const slider = useRef(null);
 
   useEffect(() => {
     // slider.current.setAttribute("width", "280px");
@@ -29,45 +29,91 @@ function UserPage({ bgcolor, progress, height, onClick }) {
     console.log(value);
   }, [value]);
 
+  function startDay(){
+    console.log('inside startDay')
+    dispatch({
+      type: 'POST_BALANCE_SCORE',
+      payload: {
+        score_m: 0,
+        score_sa: 0,
+        score_o: 0,
+        score_f: 0,
+        score_s: 0
+      }
+    })
+    setDay(true);
+    setShowPillar(true);
+  }
 
-
-
+  function endDay(){
+    setDay(false);
+    setShowPillar(false);
+  }
 
   return (
-    <div className="container">
+    <div className="App">
       <h2>Welcome, {user.username}!</h2>
 
+
+    <center>
+      <div className="App1">
       <div className="textContainer">
         {value}
+        <div className="minute">MINUTES</div>
       </div>
-      <center>
-        <CircleSlider
-          ref={slider}
-          value={value}
-          stepSize={5}
-          onChange={value => changeValue(value)}
-          size={250}
-          max={500}
-          gradientColorFrom="#ec008c"
-          gradientColorTo="#fc6767"
-          knobRadius={15}
-          circleWidth={25}
-        />
-      </center>
+      <CircleSlider
+        ref={slider}
+        value={value}
+        stepSize={5}
+        onChange={value => changeValue(value)}
+        size={250}
+        max={120}
+        gradientColorFrom="#ec008c"
+        gradientColorTo="#fc6767"
+        knobRadius={20}
+        circleWidth={20}
+      />
+    </div>
+    </center>
 
-      <h3>components below</h3>
+     
 
       <div className="App">
-        <h3 className="heading">Pillars </h3>
+        {/* <h3 className="heading">Pillars </h3> */}
+        {showPillar ? <>
         <Progressbar bgcolor="#31356e" progress={BS.score_m} height={40} onClick={() => history.push("/movement")} />
         <Progressbar bgcolor="#6ce5e8" progress={BS.score_sa} height={40} onClick={() => history.push("/social")} />
         <Progressbar bgcolor="#41b8d5" progress={BS.score_o} height={40} onClick={() => history.push("/occupation")} />
         <Progressbar bgcolor="#2f5f98" progress={BS.score_f} height={40} onClick={() => history.push("/food")} />
         <Progressbar bgcolor="#704e85" progress={BS.score_s} height={40} onClick={() => history.push("/sleep")} />
         {/* <Progressbar bgcolor="purple" progress={BS.score_w} height={40} onClick={() => history.push("/work")} /> */}
+        </> : <>
+        <Progressbar bgcolor="grey" progress={BS.score_m} height={40}/>
+        <Progressbar bgcolor="grey" progress={BS.score_sa} height={40}/>
+        <Progressbar bgcolor="grey" progress={BS.score_o} height={40}/>
+        <Progressbar bgcolor="grey" progress={BS.score_f} height={40}/>
+        <Progressbar bgcolor="grey" progress={BS.score_s} height={40}/>
+        </> }
 
       </div>
 
+     {!day ?
+      <Box
+        m={1}
+        mt={3}
+        display="flex"
+        justifyContent="flex-end"
+        alignItems="flex-end">
+      <Button variant='contained'
+      onClick={startDay}>Start Day</Button>
+      </Box>
+      :
+      <Button
+      variant='contained'
+      onClick={endDay}>End Day</Button>
+     }
+    <br/>
+    <br/>
       <LogOutButton className="btn" />
     </div>
   );
