@@ -6,8 +6,11 @@ import { CircleSlider } from "react-circle-slider";
 import Progressbar from './ProgressBar';
 
 
-// import "./styles.css";
-
+//make saga 
+//make generator functions
+//make reducer 
+//call store to get data
+//add store data to progress bars
 function UserPage({bgcolor,progress,height}) {
 
 
@@ -47,13 +50,13 @@ function UserPage({bgcolor,progress,height}) {
       <h3>components below</h3>
 
       <div className="App">
-     <h3 className="heading">Progress Bar</h3>
-      <Progressbar bgcolor="orange" progress='30'  height={30} />
-      <Progressbar bgcolor="red" progress='60'  height={30} />
-      <Progressbar bgcolor="#99ff66" progress='50'  height={30} />
-      <Progressbar bgcolor="#ff00ff" progress='85'  height={30} />
-      <Progressbar bgcolor="#99ccff" progress='95'  height={30} />
-      <Progressbar bgcolor="#99ccff" progress='95'  height={30} />
+     <h3 className="heading">Pillars </h3>
+      <Progressbar bgcolor="#31356e" progress='30'  height={30} />
+      <Progressbar bgcolor="#6ce5e8" progress='60'  height={30} />
+      <Progressbar bgcolor="#41b8d5" progress='50'  height={30} />
+      <Progressbar bgcolor="#2f5f98" progress='85'  height={30} />
+      <Progressbar bgcolor="#704e85" progress='95'  height={30} />
+      <Progressbar bgcolor="purple" progress='95'  height={30} />
 
    </div>
 
