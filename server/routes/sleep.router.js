@@ -44,15 +44,17 @@ router.get('/details/:id', rejectUnauthenticated, (req, res)=> {
  */
 router.post("/", rejectUnauthenticated, (req, res) => {
   // POST route code here
-  const sqlText = `INSERT INTO sleep (user_id, duration, quality, screen_time, start_sleep, end_sleep)
-  VALUES ($1, $2, $3, $4, $5, $6);`;
+  const sqlText = `INSERT INTO sleep (user_id, score_s, duration, quality, screen_time, start_sleep, end_sleep, total_points)
+  VALUES ($1, $2, $3, $4, $5, $6, $7, $8);`;
   const sqlValue = [
     req.user.id,
+    req.body.score_s,
     req.body.duration,
     req.body.quality,
     req.body.screen_time,
     req.body.start_sleep,
     req.body.end_sleep,
+    req.body.total_points
   ];
   pool
     .query(sqlText, sqlValue)

@@ -75,9 +75,7 @@ function EditSleep() {
                             <MenuItem value={0}>0 mins</MenuItem>
                             <MenuItem value={1}>15 mins</MenuItem>
                             <MenuItem value={2}>30mins</MenuItem>
-                            <MenuItem value={3}>45 mins</MenuItem>
-                            <MenuItem value={4}>1 hr</MenuItem>
-                            <MenuItem value={5}>More than 1 hr</MenuItem>
+                            <MenuItem value={3}>1+ hr</MenuItem>
                         </Select>
                     </FormControl>
                     <br />
