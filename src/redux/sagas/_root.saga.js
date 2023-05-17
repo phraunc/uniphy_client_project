@@ -7,6 +7,7 @@ import OccupationSaga from './occupation.saga';
 import socialSaga from './social.saga';
 import sleepSaga from './sleep.saga';
 import MovementSaga from './movement.saga';
+import balanceScoreSaga from './balance_score.saga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -25,5 +26,7 @@ export default function* rootSaga() {
     socialSaga(),
     sleepSaga(),
     MovementSaga(),
+    balanceScoreSaga(),
+
   ]);
 }
