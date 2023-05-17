@@ -19,6 +19,9 @@ import Food from "../Food/Food";
 import FoodForm from "../Food/FoodForm";
 import "./App.css";
 import EditFood from "../Food/FoodEditForm";
+import Occupation from "../Occupation/Occupation";
+import OccupationForm from "../Occupation/OccupationForm";
+import EditOccupation from "../Occupation/OccupationEditForm";
 import SocialActivity from "../SocialActivity/SocialActivity";
 import SocialForm from  '../SocialActivity/SocialActivityForm';
 import EditSocial from '../SocialActivity/SocialActivityEditForm';
@@ -140,6 +143,16 @@ function App() {
             {user.id ? <EditSocial /> : <Redirect to="/social" />}
           </Route>
 
+
+          <Route exact path="/occupation">
+            {user.id ? <Occupation /> : <Redirect to="/home" />}
+          </Route>
+          <Route exact path="/occupationform">
+            {user.id ? <OccupationForm /> : <Redirect to="/occupation" />}
+          </Route>
+          <Route exact path="/occupation/details/:id">
+            {user.id ? <EditOccupation /> : <Redirect to="/occupation" />}
+          </Route>
 
           <Route exact path="/home">
             {user.id ? (

@@ -2,6 +2,7 @@ import { combineReducers } from 'redux';
 import errors from './errors.reducer';
 import user from './user.reducer';
 import rootFoodReducer from './food.reducer';
+import rootOccupationReducer from './occupation.reducer';
 import rootSocialReducer from './social.reducer'
 import rootSleepReducer from './sleep.reducer';
 import rootMovementReducer from './movement.reducer';
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
   errors, // contains registrationMessage and loginMessage
   user, // will have an id and username if someone is logged in
   rootFoodReducer,
+  rootOccupationReducer,
   rootSocialReducer,
   rootSleepReducer,
   rootMovementReducer,

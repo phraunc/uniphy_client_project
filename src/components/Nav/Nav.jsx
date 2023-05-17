@@ -36,6 +36,9 @@ function Nav() {
               Food
             </Link>
 
+            <Link className="navLink" to="/occupation">
+              Occupation
+            </Link>
 
             <Link className="navLink" to="/social">
               Social Activity

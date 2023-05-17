@@ -2,10 +2,10 @@ import HistoryCardFood from "../HistoryCardComponent/HistoryCardFood";
 
 function HistoryContainer({ item }) {
   return (
-    <div class="flex-grid-quarters">
+    <div className="flex-grid-quarters">
       {item.map((single, i) => {
         return (
-          <div class="container">
+          <div className="container">
             <HistoryCardFood key={i} prop={single} />
           </div>
         );
