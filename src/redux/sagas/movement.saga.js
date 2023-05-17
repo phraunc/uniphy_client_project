@@ -2,7 +2,7 @@ import { put, takeEvery, takeLatest } from "redux-saga/effects";
 import axios from "axios";
 
 function* getMovementId(action) {
-  console.log('here is our payload for getMovementID', action.payload)
+  console.log('SAGA GetMovementID', action.payload) //getting it here
   try{
     const movementID = yield axios.get(`./api/movement/details/${action.payload}`);
     yield put({ type: 'SET_MOVEMENT_ID', payload: movementID.data})
@@ -32,10 +32,10 @@ function* postMovement(action) {
 }
 
 function* putMovement(action) {
-  console.log('here is our data to update movement:', action.payload)
+  console.log('PUT saga:', action.payload) //am getting it here
   try {
     yield axios.put(`./api/movement/${action.payload.id}`, action.payload);
-    yield put({ type: "GET_FOOD" });
+    yield put({ type: "GET_MOVEMENT" });
   } catch (err) {
     console.log("error in Movement PUT_Saga", err);
   }

@@ -18,22 +18,30 @@ function Stopwatch({addTime, setAddTime}) {
       }, 100)
     } else {
       clearInterval(interval);
-      setStoppedTime(time);
+    //   setStoppedTime(time);
+    setAddTime(getFormattedTime(time))
     }
 
     return () => clearInterval(interval)
-  }, [timerOn, time])
+  }, [timerOn, time, setAddTime])
 
-  const handleSubmit = (event) => {
+//   const handleSubmit = (event) => {
+//     const hours = Math.floor(time / 3600000);
+//     const minutes = Math.floor(time / 60000);
+//     const seconds = ((time % 60000) / 1000).toFixed(0);
+//     console.log('HERERERRE', minutes, seconds)
+//     setStoppedTime(hours + ":" + minutes + ":" + (seconds < 10 ? '0' : '') + seconds)
+//     console.log('this is in the handleStop', hours + ":" + minutes + ":" + (seconds < 10 ? '0' : '') + seconds)
+
+//     setAddTime(hours + ":" + minutes + ":" + (seconds < 10 ? '0' : '') + seconds)
+//   }
+
+const getFormattedTime = (time) => {
     const hours = Math.floor(time / 3600000);
     const minutes = Math.floor(time / 60000);
     const seconds = ((time % 60000) / 1000).toFixed(0);
-    console.log('HERERERRE', minutes, seconds)
-    setStoppedTime(hours + ":" + minutes + ":" + (seconds < 10 ? '0' : '') + seconds)
-    console.log('this is in the handleStop', hours + ":" + minutes + ":" + (seconds < 10 ? '0' : '') + seconds)
-
-    setAddTime(hours + ":" + minutes + ":" + (seconds < 10 ? '0' : '') + seconds)
-  }
+    return hours + ":" + minutes + ":" + (seconds < 10 ? '0' : '') + seconds
+}
 
   return (
     <div className="App">
@@ -59,7 +67,7 @@ function Stopwatch({addTime, setAddTime}) {
       </div>
       <div>
 
-        <button className="submitBtn" onClick={handleSubmit}>Submit Time</button>
+        {/* <button className="submitBtn" onClick={handleSubmit}>Submit Time</button> */}
         {stoppedTime && (
             <div>
                 Stoppped Time: {stoppedTime}

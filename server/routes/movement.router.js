@@ -79,6 +79,7 @@ router.delete("/:id", rejectUnauthenticated, (req, res) => {
 });
 
 router.put("/:id", rejectUnauthenticated, (req, res) => {
+    
   const sqlText = `UPDATE "movement"
     SET "title"=$1, "duration"=$2, "intensity"=$3
     WHERE "movement".id = $4;`;
@@ -88,9 +89,10 @@ router.put("/:id", rejectUnauthenticated, (req, res) => {
     req.body.intensity,
     req.params.id,
   ];
-
+ 
   pool
     .query(sqlText, sqlValue)
+    console.log('this is sqlValue', sqlValue)
     .then(() => {
       res.sendStatus(200);
     })

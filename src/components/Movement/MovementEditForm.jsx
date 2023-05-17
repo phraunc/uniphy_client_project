@@ -23,20 +23,21 @@ import {
 function EditMovement() {
     const dispatch = useDispatch();
     const movementItemID = useSelector(store => store.rootMovementReducer.MovementReducerSingle)
-    console.log('MOVEMENTItemId', movementItemID)
+    console.log('MOVEMENTItemId', movementItemID[0])
     const history = useHistory();
 
     const [addTitle, setAddTitle] = useState("");
     const [addIntensity, setAddIntensity] = useState(0);
-    const [addTime, setAddTime] = useState(0);
+    const [addTime, setAddTime] = useState("");
 
 
     const cancelMovement = () => {
         history.push('/movement')
     }
 
-    const saveChanges = () => {
-        console.log('MMMMovementItem.id that we are sending our payload', movementItemID)
+    const saveChanges = (event) => {
+        event.preventDefault();
+        console.log('movementItem.id in edit movement', movementItemID)
         dispatch({
             type: 'UPDATE_MOVEMENT',
             payload: {
@@ -46,6 +47,7 @@ function EditMovement() {
                 intensity: addIntensity,
                     }
                 })
+                
                 setAddTitle("")
                 setAddTime(0)
                 setAddIntensity(0)
@@ -91,7 +93,7 @@ function EditMovement() {
                 value={addIntensity}
                 label="snacks"
                 onChange={(event)=>setAddIntensity(event.target.value)}
-              >
+              > <MenuItem value={0}>Intensity</MenuItem>
                 <MenuItem value={1}>Low Intensity</MenuItem>
                 <MenuItem value={2}>Medium Intensity</MenuItem>
                 <MenuItem value={3}>Medium/High Intensity</MenuItem>
