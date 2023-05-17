@@ -15,6 +15,7 @@ const socialRouter = require('./routes/social.router');
 const sleepRouter = require('./routes/sleep.router')
 const movementRouter = require('./routes/movement.router')
 const balancescoreRouter = require('./routes/balancescore.router')
+const workRouter = require('./routes/work.router');
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -35,6 +36,7 @@ app.use('/api/social', socialRouter);
 app.use('/api/sleep', sleepRouter)
 app.use('/api/movement', movementRouter);
 app.use('/api/balancescore', balancescoreRouter);
+app.use('/api/work',workRouter);
 
 
 // Serve static files

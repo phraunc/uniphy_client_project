@@ -32,6 +32,9 @@ import Sleep from "../Sleep/Sleep";
 import SleepForm from "../Sleep/SleepForm";
 import EditSleep from "../Sleep/SleepEditForm";
 import EditMovement from "../Movement/MovementEditForm";
+import Work from "../Work/Work";
+import WorkForm from "../Work/WorkForm";
+import WorkEditForm from "../Work/WorkEditForm";
 
 
 function App() {
@@ -152,6 +155,16 @@ function App() {
           </Route>
           <Route exact path="/occupation/details/:id">
             {user.id ? <EditOccupation /> : <Redirect to="/occupation" />}
+          </Route>
+
+          <Route exact path="/work">
+            {user.id ? <Work /> : <Redirect to="/home" />}
+          </Route>
+          <Route exact path="/workform">
+            {user.id ? <WorkForm /> : <Redirect to="/work" />}
+          </Route>
+          <Route exact path="/work/details/:id">
+            {user.id ? <WorkEditForm /> : <Redirect to="/work" />}
           </Route>
 
           <Route exact path="/home">
