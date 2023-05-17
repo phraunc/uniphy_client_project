@@ -1,33 +1,34 @@
 import React from 'react'
   
-const Progress_bar = ({bgcolor,progress,height}) => {
+const Progress_bar = ({bgcolor,progress,height, onClick}) => {
      
     const Parentdiv = {
         height: height,
         width: '100%',
-        backgroundColor: 'whitesmoke',
-        borderRadius: 40,
-        margin: 50
+        backgroundColor: 'lightgrey',
+        borderRadius: 10,
+        margin: '20px 20px 20px 20px',
+        
       }
       
       const Childdiv = {
         height: '100%',
         width: `${progress}%`,
         backgroundColor: bgcolor,
-       borderRadius:40,
-        textAlign: 'right'
+       borderRadius:10,
+        textAlign: 'left',
       }
       
       const progresstext = {
         padding: 10,
-        color: 'black',
-        fontWeight: 900
+        color: 'white',
+        fontWeight: 900,
       }
         
     return (
-    <div style={Parentdiv}>
+    <div style={Parentdiv} onClick={onClick}>
       <div style={Childdiv}>
-        <span style={progresstext}>{`${progress}%`}</span>
+        <span style={progresstext}>{`${progress}`}</span>
       </div>
     </div>
     )

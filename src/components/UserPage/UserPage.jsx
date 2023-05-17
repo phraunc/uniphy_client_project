@@ -4,17 +4,18 @@ import React, { useEffect, useState, useRef } from "react";
 import ReactDOM from "react-dom";
 import { CircleSlider } from "react-circle-slider";
 import Progressbar from './ProgressBar';
+import { useDispatch } from 'react-redux'
+import { useHistory } from 'react-router-dom';
 
-
-//make saga 
-//make generator functions
-//make reducer 
-//call store to get data
-//add store data to progress bars
-function UserPage({bgcolor,progress,height}) {
+function UserPage({ bgcolor, progress, height, onClick }) {
 
 
   const user = useSelector((store) => store.user);
+  const BS = useSelector((store) => store.balanceScoreReducer);
+
+  const dispatch = useDispatch();
+  const history = useHistory();
+
 
 
   const [value, changeValue] = useState(20);
@@ -22,8 +23,13 @@ function UserPage({bgcolor,progress,height}) {
 
   useEffect(() => {
     // slider.current.setAttribute("width", "280px");
+    dispatch({
+      type: "GET_BALANCE_SCORE"
+    })
     console.log(value);
   }, [value]);
+
+
 
 
 
@@ -33,7 +39,6 @@ function UserPage({bgcolor,progress,height}) {
 
       <div className="textContainer">
         {value}
-        <div className="minute">MINUTES</div>
       </div>
       <CircleSlider
         ref={slider}
@@ -41,7 +46,7 @@ function UserPage({bgcolor,progress,height}) {
         stepSize={5}
         onChange={value => changeValue(value)}
         size={250}
-        max={120}
+        max={500}
         gradientColorFrom="#ec008c"
         gradientColorTo="#fc6767"
         knobRadius={20}
@@ -50,15 +55,15 @@ function UserPage({bgcolor,progress,height}) {
       <h3>components below</h3>
 
       <div className="App">
-     <h3 className="heading">Pillars </h3>
-      <Progressbar bgcolor="#31356e" progress='30'  height={30} />
-      <Progressbar bgcolor="#6ce5e8" progress='60'  height={30} />
-      <Progressbar bgcolor="#41b8d5" progress='50'  height={30} />
-      <Progressbar bgcolor="#2f5f98" progress='85'  height={30} />
-      <Progressbar bgcolor="#704e85" progress='95'  height={30} />
-      <Progressbar bgcolor="purple" progress='95'  height={30} />
+        <h3 className="heading">Pillars </h3>
+        <Progressbar bgcolor="#31356e" progress={BS.score_m} height={40} onClick={() => history.push("/movement")} />
+        <Progressbar bgcolor="#6ce5e8" progress={BS.score_sa} height={40} onClick={() => history.push("/social")} />
+        <Progressbar bgcolor="#41b8d5" progress={BS.score_o} height={40} onClick={() => history.push("/occupation")} />
+        <Progressbar bgcolor="#2f5f98" progress={BS.score_f} height={40} onClick={() => history.push("/food")} />
+        <Progressbar bgcolor="#704e85" progress={BS.score_s} height={40} onClick={() => history.push("/sleep")} />
+        {/* <Progressbar bgcolor="purple" progress={BS.score_w} height={40} onClick={() => history.push("/work")} /> */}
 
-   </div>
+      </div>
 
       <LogOutButton className="btn" />
     </div>
