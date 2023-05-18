@@ -105,7 +105,7 @@ router.put("/edit/:id", rejectUnauthenticated, (req, res) => {
 
 router.put('/update/', rejectUnauthenticated, (req, res) => {
   const sqlText = `UPDATE balance_score 
-  SET "score_m"="score_m" + $1 WHERE balance_score.date = current_date AND balance_score.user_id = $2`
+  SET "score_m"=LEAST("score_m" + $1, 100) WHERE balance_score.date = current_date AND balance_score.user_id = $2`
   const sqlValue = [
      req.body.score_m,
     req.user.id

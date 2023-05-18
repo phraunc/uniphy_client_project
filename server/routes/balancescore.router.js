@@ -10,8 +10,8 @@ router.get('/', rejectUnauthenticated, (req, res) => {
     console.log('inside get for balance score ROUTE', req.body)
     
     const sqlText = `SELECT * FROM balance_score
-    WHERE date = $1 AND user_id = $2;`
-    const sqlValue = [req.body.date, req.user.id]
+    WHERE date = CURRENT_DATE AND user_id = $1;`
+    const sqlValue = [req.user.id]
     pool.query(sqlText, sqlValue)
     .then((result) => {
         res.send(result.rows)

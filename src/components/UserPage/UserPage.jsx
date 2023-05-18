@@ -17,22 +17,22 @@ function UserPage({ bgcolor, progress, height, onClick }) {
 
   const manageDay = useSelector((store) => store.dayReducer);
   const { day, showPillar } = manageDay;
-
+  const [myBalanceScore, setMyBalanceScore] = useState(0)
 
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const [value, changeValue] = useState(20);
+  // const [value, changeValue] = useState(20);
 
   useEffect(() => {
     // slider.current.setAttribute("width", "280px");
-    dispatch({
+   dispatch({
       type: "GET_BALANCE_SCORE"
     })
-    
-  }, [value]);
+  }, []);
 
   function startDay(){
+    console.log('this is our BS store Data:', BS)
     console.log('INSIDE startDay')
     dispatch({
       type: 'START_DAY'
@@ -60,7 +60,13 @@ function UserPage({ bgcolor, progress, height, onClick }) {
       type: 'IS_STARTED'
     })
   }
+  // Number(BS.score_f + BS.score_m + BS.score_o + BS.score_s + BS.score_sa)
 
+  if(!BS) {
+    return (
+      <p>Loading</p>
+    )
+  } 
   return (
     <div className="App">
       <h2>Welcome, {user.username}!</h2>
@@ -69,20 +75,21 @@ function UserPage({ bgcolor, progress, height, onClick }) {
     <center>
       <div className="App1">
       <div className="textContainer">
-        {value}
-        <div className="minute">MINUTES</div>
+        {Math.round(Number(BS.score_f) + Number(BS.score_m) + Number(BS.score_o) + Number(BS.score_s) + Number(BS.score_sa))}
+        <div className="minute">Balance Score</div>
       </div>
       <CircleSlider
         ref={slider}
-        value={value}
+        value={Math.round(Number(BS.score_f) + Number(BS.score_m) + Number(BS.score_o) + Number(BS.score_s) + Number(BS.score_sa))}
         stepSize={5}
-        onChange={value => changeValue(value)}
+        // onChange={value => changeValue(value)}
         size={250}
-        max={120}
+        max={500}
         gradientColorFrom="#ec008c"
         gradientColorTo="#31356e"
         knobRadius={20}
         circleWidth={20}
+        disabled={true}
       />
     </div>
     </center>

@@ -20,7 +20,8 @@ CREATE TABLE balance_score (
 CREATE TABLE "user" (
     id SERIAL PRIMARY KEY,
     username VARCHAR,
-    "password" VARCHAR
+    "password" VARCHAR,
+    is_started BOOLEAN DEFAULT false
 );
 
 CREATE TABLE movement (
