@@ -94,7 +94,6 @@ router.put("/edit/:id", rejectUnauthenticated, (req, res) => {
  
   pool
     .query(sqlText, sqlValue)
-    console.log('this is sqlValue', sqlValue)
     .then(() => {
       res.sendStatus(200);
     })

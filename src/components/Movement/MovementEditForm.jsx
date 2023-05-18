@@ -37,6 +37,7 @@ function EditMovement() {
     const saveChanges = (event) => {
         event.preventDefault();
         //console.log('movementItem.id in edit movement', movementItemID)
+        // console.log('movementItem.id in edit movement', movementItemID)
         dispatch({
             type: 'UPDATE_MOVEMENT',
             payload: {
