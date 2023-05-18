@@ -11,6 +11,7 @@ import MovementSaga from './movement.saga';
 import WorkSaga from './work.saga';
 
 import balanceScoreSaga from './balance_score.saga';
+import is_started from './is_started.saga';
 
 
 // rootSaga is the primary saga.
@@ -30,10 +31,9 @@ export default function* rootSaga() {
     socialSaga(),
     sleepSaga(),
     MovementSaga(),
-
     WorkSaga(),
-
     balanceScoreSaga(),
+    is_started(),
 
 
   ]);

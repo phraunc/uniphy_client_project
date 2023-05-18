@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 
 const MovementReducer = (state = [], action) => {
-    console.log('get all movement action.payload:', action.payload)
+    // console.log('get all movement action.payload:', action.payload)
  if (action.type === 'SET_MOVEMENT') {
     return [...action.payload];
  }
@@ -9,7 +9,7 @@ const MovementReducer = (state = [], action) => {
   };
   
 const MovementReducerSingle = (state = {}, action) => {
-   console.log('Movement item', action.payload)
+//    console.log('Movement item', action.payload)
    if (action.type === 'SET_MOVEMENT_ID') {
       return action.payload
    }
