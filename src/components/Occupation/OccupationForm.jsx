@@ -33,26 +33,56 @@ function OccupationForm() {
         history.push("/home");
     };
 
-    const addOccupation = (event) => {
+    async function addOccupation  (event)  {
         event.preventDefault();
-
+        const calculatedOccupationScore = await occupationScoreCalc()
         dispatch({
             type: 'POST_OCCUPATION',
             payload: {
+                score_o: calculatedOccupationScore.oScore,
                 title: addTitle,
                 duration: addDuration,
                 description: addDescription,
+                total_points: calculatedOccupationScore.totalBalancePoints
             }
         })
         setAddTitle(0)
         setAddDuration(0)
         setAddDescription(0)
+        dispatch({
+            type: "UPDATE_OCCUPATION_SCORE",
+            payload: {
+              score_o: calculatedOccupationScore.oScore,
+            }
+          })
 
         history.push("/occupation");
     };
 
     const cancelOccupation = () => {
         history.push("/occupation")
+    }
+
+    async function occupationScoreCalc () {
+        let totalBalancePoints = 0
+        let durationPoints = addDuration * .75
+        totalBalancePoints = Number((durationPoints).toFixed(2))
+        let oScore = 0
+        if (totalBalancePoints > 100) {
+            oScore = 100
+        } else if (totalBalancePoints < 0) {
+            oScore = 0
+        } else {
+            oScore = totalBalancePoints
+        }
+        return (
+            {
+                oScore,
+                totalBalancePoints
+            }
+
+        )
+
     }
 
     return (

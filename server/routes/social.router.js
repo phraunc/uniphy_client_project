@@ -45,14 +45,17 @@ router.get('/details/:id', rejectUnauthenticated, (req, res)=> {
  */
 router.post("/", rejectUnauthenticated, (req, res) => {
   // POST route code here
-  const sqlText = `INSERT INTO social_activity (user_id, whom, description, duration, online)
-  VALUES ($1, $2, $3, $4, $5);`;
+  const sqlText = `INSERT INTO social_activity (user_id, score_sa, whom, rating, description, duration, online, total_points)
+  VALUES ($1, $2, $3, $4, $5, $6, $7, $8);`;
   const sqlValue = [
     req.user.id,
+    req.body.score_sa,
     req.body.whom,
+    req.body.rating,
     req.body.description,
     req.body.duration,
     req.body.online,
+    req.body.total_points
   ];
   pool
     .query(sqlText, sqlValue)
@@ -80,7 +83,7 @@ router.delete("/:id", rejectUnauthenticated, (req, res) => {
     });
 });
 
-router.put("/:id", rejectUnauthenticated, (req, res) => {
+router.put("/edit/:id", rejectUnauthenticated, (req, res) => {
   const sqlText = `UPDATE "social_activity"
     SET "whom"=$1, "description"=$2, "duration"=$3, "online"=$4
     WHERE "social_activity".id = $5;`;
@@ -102,5 +105,22 @@ router.put("/:id", rejectUnauthenticated, (req, res) => {
       res.sendStatus(500);
     });
 });
+
+router.put('/update/', rejectUnauthenticated, (req, res) => {
+  const sqlText = `UPDATE balance_score 
+  SET "score_sa"="score_sa" + $1 WHERE balance_score.date = current_date AND balance_score.user_id = $2`
+  const sqlValue = [
+     req.body.score_sa,
+    req.user.id
+  ]
+
+  pool.query(sqlText, sqlValue)
+  .then((result) => {
+    res.sendStatus(200)
+  }).catch((err) => {
+    res.sendStatus(500)
+  })
+
+})
 
 module.exports = router;

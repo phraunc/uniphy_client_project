@@ -27,6 +27,7 @@ function SocialActivityForm() {
     const [addDescription, setAddDescription] = useState('');
     const [addDuration, setAddDuration] = useState(0);
     const [addOnline, setAddOnline] = useState(true);
+    const [addRating, setAddRating] = useState(1)
 
 
     const handleHome = () => {
@@ -34,17 +35,19 @@ function SocialActivityForm() {
         history.push("/home");
     };
 
-    const addSocialActivity = (event) => {
+    async function addSocialActivity(event)  {
         event.preventDefault();
-        console.log('BEFORE')
-
+        const calculatedSocialScore = await socialPointsCalc()
         dispatch({
             type: 'POST_SOCIAL',
             payload: {
+                score_sa: calculatedSocialScore.saScore,
                 whom: addWhom,
+                rating: addRating,
                 description: addDescription,
                 duration: addDuration,
                 online: addOnline,
+                total_points: calculatedSocialScore.totalBalancePoints
             }
         })
         setAddWhom('')
@@ -52,7 +55,13 @@ function SocialActivityForm() {
         setAddDuration(0)
         setAddOnline(false)
 
-        console.log('AFTER')
+       // console.log('AFTER')
+       dispatch({
+        type: "UPDATE_SOCIAL_SCORE",
+        payload: {
+          score_sa:calculatedSocialScore.saScore,
+        }
+      })
 
 
         history.push("/social");
@@ -61,6 +70,47 @@ function SocialActivityForm() {
 
     const cancelSocialActivity = () => {
         history.push("/social")
+    }
+
+    async function socialPointsCalc() {
+        let durationPoints = addDuration
+        let ratingPoints = 0
+        let totalBalancePoints = 0
+        switch (addRating) {
+            case 0:
+                ratingPoints = .9
+                break;
+            case 1:
+                ratingPoints = 1
+                break;
+            case 2:
+                ratingPoints = 1.1
+                break;
+            case 3:
+                ratingPoints = 1.2
+                break;
+            case 4:
+                ratingPoints = 1.3
+                break;
+            default:
+                screenPoints = 1
+        }
+        totalBalancePoints = Number((durationPoints * ratingPoints).toFixed(2))
+        let saScore = 0
+        if (totalBalancePoints > 100) {
+            saScore = 100
+        } else if (totalBalancePoints < 0) {
+            saScore = 0
+        } else {
+            saScore = totalBalancePoints
+        }
+        return (
+            {
+                saScore,
+                totalBalancePoints
+            }
+
+        )
     }
 
     return (
@@ -77,21 +127,27 @@ function SocialActivityForm() {
                         // min="1"
                         // max="100"
                         value={addWhom}
-                        onChange={(event) => setAddWhom(event.target.value) }
+                        onChange={(event) => setAddWhom(event.target.value)}
                     />
                     <br />
                     <br />
+                    <FormControl fullWidth>
+                        <InputLabel id="demo-simple-select-label">Rating</InputLabel>
+                        <Select
+                            labelId="demo-simple-select-label"
+                            id="demo-simple-select"
+                            value={addRating}
+                            label="Rating"
+                            onChange={(event) => setAddRating(event.target.value)}
+                        >
+                            <MenuItem value={0}>Meh</MenuItem>
+                            <MenuItem value={1}>Ok</MenuItem>
+                            <MenuItem value={2}>Good</MenuItem>
+                            <MenuItem value={3}>Great</MenuItem>
+                            <MenuItem value={4}>Amazing</MenuItem>
 
-                    <TextField
-                        label="Notes"
-                        variant="outlined"
-                        type="text"
-                        placeholder="Notes about it"
-
-                        value={addDescription}
-                        onChange={(event) => setAddDescription(event.target.value)}
-                    />
-
+                        </Select>
+                    </FormControl>
                     <br />
                     <br />
                     <Box sx={{ minWidth: 120 }}>
@@ -119,9 +175,21 @@ function SocialActivityForm() {
                             type="number"
                             placeholder="Time in minutes"
                             min="1"
-                            max="100"
+                            max="1000"
                             value={addDuration}
                             onChange={(event) => setAddDuration(event.target.value)}
+                        />
+                        <br />
+                        <br />
+
+                        <TextField
+                            label="Notes"
+                            variant="outlined"
+                            type="text"
+                            placeholder="Notes about it"
+
+                            value={addDescription}
+                            onChange={(event) => setAddDescription(event.target.value)}
                         />
 
                         <Box
@@ -142,6 +210,7 @@ function SocialActivityForm() {
                             alignItems="flex-end">
                             <Button variant="contained" onClick={cancelSocialActivity} >Cancel</Button>
                         </Box>
+
                     </Box>
 
 

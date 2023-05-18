@@ -34,7 +34,7 @@ function* postMovement(action) {
 function* putMovement(action) {
   console.log('PUT saga:', action.payload) //am getting it here
   try {
-    yield axios.put(`./api/movement/${action.payload.id}`, action.payload);
+    yield axios.put(`./api/movement/edit/${action.payload.id}`, action.payload);
     yield put({ type: "GET_MOVEMENT" });
   } catch (err) {
     console.log("error in Movement PUT_Saga", err);
@@ -50,12 +50,22 @@ function* deleteMovement(action) {
   }
 }
 
+function* updateBalanceMovement(action) {
+  console.log('our update balance score saga:', action.payload)
+  try{
+    yield axios.put(`./api/movement/update/`, action.payload)
+  } catch (err) {
+    console.log('error in update movement balance score saga', err)
+  }
+}
+
 function* MovementSaga() {
   yield takeEvery("GET_MOVEMENT", getMovement);
   yield takeEvery("POST_MOVEMENT", postMovement);
   yield takeEvery("UPDATE_MOVEMENT", putMovement);
   yield takeEvery("DELETE_MOVEMENT", deleteMovement);
-  yield takeLatest("GET_MOVEMENT_ID", getMovementId)
+  yield takeLatest("GET_MOVEMENT_ID", getMovementId);
+  yield takeLatest("UPDATE_MOVEMENT_SCORE", updateBalanceMovement)
 }
 
 export default MovementSaga;

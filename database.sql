@@ -31,7 +31,7 @@ CREATE TABLE movement (
     title VARCHAR(255),
     duration INT,
     intensity INT,
-    total_points INT  
+    total_points NUMERIC(5,2)   
 );
 
 CREATE TABLE social_activity (
@@ -43,7 +43,7 @@ CREATE TABLE social_activity (
     description VARCHAR(255),
     duration INT,
     online BOOLEAN,
-    total_points INT 
+    total_points NUMERIC(5,2)  
 );
 
 CREATE TABLE occupation (
@@ -54,7 +54,7 @@ CREATE TABLE occupation (
     title VARCHAR(255),
     duration INT,
     description VARCHAR(255),
-    total_points INT 
+    total_points NUMERIC(5,2) 
 );
 
 CREATE TABLE food (
@@ -67,7 +67,7 @@ CREATE TABLE food (
     snack INT,
     water INT,
     fasting INT,
-    total_points INT 
+    total_points NUMERIC(5,2)  
 );
 
 CREATE TABLE sleep (
@@ -80,7 +80,7 @@ CREATE TABLE sleep (
     screen_time INT,
     start_sleep INT,
     end_sleep INT,
-    total_points INT 
+    total_points NUMERIC(5,2)  
 );
 
 CREATE TABLE work_school (
@@ -91,7 +91,7 @@ CREATE TABLE work_school (
     note VARCHAR(255),
     workload INT,
     fullfillment INT,
-    total_points INT 
+    total_points NUMERIC(5,2) 
 );
 
 INSERT INTO user (username)

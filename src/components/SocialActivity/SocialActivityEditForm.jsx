@@ -37,7 +37,7 @@ function EditSocialActivity() {
     }
 
     const saveChanges = () => {
-        console.log('This is the SocialActivity.id that we are sending our payload', socialStoreID)
+        //console.log('This is the SocialActivity.id that we are sending our payload', socialStoreID)
         dispatch({
             type: 'UPDATE_SOCIAL',
             payload: {

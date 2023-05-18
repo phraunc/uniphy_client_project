@@ -43,14 +43,16 @@ router.get('/details/:id', rejectUnauthenticated, (req, res)=> {
  */
 router.post("/", rejectUnauthenticated, (req, res) => {
   // POST route code here
-  const sqlText = `INSERT INTO movement (user_id, title, duration, intensity)
-  VALUES ($1, $2, $3, $4);`;
+  const sqlText = `INSERT INTO movement (user_id, score_m, title, duration, intensity, total_points)
+  VALUES ($1, $2, $3, $4, $5, $6);`;
 
   const sqlValue = [
     req.user.id,
+    req.body.score_m,
     req.body.title,
     req.body.duration,
     req.body.intensity,
+    req.body.total_points
   ];
   pool
     .query(sqlText, sqlValue)
@@ -78,7 +80,7 @@ router.delete("/:id", rejectUnauthenticated, (req, res) => {
     });
 });
 
-router.put("/:id", rejectUnauthenticated, (req, res) => {
+router.put("/edit/:id", rejectUnauthenticated, (req, res) => {
     
   const sqlText = `UPDATE "movement"
     SET "title"=$1, "duration"=$2, "intensity"=$3
@@ -100,5 +102,22 @@ router.put("/:id", rejectUnauthenticated, (req, res) => {
       res.sendStatus(500);
     });
 });
+
+router.put('/update/', rejectUnauthenticated, (req, res) => {
+  const sqlText = `UPDATE balance_score 
+  SET "score_m"="score_m" + $1 WHERE balance_score.date = current_date AND balance_score.user_id = $2`
+  const sqlValue = [
+     req.body.score_m,
+    req.user.id
+  ]
+
+  pool.query(sqlText, sqlValue)
+  .then((result) => {
+    res.sendStatus(200)
+  }).catch((err) => {
+    res.sendStatus(500)
+  })
+
+})
 
 module.exports = router;

@@ -33,7 +33,7 @@ function* postOccupation(action) {
 function* putOccupation(action) {
   console.log('here is our Occupation data to update:', action.payload)
   try {
-    yield axios.put(`./api/occupation/${action.payload.id}`, action.payload);
+    yield axios.put(`./api/occupation/edit/${action.payload.id}`, action.payload);
     yield put({ type: "GET_OCCUPATION" });
   } catch (err) {
     console.log("error in Occupation PUT_Saga", err);
@@ -49,12 +49,22 @@ function* deleteOccupation(action) {
   }
 }
 
+function* updateBalanceOccupation(action) {
+  console.log('our update balance score saga:', action.payload)
+  try{
+    yield axios.put(`./api/occupation/update/`, action.payload)
+  } catch (err) {
+    console.log('error in update occupation balance score saga', err)
+  }
+}
+
 function* OccupationSaga() {
   yield takeEvery("GET_OCCUPATION", getOccupation);
   yield takeEvery("POST_OCCUPATION", postOccupation);
   yield takeEvery("UPDATE_OCCUPATION", putOccupation);
   yield takeEvery("DELETE_OCCUPATION", deleteOccupation);
   yield takeLatest("GET_OCCUPATION_ID", getOccupationId)
+  yield takeLatest("UPDATE_OCCUPATION_SCORE", updateBalanceOccupation);
 }
 
 export default OccupationSaga;
