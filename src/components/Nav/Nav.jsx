@@ -39,6 +39,9 @@ function Nav() {
             <Link className="navLink" to="/occupation">
               Occupation
             </Link>
+            <Link className="navLink" to="/work">
+              Work
+            </Link>
 
             <Link className="navLink" to="/social">
               Social Activity

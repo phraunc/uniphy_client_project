@@ -6,7 +6,11 @@ import rootOccupationReducer from './occupation.reducer';
 import rootSocialReducer from './social.reducer'
 import rootSleepReducer from './sleep.reducer';
 import rootMovementReducer from './movement.reducer';
+
+import rootWorkReducer from './work.reducer';
+
 import balanceScoreReducer from './balance_score.reducer';
+
 
 
 // rootReducer is the primary reducer for our entire project
@@ -23,7 +27,11 @@ const rootReducer = combineReducers({
   rootSocialReducer,
   rootSleepReducer,
   rootMovementReducer,
+
+  rootWorkReducer,
+
   balanceScoreReducer,
+
 });
 
 export default rootReducer;
