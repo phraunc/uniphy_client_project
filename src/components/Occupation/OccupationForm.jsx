@@ -49,6 +49,12 @@ function OccupationForm() {
         setAddTitle(0)
         setAddDuration(0)
         setAddDescription(0)
+        dispatch({
+            type: "UPDATE_OCCUPATION_SCORE",
+            payload: {
+              score_o: calculatedOccupationScore.oScore,
+            }
+          })
 
         history.push("/occupation");
     };

@@ -80,7 +80,7 @@ router.delete("/:id", rejectUnauthenticated, (req, res) => {
     });
 });
 
-router.put("/:id", rejectUnauthenticated, (req, res) => {
+router.put("/edit/:id", rejectUnauthenticated, (req, res) => {
   const sqlText = `UPDATE "occupation"
     SET "title"=$1, "duration"=$2, "description"=$3
     WHERE "occupation".id = $4;`;
@@ -100,5 +100,22 @@ router.put("/:id", rejectUnauthenticated, (req, res) => {
       res.sendStatus(500);
     });
 });
+
+router.put('/update/', rejectUnauthenticated, (req, res) => {
+  const sqlText = `UPDATE balance_score 
+  SET "score_o"="score_o" + $1 WHERE balance_score.date = current_date AND balance_score.user_id = $2`
+  const sqlValue = [
+     req.body.score_o,
+    req.user.id
+  ]
+
+  pool.query(sqlText, sqlValue)
+  .then((result) => {
+    res.sendStatus(200)
+  }).catch((err) => {
+    res.sendStatus(500)
+  })
+
+})
 
 module.exports = router;

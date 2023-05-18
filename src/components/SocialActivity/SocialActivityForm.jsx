@@ -56,6 +56,12 @@ function SocialActivityForm() {
         setAddOnline(false)
 
        // console.log('AFTER')
+       dispatch({
+        type: "UPDATE_SOCIAL_SCORE",
+        payload: {
+          score_sa:calculatedSocialScore.saScore,
+        }
+      })
 
 
         history.push("/social");
@@ -130,9 +136,9 @@ function SocialActivityForm() {
                         <Select
                             labelId="demo-simple-select-label"
                             id="demo-simple-select"
-                            value={1}
+                            value={addRating}
                             label="Rating"
-                            onChange={(event) => setAddOnline(event.target.value)}
+                            onChange={(event) => setAddRating(event.target.value)}
                         >
                             <MenuItem value={0}>Meh</MenuItem>
                             <MenuItem value={1}>Ok</MenuItem>

@@ -35,7 +35,7 @@ function* postSleep(action) {
 function* putSleep(action) {
   console.log('here is our data to update:', action.payload)
   try {
-    yield axios.put(`./api/sleep/${action.payload.id}`, action.payload);
+    yield axios.put(`./api/sleep/edit/${action.payload.id}`, action.payload);
     yield put({ type: "GET_SLEEP" });
   } catch (err) {
     console.log("error in Sleep PUT_Saga", err);
@@ -51,12 +51,22 @@ function* deleteSleep(action) {
   }
 }
 
+function* updateBalanceSleep(action) {
+  console.log('our update balance score saga:', action.payload)
+  try{
+    yield axios.put(`./api/sleep/update/`, action.payload)
+  } catch (err) {
+    console.log('error in update sleep balance score saga', err)
+  }
+}
+
 function* sleepSaga() {
   yield takeEvery("GET_SLEEP", getSleep);
   yield takeEvery("POST_SLEEP", postSleep);
   yield takeEvery("UPDATE_SLEEP", putSleep);
   yield takeEvery("DELETE_SLEEP", deleteSleep);
   yield takeLatest("GET_SLEEP_ID", getSleepId)
+  yield takeLatest("UPDATE_SLEEP_SCORE", updateBalanceSleep)
 }
 
 export default sleepSaga;

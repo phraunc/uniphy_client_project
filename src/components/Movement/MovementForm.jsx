@@ -52,6 +52,12 @@ function MovementForm() {
     setAddTitle("")
     setAddTime(0)
     setAddIntensity(0)
+    dispatch({
+      type: "UPDATE_MOVEMENT_SCORE",
+      payload: {
+        score_m:calculatedMovementScore.mScore,
+      }
+    })
 
     history.push("/movement");
 

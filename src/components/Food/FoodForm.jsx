@@ -55,6 +55,12 @@ function FoodForm() {
     setAddSnack(0)
     setAddWater(0)
     setAddFasting(0)
+    dispatch({
+      type: "UPDATE_FOOD_SCORE",
+      payload: {
+        score_f:calculatedFoodScore.fScore,
+      }
+    })
 
     history.push("/food");
 

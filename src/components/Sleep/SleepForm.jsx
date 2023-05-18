@@ -54,6 +54,12 @@ function FoodForm() {
         setScreenTime(0)
         setEndSleep(0)
         setStartSleep(0)
+        dispatch({
+            type: "UPDATE_SLEEP_SCORE",
+            payload: {
+              score_s:calculatedSleepScore.sScore,
+            }
+          })
         history.push('/sleep')
 
     }

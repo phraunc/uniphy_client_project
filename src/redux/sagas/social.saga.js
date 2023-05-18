@@ -34,7 +34,7 @@ function* postSocial(action) {
 function* putSocial(action) {
   console.log('here is our data to update:', action.payload)
   try {
-    yield axios.put(`./api/social/${action.payload.id}`, action.payload);
+    yield axios.put(`./api/social/edit/${action.payload.id}`, action.payload);
     yield put({ type: "GET_SOCIAL" });
   } catch (err) {
     console.log("error in social PUT_Saga", err);
@@ -50,12 +50,22 @@ function* deleteSocial(action) {
   }
 }
 
+function* updateBalanceSocial(action) {
+  console.log('our update balance score saga:', action.payload)
+  try{
+    yield axios.put(`./api/social/update/`, action.payload)
+  } catch (err) {
+    console.log('error in update social balance score saga', err)
+  }
+}
+
 function* socialSaga() {
   yield takeEvery("GET_SOCIAL", getSocial);
   yield takeEvery("POST_SOCIAL", postSocial);
   yield takeEvery("UPDATE_SOCIAL", putSocial);
   yield takeEvery("DELETE_SOCIAL", deleteSocial);
   yield takeLatest("GET_SOCIAL_ID", getSocialId)
+  yield takeLatest("UPDATE_SOCIAL_SCORE", updateBalanceSocial)
 }
 
 export default socialSaga;
