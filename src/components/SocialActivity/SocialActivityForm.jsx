@@ -55,7 +55,7 @@ function SocialActivityForm() {
         setAddDuration(0)
         setAddOnline(false)
 
-        console.log('AFTER')
+       // console.log('AFTER')
 
 
         history.push("/social");

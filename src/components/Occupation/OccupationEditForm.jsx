@@ -32,7 +32,7 @@ function EditOccupation() {
     }
 
     const saveChanges = () => {
-        console.log('This is the occupationItem.id that we are sending our payload', occupationItemID)
+        //console.log('This is the occupationItem.id that we are sending our payload', occupationItemID)
         dispatch({
             type: 'UPDATE_OCCUPATION',
             payload: {
