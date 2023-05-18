@@ -4,7 +4,7 @@ import axios from "axios";
 
 
 function* getBalanceScore(action) {
-  console.log('inside GET Balance_score Saga saga')
+  console.log('inside GET Balance_score Saga saga', action.payload)
   try {
     const balancePillar = yield axios.get("./api/balanceScore", action.payload);
     yield put({ type: 'SET_BALANCE_SCORE', payload: balancePillar.data });

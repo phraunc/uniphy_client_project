@@ -12,6 +12,7 @@ function UserPage({ bgcolor, progress, height, onClick }) {
   const slider = useRef(null);
 
   const user = useSelector((store) => store.user);
+  console.log('INSIDE user', user);
   const BS = useSelector((store) => store.balanceScoreReducer);
 
   const manageDay = useSelector((store) => store.dayReducer);
@@ -28,13 +29,16 @@ function UserPage({ bgcolor, progress, height, onClick }) {
     dispatch({
       type: "GET_BALANCE_SCORE"
     })
-    console.log(value);
+    
   }, [value]);
 
   function startDay(){
     console.log('INSIDE startDay')
     dispatch({
       type: 'START_DAY'
+    })
+    dispatch({
+      type: 'IS_STARTED'
     })
     dispatch({
       type: 'POST_BALANCE_SCORE',
@@ -51,6 +55,9 @@ function UserPage({ bgcolor, progress, height, onClick }) {
   function endDay(){
     dispatch({
       type: 'END_DAY'
+    })
+    dispatch({
+      type: 'IS_STARTED'
     })
   }
 
@@ -83,7 +90,7 @@ function UserPage({ bgcolor, progress, height, onClick }) {
 
       <div className="App">
         {/* <h3 className="heading">Pillars </h3> */}
-        {showPillar ? <>
+        {user.is_started ? <>
         <Progressbar bgcolor="#31356e" progress={BS.score_m} height={40} onClick={() => history.push("/movement")} />
         <Progressbar bgcolor="#6ce5e8" progress={BS.score_sa} height={40} onClick={() => history.push("/social")} />
         <Progressbar bgcolor="#41b8d5" progress={BS.score_o} height={40} onClick={() => history.push("/occupation")} />
@@ -99,7 +106,7 @@ function UserPage({ bgcolor, progress, height, onClick }) {
         </> }
       </div>
 
-     {!day ?
+     {!user.is_started ?
       <Box
         m={1}
         mt={3}

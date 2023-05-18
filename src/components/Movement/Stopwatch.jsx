@@ -1,4 +1,4 @@
-
+import '../Movement/Stopwatch.css'
 import React from 'react';
 import { useState, useEffect } from 'react';
 
@@ -31,25 +31,25 @@ function Stopwatch({ addTime, setAddTime }) {
     }
 
     return (
-        <div className="App">
+        <div className="stopWatch">
             <div className="timer">
                 <span className="digits">{("0" + Math.floor((time / 3600000) % 60)).slice(-2)}:</span>
                 <span className="digits">{("0" + Math.floor((time / 60000) % 60)).slice(-2)}:</span>
                 <span className="digits">{("0" + Math.floor((time / 1000) % 60)).slice(-2)}:</span>
                 <span className="mili-sec">{("0" + ((time / 10) % 100)).slice(-2)}</span>
             </div>
-            <div>
+            <div className="watch">
                 {!timerOn && time === 0 && (
-                    <button className="btn" onClick={() => setTimerOn(true)}>Start</button>
+                    <button className="btn1" onClick={() => setTimerOn(true)}><i className="far fa-play-circle fa-4x"></i></button>
                 )}
                 {timerOn && (
-                    <button className="btn" onClick={() => setTimerOn(false)}>Stop</button>
+                    <button className="btn1" onClick={() => setTimerOn(false)}><i className="far fa-stop-circle fa-4x"></i></button>
                 )}
                 {!timerOn && time !== 0 && (
-                    <button className="btn" onClick={() => setTimerOn(true)}>Resume</button>
+                    <button className="btn1" onClick={() => setTimerOn(true)}><i className="far fa-play-circle fa-2x"></i></button>
                 )}
                 {!timerOn && time > 0 && (
-                    <button className="btn" onClick={() => { setTime(0); setStoppedTime(null); }}>Reset</button>
+                    <button className="btn1" onClick={() => setTime(0)}><i className="fas fa-history fa-2x"></i></button>
                 )}
             </div>
             <div>

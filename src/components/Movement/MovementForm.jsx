@@ -72,7 +72,9 @@ const [addTime, setAddTime] = useState(0);
             onChange={(event) => setAddTitle(event.target.value)}/>
           <br/>
           <br/>
+          <center>
             <Stopwatch addTime={addTime} setAddTime={setAddTime}/> {/* Pass addTime and setAddTime as props */}
+            </center>
             <br/>
             <br/>
           <Box sx={{ minWidth: 120 }}>

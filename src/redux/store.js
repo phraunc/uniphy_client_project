@@ -5,6 +5,10 @@ import logger from 'redux-logger';
 import rootReducer from './reducers/_root.reducer'; // imports ./redux/reducers/index.js
 import rootSaga from './sagas/_root.saga'; // imports ./redux/sagas/index.js
 
+//imports for redux-persist
+// import { persistStore, persistReducer } from 'redux-persist';
+// import storage from 'redux-persist/lib/storage';
+
 const sagaMiddleware = createSagaMiddleware();
 
 // this line creates an array of all of redux middleware you want to use
@@ -14,10 +18,20 @@ const middlewareList = process.env.NODE_ENV === 'development' ?
   [sagaMiddleware, logger] :
   [sagaMiddleware];
 
+//config for redux-persist
+// const persistConfig = {
+//   key: 'root',
+//   storage,
+// };
+
+//redux-perist
+// const persistedReducer = persistReducer(persistConfig, rootReducer);
+
 const store = createStore(
   // tells the saga middleware to use the rootReducer
   // rootSaga contains all of our other reducers
-  rootReducer,
+  rootReducer, 
+  // persistedReducer,
   // adds all middleware to our project including saga and logger
   applyMiddleware(...middlewareList),
 );
@@ -26,4 +40,5 @@ const store = createStore(
 // rootSaga contains all of our other sagas
 sagaMiddleware.run(rootSaga);
 
+// export const persistor = persistStore(store);
 export default store;
