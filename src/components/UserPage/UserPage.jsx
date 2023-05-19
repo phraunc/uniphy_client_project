@@ -7,6 +7,7 @@ import Progressbar from './ProgressBar';
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom';
 import { Box, Button } from '@mui/material';
+import "./UserPage.css";
 
 function UserPage({ bgcolor, progress, height, onClick }) {
   const slider = useRef(null);
@@ -71,7 +72,7 @@ function UserPage({ bgcolor, progress, height, onClick }) {
   } 
   return (
     <div className="App">
-      <h2>Welcome, {user.username}!</h2>
+      <h2 className='welcome'>Welcome, {user.username}!</h2>
 
 
     <center>
@@ -95,8 +96,6 @@ function UserPage({ bgcolor, progress, height, onClick }) {
       />
     </div>
     </center>
-
-
       <div className="App">
         {/* <h3 className="heading">Pillars </h3> */}
         {user.is_started ? <>
@@ -117,8 +116,8 @@ function UserPage({ bgcolor, progress, height, onClick }) {
 
      {!user.is_started ?
       <Box
-        m={1}
-        mt={3}
+        mr={4}
+        mt={7}
         display="flex"
         justifyContent="flex-end"
         alignItems="flex-end"
@@ -126,13 +125,14 @@ function UserPage({ bgcolor, progress, height, onClick }) {
       <Button variant='contained'
       onClick={startDay}>Start Day</Button>
       </Box>
-      :
+      : <>
+      <Box mt={7} ml={3}>
       <Button
       variant='contained'
       onClick={endDay}>End Day</Button>
+      </Box>
+      </>
      }
-    <br/>
-    <br/>
       {/* <LogOutButton className="btn" /> */}
     </div>
   );

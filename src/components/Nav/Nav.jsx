@@ -100,7 +100,7 @@ function Nav() {
 
   return (
 
-    <Box sx={{ position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 10 }}>
+    <Box sx={{ position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 10, color: "white"}}>
 
       <BottomNavigation value={value} onChange={(event, newValue) => { setValue(newValue) }} sx={{ backgroundColor: '#31356e'}}>
 
