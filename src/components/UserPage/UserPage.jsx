@@ -40,16 +40,6 @@ function UserPage({ bgcolor, progress, height, onClick }) {
     dispatch({
       type: 'IS_STARTED'
     })
-    dispatch({
-      type: 'POST_BALANCE_SCORE',
-      payload: {
-        score_m: 0,
-        score_sa: 0,
-        score_o: 0,
-        score_f: 0,
-        score_s: 0
-      }
-    })
   }
 
   function endDay(){
@@ -60,12 +50,24 @@ function UserPage({ bgcolor, progress, height, onClick }) {
       type: 'IS_STARTED'
     })
   }
-  // Number(BS.score_f + BS.score_m + BS.score_o + BS.score_s + BS.score_sa)
+
+  function StartYourDay() {
+    dispatch({
+      type: 'POST_BALANCE_SCORE',
+    })
+  }
+  
 
   if(!BS) {
-    return (
-      <p>Loading</p>
-    )
+    return ( <>
+      <center>
+      <i className="far fa-sun fa-4x" style={{color: "orangered", backgroundColor: 'yellow', borderRadius: '75%'}} ></i>
+      </center>
+      <br/>
+      <center>
+      <Button sx={{backgroundColor: '#FDB750', color: 'white'}} onClick={StartYourDay}>Lets Get Started</Button>
+      </center>
+      </> )
   } 
   return (
     <div className="App">
@@ -98,7 +100,7 @@ function UserPage({ bgcolor, progress, height, onClick }) {
       <div className="App">
         {/* <h3 className="heading">Pillars </h3> */}
         {user.is_started ? <>
-        <Progressbar bgcolor="#31356e" progress={BS.score_m} height={40} onClick={() => history.push("/movement")} />
+        <Progressbar bgcolor="#31356e"  progress={BS.score_m} height={40} onClick={() => history.push("/movement")} />
         <Progressbar bgcolor="#6ce5e8" progress={BS.score_sa} height={40} onClick={() => history.push("/social")} />
         <Progressbar bgcolor="#41b8d5" progress={BS.score_o} height={40} onClick={() => history.push("/occupation")} />
         <Progressbar bgcolor="#2f5f98" progress={BS.score_f} height={40} onClick={() => history.push("/food")} />

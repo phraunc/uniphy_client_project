@@ -17,7 +17,7 @@ function* getBalanceScore(action) {
 function* postBalanceScore(action) {
   console.log('this is our post balanceScore payload in balanceScore saga', action.payload)
   try {
-    yield axios.post("./api/balancescore", action.payload);
+    yield axios.post("./api/balancescore");
     yield put({ type: "GET_BALANCE_SCORE" });
   } catch (err) {
     console.log("error in balanceScore POST_Saga", err);
