@@ -12,7 +12,7 @@ function UserPage({ bgcolor, progress, height, onClick }) {
   const slider = useRef(null);
 
   const user = useSelector((store) => store.user);
-  console.log('INSIDE user', user);
+  // console.log('INSIDE user', user);
   const BS = useSelector((store) => store.balanceScoreReducer);
 
   const manageDay = useSelector((store) => store.dayReducer);
@@ -32,8 +32,8 @@ function UserPage({ bgcolor, progress, height, onClick }) {
   }, []);
 
   function startDay(){
-    console.log('this is our BS store Data:', BS)
-    console.log('INSIDE startDay')
+    // console.log('this is our BS store Data:', BS)
+    // console.log('INSIDE startDay')
     dispatch({
       type: 'START_DAY'
     })
@@ -98,11 +98,11 @@ function UserPage({ bgcolor, progress, height, onClick }) {
       <div className="App">
         {/* <h3 className="heading">Pillars </h3> */}
         {user.is_started ? <>
-        <Progressbar bgcolor="#31356e" progress={BS.score_m} height={40} onClick={() => history.push("/movement")} />
-        <Progressbar bgcolor="#6ce5e8" progress={BS.score_sa} height={40} onClick={() => history.push("/social")} />
-        <Progressbar bgcolor="#41b8d5" progress={BS.score_o} height={40} onClick={() => history.push("/occupation")} />
-        <Progressbar bgcolor="#2f5f98" progress={BS.score_f} height={40} onClick={() => history.push("/food")} />
-        <Progressbar bgcolor="#704e85" progress={BS.score_s} height={40} onClick={() => history.push("/sleep")} />
+        <Progressbar textsize='10px' bgcolor="#31356e" pillarName= 'Movement:' progress={Math.round(Number(BS.score_m))} height={40} onClick={() => history.push("/movement")} />
+        <Progressbar bgcolor="#6ce5e8" pillarName= 'Social:' progress={Math.round(Number(BS.score_sa))} height={40} onClick={() => history.push("/social")} />
+        <Progressbar bgcolor="#41b8d5" pillarName= 'Occupation:' progress={Math.round(Number(BS.score_o))} height={40} onClick={() => history.push("/occupation")} />
+        <Progressbar bgcolor="#2f5f98" pillarName= 'Food:' progress={Math.round(Number(BS.score_f))} height={40} onClick={() => history.push("/food")} />
+        <Progressbar bgcolor="#704e85" pillarName= 'Sleep:' progress={Math.round(Number(BS.score_s))} height={40} onClick={() => history.push("/sleep")} />
         {/* <Progressbar bgcolor="purple" progress={BS.score_w} height={40} onClick={() => history.push("/work")} /> */}
         </> : <>
         <Progressbar bgcolor="grey" progress={BS.score_m} height={40}/>

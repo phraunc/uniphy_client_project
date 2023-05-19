@@ -3,11 +3,11 @@ import HistoryCardSleep from "../HistoryCardComponent/HistoryCardSleep";
 
 function SleepHistoryContainer({ item }) {
   return (
-    <div class="flex-grid-quarters">
+    <div className="flex-grid-quarters">
       {item.map((single, i) => {
         return (
-          <div class="container">
-            <HistoryCardSleep key={i} prop={single} />
+          <div className="container" key={i} >
+            <HistoryCardSleep  prop={single} />
           </div>
         );
       })}

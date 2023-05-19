@@ -2,7 +2,7 @@ import { put, takeEvery, takeLatest } from "redux-saga/effects";
 import axios from "axios";
 
 function* getSocialId(action) {
-  console.log('here is our payload for getSocialID', action.payload)
+  // console.log('here is our payload for getSocialID', action.payload)
   try{
     const foodID = yield axios.get(`./api/social/details/${action.payload}`);
     yield put({ type: 'SET_SOCIAL_ID', payload: foodID.data})
@@ -15,14 +15,14 @@ function* getSocial(action) {
   try {
     const socialPillar = yield axios.get("./api/social", action.payload);
     yield put({ type: "SET_SOCIAL", payload: socialPillar.data });
-    console.log('this is our social data', socialPillar.data)
+    // console.log('this is our social data', socialPillar.data)
   } catch (err) {
     console.log("error in Social GET_Saga", err);
   }
 }
 
 function* postSocial(action) {
-  console.log('TESTTESTTESTTESTTEST')
+  // console.log('TESTTESTTESTTESTTEST')
   try {
     yield axios.post("./api/social", action.payload);
     yield put({ type: "GET_SOCIAL" });
@@ -32,7 +32,7 @@ function* postSocial(action) {
 }
 
 function* putSocial(action) {
-  console.log('here is our data to update:', action.payload)
+  // console.log('here is our data to update:', action.payload)
   try {
     yield axios.put(`./api/social/edit/${action.payload.id}`, action.payload);
     yield put({ type: "GET_SOCIAL" });
@@ -51,7 +51,7 @@ function* deleteSocial(action) {
 }
 
 function* updateBalanceSocial(action) {
-  console.log('our update balance score saga:', action.payload)
+  // console.log('our update balance score saga:', action.payload)
   try{
     yield axios.put(`./api/social/update/`, action.payload)
   } catch (err) {

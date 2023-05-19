@@ -2,7 +2,7 @@ import { put, takeEvery, takeLatest } from "redux-saga/effects";
 import axios from "axios";
 
 function* getWorkId(action) {
-  console.log('here is our payload for getWorkID', action.payload)
+  // console.log('here is our payload for getWorkID', action.payload)
   try {
     const workID = yield axios.get(`./api/work/details/${action.payload}`);
     yield put({ type: 'SET_WORK_ID', payload: workID.data })
@@ -15,7 +15,7 @@ function* getWork(action) {
   try {
     const workPillar = yield axios.get("./api/work", action.payload);
     yield put({ type: "SET_WORK", payload: workPillar.data });
-    console.log('this is our work data', workPillar.data)
+    // console.log('this is our work data', workPillar.data)
   } catch (err) {
     console.log("error in Work GET_Saga", err);
   }
@@ -31,7 +31,7 @@ function* postWork(action) {
 }
 
 function* putWork(action) {
-  console.log('here is our Work data to update:', action.payload)
+  // console.log('here is our Work data to update:', action.payload)
   try {
     yield axios.put(`./api/word/${action.payload.id}`, action.payload);
     yield put({ type: "GET_WORK" });

@@ -1,6 +1,6 @@
 import React from 'react'
   
-const Progress_bar = ({bgcolor,progress,height, onClick, score}) => {
+const Progress_bar = ({bgcolor,progress,height, onClick, score, pillarName}) => {
      
     const Parentdiv = {
         height: height,
@@ -28,7 +28,7 @@ const Progress_bar = ({bgcolor,progress,height, onClick, score}) => {
     return (
     <div style={Parentdiv} onClick={onClick}>
       <div style={Childdiv}>
-        <span style={progresstext}>{`${progress}`}</span>
+      <span style={progresstext}>{pillarName} {`${progress}`}</span>
       </div>
     </div>
     )

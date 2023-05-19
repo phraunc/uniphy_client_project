@@ -2,7 +2,7 @@ import { put, takeEvery, takeLatest } from "redux-saga/effects";
 import axios from "axios";
 
 function* getOccupationId(action) {
-  console.log('here is our payload for getOccupationID', action.payload)
+  // console.log('here is our payload for getOccupationID', action.payload)
   try {
     const occupationID = yield axios.get(`./api/occupation/details/${action.payload}`);
     yield put({ type: 'SET_OCCUPATION_ID', payload: occupationID.data })
@@ -15,7 +15,7 @@ function* getOccupation(action) {
   try {
     const occupationPillar = yield axios.get("./api/occupation", action.payload);
     yield put({ type: "SET_OCCUPATION", payload: occupationPillar.data });
-    console.log('this is our occupation data', occupationPillar.data)
+    // console.log('this is our occupation data', occupationPillar.data)
   } catch (err) {
     console.log("error in Occupation GET_Saga", err);
   }
@@ -31,7 +31,7 @@ function* postOccupation(action) {
 }
 
 function* putOccupation(action) {
-  console.log('here is our Occupation data to update:', action.payload)
+  // console.log('here is our Occupation data to update:', action.payload)
   try {
     yield axios.put(`./api/occupation/edit/${action.payload.id}`, action.payload);
     yield put({ type: "GET_OCCUPATION" });
@@ -50,7 +50,7 @@ function* deleteOccupation(action) {
 }
 
 function* updateBalanceOccupation(action) {
-  console.log('our update balance score saga:', action.payload)
+  // console.log('our update balance score saga:', action.payload)
   try{
     yield axios.put(`./api/occupation/update/`, action.payload)
   } catch (err) {

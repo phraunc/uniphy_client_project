@@ -2,11 +2,11 @@ import HistoryCardSocial from "../HistoryCardComponent/HistoryCardSocial";
 
 function HistoryContainer({ item }) {
   return (
-    <div class="flex-grid-quarters">
+    <div className="flex-grid-quarters">
       {item.map((single, i) => {
         return (
-          <div class="container">
-            <HistoryCardSocial key={i} prop={single} />
+          <div className="container" key={i}>
+            <HistoryCardSocial  prop={single} />
           </div>
         );
       })}
