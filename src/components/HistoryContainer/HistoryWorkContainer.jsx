@@ -2,11 +2,11 @@ import HistoryCardWork from "../HistoryCardComponent/HistoryCardWork";
 
 function HistoryWorkContainer({ item }) {
   return (
-    <div class="flex-grid-quarters">
+    <div className="flex-grid-quarters">
       {item.map((single, i) => {
         return (
-          <div class="container">
-            <HistoryCardWork key={i} prop={single} />
+          <div className="container"key={i} >
+            <HistoryCardWork  prop={single} />
           </div>
         );
       })}

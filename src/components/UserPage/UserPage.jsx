@@ -100,18 +100,18 @@ function UserPage({ bgcolor, progress, height, onClick }) {
       <div className="App">
         {/* <h3 className="heading">Pillars </h3> */}
         {user.is_started ? <>
-        <Progressbar textsize='10px' bgcolor="#31356e" pillarName= 'Movement:' progress={Math.round(Number(BS.score_m))} height={40} onClick={() => history.push("/movement")} />
-        <Progressbar bgcolor="#6ce5e8" pillarName= 'Social:' progress={Math.round(Number(BS.score_sa))} height={40} onClick={() => history.push("/social")} />
-        <Progressbar bgcolor="#41b8d5" pillarName= 'Occupation:' progress={Math.round(Number(BS.score_o))} height={40} onClick={() => history.push("/occupation")} />
-        <Progressbar bgcolor="#2f5f98" pillarName= 'Food:' progress={Math.round(Number(BS.score_f))} height={40} onClick={() => history.push("/food")} />
-        <Progressbar bgcolor="#704e85" pillarName= 'Sleep:' progress={Math.round(Number(BS.score_s))} height={40} onClick={() => history.push("/sleep")} />
+        <Progressbar parentBgColor="lightgrey" bgcolor="#31356e" pillarName= 'Movement:' progress={Math.round(Number(BS.score_m))} height={40} onClick={() => history.push("/movement")} />
+        <Progressbar parentBgColor="lightgrey" bgcolor="#6ce5e8" pillarName= 'Social:' progress={Math.round(Number(BS.score_sa))} height={40} onClick={() => history.push("/social")} />
+        <Progressbar parentBgColor="lightgrey" bgcolor="#41b8d5" pillarName= 'Occupation:' progress={Math.round(Number(BS.score_o))} height={40} onClick={() => history.push("/occupation")} />
+        <Progressbar parentBgColor="lightgrey" bgcolor="#2f5f98" pillarName= 'Food:' progress={Math.round(Number(BS.score_f))} height={40} onClick={() => history.push("/food")} />
+        <Progressbar parentBgColor="lightgrey" bgcolor="#704e85" pillarName= 'Sleep:' progress={Math.round(Number(BS.score_s))} height={40} onClick={() => history.push("/sleep")} />
         {/* <Progressbar bgcolor="purple" progress={BS.score_w} height={40} onClick={() => history.push("/work")} /> */}
         </> : <>
-        <Progressbar bgcolor="grey" pillarName= 'Movement:' progress={Math.round(Number(BS.score_m))} height={40}/>
-        <Progressbar bgcolor="grey" pillarName= 'Social:' progress={Math.round(Number(BS.score_sa))} height={40}/>
-        <Progressbar bgcolor="grey" pillarName= 'Occupation:' progress={Math.round(Number(BS.score_o))} height={40}/>
-        <Progressbar bgcolor="grey" pillarName= 'Food:' progress={Math.round(Number(BS.score_f))} height={40}/>
-        <Progressbar bgcolor="grey"pillarName= 'Sleep:' progress={Math.round(Number(BS.score_s))} height={40}/>
+        <Progressbar parentBgColor="darkgrey" bgcolor="grey" pillarName= 'Movement:' progress={Math.round(Number(BS.score_m))} height={40}/>
+        <Progressbar parentBgColor="darkgrey" bgcolor="grey" pillarName= 'Social:' progress={Math.round(Number(BS.score_sa))} height={40}/>
+        <Progressbar parentBgColor="darkgrey" bgcolor="grey" pillarName= 'Occupation:' progress={Math.round(Number(BS.score_o))} height={40}/>
+        <Progressbar parentBgColor="darkgrey" bgcolor="grey" pillarName= 'Food:' progress={Math.round(Number(BS.score_f))} height={40}/>
+        <Progressbar parentBgColor="darkgrey" bgcolor="grey"pillarName= 'Sleep:' progress={Math.round(Number(BS.score_s))} height={40}/>
         </> }
       </div>
 
