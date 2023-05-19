@@ -41,6 +41,7 @@ CREATE TABLE social_activity (
     score_sa NUMERIC(5,2),
     date DATE default current_date,
     whom VARCHAR (255),
+    rating INT,
     description VARCHAR(255),
     duration INT,
     online BOOLEAN,
