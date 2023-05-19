@@ -6,7 +6,7 @@ const Progress_bar = ({bgcolor,progress,height, onClick, score, pillarName, pare
     const Parentdiv = {
         height: height,
         width: '90%',
-        backgroundColor: parentBgColor || 'lightgrey',
+        backgroundColor: parentBgColor,
         borderRadius: 10,
         margin: '20px 20px 20px 20px',
         
