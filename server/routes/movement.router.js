@@ -10,9 +10,10 @@ const router = express.Router();
  */
 router.get("/", rejectUnauthenticated, (req, res) => {
   // GET route code here
-  const sqlText = `SELECT * FROM movement;`;
+  const sqlText = `SELECT * FROM movement
+  WHERE user_id = $1;`;
   pool
-    .query(sqlText)
+    .query(sqlText, [req.user.id])
     .then((result) => {
       res.send(result.rows);
     })

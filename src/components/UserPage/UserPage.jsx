@@ -100,11 +100,6 @@ function UserPage({ bgcolor, progress, height, onClick }) {
       <div className="App">
         {/* <h3 className="heading">Pillars </h3> */}
         {user.is_started ? <>
-        <Progressbar bgcolor="#31356e"  progress={BS.score_m} height={40} onClick={() => history.push("/movement")} />
-        <Progressbar bgcolor="#6ce5e8" progress={BS.score_sa} height={40} onClick={() => history.push("/social")} />
-        <Progressbar bgcolor="#41b8d5" progress={BS.score_o} height={40} onClick={() => history.push("/occupation")} />
-        <Progressbar bgcolor="#2f5f98" progress={BS.score_f} height={40} onClick={() => history.push("/food")} />
-        <Progressbar bgcolor="#704e85" progress={BS.score_s} height={40} onClick={() => history.push("/sleep")} />
         <Progressbar textsize='10px' bgcolor="#31356e" pillarName= 'Movement:' progress={Math.round(Number(BS.score_m))} height={40} onClick={() => history.push("/movement")} />
         <Progressbar bgcolor="#6ce5e8" pillarName= 'Social:' progress={Math.round(Number(BS.score_sa))} height={40} onClick={() => history.push("/social")} />
         <Progressbar bgcolor="#41b8d5" pillarName= 'Occupation:' progress={Math.round(Number(BS.score_o))} height={40} onClick={() => history.push("/occupation")} />
