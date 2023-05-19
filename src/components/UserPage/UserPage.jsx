@@ -105,11 +105,11 @@ function UserPage({ bgcolor, progress, height, onClick }) {
         <Progressbar bgcolor="#704e85" pillarName= 'Sleep:' progress={Math.round(Number(BS.score_s))} height={40} onClick={() => history.push("/sleep")} />
         {/* <Progressbar bgcolor="purple" progress={BS.score_w} height={40} onClick={() => history.push("/work")} /> */}
         </> : <>
-        <Progressbar bgcolor="grey" progress={BS.score_m} height={40}/>
-        <Progressbar bgcolor="grey" progress={BS.score_sa} height={40}/>
-        <Progressbar bgcolor="grey" progress={BS.score_o} height={40}/>
-        <Progressbar bgcolor="grey" progress={BS.score_f} height={40}/>
-        <Progressbar bgcolor="grey" progress={BS.score_s} height={40}/>
+        <Progressbar bgcolor="grey" pillarName= 'Movement:' progress={Math.round(Number(BS.score_m))} height={40}/>
+        <Progressbar bgcolor="grey" pillarName= 'Social:' progress={Math.round(Number(BS.score_sa))} height={40}/>
+        <Progressbar bgcolor="grey" pillarName= 'Occupation:' progress={Math.round(Number(BS.score_o))} height={40}/>
+        <Progressbar bgcolor="grey" pillarName= 'Food:' progress={Math.round(Number(BS.score_f))} height={40}/>
+        <Progressbar bgcolor="grey"pillarName= 'Sleep:' progress={Math.round(Number(BS.score_s))} height={40}/>
         </> }
       </div>
 
