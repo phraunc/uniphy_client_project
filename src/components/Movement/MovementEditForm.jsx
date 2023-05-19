@@ -79,7 +79,13 @@ function EditMovement() {
                     onChange={(event) => setAddTitle(event.target.value)} />
                 <br />
                 <br />
-                <Stopwatch addTime={addTime} setAddTime={setAddTime} /> {/* Pass addTime and setAddTime as props */}
+                <TextField
+                    label="Duration"
+                    variant="outlined"
+                    type="text"
+                    placeholder="Time"
+                    value={addTime}
+                    onChange={(event) => setAddTitle(event.target.value)} />
                 <br />
                 <br />
                 <Box sx={{ minWidth: 120 }}>

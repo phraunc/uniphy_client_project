@@ -121,7 +121,8 @@ function UserPage({ bgcolor, progress, height, onClick }) {
         mt={3}
         display="flex"
         justifyContent="flex-end"
-        alignItems="flex-end">
+        alignItems="flex-end"
+        >
       <Button variant='contained'
       onClick={startDay}>Start Day</Button>
       </Box>
@@ -132,7 +133,7 @@ function UserPage({ bgcolor, progress, height, onClick }) {
      }
     <br/>
     <br/>
-      <LogOutButton className="btn" />
+      {/* <LogOutButton className="btn" /> */}
     </div>
   );
 }
