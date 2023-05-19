@@ -24,7 +24,7 @@ function* getFood(action) {
 }
 
 function* postFood(action) {
-  console.log('here is our post food data:', action.payload)
+  // console.log('here is our post food data:', action.payload)
   try {
     yield axios.post("./api/food", action.payload);
     yield put({ type: "GET_FOOD" });
@@ -54,7 +54,7 @@ function* deleteFood(action) {
 }
 
 function* updateBalanceFood(action) {
-  console.log('our update balance score saga:', action.payload)
+  // console.log('our update balance score saga:', action.payload)
   try{
     yield axios.put(`./api/food/update/`, action.payload)
   } catch (err) {

@@ -7,7 +7,7 @@ const router = express.Router();
 
 
 router.get('/', rejectUnauthenticated, (req, res) => {
-    console.log('inside get for balance score ROUTE', req.body)
+    // console.log('inside get for balance score ROUTE', req.body)
     
     const sqlText = `SELECT * FROM balance_score
     WHERE date = CURRENT_DATE AND user_id = $1;`

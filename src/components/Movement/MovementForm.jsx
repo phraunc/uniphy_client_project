@@ -37,7 +37,7 @@ function MovementForm() {
     event.preventDefault();
  
 
-    console.log('this is the time', addTime)
+    // console.log('this is the time', addTime)
     const calculatedMovementScore = await movementScoreCalc()
     dispatch({
       type: 'POST_MOVEMENT',

@@ -30,7 +30,7 @@ CREATE TABLE movement (
     score_m NUMERIC(5,2),
     date DATE default current_date,
     title VARCHAR(255),
-    duration INT,
+    duration VARCHAR(255),
     intensity INT,
     total_points NUMERIC(5,2)   
 );
@@ -116,3 +116,6 @@ VALUES ('1', '11', '8', '9');
 
 INSERT INTO work_school (user_id, note, workload, fullfillment)
 VALUES ('1', 'Worked From Home', '-2', '3');
+
+INSERT INTO balance_score (user_id, balance_score, score_m, score_sa, score_o, score_f, score_s)
+VALUES ('1', '100', '20', '20', '20', '20', '20');

@@ -5,8 +5,8 @@ function HistoryContainer({ item }) {
     <div className="flex-grid-quarters">
       {item.map((single, i) => {
         return (
-          <div className="container">
-            <HistoryCardFood key={i} prop={single} />
+          <div className="container" key={i} >
+            <HistoryCardFood  prop={single} />
           </div>
         );
       })}

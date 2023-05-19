@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 
 const workReducer = (state = [], action) => {
-    console.log('get all work action.payload:', action.payload)
+    // console.log('get all work action.payload:', action.payload)
     if (action.type === 'SET_WORK') {
         return [...action.payload];
     }
@@ -9,7 +9,7 @@ const workReducer = (state = [], action) => {
 };
 
 const workReducerSingle = (state = {}, action) => {
-    console.log('this is our single work item', action.payload)
+    // console.log('this is our single work item', action.payload)
     if (action.type === 'SET_WORK_ID') {
         return action.payload
     }

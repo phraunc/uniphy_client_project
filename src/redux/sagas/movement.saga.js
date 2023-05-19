@@ -2,7 +2,7 @@ import { put, takeEvery, takeLatest } from "redux-saga/effects";
 import axios from "axios";
 
 function* getMovementId(action) {
-  console.log('SAGA GetMovementID', action.payload) //getting it here
+  // console.log('SAGA GetMovementID', action.payload) getting it here
   try{
     const movementID = yield axios.get(`./api/movement/details/${action.payload}`);
     yield put({ type: 'SET_MOVEMENT_ID', payload: movementID.data})
@@ -12,11 +12,11 @@ function* getMovementId(action) {
 }
 
 function* getMovement(action) {
-    console.log('inside GET saga movement')
+    // console.log('inside GET saga movement')
   try {
     const movementPillar = yield axios.get("./api/movement", action.payload);
     yield put({ type: "SET_MOVEMENT", payload: movementPillar.data });
-    console.log('this is our movement data', movementPillar.data)
+    // console.log('this is our movement data', movementPillar.data)
   } catch (err) {
     console.log("error in Movement GET_Saga", err);
   }
@@ -32,7 +32,7 @@ function* postMovement(action) {
 }
 
 function* putMovement(action) {
-  console.log('PUT saga:', action.payload) //am getting it here
+  // console.log('PUT saga:', action.payload) 
   try {
     yield axios.put(`./api/movement/edit/${action.payload.id}`, action.payload);
     yield put({ type: "GET_MOVEMENT" });
@@ -51,7 +51,7 @@ function* deleteMovement(action) {
 }
 
 function* updateBalanceMovement(action) {
-  console.log('our update balance score saga:', action.payload)
+  // console.log('our update balance score saga:', action.payload)
   try{
     yield axios.put(`./api/movement/update/`, action.payload)
   } catch (err) {

@@ -2,11 +2,11 @@ import HistoryCardMovement from "../Movement/HistoryCardMovement";
 
 function HistoryContainerMovement({ item }) {
   return (
-    <div class="flex-grid-quarters">
+    <div className="flex-grid-quarters">
       {item.map((single, i) => {
         return (
-          <div class="container">
-            <HistoryCardMovement key={i} prop={single} />
+          <div className="container" key={i}>
+            <HistoryCardMovement  prop={single} />
           </div>
         );
       })}
