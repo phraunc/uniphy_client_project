@@ -9,12 +9,12 @@ CREATE TABLE balance_score (
     id SERIAL PRIMARY KEY,
     user_id INT,
     date DATE default current_date,
-    balance_score INT,
-    score_m INT,
-    score_sa INT,
-    score_o INT,
-    score_f INT,
-    score_s INT
+    balance_score NUMERIC(5,2),
+    score_m NUMERIC(5,2),
+    score_sa NUMERIC(5,2),
+    score_o NUMERIC(5,2),
+    score_f NUMERIC(5,2),
+    score_s NUMERIC(5,2)
 );
 
 CREATE TABLE "user" (
@@ -27,7 +27,7 @@ CREATE TABLE "user" (
 CREATE TABLE movement (
     id SERIAL PRIMARY KEY,
     user_id INT,
-    score_m INT,
+    score_m NUMERIC(5,2),
     date DATE default current_date,
     title VARCHAR(255),
     duration INT,
@@ -38,7 +38,7 @@ CREATE TABLE movement (
 CREATE TABLE social_activity (
     id SERIAL PRIMARY KEY,
     user_id INT,
-    score_sa INT,
+    score_sa NUMERIC(5,2),
     date DATE default current_date,
     whom VARCHAR (255),
     description VARCHAR(255),
@@ -50,7 +50,7 @@ CREATE TABLE social_activity (
 CREATE TABLE occupation (
     id SERIAL PRIMARY KEY,
     user_id INT,
-    score_o INT,
+    score_o NUMERIC(5,2),
     date DATE default current_date,
     title VARCHAR(255),
     duration INT,
@@ -61,7 +61,7 @@ CREATE TABLE occupation (
 CREATE TABLE food (
 	id SERIAL PRIMARY KEY,
     user_id INT,
-    score_f INT,
+    score_f NUMERIC(5,2),
     date DATE DEFAULT current_date,
     quality INT,
     quantity INT,
@@ -74,7 +74,7 @@ CREATE TABLE food (
 CREATE TABLE sleep (
 	id SERIAL PRIMARY KEY,
     user_id INT,
-    score_s INT,
+    score_s NUMERIC(5,2),
     date DATE DEFAULT current_date,
     duration INT,
     quality INT,
@@ -87,7 +87,7 @@ CREATE TABLE sleep (
 CREATE TABLE work_school (
 	id SERIAL PRIMARY KEY,
     user_id INT,
-    score_w INT,
+    score_w NUMERIC(5,2),
     date DATE DEFAULT current_date,
     note VARCHAR(255),
     workload INT,

@@ -137,14 +137,6 @@ function MovementForm() {
           <Stopwatch addTime={addTime} setAddTime={setAddTime} /> {/* Pass addTime and setAddTime as props */}
           <br />
           <br />
-            onChange={(event) => setAddTitle(event.target.value)}/>
-          <br/>
-          <br/>
-          <center>
-            <Stopwatch addTime={addTime} setAddTime={setAddTime}/> {/* Pass addTime and setAddTime as props */}
-            </center>
-            <br/>
-            <br/>
           <Box sx={{ minWidth: 120 }}>
             <FormControl fullWidth>
               <InputLabel id="demo-simple-select-label">Intensity</InputLabel>
