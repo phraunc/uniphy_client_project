@@ -96,7 +96,7 @@ CREATE TABLE work_school (
     total_points NUMERIC(5,2) 
 );
 
-INSERT INTO user (username)
+INSERT INTO "user" (username)
 VALUES ('sarahMgellar');
 
 INSERT INTO movement (user_id, title, duration, intensity)
