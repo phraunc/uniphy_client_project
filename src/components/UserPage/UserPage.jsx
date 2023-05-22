@@ -167,28 +167,10 @@ function UserPage({ bgcolor, progress, height, onClick }) {
       </Box>
       </>
      }
-      {/* <LogOutButton className="btn" /> */}
-
-      {!user.is_started ?
-        <Box
-          m={1}
-          mt={3}
-          display="flex"
-          justifyContent="flex-end"
-          alignItems="flex-end">
-          <Button variant='contained'
-            onClick={startDay}>Start Day</Button>
-        </Box>
-        :
-        <Button
-          variant='contained'
-          onClick={endDay}>End Day</Button>
-      }
-      <br />
-      <br />
-      <LogOutButton className="btn" />
 
     </div>
+    </div>
+
     </ThemeProvider>
   );
 }
