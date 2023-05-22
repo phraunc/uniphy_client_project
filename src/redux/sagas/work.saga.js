@@ -33,7 +33,10 @@ function* postWork(action) {
 function* putWork(action) {
   // console.log('here is our Work data to update:', action.payload)
   try {
+
+
     yield axios.put(`./api/work/edit/${action.payload.id}`, action.payload);
+
     yield put({ type: "GET_WORK" });
   } catch (err) {
     console.log("error in Work PUT_Saga", err);

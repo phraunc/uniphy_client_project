@@ -69,8 +69,8 @@ router.post("/", rejectUnauthenticated, (req, res) => {
 });
 
 router.delete("/:id", rejectUnauthenticated, (req, res) => {
-  const sqlText = `DELETE FROM "sleep" WHERE "sleep".id = $1;`;
-  const sqlValue = [req.params.id];
+  const sqlText = `DELETE FROM "sleep" WHERE "sleep".id = $1 AND user_id = $2;`;
+  const sqlValue = [req.params.id, req.user.id];
 
   pool
     .query(sqlText, sqlValue)
@@ -86,7 +86,7 @@ router.delete("/:id", rejectUnauthenticated, (req, res) => {
 router.put("/edit/:id", rejectUnauthenticated, (req, res) => {
   const sqlText = `UPDATE "sleep"
     SET "duration"=$1, "quality"=$2, "screen_time"=$3, "start_sleep"=$4, "end_sleep"=$5
-    WHERE "sleep".id = $6;`;
+    WHERE "sleep".id = $6 AND user_id = $7;`;
   sqlValue = [
     req.body.duration,
     req.body.quality,
@@ -94,6 +94,7 @@ router.put("/edit/:id", rejectUnauthenticated, (req, res) => {
     req.body.start_sleep,
     req.body.end_sleep,
     req.params.id,
+    req.user.id,
   ];
 
   pool
