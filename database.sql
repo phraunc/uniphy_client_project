@@ -14,7 +14,8 @@ CREATE TABLE balance_score (
     score_sa NUMERIC(5,2),
     score_o NUMERIC(5,2),
     score_f NUMERIC(5,2),
-    score_s NUMERIC(5,2)
+    score_s NUMERIC(5,2),
+    score_w NUMERIC(5,2)
 );
 
 CREATE TABLE "user" (
