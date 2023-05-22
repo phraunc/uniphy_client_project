@@ -105,7 +105,7 @@ function UserPage({ bgcolor, progress, height, onClick }) {
         disabled={true}
       />
     </div>
-
+    </center>
       <div className="App">
         {/* <h3 className="heading">Pillars </h3> */}
         {user.is_started ? <>
