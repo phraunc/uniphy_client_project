@@ -112,39 +112,6 @@ input {
   margin-bottom: 10px;
 }
 
-/* this is for the circle slider */
 
-.App1 {
-  font-family: sans-serif;
-  text-align: center;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.textContainer {
-  position: absolute;
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: 80px;
-  line-height: 70px;
-  text-align: center;
-  color: #05157a;
-}
-
-.textContainer .minute {
-  font-size: 18px;
-  line-height: 15px;
-  background: -webkit-linear-gradient(#e000ec, #1f5281);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
 
 

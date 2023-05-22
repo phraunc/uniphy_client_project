@@ -67,7 +67,9 @@ function EditMovement() {
 
 
     return (<>
+    <center>
         <h1>Movement Form</h1>
+    </center>
         <div>
             <form onSubmit={saveChanges}>
                 <TextField
@@ -85,7 +87,7 @@ function EditMovement() {
                     type="text"
                     placeholder="Time"
                     value={addTime}
-                    onChange={(event) => setAddTitle(event.target.value)} />
+                    onChange={(event) => setAddTime(event.target.value)} />
                 <br />
                 <br />
                 <Box sx={{ minWidth: 120 }}>

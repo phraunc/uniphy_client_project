@@ -70,15 +70,13 @@
 // export default Nav;
 
 import React from 'react';
-import LogOutButton from '../LogOutButton/LogOutButton';
+// import LogOutButton from '../LogOutButton/LogOutButton';
 import './Nav.css';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import BottomNavigation from '@mui/material/BottomNavigation';
 import BottomNavigationAction from '@mui/material/BottomNavigationAction';
-import FavoriteIcon from '@mui/icons-material/Favorite';
 import HomeIcon from '@mui/icons-material/Home';
-import FolderIcon from '@mui/icons-material/Folder';
 import Logout from '@mui/icons-material/Logout';
 import { Box } from '@mui/material';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom';
@@ -105,11 +103,11 @@ function Nav() {
       <BottomNavigation value={value} onChange={(event, newValue) => { setValue(newValue) }} sx={{ backgroundColor: '#31356e'}}>
 
       {user.id &&
-        <BottomNavigationAction label="LogOut" value="logout" icon={<Logout />} className="navLink" onClick={() => dispatch({ type: 'LOGOUT' })}/>
+        <BottomNavigationAction sx={{color: "white"}} label="LogOut" value="logout" icon={<Logout />} className="navLink" onClick={() => dispatch({ type: 'LOGOUT' })}/>
         }
 
       {user.id &&
-        <BottomNavigationAction label="Home" value="nearby" icon={<HomeIcon />} className="navLink" onClick={linkToUser} />
+        <BottomNavigationAction sx={{color: "white"}} label="Home" value="nearby" icon={<HomeIcon />} className="navLink" onClick={linkToUser} />
       }
 
       </BottomNavigation>

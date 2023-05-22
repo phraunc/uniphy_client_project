@@ -4,12 +4,26 @@ import React, { useEffect, useState, useRef } from "react";
 import ReactDOM from "react-dom";
 import { CircleSlider } from "react-circle-slider";
 import Progressbar from './ProgressBar';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom';
 import { Box, Button } from '@mui/material';
 import "./UserPage.css";
 
 function UserPage({ bgcolor, progress, height, onClick }) {
+  const theme = createTheme({
+    palette: {
+      primary: {
+        main: '#41b8d5',
+        contrastText: '#FFFFFF',
+      },
+      secondary: {
+        main: '#31356e',
+        contrastText: '#FFFFFF',
+      },
+    },
+});
+
   const slider = useRef(null);
 
   const user = useSelector((store) => store.user);
@@ -71,8 +85,9 @@ function UserPage({ bgcolor, progress, height, onClick }) {
       </> )
   } 
   return (
+    <ThemeProvider theme={theme}>
     <div className="App">
-      <h2 className='welcome'>Welcome, {user.username}!</h2>
+      {/* <h2 className='welcome'>Welcome, {user.username}!</h2> */}
 
 
     <center>
@@ -96,7 +111,7 @@ function UserPage({ bgcolor, progress, height, onClick }) {
       />
     </div>
     </center>
-      <div className="App">
+      <div className="pillar">
         {/* <h3 className="heading">Pillars </h3> */}
         {user.is_started ? <>
         <Progressbar parentBgColor="lightgrey" bgcolor="#31356e" pillarName= 'Movement:' progress={Math.round(Number(BS.score_m))} height={40} onClick={() => history.push("/movement")} />
@@ -116,8 +131,8 @@ function UserPage({ bgcolor, progress, height, onClick }) {
 
      {!user.is_started ?
       <Box
-        mr={4}
-        mt={7}
+        mr={3}
+        mt={8}
         display="flex"
         justifyContent="flex-end"
         alignItems="flex-end"
@@ -126,7 +141,7 @@ function UserPage({ bgcolor, progress, height, onClick }) {
       onClick={startDay}>Start Day</Button>
       </Box>
       : <>
-      <Box mt={7} ml={3}>
+      <Box mt={8} ml={4}>
       <Button
       variant='contained'
       onClick={endDay}>End Day</Button>
@@ -135,6 +150,7 @@ function UserPage({ bgcolor, progress, height, onClick }) {
      }
       {/* <LogOutButton className="btn" /> */}
     </div>
+    </ThemeProvider>
   );
 }
 
