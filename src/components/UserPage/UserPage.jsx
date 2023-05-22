@@ -26,12 +26,12 @@ function UserPage({ bgcolor, progress, height, onClick }) {
 
   useEffect(() => {
     // slider.current.setAttribute("width", "280px");
-   dispatch({
+    dispatch({
       type: "GET_BALANCE_SCORE"
     })
   }, []);
 
-  function startDay(){
+  function startDay() {
     // console.log('this is our BS store Data:', BS)
     // console.log('INSIDE startDay')
     dispatch({
@@ -42,7 +42,7 @@ function UserPage({ bgcolor, progress, height, onClick }) {
     })
   }
 
-  function endDay(){
+  function endDay() {
     dispatch({
       type: 'END_DAY'
     })
@@ -68,17 +68,18 @@ function UserPage({ bgcolor, progress, height, onClick }) {
   }
   
 
-  if(!BS) {
-    return ( <>
+
+  if (!BS) {
+    return (<>
       <center>
-      <i className="far fa-sun fa-4x" style={{color: "orangered", backgroundColor: 'yellow', borderRadius: '75%'}} ></i>
+        <i className="far fa-sun fa-4x" style={{ color: "orangered", backgroundColor: 'yellow', borderRadius: '75%' }} ></i>
       </center>
-      <br/>
+      <br />
       <center>
-      <Button sx={{backgroundColor: '#FDB750', color: 'white'}} onClick={StartYourDay}>Lets Get Started</Button>
+        <Button sx={{ backgroundColor: '#FDB750', color: 'white' }} onClick={StartYourDay}>Lets Get Started</Button>
       </center>
-      </> )
-  } 
+    </>)
+  }
   return (
     <div className="App">
       <h2>Welcome, {user.username}!</h2>
@@ -104,44 +105,48 @@ function UserPage({ bgcolor, progress, height, onClick }) {
         disabled={true}
       />
     </div>
-    </center>
-
 
       <div className="App">
         {/* <h3 className="heading">Pillars </h3> */}
         {user.is_started ? <>
-        <Progressbar textsize='10px' bgcolor="#31356e" pillarName= 'Movement:' progress={Math.round(Number(BS.score_m))} height={40} onClick={() => history.push("/movement")} />
-        <Progressbar bgcolor="#6ce5e8" pillarName= 'Social:' progress={Math.round(Number(BS.score_sa))} height={40} onClick={() => history.push("/social")} />
-        <Progressbar bgcolor="#41b8d5" pillarName= 'Occupation:' progress={Math.round(Number(BS.score_o))} height={40} onClick={() => history.push("/occupation")} />
-        <Progressbar bgcolor="#2f5f98" pillarName= 'Food:' progress={Math.round(Number(BS.score_f))} height={40} onClick={() => history.push("/food")} />
-        <Progressbar bgcolor="#704e85" pillarName= 'Sleep:' progress={Math.round(Number(BS.score_s))} height={40} onClick={() => history.push("/sleep")} />
-        {/* <Progressbar bgcolor="purple" progress={BS.score_w} height={40} onClick={() => history.push("/work")} /> */}
+          <Progressbar parentBgColor="lightgrey" bgcolor="#31356e" pillarName='Movement:' progress={Math.round(Number(BS.score_m))} height={40} onClick={() => history.push("/movement")} />
+          <Progressbar parentBgColor="lightgrey" bgcolor="#6ce5e8" pillarName='Social:' progress={Math.round(Number(BS.score_sa))} height={40} onClick={() => history.push("/social")} />
+          <Progressbar parentBgColor="lightgrey" bgcolor="#41b8d5" pillarName='Occupation:' progress={Math.round(Number(BS.score_o))} height={40} onClick={() => history.push("/occupation")} />
+          <Progressbar parentBgColor="lightgrey" bgcolor="#2f5f98" pillarName='Food:' progress={Math.round(Number(BS.score_f))} height={40} onClick={() => history.push("/food")} />
+          <Progressbar parentBgColor="lightgrey" bgcolor="#704e85" pillarName='Sleep:' progress={Math.round(Number(BS.score_s))} height={40} onClick={() => history.push("/sleep")} />
+          <hr />
+          <Progressbar parentBgColor="lightgrey" bgcolor="#4169e1" pillarName='Work:' progress={Math.round(Number(BS.score_w))} height={40} onClick={() => history.push("/work")} />
+
+         
         </> : <>
-        <Progressbar bgcolor="grey" pillarName= 'Movement:' progress={Math.round(Number(BS.score_m))} height={40}/>
-        <Progressbar bgcolor="grey" pillarName= 'Social:' progress={Math.round(Number(BS.score_sa))} height={40}/>
-        <Progressbar bgcolor="grey" pillarName= 'Occupation:' progress={Math.round(Number(BS.score_o))} height={40}/>
-        <Progressbar bgcolor="grey" pillarName= 'Food:' progress={Math.round(Number(BS.score_f))} height={40}/>
-        <Progressbar bgcolor="grey"pillarName= 'Sleep:' progress={Math.round(Number(BS.score_s))} height={40}/>
-        </> }
+          <Progressbar parentBgColor="darkgrey" bgcolor="grey" pillarName='Movement:' progress={Math.round(Number(BS.score_m))} height={40} />
+          <Progressbar parentBgColor="darkgrey" bgcolor="grey" pillarName='Social:' progress={Math.round(Number(BS.score_sa))} height={40} />
+          <Progressbar parentBgColor="darkgrey" bgcolor="grey" pillarName='Occupation:' progress={Math.round(Number(BS.score_o))} height={40} />
+          <Progressbar parentBgColor="darkgrey" bgcolor="grey" pillarName='Food:' progress={Math.round(Number(BS.score_f))} height={40} />
+          <Progressbar parentBgColor="darkgrey" bgcolor="grey" pillarName='Sleep:' progress={Math.round(Number(BS.score_s))} height={40} />
+          <hr />
+          <Progressbar parentBgColor="darkgrey" bgcolor="grey" pillarName='Work:' progress={Math.round(Number(BS.score_w))} height={40} />
+
+        </>}
       </div>
 
-     {!user.is_started ?
-      <Box
-        m={1}
-        mt={3}
-        display="flex"
-        justifyContent="flex-end"
-        alignItems="flex-end">
-      <Button variant='contained'
-      onClick={startDay}>Start Day</Button>
-      </Box>
-      :
-      <Button
-      variant='contained'
-      onClick={endDay}>End Day</Button>
-     }
-    <br/>
-    <br/>
+      {!user.is_started ?
+        <Box
+          m={1}
+          mt={3}
+          display="flex"
+          justifyContent="flex-end"
+          alignItems="flex-end">
+          <Button variant='contained'
+            onClick={startDay}>Start Day</Button>
+        </Box>
+        :
+        <Button
+          variant='contained'
+          onClick={endDay}>End Day</Button>
+      }
+      <br />
+      <br />
       <LogOutButton className="btn" />
     </div>
   );

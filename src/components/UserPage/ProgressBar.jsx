@@ -1,12 +1,12 @@
 import React from 'react'
 
   
-const Progress_bar = ({bgcolor,progress,height, onClick, score, pillarName}) => {
+const Progress_bar = ({bgcolor,progress,height, onClick, score, pillarName, parentBgColor }) => {
      
     const Parentdiv = {
         height: height,
         width: '90%',
-        backgroundColor: 'lightgrey',
+        backgroundColor: parentBgColor,
         borderRadius: 10,
         margin: '20px 20px 20px 20px',
         

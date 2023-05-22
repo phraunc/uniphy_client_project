@@ -11,7 +11,7 @@ const router = express.Router();
 router.get("/", rejectUnauthenticated, (req, res) => {
   // GET route code here
   const sqlText = `SELECT * FROM occupation
-  WHERE user_id = $1;`;
+  WHERE user_id = $1 ORDER BY id DESC;`;
   pool
     .query(sqlText, [req.user.id])
     .then((result) => {
@@ -67,8 +67,8 @@ router.post("/", rejectUnauthenticated, (req, res) => {
 });
 
 router.delete("/:id", rejectUnauthenticated, (req, res) => {
-  const sqlText = `DELETE FROM "occupation" WHERE "occupation".id = $1;`;
-  const sqlValue = [req.params.id];
+  const sqlText = `DELETE FROM "occupation" WHERE "occupation".id = $1 AND user_id = $2;`;
+  const sqlValue = [req.params.id, req.user.id];
 
   pool
     .query(sqlText, sqlValue)
@@ -84,12 +84,13 @@ router.delete("/:id", rejectUnauthenticated, (req, res) => {
 router.put("/edit/:id", rejectUnauthenticated, (req, res) => {
   const sqlText = `UPDATE "occupation"
     SET "title"=$1, "duration"=$2, "description"=$3
-    WHERE "occupation".id = $4;`;
+    WHERE "occupation".id = $4 AND user_id = $5;`;
   sqlValue = [
     req.body.title,
     req.body.duration,
     req.body.description,
     req.params.id,
+    req.user.id
   ];
   pool
     .query(sqlText, sqlValue)

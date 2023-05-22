@@ -225,7 +225,7 @@ function FoodForm() {
                 </Box>
             </form>
         </div>
-        <button onClick={sleepScoreCalc}>test score calc</button>
+
     </>)
 }
 
