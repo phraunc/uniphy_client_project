@@ -11,7 +11,7 @@ const router = express.Router();
 router.get("/", rejectUnauthenticated, (req, res) => {
   // GET route code here
   const sqlText = `SELECT * FROM food
-  WHERE user_id = $1;`;
+  WHERE user_id = $1 ORDER BY id DESC;`;
   pool
     .query(sqlText, [req.user.id])
     .then((result) => {
@@ -69,8 +69,8 @@ router.post("/", rejectUnauthenticated, (req, res) => {
 });
 
 router.delete("/:id", rejectUnauthenticated, (req, res) => {
-  const sqlText = `DELETE FROM "food" WHERE "food".id = $1;`;
-  const sqlValue = [req.params.id];
+  const sqlText = `DELETE FROM "food" WHERE "food".id = $1 AND user_id = $2;`;
+  const sqlValue = [req.params.id, req.user.id];
 
   pool
     .query(sqlText, sqlValue)
@@ -86,7 +86,7 @@ router.delete("/:id", rejectUnauthenticated, (req, res) => {
 router.put("/edit/:id", rejectUnauthenticated, (req, res) => {
   const sqlText = `UPDATE "food"
     SET "quality"=$1, "quantity"=$2, "snack"=$3, "water"=$4, "fasting"=$5
-    WHERE "food".id = $6;`;
+    WHERE "food".id = $6 AND user_id=$7;`;
   sqlValue = [
     req.body.quality,
     req.body.quantity,
@@ -94,6 +94,7 @@ router.put("/edit/:id", rejectUnauthenticated, (req, res) => {
     req.body.water,
     req.body.fasting,
     req.params.id,
+    req.user.id,
   ];
 
   pool
@@ -109,7 +110,7 @@ router.put("/edit/:id", rejectUnauthenticated, (req, res) => {
 
 router.put('/update/', rejectUnauthenticated, (req, res) => {
   const sqlText = `UPDATE balance_score 
-  SET "score_f"= LEAST("score_f" + $1, 100) WHERE balance_score.date = current_date AND balance_score.user_id = $2`
+  SET "score_f"= LEAST("score_f" + $1, 100) WHERE balance_score.date = current_date AND balance_score.user_id = $2;`
   const sqlValue = [
      req.body.score_f,
     req.user.id

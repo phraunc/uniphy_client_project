@@ -14,6 +14,16 @@ function* getBalanceScore(action) {
   }
 }
 
+function* getAverageBalanceScore(action) {
+  try {
+    const averageBalance = yield axios.get("./api/balancescore/average", action.payload);
+    yield put({type: "SET_AVERAGE_BALANCE_SCORE", payload: averageBalance.data})
+  } catch (err) {
+    console.log('error in get averages balance score', err)
+  }
+}
+
+
 function* postBalanceScore(action) {
   // console.log('this is our post balanceScore payload in balanceScore saga', action.payload)
   try {
@@ -31,7 +41,7 @@ function* postBalanceScore(action) {
 function* balanceScoreSaga() {
   yield takeEvery("GET_BALANCE_SCORE", getBalanceScore);
   yield takeEvery("POST_BALANCE_SCORE", postBalanceScore);
-
+  yield takeEvery("GET_MY_AVERAGES", getAverageBalanceScore)
 }
 
 export default balanceScoreSaga;

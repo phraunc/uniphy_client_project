@@ -210,7 +210,7 @@ function FoodForm() {
                 <MenuItem value={2}>Too Much</MenuItem>
                 <MenuItem value={3}>Somewhat Too Much</MenuItem>
                 <MenuItem value={4}>Moderately Too Much</MenuItem>
-                <MenuItem value={5}>Very Full...AMERICA!!</MenuItem>
+                <MenuItem value={5}>Very Full</MenuItem>
               </Select>
             </FormControl>
             <br />
