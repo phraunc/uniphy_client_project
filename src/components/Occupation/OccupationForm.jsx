@@ -23,9 +23,9 @@ function OccupationForm() {
     const history = useHistory();
     const dispatch = useDispatch();
 
-    const [addTitle, setAddTitle] = useState(0);
+    const [addTitle, setAddTitle] = useState('');
     const [addDuration, setAddDuration] = useState(0);
-    const [addDescription, setAddDescription] = useState(0);
+    const [addDescription, setAddDescription] = useState('');
 
 
     const handleHome = () => {
@@ -105,7 +105,9 @@ function OccupationForm() {
                         <TextField
                             label="Occupation duration"
                             variant="outlined"
-                            type="text"
+                            type="number"
+                            min='1'
+                            max='10'
                             placeholder=""
                             value={addDuration}
                             onChange={(event) => setAddDuration(event.target.value)}

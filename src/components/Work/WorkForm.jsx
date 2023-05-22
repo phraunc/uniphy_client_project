@@ -23,7 +23,7 @@ function WorkForm() {
     const history = useHistory();
     const dispatch = useDispatch();
 
-    const [addNote, setAddNote] = useState(0)
+    const [addNote, setAddNote] = useState('')
     const [addWorkload, setAddWorkload] = useState()
     const [addFullfillment, setAddFullfillment] = useState()
 
