@@ -56,6 +56,16 @@ function UserPage({ bgcolor, progress, height, onClick }) {
       type: 'POST_BALANCE_SCORE',
     })
   }
+
+  function goToDetails() {
+      dispatch({
+        type: "GET_BALANCE_SCORE"
+      })
+      dispatch({
+        type: "GET_MY_AVERAGES"
+      })
+    history.push('/details')
+  }
   
 
   if(!BS) {
@@ -76,7 +86,7 @@ function UserPage({ bgcolor, progress, height, onClick }) {
 
     <center>
       <div className="App1">
-      <div className="textContainer">
+      <div className="textContainer" onClick={goToDetails}>
         {Math.round(Number(BS.score_f) + Number(BS.score_m) + Number(BS.score_o) + Number(BS.score_s) + Number(BS.score_sa))}
         <div className="minute">Balance Score</div>
       </div>

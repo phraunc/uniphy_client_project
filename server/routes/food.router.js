@@ -69,8 +69,8 @@ router.post("/", rejectUnauthenticated, (req, res) => {
 });
 
 router.delete("/:id", rejectUnauthenticated, (req, res) => {
-  const sqlText = `DELETE FROM "food" WHERE "food".id = $1;`;
-  const sqlValue = [req.params.id];
+  const sqlText = `DELETE FROM "food" WHERE "food".id = $1 AND user_id = $2;`;
+  const sqlValue = [req.params.id, req.user.id];
 
   pool
     .query(sqlText, sqlValue)

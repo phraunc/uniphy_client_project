@@ -35,6 +35,7 @@ import EditMovement from "../Movement/MovementEditForm";
 import Work from "../Work/Work";
 import WorkForm from "../Work/WorkForm";
 import WorkEditForm from "../Work/WorkEditForm";
+import DetailsPage from "../Details/Details";
 
 
 function App() {
@@ -165,6 +166,10 @@ function App() {
           </Route>
           <Route exact path="/work/details/:id">
             {user.id ? <WorkEditForm /> : <Redirect to="/work" />}
+          </Route>
+
+          <Route exact path="/details">
+            {user.id ? <DetailsPage/> : <Redirect to="/home" />}
           </Route>
 
           <Route exact path="/home">
