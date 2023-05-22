@@ -36,7 +36,7 @@ function Movement() {
 
     return (
         <>
-            {movementStore.length ?
+          
                 <>
                     <div>
                         <img src={backIcon} alt="backButton" onClick={handleHome} />
@@ -70,7 +70,7 @@ function Movement() {
                         <img src={manualAddMovement} alt="addMovementButton" onClick={movementForm} width={300} />
                     </div>
                 </>
-                : <p>waiting for movement data</p>}
+                
         </>
     );
 

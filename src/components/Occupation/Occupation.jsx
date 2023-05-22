@@ -32,7 +32,6 @@ function Occupation() {
 
     return (
         <>
-            {occupationStore.length ? <>
                 <div>
                     <img src={backIcon} alt="backButton" onClick={handleHome} />
                 </div>
@@ -65,9 +64,7 @@ function Occupation() {
                         <img src={manualAddOccupation} alt="addOccupationButton" onClick={occupationForm} width={300} />
                     </div>
                 </div>
-            </>
-                : <p>waiting for occupation data</p>}
-
+        
         </>
     );
 }
