@@ -87,7 +87,7 @@ function MovementForm() {
     let totalBalancePoints = 0
     let intensityPoints = 0
     let TimeParts = addTime.split(':')
-    let hours = parseInt(TimeParts[0]);
+    let hours = Int(TimeParts[0]);
     let minutes = parseInt(TimeParts[1]);
     let seconds = parseInt(TimeParts[2]);
     let addTimeNumber = hours * 3600 + minutes * 60 + seconds;

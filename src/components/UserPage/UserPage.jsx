@@ -9,6 +9,9 @@ import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom';
 import { Box, Button } from '@mui/material';
 import "./UserPage.css";
+import { CurrencyYenTwoTone } from '@mui/icons-material';
+import { stringify } from 'json5';
+import { async } from 'q';
 
 function UserPage({ bgcolor, progress, height, onClick }) {
   const theme = createTheme({
@@ -30,34 +33,41 @@ function UserPage({ bgcolor, progress, height, onClick }) {
   // console.log('INSIDE user', user);
   const BS = useSelector((store) => store.balanceScoreReducer);
 
-  const manageDay = useSelector((store) => store.dayReducer);
-  const { day, showPillar } = manageDay;
   const [myBalanceScore, setMyBalanceScore] = useState(0)
 
   const dispatch = useDispatch();
   const history = useHistory();
 
+  const currentDate = new Date();
+  const year = currentDate.getFullYear();
+  const month = String(currentDate.getMonth() + 1).padStart(2, '0');
+  const day = String(currentDate.getDate()).padStart(2, '0');
+  const formattedDate = `${year}-${month}-${day}`;
+  console.log('this is our formatted date: ',formattedDate);
+
+  const [todaysDate, setTodaysDate] = useState();
+
   // const [value, changeValue] = useState(20);
+
 
   useEffect(() => {
     // slider.current.setAttribute("width", "280px");
-    dispatch({
+     dispatch({
       type: "GET_BALANCE_SCORE"
     })
+    console.log('DATTTTTEWEEE', BS)
   }, []);
+
 
   function startDay() {
     // console.log('this is our BS store Data:', BS)
     // console.log('INSIDE startDay')
     dispatch({
-      type: 'START_DAY'
+      type: 'IS_STARTED'
     })
   }
 
   function endDay() {
-    dispatch({
-      type: 'END_DAY'
-    })
     dispatch({
       type: 'IS_STARTED'
     })
@@ -83,7 +93,7 @@ function UserPage({ bgcolor, progress, height, onClick }) {
   }
 
 
-  if (user?.is_started === false) {
+  if (BS.checkDate !== formattedDate || !BS.date) {
     return (<>
       <center>
         <i className="far fa-sun fa-4x" style={{ color: "orangered", backgroundColor: 'yellow', borderRadius: '75%' }} ></i>

@@ -6,11 +6,8 @@ import rootOccupationReducer from './occupation.reducer';
 import rootSocialReducer from './social.reducer'
 import rootSleepReducer from './sleep.reducer';
 import rootMovementReducer from './movement.reducer';
-
 import rootWorkReducer from './work.reducer';
-
 import balanceScoreReducer from './balance_score.reducer';
-import dayReducer from './manage_day.reducer';
 import averageBalanceScoreReducer from './scoreAverages.reducer';
 
 
@@ -31,7 +28,6 @@ const rootReducer = combineReducers({
   rootMovementReducer,
   rootWorkReducer,
   balanceScoreReducer,
-  dayReducer,
   averageBalanceScoreReducer,
 });
 

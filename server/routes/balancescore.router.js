@@ -44,8 +44,8 @@ router.get('/average', rejectUnauthenticated, (req, res) => {
 
 
 router.post('/', rejectUnauthenticated, (req, res) => {
-    const sqlText = `INSERT INTO balance_score ("user_id", "balance_score", score_m, score_sa, score_o, score_f, score_s)
-    VALUES ($1, '0', '0', '0', '0', '0', '0')`
+    const sqlText = `INSERT INTO balance_score ("user_id", "balance_score", score_m, score_sa, score_o, score_f, score_s, score_w)
+    VALUES ($1, '0', '0', '0', '0', '0', '0', '0')`
     const sqlValue = [
         req.user.id
     ]

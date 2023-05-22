@@ -73,7 +73,7 @@ function DetailsPage () {
         },
       ]
     
-        const [lineChartData, setLineChartData] = useState({
+        const lineChartData = {
           labels: DataforPieChart.map(data => data.title),
           datasets: [
             {
@@ -105,7 +105,7 @@ function DetailsPage () {
             }
           ]
     
-        })
+        }
 
 
 
