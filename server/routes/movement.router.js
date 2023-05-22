@@ -67,8 +67,8 @@ router.post("/", rejectUnauthenticated, (req, res) => {
 });
 
 router.delete("/:id", rejectUnauthenticated, (req, res) => {
-  const sqlText = `DELETE FROM "movement" WHERE "movement".id = $1;`;
-  const sqlValue = [req.params.id];
+  const sqlText = `DELETE FROM "movement" WHERE "movement".id = $1 AND user_id = $2;`;
+  const sqlValue = [req.params.id, req.user.id];
 
   pool
     .query(sqlText, sqlValue)
@@ -85,12 +85,13 @@ router.put("/edit/:id", rejectUnauthenticated, (req, res) => {
     
   const sqlText = `UPDATE "movement"
     SET "title"=$1, "duration"=$2, "intensity"=$3
-    WHERE "movement".id = $4;`;
+    WHERE "movement".id = $4 AND user_id = $5;`;
   sqlValue = [
     req.body.title,
     req.body.duration,
     req.body.intensity,
     req.params.id,
+    req.user.id,
   ];
  
   pool
