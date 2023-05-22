@@ -15,6 +15,7 @@ function Work() {
         dispatch({
             type: "GET_WORK"
         })
+        
     }, [])
 
     const handleHome = () => {

@@ -22,6 +22,9 @@ function SocialActivity() {
     dispatch({
       type: "GET_SOCIAL"
     })
+    dispatch({
+      type: "GET_BALANCE_SCORE"
+  })
   }, [])
 
   const handleHome = () => {
@@ -47,14 +50,14 @@ function SocialActivity() {
           <div className="App1">
             <div className="textContainer">
               {Math.round(Number(BS.score_sa))}
-              <div className="minute">Balance Score</div>
+              <div className="minute">Social Score</div>
             </div>
             <CircleSlider
               ref={slider}
               value={Math.round(Number(BS.score_sa))}
               stepSize={5}
               size={250}
-              max={500}
+              max={100}
               gradientColorFrom="#ec008c"
               gradientColorTo="#31356e"
               knobRadius={20}
