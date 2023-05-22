@@ -11,7 +11,7 @@ const router = express.Router();
 router.get("/", rejectUnauthenticated, (req, res) => {
   // GET route code here
   const sqlText = `SELECT * FROM occupation
-  WHERE user_id = $1;`;
+  WHERE user_id = $1 ORDER BY id DESC;`;
   pool
     .query(sqlText, [req.user.id])
     .then((result) => {
