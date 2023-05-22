@@ -57,6 +57,17 @@ function UserPage({ bgcolor, progress, height, onClick }) {
     })
   }
 
+  function goToDetails() {
+      dispatch({
+        type: "GET_BALANCE_SCORE"
+      })
+      dispatch({
+        type: "GET_MY_AVERAGES"
+      })
+    history.push('/details')
+  }
+  
+
 
   if (!BS) {
     return (<>
@@ -74,28 +85,26 @@ function UserPage({ bgcolor, progress, height, onClick }) {
       <h2>Welcome, {user.username}!</h2>
 
 
-      <center>
-        <div className="App1">
-          <div className="textContainer">
-            {Math.round(Number(BS.score_f) + Number(BS.score_m) + Number(BS.score_o) + Number(BS.score_s) + Number(BS.score_sa))}
-            <div className="minute">Balance Score</div>
-          </div>
-          <CircleSlider
-            ref={slider}
-            value={Math.round(Number(BS.score_f) + Number(BS.score_m) + Number(BS.score_o) + Number(BS.score_s) + Number(BS.score_sa))}
-            stepSize={5}
-            // onChange={value => changeValue(value)}
-            size={250}
-            max={500}
-            gradientColorFrom="#ec008c"
-            gradientColorTo="#31356e"
-            knobRadius={20}
-            circleWidth={20}
-            disabled={true}
-          />
-        </div>
-      </center>
-
+    <center>
+      <div className="App1">
+      <div className="textContainer" onClick={goToDetails}>
+        {Math.round(Number(BS.score_f) + Number(BS.score_m) + Number(BS.score_o) + Number(BS.score_s) + Number(BS.score_sa))}
+        <div className="minute">Balance Score</div>
+      </div>
+      <CircleSlider
+        ref={slider}
+        value={Math.round(Number(BS.score_f) + Number(BS.score_m) + Number(BS.score_o) + Number(BS.score_s) + Number(BS.score_sa))}
+        stepSize={5}
+        // onChange={value => changeValue(value)}
+        size={250}
+        max={500}
+        gradientColorFrom="#ec008c"
+        gradientColorTo="#31356e"
+        knobRadius={20}
+        circleWidth={20}
+        disabled={true}
+      />
+    </div>
 
       <div className="App">
         {/* <h3 className="heading">Pillars </h3> */}

@@ -11,6 +11,7 @@ import rootWorkReducer from './work.reducer';
 
 import balanceScoreReducer from './balance_score.reducer';
 import dayReducer from './manage_day.reducer';
+import averageBalanceScoreReducer from './scoreAverages.reducer';
 
 
 
@@ -31,9 +32,7 @@ const rootReducer = combineReducers({
   rootWorkReducer,
   balanceScoreReducer,
   dayReducer,
-
-
-
+  averageBalanceScoreReducer,
 });
 
 export default rootReducer;
