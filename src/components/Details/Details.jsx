@@ -14,15 +14,18 @@ function DetailsPage () {
     const dispatch = useDispatch()
     const BS = useSelector((store) => store.balanceScoreReducer);
     const BSaverages = useSelector((store) => store.averageBalanceScoreReducer)
+    let [thisThing, setThisThing] = useState(0)
 
     useEffect(() => {
       // slider.current.setAttribute("width", "280px");
-     dispatch({
-        type: "GET_BALANCE_SCORE"
-      })
       dispatch({
         type: "GET_MY_AVERAGES"
       })
+     dispatch({
+        type: "GET_BALANCE_SCORE"
+      })
+
+      setThisThing(thisThing+=1)
     }, []);
 
     const DataforPieChart = [
@@ -70,7 +73,7 @@ function DetailsPage () {
         },
       ]
     
-        const [pieChartData, setPieChartData] = useState({
+        const [lineChartData, setLineChartData] = useState({
           labels: DataforPieChart.map(data => data.title),
           datasets: [
             {
@@ -113,27 +116,19 @@ function DetailsPage () {
 
 
 
-    if(!BSaverages) {
+    if(BSaverages === null) {
       return (
         <p>loading</p>
       )
     } else 
     return ( <>
-        <div>
+        <div key={thisThing}>
         <img src={backIcon} alt="backButton" onClick={handleHome} />
       </div>
       <div className="chart-container">
-        <h2 style={{ textAlign: "center" }}>Line Chart</h2>
+        <h2 style={{ textAlign: "center" }}>Balance Score Averages</h2>
         <Line
-          data={pieChartData}
-          // options={{
-          //   plugins: {
-          //     title: {
-          //       display: true,
-          //       text: "Balance Score for the Day"
-          //     }
-          //   }
-          // }}
+          data={lineChartData}
         />
       </div>
         <Progressbar textsize='10px' bgcolor="#31356e" pillarName= 'Movement:' progress={Math.round(Number(BS.score_m))} height={40} />

@@ -41,7 +41,7 @@ function* postBalanceScore(action) {
 function* balanceScoreSaga() {
   yield takeEvery("GET_BALANCE_SCORE", getBalanceScore);
   yield takeEvery("POST_BALANCE_SCORE", postBalanceScore);
-  yield takeLatest("GET_MY_AVERAGES", getAverageBalanceScore)
+  yield takeEvery("GET_MY_AVERAGES", getAverageBalanceScore)
 }
 
 export default balanceScoreSaga;
