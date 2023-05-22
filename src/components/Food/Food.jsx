@@ -1,15 +1,19 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import HistoryContainer from "../HistoryContainer/HistoryContainer";
 import backIcon from '../img/backIcon.png'
 import manualAddFood from '../img/manualAddFoodBtn.png'
 import EditFood from "./FoodEditForm";
+import { CircleSlider } from "react-circle-slider";
+
 
 function Food() {
+  const slider = useRef(null);
   const history = useHistory();
   const dispatch = useDispatch();
-  const foodStore = useSelector(store => store.rootFoodReducer.foodReducer)
+  const foodStore = useSelector(store => store.rootFoodReducer.foodReducer);
+  const BS = useSelector((store) => store.balanceScoreReducer);
   const [keyValue, setKeyValue] = useState(0)
 
   useEffect(() => {
@@ -36,6 +40,28 @@ function Food() {
         <img src={backIcon} alt="backButton" onClick={handleHome} />
       </div>
       <div key={keyValue} style={{ backgroundColor: "white" }}>
+
+        <center>
+          <div className="App1">
+            <div className="textContainer">
+              {Math.round(Number(BS.score_f))}
+              <div className="minute">Balance Score</div>
+            </div>
+            <CircleSlider
+              ref={slider}
+              value={Math.round(Number(BS.score_f))}
+              stepSize={5}
+              size={250}
+              max={500}
+              gradientColorFrom="#ec008c"
+              gradientColorTo="#31356e"
+              knobRadius={20}
+              circleWidth={20}
+              disabled={true} />
+          </div>
+        </center>
+
+
         <div>
           <HistoryContainer item={foodStore} />
         </div>

@@ -12,11 +12,11 @@ function* getMovementId(action) {
 }
 
 function* getMovement(action) {
-    // console.log('inside GET saga movement')
+    console.log('inside GET saga movement')
   try {
     const movementPillar = yield axios.get("./api/movement", action.payload);
     yield put({ type: "SET_MOVEMENT", payload: movementPillar.data });
-    // console.log('this is our movement data', movementPillar.data)
+    console.log('this is our movement data', movementPillar.data)
   } catch (err) {
     console.log("error in Movement GET_Saga", err);
   }

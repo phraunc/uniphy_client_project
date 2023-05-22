@@ -4,11 +4,26 @@ import React, { useEffect, useState, useRef } from "react";
 import ReactDOM from "react-dom";
 import { CircleSlider } from "react-circle-slider";
 import Progressbar from './ProgressBar';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom';
 import { Box, Button } from '@mui/material';
+import "./UserPage.css";
 
 function UserPage({ bgcolor, progress, height, onClick }) {
+  const theme = createTheme({
+    palette: {
+      primary: {
+        main: '#41b8d5',
+        contrastText: '#FFFFFF',
+      },
+      secondary: {
+        main: '#31356e',
+        contrastText: '#FFFFFF',
+      },
+    },
+});
+
   const slider = useRef(null);
 
   const user = useSelector((store) => store.user);
@@ -81,8 +96,9 @@ function UserPage({ bgcolor, progress, height, onClick }) {
     </>)
   }
   return (
+    <ThemeProvider theme={theme}>
     <div className="App">
-      <h2>Welcome, {user.username}!</h2>
+      {/* <h2 className='welcome'>Welcome, {user.username}!</h2> */}
 
 
     <center>
@@ -106,6 +122,8 @@ function UserPage({ bgcolor, progress, height, onClick }) {
       />
     </div>
     </center>
+
+      <div className="pillar">
       <div className="App">
         {/* <h3 className="heading">Pillars </h3> */}
         {user.is_started ? <>
@@ -130,6 +148,27 @@ function UserPage({ bgcolor, progress, height, onClick }) {
         </>}
       </div>
 
+     {!user.is_started ?
+      <Box
+        mr={3}
+        mt={8}
+        display="flex"
+        justifyContent="flex-end"
+        alignItems="flex-end"
+        >
+      <Button variant='contained'
+      onClick={startDay}>Start Day</Button>
+      </Box>
+      : <>
+      <Box mt={8} ml={4}>
+      <Button
+      variant='contained'
+      onClick={endDay}>End Day</Button>
+      </Box>
+      </>
+     }
+      {/* <LogOutButton className="btn" /> */}
+
       {!user.is_started ?
         <Box
           m={1}
@@ -148,7 +187,9 @@ function UserPage({ bgcolor, progress, height, onClick }) {
       <br />
       <br />
       <LogOutButton className="btn" />
+
     </div>
+    </ThemeProvider>
   );
 }
 
