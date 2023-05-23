@@ -17,11 +17,15 @@ function Movement() {
     const movementStore = useSelector(store => store.rootMovementReducer.MovementReducer)
     const BS = useSelector((store) => store.balanceScoreReducer);
     const [keyValue, setKeyValue] = useState(0);
+    
 
 
     useEffect(() => {
         dispatch({
             type: "GET_MOVEMENT"
+        })
+        dispatch({
+            type: "GET_BALANCE_SCORE"
         })
     }, [])
 
@@ -47,14 +51,14 @@ function Movement() {
                         <div className="App1">
                             <div className="textContainer">
                                 {Math.round(Number(BS.score_m))}
-                                <div className="minute">Balance Score</div>
+                                <div className="minute">Movement Score</div>
                             </div>
                             <CircleSlider
                                 ref={slider}
                                 value={Math.round(Number(BS.score_m))}
                                 stepSize={5}
                                 size={250}
-                                max={500}
+                                max={100}
                                 gradientColorFrom="#ec008c"
                                 gradientColorTo="#31356e"
                                 knobRadius={20}
