@@ -72,7 +72,7 @@ function HistoryCardSleep({ prop }) {
       default:
         setSleepImg(faceNeutralIcon)
     };
-  }, [sleepStore.quality]);
+  }, [prop.quality]);
 
   function editSleepItem() {
     dispatch({
