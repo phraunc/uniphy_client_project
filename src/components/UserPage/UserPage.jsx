@@ -23,6 +23,7 @@ function UserPage({ bgcolor, progress, height, onClick }) {
       secondary: {
         main: '#31356e',
         contrastText: '#FFFFFF',
+        width: '200px'
       },
     },
   });

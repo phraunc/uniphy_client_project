@@ -29,6 +29,8 @@ function EditSocialActivity() {
     const [addDescription, setAddDescription] = useState('');
     const [addDuration, setAddDuration] = useState(0);
     const [addOnline, setAddOnline] = useState(true);
+    const [addRating, setAddRating] = useState(1)
+
 
 
 
@@ -46,12 +48,14 @@ function EditSocialActivity() {
                 description: addDescription,
                 duration: addDuration,
                 online: addOnline,
+                rating: addRating,
             }
+            
         })
         history.push('/social')
     }
 
-    function DeleteSocialActivity () {
+    function DeleteSocialActivity() {
         dispatch({
             type: 'DELETE_SOCIAL',
             payload: socialStoreID[0].id
@@ -62,18 +66,69 @@ function EditSocialActivity() {
 
 
     return (<>
-        <h1>Social Activity Form</h1>
+        <h1>Social Activity Edit Form</h1>
         <div>
             <form onSubmit={saveChanges}>
-            <TextField
-                        label="Whom"
+                <TextField
+                    label="Whom"
+                    variant="outlined"
+                    type="text"
+                    placeholder="Whom was it with"
+                    // min="1"
+                    // max="100"
+                    value={addWhom}
+                    onChange={(event) => setAddWhom(event.target.value)}
+                />
+                <br />
+                <br />
+                <FormControl fullWidth>
+                    <InputLabel id="demo-simple-select-label">Rating</InputLabel>
+                    <Select
+                        labelId="demo-simple-select-label"
+                        id="demo-simple-select"
+                        value={addRating}
+                        label="Rating"
+                        onChange={(event) => setAddRating(event.target.value)}
+                    >
+                        <MenuItem value={0}>Meh</MenuItem>
+                        <MenuItem value={1}>Ok</MenuItem>
+                        <MenuItem value={2}>Good</MenuItem>
+                        <MenuItem value={3}>Great</MenuItem>
+                        <MenuItem value={4}>Amazing</MenuItem>
+                    </Select>
+                </FormControl>
+
+
+                <br />
+                <br />
+                <Box sx={{ minWidth: 120 }}>
+                    <FormControl fullWidth>
+                        <InputLabel id="demo-simple-select-label">Where</InputLabel>
+                        <Select
+                            labelId="demo-simple-select-label"
+                            id="demo-simple-select"
+                            value={addOnline}
+                            label="In Person"
+                            placeholder="Whom was it with"
+
+                            onChange={(event) => setAddOnline(event.target.value)}
+                        >
+                            <MenuItem value={true}>In Person</MenuItem>
+                            <MenuItem value={false}>Online</MenuItem>
+
+                        </Select>
+                    </FormControl>
+                    <br />
+                    <br />
+                    <TextField
+                        label="Duration"
                         variant="outlined"
-                        type="text"
-                        placeholder="Whom was it with"
-                        // min="1"
-                        // max="100"
-                        value={addWhom}
-                        onChange={(event) => setAddWhom(event.target.value) }
+                        type="number"
+                        placeholder="Time in minutes"
+                        min="1"
+                        max="100"
+                        value={addDuration}
+                        onChange={(event) => setAddDuration(event.target.value)}
                     />
                     <br />
                     <br />
@@ -88,39 +143,7 @@ function EditSocialActivity() {
                         onChange={(event) => setAddDescription(event.target.value)}
                     />
 
-                    <br />
-                    <br />
-                    <Box sx={{ minWidth: 120 }}>
-                        <FormControl fullWidth>
-                            <InputLabel id="demo-simple-select-label">Where</InputLabel>
-                            <Select
-                                labelId="demo-simple-select-label"
-                                id="demo-simple-select"
-                                value={addOnline}
-                                label="In Person"
-                                placeholder="Whom was it with"
 
-                                onChange={(event) => setAddOnline(event.target.value)}
-                            >
-                                <MenuItem value={true}>In Person</MenuItem>
-                                <MenuItem value={false}>Online</MenuItem>
-
-                            </Select>
-                        </FormControl>
-                        <br />
-                        <br />
-                        <TextField
-                            label="Duration"
-                            variant="outlined"
-                            type="number"
-                            placeholder="Time in minutes"
-                            min="1"
-                            max="100"
-                            value={addDuration}
-                            onChange={(event) => setAddDuration(event.target.value)}
-                        />
-                    <br />
-                    <br />
                     <Box
                         m={1}
                         mt={3}
