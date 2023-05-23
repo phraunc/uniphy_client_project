@@ -169,7 +169,7 @@ function App() {
           </Route>
 
           <Route exact path="/details">
-            {user.id ? <DetailsPage/> : <Redirect to="/home" />}
+            {user.id ? <DetailsPage/> : <Redirect to="/details" />}
           </Route>
 
           <Route exact path="/home">

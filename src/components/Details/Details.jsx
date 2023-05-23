@@ -9,7 +9,7 @@ import Chart from 'chart.js/auto';
 
 
 
-function DetailsPage () {
+function DetailsPage ({ bgcolor, progress, height, onClick }) {
     const history = useHistory()
     const dispatch = useDispatch()
     const BS = useSelector((store) => store.balanceScoreReducer);
@@ -93,11 +93,11 @@ function DetailsPage () {
               label: "Your Average Score",
               data: AverageDataforPieChart.map(data => data.balanceScore),
               backgroundColor: [
-                "#31356e",
-                "#6ce5e8",
-                "#41b8d5",
-                "#2f5f98 ",
-                "#704e85"
+                "orange",
+                "orange",
+                "orange",
+                "orange",
+                "orange"
       
               ],
               borderColor: "orange",
@@ -115,7 +115,6 @@ function DetailsPage () {
       };
 
 
-
     if(BSaverages === null) {
       return (
         <p>loading</p>
@@ -131,11 +130,16 @@ function DetailsPage () {
           data={lineChartData}
         />
       </div>
-        <Progressbar textsize='10px' bgcolor="#31356e" pillarName= 'Movement:' progress={Math.round(Number(BS.score_m))} height={40} />
-        <Progressbar bgcolor="#6ce5e8" pillarName= 'Social:' progress={Math.round(Number(BS.score_sa))} height={40} />
-        <Progressbar bgcolor="#41b8d5" pillarName= 'Occupation:' progress={Math.round(Number(BS.score_o))} height={40} />
-        <Progressbar bgcolor="#2f5f98" pillarName= 'Food:' progress={Math.round(Number(BS.score_f))} height={40} />
-        <Progressbar bgcolor="#704e85" pillarName= 'Sleep:' progress={Math.round(Number(BS.score_s))} height={40} />
+        <Progressbar parentBgColor="lightgrey" bgcolor="#31356e" pillarName= 'Movement:' progress={Math.round(Number(BS.score_m))} height={30}/>
+        <Progressbar parentBgColor="lightgrey" bgcolor="orange" pillarName= 'Movement Average:' progress={Math.round(Number(BSaverages.movement_score))} height={30}/>
+        <Progressbar parentBgColor="lightgrey" bgcolor="#6ce5e8" pillarName= 'Social:' progress={Math.round(Number(BS.score_sa))} height={30} />
+        <Progressbar parentBgColor="lightgrey" bgcolor="orange" pillarName= 'Social Average:' progress={Math.round(Number(BSaverages.social_score))} height={30} />
+        <Progressbar parentBgColor="lightgrey" bgcolor="#41b8d5" pillarName= 'Occupation:' progress={Math.round(Number(BS.score_o))} height={30} />
+        <Progressbar parentBgColor="lightgrey" bgcolor="orange" pillarName= 'Occupation Average:' progress={Math.round(Number(BSaverages.occupation_score))} height={30} />
+        <Progressbar parentBgColor="lightgrey" bgcolor="#2f5f98" pillarName= 'Food:' progress={Math.round(Number(BS.score_f))} height={30} />
+        <Progressbar parentBgColor="lightgrey" bgcolor="orange" pillarName= 'Food Average:' progress={Math.round(Number(BSaverages.food_score))} height={30} />
+        <Progressbar parentBgColor="lightgrey" bgcolor="#704e85" pillarName= 'Sleep:' progress={Math.round(Number(BS.score_s))} height={30} />
+        <Progressbar parentBgColor="lightgrey" bgcolor="orange" pillarName= 'Sleep Average:' progress={Math.round(Number(BSaverages.sleep_score))} height={30} />
         {/* <Progressbar bgcolor="purple" progress={BS.score_w} height={40} onClick={() => history.push("/work")} /> */}
       </>)
 }
