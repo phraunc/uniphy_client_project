@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-
+import Modal from '@mui/material/Modal';
+import Dialog from '@mui/material/Dialog';
+import DialogContent from '@mui/material/DialogContent';
 import {
     Radio,
     RadioGroup,
@@ -31,7 +33,7 @@ function EditSocialActivity() {
     const [addDuration, setAddDuration] = useState(0);
     const [addOnline, setAddOnline] = useState(true);
     const [addRating, setAddRating] = useState(1)
-
+    const [openAlert, setOpenAlert] = useState(false)
 
 
 
@@ -56,11 +58,7 @@ function EditSocialActivity() {
         history.push('/social')
     }
 
-    
-  
-
     async function DeleteSocialActivity() {
-
         const calculatedSocialScore = await socialPointsCalc()
         dispatch({
             type: 'DELETE_SOCIAL',
@@ -204,30 +202,37 @@ function EditSocialActivity() {
                 </center>
 
 
-
-                <br />
-                <br />
-
-                <Box
-                    m={3}
-                    mt={3}
-                    display="flex"
-                    justifyContent="flex-end"
-                    alignItems="flex-end">
-                    <Button variant="outlined" sx={{ mr: 20, color: '#FF4646', borderColor: '#FF4646' }}onClick={DeleteSocialActivity}>Delete</Button>
-                    <Button variant="contained" type="submit" sx={{ backgroundColor: '#6ce5e8' }} >Save</Button>
+                    <Box
+                        m={1}
+                        mt={3}
+                        display="flex"
+                        justifyContent="flex-end"
+                        alignItems="flex-end">
+                        <Button variant="contained" sx={{ mr: 20, color: '#FF4646', borderColor: '#FF4646' }} onClick={() => setOpenAlert(true)}>Delete</Button>
+                        <Button variant="contained" type="submit" sx={{ backgroundColor: '#6ce5e8' }} >Save</Button>
+                    </Box>
+                    <br />
+                    <br />
+                    <Box
+                        m={1}
+                        mt={3}
+                        className="bottomSpace"
+                        display="flex"
+                        justifyContent="flex-end"
+                        alignItems="flex-end">
+                        <Button variant="contained" onClick={cancelFood} >Cancel</Button>
+                    </Box>
                 </Box>
-                <br />
-                <br />
-                <Box
-                    m={3}
-                    mt={3}
-                    className="bottomSpace"
-                    display="flex"
-                    justifyContent="flex-end"
-                    alignItems="flex-end">
-                    <Button variant="outlined" onClick={cancelFood} >Cancel</Button>
-                </Box>
+
+                <Dialog
+                    open={openAlert}>
+                    <DialogContent>
+                        Are you sure you want to Delete?
+                    </DialogContent>
+                    <Button onClick={DeleteSocialActivity}>Yes</Button>
+                    <Button onClick={() => setOpenAlert(false)}>No</Button>
+                </Dialog>
+            </form>
             </FormControl>
         </div>
     </>)

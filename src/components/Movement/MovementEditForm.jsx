@@ -1,23 +1,25 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
+import Modal from '@mui/material/Modal';
+import Dialog from '@mui/material/Dialog';
+import DialogContent from '@mui/material/DialogContent';
 import Stopwatch from "./Stopwatch";
 import {
-
-    Radio,
-    RadioGroup,
-    FormControlLabel,
-    FormControl,
-    FormLabel,
-    Box,
-    Slider,
-    Stack,
-    Button,
-    InputLabel,
-    MenuItem,
-    Select,
-    TextField,
-    Typography,
+  Radio,
+  RadioGroup,
+  FormControlLabel,
+  FormControl,
+  FormLabel,
+  Box,
+  Slider,
+  Stack,
+  Button,
+  InputLabel,
+  MenuItem,
+  Select,
+  TextField,
+  Typography,
 } from "@mui/material";
 
 
@@ -26,11 +28,10 @@ function EditMovement() {
   const dispatch = useDispatch();
   const movementItemID = useSelector(store => store.rootMovementReducer.MovementReducerSingle)
   const history = useHistory();
-
+  const [openAlert, setOpenAlert] = useState(false)
   const [addTitle, setAddTitle] = useState("");
   const [addIntensity, setAddIntensity] = useState(0);
   const [addTime, setAddTime] = useState("");
-
 
   const cancelMovement = () => {
     history.push('/movement')
@@ -169,7 +170,6 @@ function EditMovement() {
               <MenuItem value={5}>Extrem Intensity</MenuItem>
             </Select>
           </FormControl>
-
         </center>
         <br />
         <br />

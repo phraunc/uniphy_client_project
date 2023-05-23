@@ -2,12 +2,20 @@ import * as React from "react";
 import { Box, Card, CardActions, CardContent, Button, Typography, Paper, Grid, styled } from "@mui/material";
 import hourglassIcon from '../img/hourglassIcon.png'
 import faceSmileIcon from "../img/faceSmileIcon.png"
-import { useDispatch } from "react-redux";
+import faceNeutralIcon from "../img/faceNeutralIcon.png"
+import faceFrownIcon from "../img/faceFrownIcon.png"
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
+import { useState } from "react";
+import { useSelect } from "@mui/base";
+import { useEffect } from "react";
+import { ConstructionOutlined } from "@mui/icons-material";
 
 function HistoryCardSleep({ prop }) {
   const dispatch = useDispatch();
   const history = useHistory();
+  const [sleepImg, setSleepImg] = useState()
+  const sleepStore = useSelector(store => store.rootSleepReducer.sleepReducer)
 
   const bull = (
     <Box
@@ -39,6 +47,33 @@ function HistoryCardSleep({ prop }) {
     justifyContent: 'flex-end', // Align content to the right
   });
 
+  console.log('uhadfskjhadsf', prop)
+
+  useEffect(() => {
+    switch(prop.quality) {
+      case 0:
+          setSleepImg(faceFrownIcon)
+          break;
+      case 1:
+          setSleepImg(faceFrownIcon)
+          break;
+      case 2:
+        setSleepImg(faceNeutralIcon)
+          break;
+      case 3:
+        setSleepImg(faceSmileIcon)
+          break;
+      case 4:
+        setSleepImg(faceSmileIcon)
+          break;
+      case 5:
+        setSleepImg(faceSmileIcon)
+          break;
+      default:
+        setSleepImg(faceNeutralIcon)
+    };
+  }, [prop.quality]);
+
   function editSleepItem() {
     dispatch({
       type: "GET_SLEEP_ID",
@@ -46,6 +81,8 @@ function HistoryCardSleep({ prop }) {
     })
     history.push(`/sleep/details/${prop.id}`)
   }
+
+
 
 
 
@@ -58,7 +95,7 @@ function HistoryCardSleep({ prop }) {
               <Item>{formatDate(prop.date)}</Item>
             </Grid>
             <Grid item xs={6}>
-            <Item><img src={faceSmileIcon}
+            <Item><img src={sleepImg}
                 alt="foodIcon"
                 style={{ width: "25px" }}
               />
