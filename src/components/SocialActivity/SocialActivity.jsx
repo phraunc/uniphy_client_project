@@ -7,6 +7,7 @@ import manualAddSocial from '../img/manualAddSocialBtn.png'
 import SocialActivityEditForm from "./SocialActivityEditForm.jsx";
 import HistoryContainerSocial from '../HistoryContainer/HistoryContainerSocial'
 import { CircleSlider } from "react-circle-slider";
+import CircularProgress from '@mui/material/CircularProgress';
 
 
 
@@ -38,7 +39,9 @@ function SocialActivity() {
 
 
 
-
+  if (!BS) {
+    <CircularProgress color="secondary" />
+  } else
   return (
     <>
       <div>

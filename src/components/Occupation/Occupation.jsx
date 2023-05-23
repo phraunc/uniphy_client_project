@@ -5,6 +5,7 @@ import OccupationHistoryContainer from "../HistoryContainer/OccupationHistoryCon
 import backIcon from '../img/backIcon.png'
 import manualAddOccupation from '../img/manualAddNewOccBtn.png';
 import { CircleSlider } from "react-circle-slider";
+import CircularProgress from '@mui/material/CircularProgress';
 
 function Occupation() {
     const slider = useRef(null);
@@ -32,9 +33,11 @@ function Occupation() {
     const occupationForm = () => {
         history.push("/occupationform");
     }
-
-    return (
-        <>
+    if (!BS) {
+        <CircularProgress color="secondary" />
+    } else
+        return (
+            <>
                 <div>
                     <img src={backIcon} alt="backButton" onClick={handleHome} />
                 </div>
@@ -67,9 +70,9 @@ function Occupation() {
                         <img src={manualAddOccupation} alt="addOccupationButton" onClick={occupationForm} width={300} />
                     </div>
                 </div>
-        
-        </>
-    );
+
+            </>
+        );
 }
 
 export default Occupation;

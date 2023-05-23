@@ -6,6 +6,7 @@ import backIcon from '../img/backIcon.png'
 import manualAddFood from '../img/manualAddFoodBtn.png'
 import EditFood from "./FoodEditForm";
 import { CircleSlider } from "react-circle-slider";
+import CircularProgress from '@mui/material/CircularProgress';
 
 
 function Food() {
@@ -22,7 +23,7 @@ function Food() {
     })
     dispatch({
       type: "GET_BALANCE_SCORE"
-  })
+    })
   }, [])
 
   const handleHome = () => {
@@ -35,8 +36,10 @@ function Food() {
   }
 
 
+  if (!BS) {
+    <CircularProgress color="secondary" />
 
-
+  } else
   return (
     <>
       <div>

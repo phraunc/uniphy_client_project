@@ -6,6 +6,7 @@ import backIcon from '../img/backIcon.png'
 import manualAddMovement from '../img/manualAddMovementBtn.png'
 import Stopwatch from "../Movement/Stopwatch.jsx";
 import { CircleSlider } from "react-circle-slider";
+import CircularProgress from '@mui/material/CircularProgress';
 
 
 
@@ -17,7 +18,7 @@ function Movement() {
     const movementStore = useSelector(store => store.rootMovementReducer.MovementReducer)
     const BS = useSelector((store) => store.balanceScoreReducer);
     const [keyValue, setKeyValue] = useState(0);
-    
+
 
 
     useEffect(() => {
@@ -37,10 +38,12 @@ function Movement() {
     const movementForm = () => {
         history.push("/movementform");
     }
+    if (!BS) {
+        <CircularProgress color="secondary" />
+    } else
+        return (
+            <>
 
-    return (
-        <>
-          
                 <>
                     <div>
                         <img src={backIcon} alt="backButton" onClick={handleHome} />
@@ -74,9 +77,9 @@ function Movement() {
                         <img src={manualAddMovement} alt="addMovementButton" onClick={movementForm} width={300} />
                     </div>
                 </>
-                
-        </>
-    );
+
+            </>
+        );
 
 }
 
