@@ -36,6 +36,7 @@ import Work from "../Work/Work";
 import WorkForm from "../Work/WorkForm";
 import WorkEditForm from "../Work/WorkEditForm";
 import DetailsPage from "../Details/Details";
+import UniphyLandingPage from "../LandingPage/UniphyLandingPage"
 
 
 function App() {
@@ -181,7 +182,7 @@ function App() {
               <Redirect to="/user" />
             ) : (
               // Otherwise, show the Landing page
-              <LandingPage />
+              <UniphyLandingPage />
             )}
           </Route>
 
