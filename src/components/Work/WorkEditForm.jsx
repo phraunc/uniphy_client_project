@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-
+import Modal from '@mui/material/Modal';
+import Dialog from '@mui/material/Dialog';
+import DialogContent from '@mui/material/DialogContent';
 import {
     Radio,
     RadioGroup,
@@ -22,9 +24,10 @@ function EditWork() {
     const dispatch = useDispatch();
     const workItemID = useSelector(store => store.rootWorkReducer.workReducerSingle)
     const history = useHistory();
-   const [addNote, setAddNote] = useState(0)
-   const [addWorkload, setAddWorkload] = useState(0)
-   const [addFullfillment, setAddFullfillment] = useState(0)
+    const [addNote, setAddNote] = useState(0)
+    const [addWorkload, setAddWorkload] = useState(0)
+    const [addFullfillment, setAddFullfillment] = useState(0)
+    const [openAlert, setOpenAlert] = useState(false)
 
 
     const cancelWork = () => {
@@ -55,7 +58,7 @@ function EditWork() {
         dispatch({
             type: 'CURRENT_WORK_SCORE',
             payload: {
-                score_w:calculatedWorkScore.wScore,
+                score_w: calculatedWorkScore.wScore,
             }
         })
         history.push('/work')
@@ -202,7 +205,7 @@ function EditWork() {
                         display="flex"
                         justifyContent="flex-end"
                         alignItems="flex-end">
-                        <Button variant="contained" sx={{ backgroundColor: 'red', mr: 15 }} onClick={DeleteWork}>Delete</Button>
+                        <Button variant="contained" sx={{ backgroundColor: 'red', mr: 15 }} onClick={() => setOpenAlert(true)}>Delete</Button>
                         <Button variant="contained" type="submit" >Save Changes</Button>
                     </Box>
                     <br />
@@ -217,6 +220,14 @@ function EditWork() {
                         <Button variant="contained" onClick={cancelWork} >Cancel</Button>
                     </Box>
                 </Box>
+                <Dialog
+                    open={openAlert}>
+                    <DialogContent>
+                        Are you sure you want to Delete?
+                    </DialogContent>
+                    <Button onClick={DeleteWork}>Yes</Button>
+                    <Button onClick={() => setOpenAlert(false)}>No</Button>
+                </Dialog>
             </form>
         </div>
     </>)

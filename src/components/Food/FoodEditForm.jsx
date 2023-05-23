@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-
+import Modal from '@mui/material/Modal';
+import Dialog from '@mui/material/Dialog';
+import DialogContent from '@mui/material/DialogContent';
 import {
     Radio,
     RadioGroup,
@@ -30,6 +32,7 @@ function EditFood() {
     const [addSnack, setAddSnack] = useState(0);
     const [addWater, setAddWater] = useState(0);
     const [addFasting, setAddFasting] = useState(0);
+    const [openAlert, setOpenAlert] = useState(false)
 
 
     const cancelFood = () => {
@@ -273,7 +276,7 @@ function EditFood() {
                         display="flex"
                         justifyContent="flex-end"
                         alignItems="flex-end">
-                        <Button variant="contained" sx={{ backgroundColor: 'red', mr: 15 }} onClick={DeleteFood}>Delete</Button>
+                        <Button variant="contained" sx={{ backgroundColor: 'red', mr: 15 }} onClick={() => setOpenAlert(true)}>Delete</Button>
                         <Button variant="contained" type="submit" >Save Changes</Button>
                     </Box>
                     <br />
@@ -288,7 +291,14 @@ function EditFood() {
                         <Button variant="contained" onClick={cancelFood} >Cancel</Button>
                     </Box>
                 </Box>
-
+                <Dialog
+          open={openAlert}>
+          <DialogContent>
+            Are you sure you want to Delete?
+          </DialogContent>
+          <Button onClick={DeleteFood}>Yes</Button>
+          <Button onClick={() => setOpenAlert(false)}>No</Button>
+        </Dialog>
 
             </form>
         </div>

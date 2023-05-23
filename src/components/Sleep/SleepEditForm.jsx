@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-
+import Modal from '@mui/material/Modal';
+import Dialog from '@mui/material/Dialog';
+import DialogContent from '@mui/material/DialogContent';
 import {
     Radio,
     RadioGroup,
@@ -29,6 +31,7 @@ function EditSleep() {
     const [addStartSleep, setStartSleep] = useState();
     const [addEndSleep, setEndSleep] = useState();
     const [addDuration, setAddDuration] = useState();
+    const [openAlert, setOpenAlert] = useState(false)
 
     function cancelSleep() {
         history.push("/sleep")
@@ -50,7 +53,7 @@ function EditSleep() {
         history.push('/sleep')
     }
 
-    async function DeleteSleep (event) {
+    async function DeleteSleep(event) {
         event.preventDefault();
         const calculatedSleepScore = await sleepScoreCalc();
 
@@ -61,9 +64,9 @@ function EditSleep() {
         dispatch({
             type: "CURRENT_SLEEP_SCORE",
             payload: {
-              score_s:calculatedSleepScore.sScore,
+                score_s: calculatedSleepScore.sScore,
             }
-          })
+        })
         history.push('/sleep')
     }
 
@@ -213,19 +216,9 @@ function EditSleep() {
                         display="flex"
                         justifyContent="flex-end"
                         alignItems="flex-end">
-                        <Button variant="contained" sx={{ backgroundColor: 'red', mr: 15 }} onClick={DeleteSleep}>Delete</Button>
+                        <Button variant="contained" sx={{ backgroundColor: 'red', mr: 15 }} onClick={() => setOpenAlert(true)}>Delete</Button>
                         <Button variant="contained" type="submit" >Save Changes</Button>
                     </Box>
-                    <br />
-                    <br />
-                    {/* <Box
-                        m={1}
-                        mt={3}
-                        display="flex"
-                        justifyContent="flex-end"
-                        alignItems="flex-end">
-                        <Button variant="contained" type="submit" >Save Changes</Button>
-                    </Box> */}
                     <br />
                     <br />
                     <Box
@@ -238,6 +231,14 @@ function EditSleep() {
                         <Button variant="contained" onClick={cancelSleep} >Cancel</Button>
                     </Box>
                 </Box>
+                <Dialog
+                    open={openAlert}>
+                    <DialogContent>
+                        Are you sure you want to Delete?
+                    </DialogContent>
+                    <Button onClick={DeleteSleep}>Yes</Button>
+                    <Button onClick={() => setOpenAlert(false)}>No</Button>
+                </Dialog>
             </form>
         </div>
     </>)

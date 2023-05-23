@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-
+import Modal from '@mui/material/Modal';
+import Dialog from '@mui/material/Dialog';
+import DialogContent from '@mui/material/DialogContent';
 import {
     Radio,
     RadioGroup,
@@ -30,7 +32,7 @@ function EditSocialActivity() {
     const [addDuration, setAddDuration] = useState(0);
     const [addOnline, setAddOnline] = useState(true);
     const [addRating, setAddRating] = useState(1)
-
+    const [openAlert, setOpenAlert] = useState(false)
 
 
 
@@ -50,12 +52,12 @@ function EditSocialActivity() {
                 online: addOnline,
                 rating: addRating,
             }
-            
+
         })
         history.push('/social')
     }
 
-    async function DeleteSocialActivity () {
+    async function DeleteSocialActivity() {
         const calculatedSocialScore = await socialPointsCalc()
         dispatch({
             type: 'DELETE_SOCIAL',
@@ -64,9 +66,9 @@ function EditSocialActivity() {
         dispatch({
             type: "CURRENT_SOCIAL_SCORE",
             payload: {
-              score_sa:calculatedSocialScore.saScore,
+                score_sa: calculatedSocialScore.saScore,
             }
-          })
+        })
         history.push('/social')
     }
 
@@ -198,7 +200,7 @@ function EditSocialActivity() {
                         display="flex"
                         justifyContent="flex-end"
                         alignItems="flex-end">
-                        <Button variant="contained" sx={{ backgroundColor: 'red', mr: 15 }} onClick={DeleteSocialActivity}>Delete</Button>
+                        <Button variant="contained" sx={{ backgroundColor: 'red', mr: 15 }} onClick={() => setOpenAlert(true)}>Delete</Button>
                         <Button variant="contained" type="submit" >Save Changes</Button>
                     </Box>
                     <br />
@@ -214,7 +216,14 @@ function EditSocialActivity() {
                     </Box>
                 </Box>
 
-
+                <Dialog
+                    open={openAlert}>
+                    <DialogContent>
+                        Are you sure you want to Delete?
+                    </DialogContent>
+                    <Button onClick={DeleteSocialActivity}>Yes</Button>
+                    <Button onClick={() => setOpenAlert(false)}>No</Button>
+                </Dialog>
             </form>
         </div>
     </>)

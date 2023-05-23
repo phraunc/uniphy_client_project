@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
+import Modal from '@mui/material/Modal';
+import Dialog from '@mui/material/Dialog';
+import DialogContent from '@mui/material/DialogContent';
 
 import {
     Radio,
@@ -25,6 +28,7 @@ function EditOccupation() {
     const [addTitle, setAddTitle] = useState(0);
     const [addDuration, setAddDuration] = useState(0);
     const [addDescription, setAddDescription] = useState(0);
+    const [openAlert, setOpenAlert] = useState(false)
 
 
     const cancelOccupation = () => {
@@ -55,13 +59,13 @@ function EditOccupation() {
         dispatch({
             type: "CURRENT_OCCUPATION_SCORE",
             payload: {
-              score_o: calculatedOccupationScore.oScore,
+                score_o: calculatedOccupationScore.oScore,
             }
-          })
+        })
         history.push('/occupation')
     }
 
-    function occupationScoreCalc () {
+    function occupationScoreCalc() {
         let totalBalancePoints = 0
         let durationPoints = occupationItemID[0].duration * .75
         totalBalancePoints = Number((durationPoints).toFixed(2))
@@ -124,7 +128,7 @@ function EditOccupation() {
                         display="flex"
                         justifyContent="flex-end"
                         alignItems="flex-end">
-                        <Button variant="contained" sx={{ backgroundColor: 'red', mr: 15 }} onClick={DeleteOccupation}>Delete</Button>
+                        <Button variant="contained" sx={{ backgroundColor: 'red', mr: 15 }} onClick={() => setOpenAlert(true)}>Delete</Button>
                         <Button variant="contained" type="submit" >Save Changes</Button>
                     </Box>
                     <br />
@@ -139,6 +143,14 @@ function EditOccupation() {
                         <Button variant="contained" onClick={cancelOccupation} >Cancel</Button>
                     </Box>
                 </Box>
+                <Dialog
+                    open={openAlert}>
+                    <DialogContent>
+                        Are you sure you want to Delete?
+                    </DialogContent>
+                    <Button onClick={DeleteOccupation}>Yes</Button>
+                    <Button onClick={() => setOpenAlert(false)}>No</Button>
+                </Dialog>
             </form>
         </div>
     </>)
