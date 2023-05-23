@@ -112,6 +112,16 @@ input {
   margin-bottom: 10px;
 }
 
+.btnBottom{
+  margin-bottom: 100px;
+}
 
+.bottomSpace{
+  padding-bottom: 100px;
+}
+
+.form{
+  min-width: 200;
+}
 
 

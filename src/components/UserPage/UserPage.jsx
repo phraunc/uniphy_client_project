@@ -200,13 +200,69 @@ function UserPage({ bgcolor, progress, height, onClick }) {
                 </div>
               </div>
             </> : <>
-              <Progressbar parentBgColor="darkgrey" bgcolor="grey" pillarName='Movement:' progress={Math.round(Number(BS.score_m))} height={40} />
+
+            <div className="progress-bar-container">
+                <div className="icon">
+                  <img src={movementIcon} alt="Movement Icon" />
+                </div>
+                <div className="progress-bar-wrapper">
+                  <Progressbar className="progress-bar" parentBgColor="darkgrey" bgcolor="grey" pillarName='Movement:' progress={Math.round(Number(BS.score_m))} height={40}  />
+                </div>
+              </div>
+
+
+              <div className="progress-bar-container">
+                <div className="icon">
+                  <img src={socialIcon} alt="Movement Icon" />
+                </div>
+                <div className="progress-bar-wrapper">
+                  <Progressbar parentBgColor="darkgrey" bgcolor="grey" pillarName='Social:' progress={Math.round(Number(BS.score_sa))} height={40}  />
+                </div>
+              </div>
+
+              <div className="progress-bar-container">
+                <div className="icon">
+                  <img src={occupationIcon} alt="Movement Icon" />
+                </div>
+                <div className="progress-bar-wrapper">
+                <Progressbar parentBgColor="darkgrey" bgcolor="grey" pillarName='Occupation:' progress={Math.round(Number(BS.score_o))} height={40} />
+                </div>
+              </div>
+
+              <div className="progress-bar-container">
+                <div className="icon">
+                  <img src={foodIcon} alt="Movement Icon" />
+                </div>
+                <div className="progress-bar-wrapper">
+                <Progressbar parentBgColor="darkgrey" bgcolor="grey" pillarName='Food:' progress={Math.round(Number(BS.score_f))} height={40}  />
+                </div>
+              </div>
+
+              <div className="progress-bar-container">
+                <div className="icon">
+                  <img src={sleepIcon} alt="Movement Icon" />
+                </div>
+                <div className="progress-bar-wrapper">
+                <Progressbar parentBgColor="darkgrey" bgcolor="grey" pillarName='Sleep:' progress={Math.round(Number(BS.score_s))} height={40} />
+                </div>
+              </div>
+              <hr />
+
+              <div className="progress-bar-container">
+                <div className="icon">
+                  <WorkOutlineIcon />
+                </div>
+                <div className="progress-bar-wrapper">
+                <Progressbar parentBgColor="darkgrey" bgcolor="#grey" pillarName='Work:' progress={Math.round(Number(BS.score_w))} height={40} />
+                </div>
+              </div>
+              {/* <Progressbar parentBgColor="darkgrey" bgcolor="grey" pillarName='Movement:' progress={Math.round(Number(BS.score_m))} height={40} />
               <Progressbar parentBgColor="darkgrey" bgcolor="grey" pillarName='Social:' progress={Math.round(Number(BS.score_sa))} height={40} />
               <Progressbar parentBgColor="darkgrey" bgcolor="grey" pillarName='Occupation:' progress={Math.round(Number(BS.score_o))} height={40} />
               <Progressbar parentBgColor="darkgrey" bgcolor="grey" pillarName='Food:' progress={Math.round(Number(BS.score_f))} height={40} />
               <Progressbar parentBgColor="darkgrey" bgcolor="grey" pillarName='Sleep:' progress={Math.round(Number(BS.score_s))} height={40} />
               <hr />
-              <Progressbar parentBgColor="darkgrey" bgcolor="grey" pillarName='Work:' progress={Math.round(Number(BS.score_w))} height={40} />
+              <Progressbar parentBgColor="darkgrey" bgcolor="grey" pillarName='Work:' progress={Math.round(Number(BS.score_w))} height={40} /> */}
 
             </>}
           </div>
@@ -215,6 +271,7 @@ function UserPage({ bgcolor, progress, height, onClick }) {
             <Box
               mr={2}
               mt={8}
+              className="bottomSpace"
               display="flex"
               justifyContent="flex-end"
               alignItems="flex-end"
@@ -223,17 +280,13 @@ function UserPage({ bgcolor, progress, height, onClick }) {
                 onClick={startDay}>Start Day</Button>
             </Box>
             : <>
-              <Box mt={8} ml={3} mb={6}>
+              <Box mt={8} ml={3} className="bottomSpace">
                 <Button
                   variant='contained'
                   onClick={endDay}>End Day</Button>
               </Box>
             </>
           }
-              <br/>
-              <br/>
-              <br/>
-              <br/>
         </div>
       </div>
 

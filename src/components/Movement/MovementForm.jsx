@@ -183,10 +183,11 @@ function MovementForm() {
             <Box
               m={2}
               mt={5}
+              className="bottomSpace"
               display="flex"
               justifyContent="flex-end"
               alignItems="flex-end">
-              <Button variant="outlined" onClick={cancelMovement} >Cancel</Button>
+              <Button variant="outlined" onClick={cancelMovement}>Cancel</Button>
             </Box>
         </form>
       </div>
