@@ -15,15 +15,17 @@ import {
     MenuItem,
     Select,
     TextField,
+    Typography,
 } from "@mui/material";
+
 function SocialActivityForm() {
     const history = useHistory();
     const dispatch = useDispatch();
     const [addWhom, setAddWhom] = useState('');
     const [addDescription, setAddDescription] = useState('');
-    const [addDuration, setAddDuration] = useState(0);
-    const [addOnline, setAddOnline] = useState(true);
-    const [addRating, setAddRating] = useState(1)
+    const [addDuration, setAddDuration] = useState();
+    const [addOnline, setAddOnline] = useState();
+    const [addRating, setAddRating] = useState()
     const handleHome = () => {
         // console.log("history test");
         history.push("/home");
@@ -100,8 +102,13 @@ function SocialActivityForm() {
     }
     return (
         <>
-            <h1>Social Activity</h1>
+        <center>
+        <Typography mb={4} mt={3} variant="h4" sx={{color: '#457B9D'}} >
+           Social Activity Form
+      </Typography>
+      </center>
             <div>
+                <center>
                 <form onSubmit={addSocialActivity}>
                     <TextField
                         label="Whom"
@@ -115,7 +122,7 @@ function SocialActivityForm() {
                     />
                     <br />
                     <br />
-                    <FormControl fullWidth>
+                    <FormControl sx={{ minWidth: 195 }}>
                         <InputLabel id="demo-simple-select-label">Rating</InputLabel>
                         <Select
                             labelId="demo-simple-select-label"
@@ -134,7 +141,7 @@ function SocialActivityForm() {
                     <br />
                     <br />
                     <Box sx={{ minWidth: 120 }}>
-                        <FormControl fullWidth>
+                        <FormControl sx={{ minWidth: 195 }}>
                             <InputLabel id="demo-simple-select-label">Where</InputLabel>
                             <Select
                                 labelId="demo-simple-select-label"
@@ -171,26 +178,27 @@ function SocialActivityForm() {
                             onChange={(event) => setAddDescription(event.target.value)}
                         />
                         <Box
-                            m={1}
+                            m={2}
                             mt={3}
                             display="flex"
                             justifyContent="flex-end"
                             alignItems="flex-end">
-                            <Button variant="contained" type="submit" >Submit</Button>
+                            <Button variant="contained" type="submit" sx={{backgroundColor: '#457B9D'}} >Submit</Button>
                         </Box>
                         <br />
                         <br />
                         <Box
-                            m={1}
+                            m={2}
                             mt={3}
                             className="bottomSpace"
                             display="flex"
                             justifyContent="flex-end"
                             alignItems="flex-end">
-                            <Button variant="contained" onClick={cancelSocialActivity} >Cancel</Button>
+                            <Button variant="outlined" onClick={cancelSocialActivity} >Cancel</Button>
                         </Box>
                     </Box>
                 </form>
+                </center>
             </div>
         </>
     );

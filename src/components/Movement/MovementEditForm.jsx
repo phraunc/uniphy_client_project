@@ -19,6 +19,7 @@ import {
   MenuItem,
   Select,
   TextField,
+  Typography,
 } from "@mui/material";
 
 
@@ -28,11 +29,9 @@ function EditMovement() {
   const movementItemID = useSelector(store => store.rootMovementReducer.MovementReducerSingle)
   const history = useHistory();
   const [openAlert, setOpenAlert] = useState(false)
-
   const [addTitle, setAddTitle] = useState("");
   const [addIntensity, setAddIntensity] = useState(0);
   const [addTime, setAddTime] = useState("");
-
 
   const cancelMovement = () => {
     history.push('/movement')
@@ -127,33 +126,35 @@ function EditMovement() {
     )
   }
 
-
   return (<>
     <center>
-      <h1>Movement Form</h1>
+
+      <Typography mb={4} mt={3} variant="h4" sx={{ color: '#457B9D' }}>
+        Movement Edit Form
+      </Typography>
     </center>
     <div>
       <form onSubmit={saveChanges}>
-        <TextField
-          label="Activity"
-          variant="outlined"
-          type="text"
-          placeholder="Workout Title"
-          value={addTitle}
-          onChange={(event) => setAddTitle(event.target.value)} />
-        <br />
-        <br />
-        <TextField
-          label="Duration"
-          variant="outlined"
-          type="text"
-          placeholder="Time"
-          value={addTime}
-          onChange={(event) => setAddTime(event.target.value)} />
-        <br />
-        <br />
-        <Box sx={{ minWidth: 120 }}>
-          <FormControl fullWidth>
+        <center>
+          <TextField
+            label="Activity"
+            variant="outlined"
+            type="text"
+            placeholder="Workout Title"
+            value={addTitle}
+            onChange={(event) => setAddTitle(event.target.value)} />
+          <br />
+          <br />
+          <TextField
+            label="Duration"
+            variant="outlined"
+            type="text"
+            placeholder="Time"
+            value={addTime}
+            onChange={(event) => setAddTime(event.target.value)} />
+          <br />
+          <br />
+          <FormControl sx={{ minWidth: 200 }}>
             <InputLabel id="demo-simple-select-label">Intensity</InputLabel>
             <Select
               labelId="demo-simple-select-label"
@@ -169,40 +170,37 @@ function EditMovement() {
               <MenuItem value={5}>Extrem Intensity</MenuItem>
             </Select>
           </FormControl>
+        </center>
+        <br />
+        <br />
+        <Box
+          m={3}
+          mt={3}
+          display="flex"
+          justifyContent="flex-end"
+          alignItems="flex-end">
+          <Button variant="outlined" sx={{ mr: 20, color: '#FF4646', borderColor: '#FF4646' }} onClick={DeleteMovement}>Delete</Button>
 
-          <br />
-          <br />
-          <Box
-            m={1}
-            mt={3}
-            display="flex"
-            justifyContent="flex-end"
-            alignItems="flex-end">
-            <Button variant="contained" sx={{ backgroundColor: 'red', mr: 15 }} onClick={() => setOpenAlert(true)}>Delete</Button>
-            <Button variant="contained" type="submit">Save Changes</Button>
-          </Box>
-          <br />
-          <br />
-          <Box
-            m={1}
-            mt={3}
-            display="flex"
-            justifyContent="flex-end"
-            alignItems="flex-end">
-            <Button variant="contained" onClick={cancelMovement} >Cancel</Button>
-          </Box>
+          <Button variant="contained" type="submit" sx={{ backgroundColor: '#457B9D' }} >Save</Button>
         </Box>
-        <Dialog
-          open={openAlert}>
-          <DialogContent>
-            Are you sure you want to Delete?
-          </DialogContent>
-          <Button onClick={DeleteMovement}>Yes</Button>
-          <Button onClick={() => setOpenAlert(false)}>No</Button>
-        </Dialog>
+        <br />
+        <br />
+        <Box
+          m={3}
+          mt={3}
+          display="flex"
+          justifyContent="flex-end"
+          alignItems="flex-end">
+          <Button variant="outlined" onClick={cancelMovement} >Cancel</Button>
+        </Box>
+
+
+
       </form>
+ 
     </div>
   </>)
+
 }
 
 export default EditMovement;
