@@ -56,11 +56,60 @@ function EditSocialActivity() {
     }
 
     function DeleteSocialActivity() {
+    async function DeleteSocialActivity () {
+        const calculatedSocialScore = await socialPointsCalc()
         dispatch({
             type: 'DELETE_SOCIAL',
             payload: socialStoreID[0].id
         })
+        dispatch({
+            type: "CURRENT_SOCIAL_SCORE",
+            payload: {
+              score_sa:calculatedSocialScore.saScore,
+            }
+          })
         history.push('/social')
+    }
+
+    function socialPointsCalc() {
+        let durationPoints = socialStoreID[0].duration
+        let ratingPoints = 0
+        let totalBalancePoints = 0
+        switch (socialStoreID[0].rating) {
+            case 0:
+                ratingPoints = .9
+                break;
+            case 1:
+                ratingPoints = 1
+                break;
+            case 2:
+                ratingPoints = 1.1
+                break;
+            case 3:
+                ratingPoints = 1.2
+                break;
+            case 4:
+                ratingPoints = 1.3
+                break;
+            default:
+                screenPoints = 1
+        }
+        totalBalancePoints = Number((durationPoints * ratingPoints).toFixed(2))
+        let saScore = 0
+        if (totalBalancePoints > 100) {
+            saScore = 100
+        } else if (totalBalancePoints < 0) {
+            saScore = 0
+        } else {
+            saScore = totalBalancePoints
+        }
+        return (
+            {
+                saScore,
+                totalBalancePoints
+            }
+
+        )
     }
 
 

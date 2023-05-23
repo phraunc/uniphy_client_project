@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import Stopwatch from "../Movement/Stopwatch.jsx";
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+// import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 import {
   Radio,
@@ -23,18 +23,18 @@ import {
 
 function MovementForm() {
 
-        const theme = createTheme({
-          palette: {
-            primary: {
-              main: '#41b8d5',
-              contrastText: '#FFFFFF',
-            },
-            secondary: {
-              main: '#31356e',
-              contrastText: '#FFFFFF',
-            },
-          },
-      });
+    //     const theme = createTheme({
+    //       palette: {
+    //         primary: {
+    //           main: '#41b8d5',
+    //           contrastText: '#FFFFFF',
+    //         },
+    //         secondary: {
+    //           main: '#31356e',
+    //           contrastText: '#FFFFFF',
+    //         },
+    //       },
+    //   });
 
   const history = useHistory();
   const dispatch = useDispatch();
@@ -51,8 +51,6 @@ function MovementForm() {
 
   async function addMovement (event) {
     event.preventDefault();
- 
-
     // console.log('this is the time', addTime)
     const calculatedMovementScore = await movementScoreCalc()
     dispatch({
@@ -136,9 +134,9 @@ function MovementForm() {
 
   return (
     <>
-      <ThemeProvider theme={theme}>
+      {/* <ThemeProvider theme={theme}> */}
         <center>
-      <Typography variant="h4" color="secondary" mt={3}>
+      <Typography mb={4} mt={3} variant="h4" sx={{color: '#457B9D'}} >
         Movement Form
       </Typography>
       </center>
@@ -179,7 +177,7 @@ function MovementForm() {
               display="flex"
               justifyContent="flex-end"
               alignItems="flex-end">
-              <Button variant="contained" color="secondary" type="submit" >Submit</Button>
+              <Button variant="contained" type="submit" sx={{backgroundColor: '#457B9D'}}>Submit</Button>
             </Box>
 
             <Box
@@ -188,11 +186,11 @@ function MovementForm() {
               display="flex"
               justifyContent="flex-end"
               alignItems="flex-end">
-              <Button variant="contained" onClick={cancelMovement} >Cancel</Button>
+              <Button variant="outlined" onClick={cancelMovement} >Cancel</Button>
             </Box>
         </form>
       </div>
-      </ThemeProvider>
+      {/* </ThemeProvider> */}
     </>
    
   );

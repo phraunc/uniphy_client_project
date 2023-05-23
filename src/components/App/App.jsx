@@ -39,6 +39,7 @@ import DetailsPage from "../Details/Details";
 
 
 function App() {
+
   const dispatch = useDispatch();
 
   const user = useSelector((store) => store.user);
@@ -50,6 +51,7 @@ function App() {
   
 
   return (
+   
     <Router>
       <div>
         <Nav />
@@ -191,6 +193,7 @@ function App() {
         {/* <Footer /> */}
       </div>
     </Router>
+    
   );
 }
 
