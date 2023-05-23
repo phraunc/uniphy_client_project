@@ -24,11 +24,11 @@ function FoodForm() {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  const [addQuality, setAddQuality] = useState(0);
-  const [addQuantity, setAddQuantity] = useState(0);
-  const [addSnack, setAddSnack] = useState(0);
-  const [addWater, setAddWater] = useState(0);
-  const [addFasting, setAddFasting] = useState(0);
+  const [addQuality, setAddQuality] = useState();
+  const [addQuantity, setAddQuantity] = useState();
+  const [addSnack, setAddSnack] = useState();
+  const [addWater, setAddWater] = useState();
+  const [addFasting, setAddFasting] = useState();
 
   async function addFood  (event)  {
     event.preventDefault();
@@ -271,7 +271,7 @@ function FoodForm() {
             <br />
             <br />
             <Box
-              m={1}
+              m={2}
               mt={3}
               display="flex"
               justifyContent="flex-end"
@@ -281,13 +281,13 @@ function FoodForm() {
             <br />
             <br />
             <Box
-              m={1}
+              m={2}
               mt={3}
               className="bottomSpace"
               display="flex"
               justifyContent="flex-end"
               alignItems="flex-end">
-              <Button variant="contained" onClick={cancelFood} >Cancel</Button>
+              <Button variant="outlined" onClick={cancelFood} >Cancel</Button>
             </Box>
           </Box>
         </form>

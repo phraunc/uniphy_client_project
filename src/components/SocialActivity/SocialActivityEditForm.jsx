@@ -16,6 +16,7 @@ import {
     MenuItem,
     Select,
     TextField,
+    Typography,
 } from "@mui/material";
 
 
@@ -114,7 +115,9 @@ function EditSocialActivity() {
 
 
     return (<>
-        <h1>Social Activity Edit Form</h1>
+                        <Typography mb={4} mt={3} variant="h4" sx={{color: '#457B9D'}} >
+           Social Activity Form
+      </Typography>
         <div>
             <form onSubmit={saveChanges}>
                 <TextField

@@ -16,6 +16,7 @@ import {
     MenuItem,
     Select,
     TextField,
+    Typography,
 } from "@mui/material";
 
 
@@ -125,10 +126,13 @@ function EditMovement() {
 
 
     return (<>
-    <center>
-        <h1>Movement Form</h1>
-    </center>
+
+       <Typography mb={4} mt={3} variant="h4" sx={{color: '#457B9D'}} >
+        Movement Form
+      </Typography>
+    
         <div>
+      
             <form onSubmit={saveChanges}>
                 <TextField
                     label="Activity"
@@ -175,7 +179,7 @@ function EditMovement() {
                         justifyContent="flex-end"
                         alignItems="flex-end">
                         <Button variant="contained" sx={{ backgroundColor: 'red', mr: 15 }} onClick={DeleteMovement}>Delete</Button>
-                        <Button variant="contained" type="submit">Save Changes</Button>
+                        <Button variant="contained" type="submit" sx={{backgroundColor: '#457B9D'}}>Save Changes</Button>
                     </Box>
                     <br />
                     <br />
@@ -188,13 +192,8 @@ function EditMovement() {
                         <Button variant="contained" onClick={cancelMovement} >Cancel</Button>
                     </Box>
                 </Box>
-
-
             </form>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
+           
         </div>
     </>)
 }

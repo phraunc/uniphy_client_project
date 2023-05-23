@@ -16,15 +16,16 @@ import {
     MenuItem,
     Select,
     TextField,
+    Typography,
 } from "@mui/material";
 
 function EditWork() {
     const dispatch = useDispatch();
     const workItemID = useSelector(store => store.rootWorkReducer.workReducerSingle)
     const history = useHistory();
-   const [addNote, setAddNote] = useState(0)
-   const [addWorkload, setAddWorkload] = useState(0)
-   const [addFullfillment, setAddFullfillment] = useState(0)
+   const [addNote, setAddNote] = useState();
+   const [addWorkload, setAddWorkload] = useState();
+   const [addFullfillment, setAddFullfillment] = useState();
 
 
     const cancelWork = () => {
@@ -162,8 +163,13 @@ function EditWork() {
     }
 
     return (<>
-        <h1>Work Form</h1>
+    <center>
+    <Typography mb={4} mt={3} variant="h4" sx={{color: '#457B9D'}} >
+           Work Form
+      </Typography>
+      </center>
         <div>
+        <center>
             <form onSubmit={saveChanges}>
                 <TextField
                     label="Work/School"
@@ -176,18 +182,33 @@ function EditWork() {
                 <br />
                 <br />
                 <Box sx={{ minWidth: 120 }}>
-                    <TextField
-                        label="workload"
-                        variant="outlined"
-                        type="text"
-                        placeholder="Workload"
-                        value={addWorkload}
-                        onChange={(event) => setAddWorkload(event.target.value)}
-                    />
+                <FormControl sx={{ minWidth: 195 }}>
+                        <InputLabel id="demo-simple-select-label">Workload</InputLabel>
+                        <Select
+                            labelId="demo-simple-select-label"
+                            id="demo-simple-select"
+                            value={addWorkload}
+                            label="quantity"
+                            onChange={(event) => setAddWorkload(event.target.value)}
+                        >
+                            <MenuItem value={-5}>Feeling Buried</MenuItem>
+                            <MenuItem value={-4}>Drowning In Tasks</MenuItem>
+                            <MenuItem value={-3}>Feeling Exhausted</MenuItem>
+                            <MenuItem value={-2}>Running On Empty</MenuItem>
+                            <MenuItem value={-1}>Treading Water</MenuItem>
+                            <MenuItem value={0}>Staying Afloat</MenuItem>
+                            <MenuItem value={1}>Finding Balance</MenuItem>
+                            <MenuItem value={2}>In The Groove</MenuItem>
+                            <MenuItem value={3}>Smooth Sailing</MenuItem>
+                            <MenuItem value={4}>Master Of The Craft</MenuItem>
+                            <MenuItem value={5}>Overdrive</MenuItem>
+
+                        </Select>
+                    </FormControl>
                     <br />
                     <br />
                     <TextField
-                        label="Work Fullfillment"
+                        label="Work Fullfillment 1-10"
                         variant="outlined"
                         type="text"
                         placeholder="Fullfilled?"
@@ -197,27 +218,28 @@ function EditWork() {
                     <br />
                     <br />
                     <Box
-                        m={1}
+                        m={2}
                         mt={3}
                         display="flex"
                         justifyContent="flex-end"
                         alignItems="flex-end">
-                        <Button variant="contained" sx={{ backgroundColor: 'red', mr: 15 }} onClick={DeleteWork}>Delete</Button>
-                        <Button variant="contained" type="submit" >Save Changes</Button>
+                        <Button variant="outlined" sx={{ color: '#FF4646', borderColor: '#FF4646', mr: 20 }} onClick={DeleteWork}>Delete</Button>
+                        <Button variant="contained" type="submit"  sx={{backgroundColor: '#457B9D'}}>Save </Button>
                     </Box>
                     <br />
                     <br />
                     <Box
-                        m={1}
+                        m={2}
                         mt={3}
                         className="bottomSpace"
                         display="flex"
                         justifyContent="flex-end"
                         alignItems="flex-end">
-                        <Button variant="contained" onClick={cancelWork} >Cancel</Button>
+                        <Button variant="outlined" onClick={cancelWork} >Cancel</Button>
                     </Box>
                 </Box>
             </form>
+            </center>
         </div>
     </>)
 }

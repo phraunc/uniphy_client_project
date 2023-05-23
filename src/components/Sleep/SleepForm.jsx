@@ -17,15 +17,16 @@ import {
     Select,
     TextField,
     duration,
+    Typography,
 } from "@mui/material";
 
 
-function FoodForm() {
+function SleepForm() {
     const history = useHistory();
     const dispatch = useDispatch();
 
-    const [addQuality, setAddQuality] = useState(2);
-    const [addScreenTime, setScreenTime] = useState(0);
+    const [addQuality, setAddQuality] = useState();
+    const [addScreenTime, setScreenTime] = useState();
     const [addStartSleep, setStartSleep] = useState();
     const [addEndSleep, setEndSleep] = useState();
     const [addDuration, setAddDuration] = useState();
@@ -128,11 +129,16 @@ function FoodForm() {
 
 
     return (<>
-        <h1>Sleep Form</h1>
+    <center>
+        <Typography mb={4} mt={3} variant="h4" sx={{color: '#457B9D'}} >
+           Sleep Form
+      </Typography>
+      </center>
         <div>
+            <center>
             <form onSubmit={addSleep}>
                 <Box sx={{ minWidth: 120 }}>
-                    <FormControl fullWidth>
+                    <FormControl sx={{ minWidth: 195 }}>
                         <InputLabel id="demo-simple-select-label">Screen Time</InputLabel>
                         <Select
                             labelId="demo-simple-select-label"
@@ -185,7 +191,7 @@ function FoodForm() {
                     />
                     <br />
                     <br />
-                    <FormControl fullWidth>
+                    <FormControl sx={{ minWidth: 195 }}>
                         <InputLabel id="demo-simple-select-label">Quality</InputLabel>
                         <Select
                             labelId="demo-simple-select-label"
@@ -205,29 +211,30 @@ function FoodForm() {
                     <br />
                     <br />
                     <Box
-                        m={1}
+                        m={2}
                         mt={3}
                         display="flex"
                         justifyContent="flex-end"
                         alignItems="flex-end">
-                        <Button variant="contained" type="submit" >Submit</Button>
+                        <Button variant="contained" type="submit" sx={{backgroundColor: '#457B9D'}}>Submit</Button>
                     </Box>
                     <br />
                     <br />
                     <Box
-                        m={1}
+                        m={2}
                         mt={3}
                         className="bottomSpace"
                         display="flex"
                         justifyContent="flex-end"
                         alignItems="flex-end">
-                        <Button variant="contained" onClick={cancelSleep} >Cancel</Button>
+                        <Button variant="outlined" onClick={cancelSleep} >Cancel</Button>
                     </Box>
                 </Box>
             </form>
+            </center>
         </div>
 
     </>)
 }
 
-export default FoodForm;
+export default SleepForm;
