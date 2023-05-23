@@ -1,7 +1,5 @@
-import LogOutButton from '../LogOutButton/LogOutButton';
 import { useSelector } from 'react-redux';
 import React, { useEffect, useState, useRef } from "react";
-import ReactDOM from "react-dom";
 import { CircleSlider } from "react-circle-slider";
 import Progressbar from './ProgressBar';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -9,9 +7,7 @@ import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom';
 import { Box, Button } from '@mui/material';
 import "./UserPage.css";
-import { CurrencyYenTwoTone } from '@mui/icons-material';
-import { stringify } from 'json5';
-import { async } from 'q';
+
 
 function UserPage({ bgcolor, progress, height, onClick }) {
   const theme = createTheme({
