@@ -36,6 +36,7 @@ import Work from "../Work/Work";
 import WorkForm from "../Work/WorkForm";
 import WorkEditForm from "../Work/WorkEditForm";
 import DetailsPage from "../Details/Details";
+import SnackbarProvider from "../SnackbarProvider/SnackbarProvider";
 
 
 function App() {
@@ -107,6 +108,8 @@ function App() {
               <RegisterPage />
             )}
           </Route>
+          <SnackbarProvider>
+                        {/* Paths for Food */}
           <Route exact path="/food">
             {user.id ? <Food /> : <Redirect to="/home" />}
           </Route>
@@ -116,6 +119,7 @@ function App() {
           <Route exact path="/food/details/:id">
             {user.id ? <EditFood /> : <Redirect to="/food" />}
           </Route>
+                        {/* Paths for Sleep */}
           <Route exact path="/sleep">
             {user.id ? <Sleep /> : <Redirect to="/home" />}
           </Route>
@@ -125,7 +129,7 @@ function App() {
           <Route exact path="/sleep/details/:id">
             {user.id ? <EditSleep /> : <Redirect to="/sleep" />}
           </Route>
-
+                {/* Paths for Movement */}
           <Route exact path="/movement">
             {user.id ? <Movement /> : <Redirect to="/home" />}
           </Route>
@@ -135,7 +139,6 @@ function App() {
           <Route exact path="/movement/details/:id">
             {user.id ? <EditMovement /> : <Redirect to="/movement" />}
           </Route>
-
                 {/* Paths for Social Activity */}
           <Route exact path="/social">
             {user.id ? <SocialActivity /> : <Redirect to="/home" />}
@@ -146,8 +149,7 @@ function App() {
           <Route exact path="/social/details/:id">
             {user.id ? <EditSocial /> : <Redirect to="/social" />}
           </Route>
-
-
+              {/* Paths for Occupation */}
           <Route exact path="/occupation">
             {user.id ? <Occupation /> : <Redirect to="/home" />}
           </Route>
@@ -157,7 +159,7 @@ function App() {
           <Route exact path="/occupation/details/:id">
             {user.id ? <EditOccupation /> : <Redirect to="/occupation" />}
           </Route>
-
+              {/* Paths for Work */}
           <Route exact path="/work">
             {user.id ? <Work /> : <Redirect to="/home" />}
           </Route>
@@ -171,7 +173,7 @@ function App() {
           <Route exact path="/details">
             {user.id ? <DetailsPage/> : <Redirect to="/details" />}
           </Route>
-
+          </SnackbarProvider>
           <Route exact path="/home">
             {user.id ? (
               // If the user is already logged in,

@@ -1,8 +1,9 @@
+import * as React from 'react';
+import { useContext } from 'react';
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import EditFood from "./FoodEditForm";
-
 import {
   Radio,
   RadioGroup,
@@ -13,16 +14,18 @@ import {
   Slider,
   Stack,
   Button,
+  Snackbar,
   InputLabel,
   MenuItem,
   Select,
   TextField,
 } from "@mui/material";
+import MuiAlert, { AlertProps } from '@mui/material/Alert';
+import { SnackbarContext } from '../SnackbarProvider/SnackbarProvider'
 
 function FoodForm() {
   const history = useHistory();
   const dispatch = useDispatch();
-
 
   const [addQuality, setAddQuality] = useState(0);
   const [addQuantity, setAddQuantity] = useState(0);
@@ -35,7 +38,13 @@ function FoodForm() {
     history.push("/home");
   };
 
-  async function addFood  (event)  {
+  const { openSnackbar } = useContext(SnackbarContext);
+
+  const handleClick = () => {
+    openSnackbar('Snackbar message!');
+  };
+
+  async function addFood(event) {
     event.preventDefault();
     const calculatedFoodScore = await foodScoreCalc()
     dispatch({
@@ -58,12 +67,11 @@ function FoodForm() {
     dispatch({
       type: "UPDATE_FOOD_SCORE",
       payload: {
-        score_f:calculatedFoodScore.fScore,
+        score_f: calculatedFoodScore.fScore,
       }
     })
-
-    history.push("/food");
-
+    handleClick()
+    history.push("/food")
   };
 
   const cancelFood = () => {
@@ -156,7 +164,7 @@ function FoodForm() {
     }
     totalBalancePoints = Number(((qualityPoints - snackPoints - quantityPoints) * fastingPoints).toFixed(2))
     let fScore = 0
-    if(totalBalancePoints > 100) {
+    if (totalBalancePoints > 100) {
       fScore = 100
     } else if (totalBalancePoints < 0) {
       fScore = 0
@@ -164,13 +172,13 @@ function FoodForm() {
       fScore = totalBalancePoints
     }
     return (
-        {
-            fScore,
-            totalBalancePoints
-        }
-
+      {
+        fScore,
+        totalBalancePoints
+      }
     )
   }
+
 
   return (
     <>
@@ -290,8 +298,6 @@ function FoodForm() {
               <Button variant="contained" onClick={cancelFood} >Cancel</Button>
             </Box>
           </Box>
-
-
         </form>
       </div>
     </>
