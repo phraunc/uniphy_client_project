@@ -17,15 +17,16 @@ import {
     MenuItem,
     Select,
     TextField,
+    Typography,
 } from "@mui/material";
 
 function OccupationForm() {
     const history = useHistory();
     const dispatch = useDispatch();
 
-    const [addTitle, setAddTitle] = useState('');
-    const [addDuration, setAddDuration] = useState(0);
-    const [addDescription, setAddDescription] = useState('');
+    const [addTitle, setAddTitle] = useState();
+    const [addDuration, setAddDuration] = useState();
+    const [addDescription, setAddDescription] = useState();
 
 
     const handleHome = () => {
@@ -87,9 +88,11 @@ function OccupationForm() {
 
     return (
         <>
-
-            <h1>Occupation Form</h1>
+          <Typography mb={4} mt={3} variant="h4" sx={{color: '#457B9D'}} >
+           Occupation Form
+      </Typography>
             <div>
+                <center>
                 <form onSubmit={addOccupation}>
                     <TextField
                         label="Occupation title"
@@ -125,26 +128,27 @@ function OccupationForm() {
                         <br />
                         <br />
                         <Box
-                            m={1}
+                            m={2}
                             mt={3}
                             display="flex"
                             justifyContent="flex-end"
                             alignItems="flex-end">
-                            <Button variant="contained" type="submit" >Submit</Button>
+                            <Button variant="contained" type="submit"  sx={{backgroundColor: '#457B9D'}}>Submit</Button>
                         </Box>
                         <br />
                         <br />
                         <Box
-                            m={1}
+                            m={2}
                             mt={3}
                             className="bottomSpace"
                             display="flex"
                             justifyContent="flex-end"
                             alignItems="flex-end">
-                            <Button variant="contained" onClick={cancelOccupation} >Cancel</Button>
+                            <Button variant="outlined" onClick={cancelOccupation} >Cancel</Button>
                         </Box>
                     </Box>
                 </form>
+                </center>
             </div>
         </>
     );

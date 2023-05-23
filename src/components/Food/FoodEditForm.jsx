@@ -16,6 +16,7 @@ import {
     MenuItem,
     Select,
     TextField,
+    Typography,
 } from "@mui/material";
 
 
@@ -171,7 +172,9 @@ function EditFood() {
 
 
     return (<>
-        <h1>Food Form</h1>
+    <Typography mb={4} mt={3} variant="h4" sx={{color: '#457B9D'}} >
+        Food Form
+      </Typography>
         <div>
             <form onSubmit={saveChanges}>
                 <TextField
@@ -268,24 +271,24 @@ function EditFood() {
                     <br />
                     <br />
                     <Box
-                        m={1}
+                        m={2}
                         mt={3}
                         display="flex"
                         justifyContent="flex-end"
                         alignItems="flex-end">
                         <Button variant="contained" sx={{ backgroundColor: 'red', mr: 15 }} onClick={DeleteFood}>Delete</Button>
-                        <Button variant="contained" type="submit" >Save Changes</Button>
+                        <Button variant="contained" type="submit" sx={{backgroundColor: '#2f5f98'}}>Save</Button>
                     </Box>
                     <br />
                     <br />
                     <Box
-                        m={1}
+                        m={2}
                         mt={3}
                         className="bottomSpace"
                         display="flex"
                         justifyContent="flex-end"
                         alignItems="flex-end">
-                        <Button variant="contained" onClick={cancelFood} >Cancel</Button>
+                        <Button variant="outlined" onClick={cancelFood} >Cancel</Button>
                     </Box>
                 </Box>
 

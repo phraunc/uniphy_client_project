@@ -119,7 +119,6 @@ function EditSocialActivity() {
 
 
     return (<>
-
         <center>
             <Typography mb={4} mt={3} variant="h4" sx={{ color: '#6ce5e8' }}>
                 Social Activity Edit Form

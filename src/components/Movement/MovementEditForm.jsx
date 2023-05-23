@@ -3,20 +3,21 @@ import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import Stopwatch from "./Stopwatch";
 import {
-  Radio,
-  RadioGroup,
-  FormControlLabel,
-  FormControl,
-  FormLabel,
-  Box,
-  Slider,
-  Stack,
-  Button,
-  InputLabel,
-  MenuItem,
-  Select,
-  TextField,
-  Typography,
+
+    Radio,
+    RadioGroup,
+    FormControlLabel,
+    FormControl,
+    FormLabel,
+    Box,
+    Slider,
+    Stack,
+    Button,
+    InputLabel,
+    MenuItem,
+    Select,
+    TextField,
+    Typography,
 } from "@mui/material";
 
 
@@ -124,7 +125,6 @@ function EditMovement() {
     )
   }
 
-
   return (<>
     <center>
 
@@ -171,12 +171,6 @@ function EditMovement() {
           </FormControl>
 
         </center>
-
-
-
-
-
-
         <br />
         <br />
         <Box
@@ -206,6 +200,7 @@ function EditMovement() {
  
     </div>
   </>)
+
 }
 
 export default EditMovement;

@@ -16,6 +16,7 @@ import {
     MenuItem,
     Select,
     TextField,
+    Typography,
 } from "@mui/material";
 
 function EditOccupation() {
@@ -84,7 +85,12 @@ function EditOccupation() {
     }
 
     return (<>
-        <h1>Occupation Form</h1>
+    <center>
+           <Typography mb={4} mt={3} variant="h4" sx={{color: '#457B9D'}} >
+           Occupation Form
+      </Typography>
+      </center>
+       
         <div>
             <form onSubmit={saveChanges}>
                 <TextField
@@ -125,7 +131,7 @@ function EditOccupation() {
                         justifyContent="flex-end"
                         alignItems="flex-end">
                         <Button variant="contained" sx={{ backgroundColor: 'red', mr: 15 }} onClick={DeleteOccupation}>Delete</Button>
-                        <Button variant="contained" type="submit" >Save Changes</Button>
+                        <Button variant="contained" type="submit"  sx={{backgroundColor: '#457B9D'}}>Save</Button>
                     </Box>
                     <br />
                     <br />
@@ -136,7 +142,7 @@ function EditOccupation() {
                         display="flex"
                         justifyContent="flex-end"
                         alignItems="flex-end">
-                        <Button variant="contained" onClick={cancelOccupation} >Cancel</Button>
+                        <Button variant="outlined" onClick={cancelOccupation} >Cancel</Button>
                     </Box>
                 </Box>
             </form>
