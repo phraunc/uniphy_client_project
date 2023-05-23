@@ -219,5 +219,5 @@ function EditSocialActivity() {
         </div>
     </>)
 }
-
+}
 export default EditSocialActivity;

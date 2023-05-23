@@ -160,6 +160,8 @@ function DetailsPage({ bgcolor, progress, height, onClick }) {
       <Progressbar parentBgColor="lightgrey" bgcolor="#704e85" pillarName='Today: ' progress={Math.round(Number(BS.score_s))} height={30} />
       <Progressbar parentBgColor="lightgrey" bgcolor="orange" pillarName='Average: ' progress={Math.round(Number(BSaverages.sleep_score))} height={30} />
       </div>
+      <br/>
+      <br/>
       {/* <Progressbar bgcolor="purple" progress={BS.score_w} height={40} onClick={() => history.push("/work")} /> */}
     </>)
 }

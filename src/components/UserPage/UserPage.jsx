@@ -199,20 +199,6 @@ function UserPage({ bgcolor, progress, height, onClick }) {
                 <Progressbar parentBgColor="lightgrey" bgcolor="#4169e1" pillarName='Work:' progress={Math.round(Number(BS.score_w))} height={40} onClick={() => history.push("/work")} />
                 </div>
               </div>
-
-{/* 
-              <Progressbar parentBgColor="lightgrey" bgcolor="#31356e" pillarName='Movement:' progress={Math.round(Number(BS.score_m))} height={40} onClick={() => history.push("/movement")} />
-              <Progressbar parentBgColor="lightgrey" bgcolor="#6ce5e8" pillarName='Social:' progress={Math.round(Number(BS.score_sa))} height={40} onClick={() => history.push("/social")} />
-              <Progressbar parentBgColor="lightgrey" bgcolor="#41b8d5" pillarName='Occupation:' progress={Math.round(Number(BS.score_o))} height={40} onClick={() => history.push("/occupation")} />
-              <Progressbar parentBgColor="lightgrey" bgcolor="#2f5f98" pillarName='Food:' progress={Math.round(Number(BS.score_f))} height={40} onClick={() => history.push("/food")} />
-              <Progressbar parentBgColor="lightgrey" bgcolor="#704e85" pillarName='Sleep:' progress={Math.round(Number(BS.score_s))} height={40} onClick={() => history.push("/sleep")} />
-              <hr />
-              <Progressbar parentBgColor="lightgrey" bgcolor="#4169e1" pillarName='Work:' progress={Math.round(Number(BS.score_w))} height={40} onClick={() => history.push("/work")} /> */}
-
-
-
-
-
             </> : <>
               <Progressbar parentBgColor="darkgrey" bgcolor="grey" pillarName='Movement:' progress={Math.round(Number(BS.score_m))} height={40} />
               <Progressbar parentBgColor="darkgrey" bgcolor="grey" pillarName='Social:' progress={Math.round(Number(BS.score_sa))} height={40} />
@@ -237,14 +223,17 @@ function UserPage({ bgcolor, progress, height, onClick }) {
                 onClick={startDay}>Start Day</Button>
             </Box>
             : <>
-              <Box mt={8} ml={3}>
+              <Box mt={8} ml={3} mb={6}>
                 <Button
                   variant='contained'
                   onClick={endDay}>End Day</Button>
               </Box>
             </>
           }
-
+              <br/>
+              <br/>
+              <br/>
+              <br/>
         </div>
       </div>
 
