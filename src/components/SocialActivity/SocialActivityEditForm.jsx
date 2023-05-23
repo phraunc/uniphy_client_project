@@ -16,6 +16,7 @@ import {
     MenuItem,
     Select,
     TextField,
+    Typography,
 } from "@mui/material";
 
 
@@ -50,12 +51,12 @@ function EditSocialActivity() {
                 online: addOnline,
                 rating: addRating,
             }
-            
+
         })
         history.push('/social')
     }
 
-    async function DeleteSocialActivity () {
+    async function DeleteSocialActivity() {
         const calculatedSocialScore = await socialPointsCalc()
         dispatch({
             type: 'DELETE_SOCIAL',
@@ -64,9 +65,9 @@ function EditSocialActivity() {
         dispatch({
             type: "CURRENT_SOCIAL_SCORE",
             payload: {
-              score_sa:calculatedSocialScore.saScore,
+                score_sa: calculatedSocialScore.saScore,
             }
-          })
+        })
         history.push('/social')
     }
 
@@ -114,43 +115,48 @@ function EditSocialActivity() {
 
 
     return (<>
-        <h1>Social Activity Edit Form</h1>
+
+        <center>
+            <Typography mb={4} mt={3} variant="h4" sx={{ color: '#6ce5e8' }}>
+                Social Activity Edit Form
+            </Typography>
+
+        </center>
         <div>
-            <form onSubmit={saveChanges}>
-                <TextField
-                    label="Whom"
-                    variant="outlined"
-                    type="text"
-                    placeholder="Whom was it with"
-                    // min="1"
-                    // max="100"
-                    value={addWhom}
-                    onChange={(event) => setAddWhom(event.target.value)}
-                />
-                <br />
-                <br />
-                <FormControl fullWidth>
-                    <InputLabel id="demo-simple-select-label">Rating</InputLabel>
-                    <Select
-                        labelId="demo-simple-select-label"
-                        id="demo-simple-select"
-                        value={addRating}
-                        label="Rating"
-                        onChange={(event) => setAddRating(event.target.value)}
-                    >
-                        <MenuItem value={0}>Meh</MenuItem>
-                        <MenuItem value={1}>Ok</MenuItem>
-                        <MenuItem value={2}>Good</MenuItem>
-                        <MenuItem value={3}>Great</MenuItem>
-                        <MenuItem value={4}>Amazing</MenuItem>
-                    </Select>
-                </FormControl>
-
-
-                <br />
-                <br />
-                <Box sx={{ minWidth: 120 }}>
-                    <FormControl fullWidth>
+            <FormControl onSubmit={saveChanges}>
+                <center>
+                 
+                    <TextField
+                        label="Whom"
+                        variant="outlined"
+                        type="text"
+                        placeholder="Whom was it with"
+                        // min="1"
+                        // max="100"
+                        value={addWhom}
+                        onChange={(event) => setAddWhom(event.target.value)}
+                    />
+                    <br />
+                    <br />
+                    <FormControl sx={{ minWidth: 200 }}>
+                        <InputLabel id="demo-simple-select-label">Rating</InputLabel>
+                        <Select
+                            labelId="demo-simple-select-label"
+                            id="demo-simple-select"
+                            value={addRating}
+                            label="Rating"
+                            onChange={(event) => setAddRating(event.target.value)}
+                        >
+                            <MenuItem value={0}>Meh</MenuItem>
+                            <MenuItem value={1}>Ok</MenuItem>
+                            <MenuItem value={2}>Good</MenuItem>
+                            <MenuItem value={3}>Great</MenuItem>
+                            <MenuItem value={4}>Amazing</MenuItem>
+                        </Select>
+                    </FormControl>
+                    <br />
+                    <br />
+                    <FormControl sx={{ minWidth: 200 }}>
                         <InputLabel id="demo-simple-select-label">Where</InputLabel>
                         <Select
                             labelId="demo-simple-select-label"
@@ -166,8 +172,10 @@ function EditSocialActivity() {
 
                         </Select>
                     </FormControl>
+
                     <br />
                     <br />
+
                     <TextField
                         label="Duration"
                         variant="outlined"
@@ -190,32 +198,34 @@ function EditSocialActivity() {
                         value={addDescription}
                         onChange={(event) => setAddDescription(event.target.value)}
                     />
+                </center>
 
 
-                    <Box
-                        m={1}
-                        mt={3}
-                        display="flex"
-                        justifyContent="flex-end"
-                        alignItems="flex-end">
-                        <Button variant="contained" sx={{ backgroundColor: 'red', mr: 15 }} onClick={DeleteSocialActivity}>Delete</Button>
-                        <Button variant="contained" type="submit" >Save Changes</Button>
-                    </Box>
-                    <br />
-                    <br />
-                    <Box
-                        m={1}
-                        mt={3}
-                        className="bottomSpace"
-                        display="flex"
-                        justifyContent="flex-end"
-                        alignItems="flex-end">
-                        <Button variant="contained" onClick={cancelFood} >Cancel</Button>
-                    </Box>
+
+                <br />
+                <br />
+
+                <Box
+                    m={3}
+                    mt={3}
+                    display="flex"
+                    justifyContent="flex-end"
+                    alignItems="flex-end">
+                    <Button variant="outlined" sx={{ mr: 20, color: '#FF4646', borderColor: '#FF4646' }}onClick={DeleteSocialActivity}>Delete</Button>
+                    <Button variant="contained" type="submit" sx={{ backgroundColor: '#6ce5e8' }} >Save</Button>
                 </Box>
-
-
-            </form>
+                <br />
+                <br />
+                <Box
+                    m={3}
+                    mt={3}
+                    className="bottomSpace"
+                    display="flex"
+                    justifyContent="flex-end"
+                    alignItems="flex-end">
+                    <Button variant="outlined" onClick={cancelFood} >Cancel</Button>
+                </Box>
+            </FormControl>
         </div>
     </>)
 }
