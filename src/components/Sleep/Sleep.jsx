@@ -72,7 +72,7 @@ function Sleep() {
                     <SleepHistoryContainer item={sleepStore} />
                 </div>
                 <div style={{ display: "flex", justifyContent: "center" }}>
-                    <img src={manualAddSleep} alt="addSleepButton" onClick={sleepForm} width={300} />
+                    <img src={manualAddSleep} alt="addSleepButton" onClick={sleepForm} width={200} height={50} />
                 </div>
 
             </div>

@@ -73,7 +73,7 @@ function SocialActivity() {
           <HistoryContainerSocial item={socialStore} />
         </div>
         <div style={{ display: "flex", justifyContent: "center" }}>
-          <img src={manualAddSocial} alt="addFoodButton" onClick={socialForm} width={300} />
+          <img src={manualAddSocial} alt="addFoodButton" onClick={socialForm} width={200} height={50}/>
         </div>
 
       </div>

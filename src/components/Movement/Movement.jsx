@@ -74,7 +74,7 @@ function Movement() {
                         <HistoryContainerMovement item={movementStore} />
                     </div>
                     <div style={{ display: "flex", justifyContent: "center" }}>
-                        <img src={manualAddMovement} alt="addMovementButton" onClick={movementForm} width={300} />
+                        <img src={manualAddMovement} alt="addMovementButton" onClick={movementForm} width={200} height={50} />
                     </div>
                 </>
 
