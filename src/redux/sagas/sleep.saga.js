@@ -51,12 +51,21 @@ function* deleteSleep(action) {
   }
 }
 
-function* updateBalanceSleep(action) {
+function* incrementBalanceSleep(action) {
   // console.log('our update balance score saga:', action.payload)
   try{
-    yield axios.put(`./api/sleep/update/`, action.payload)
+    yield axios.put(`./api/sleep/increment/`, action.payload)
   } catch (err) {
-    console.log('error in update sleep balance score saga', err)
+    console.log('error in update food balance score saga', err)
+  }
+}
+
+function* decrementBalanceSleep(action) {
+  // console.log('our update balance score saga:', action.payload)
+  try{
+    yield axios.put(`./api/sleep/decrement/`, action.payload)
+  } catch (err) {
+    console.log('error in update food balance score saga', err)
   }
 }
 
@@ -65,8 +74,9 @@ function* sleepSaga() {
   yield takeEvery("POST_SLEEP", postSleep);
   yield takeEvery("UPDATE_SLEEP", putSleep);
   yield takeEvery("DELETE_SLEEP", deleteSleep);
-  yield takeLatest("GET_SLEEP_ID", getSleepId)
-  yield takeLatest("UPDATE_SLEEP_SCORE", updateBalanceSleep)
+  yield takeLatest("GET_SLEEP_ID", getSleepId);
+  yield takeLatest("UPDATE_SLEEP_SCORE", incrementBalanceSleep);
+  yield takeLatest("CURRENT_SLEEP_SCORE", decrementBalanceSleep);
 }
 
 export default sleepSaga;

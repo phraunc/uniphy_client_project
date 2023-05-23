@@ -50,12 +50,21 @@ function* deleteSocial(action) {
   }
 }
 
-function* updateBalanceSocial(action) {
+function* incrementBalanceSocial(action) {
   // console.log('our update balance score saga:', action.payload)
   try{
-    yield axios.put(`./api/social/update/`, action.payload)
+    yield axios.put(`./api/social/increment/`, action.payload)
   } catch (err) {
-    console.log('error in update social balance score saga', err)
+    console.log('error in update food balance score saga', err)
+  }
+}
+
+function* decrementBalanceSocial(action) {
+  // console.log('our update balance score saga:', action.payload)
+  try{
+    yield axios.put(`./api/social/decrement/`, action.payload)
+  } catch (err) {
+    console.log('error in update food balance score saga', err)
   }
 }
 
@@ -65,7 +74,8 @@ function* socialSaga() {
   yield takeEvery("UPDATE_SOCIAL", putSocial);
   yield takeEvery("DELETE_SOCIAL", deleteSocial);
   yield takeLatest("GET_SOCIAL_ID", getSocialId)
-  yield takeLatest("UPDATE_SOCIAL_SCORE", updateBalanceSocial)
+  yield takeLatest("UPDATE_SOCIAL_SCORE", incrementBalanceSocial);
+  yield takeLatest("CURRENT_SOCIAL_SCORE", decrementBalanceSocial);
 }
 
 export default socialSaga;

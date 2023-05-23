@@ -49,12 +49,21 @@ function* deleteOccupation(action) {
   }
 }
 
-function* updateBalanceOccupation(action) {
+function* incrementBalanceOccupation(action) {
   // console.log('our update balance score saga:', action.payload)
   try{
-    yield axios.put(`./api/occupation/update/`, action.payload)
+    yield axios.put(`./api/occupation/increment/`, action.payload)
   } catch (err) {
-    console.log('error in update occupation balance score saga', err)
+    console.log('error in update food balance score saga', err)
+  }
+}
+
+function* decrementBalanceOccupation(action) {
+  // console.log('our update balance score saga:', action.payload)
+  try{
+    yield axios.put(`./api/occupation/decrement/`, action.payload)
+  } catch (err) {
+    console.log('error in update food balance score saga', err)
   }
 }
 
@@ -64,7 +73,8 @@ function* OccupationSaga() {
   yield takeEvery("UPDATE_OCCUPATION", putOccupation);
   yield takeEvery("DELETE_OCCUPATION", deleteOccupation);
   yield takeLatest("GET_OCCUPATION_ID", getOccupationId)
-  yield takeLatest("UPDATE_OCCUPATION_SCORE", updateBalanceOccupation);
+  yield takeLatest("UPDATE_OCCUPATION_SCORE", incrementBalanceOccupation);
+  yield takeLatest("CURRENT_OCCUPATION_SCORE", decrementBalanceOccupation);
 }
 
 export default OccupationSaga;

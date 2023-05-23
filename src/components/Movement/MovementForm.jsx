@@ -51,8 +51,6 @@ function MovementForm() {
 
   async function addMovement (event) {
     event.preventDefault();
- 
-
     // console.log('this is the time', addTime)
     const calculatedMovementScore = await movementScoreCalc()
     dispatch({

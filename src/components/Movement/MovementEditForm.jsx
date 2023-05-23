@@ -56,14 +56,72 @@ function EditMovement() {
 
     };
 
-    function DeleteMovement() {
+    async function DeleteMovement(event) {
+        event.preventDefault();
+        const calculatedMovementScore = await movementScoreCalc();
         dispatch({
             type: 'DELETE_MOVEMENT',
             payload: movementItemID[0].id
         })
+        dispatch({
+            type: "CURRENT_MOVEMENT_SCORE",
+            payload: {
+              score_m:calculatedMovementScore.mScore,
+            }
+          })
         history.push('/movement')
     }
 
+    async function movementScoreCalc() {
+        let totalBalancePoints = 0
+        let intensityPoints = 0
+        let TimeParts = movementItemID[0].duration.split(':')
+        let hours = parseInt(TimeParts[0]);
+        let minutes = parseInt(TimeParts[1]);
+        let seconds = parseInt(TimeParts[2]);
+        let addTimeNumber = hours * 3600 + minutes * 60 + seconds;
+        let durationPoints = 0 
+        if(addTimeNumber/60 > 1) {
+          durationPoints = addTimeNumber / 60
+        } else {
+          durationPoints = 1
+        }
+    
+        switch (movementItemID[0].intensity) {
+          case 0:
+            intensityPoints = 1
+            break;
+          case 1:
+            intensityPoints = 1.5
+            break;
+          case 2:
+            intensityPoints = 2
+            break;
+          case 3:
+            intensityPoints = 2.5
+            break;
+          case 4:
+            intensityPoints = 3
+            break;
+          default:
+            qualityPoints = 1
+        }
+        totalBalancePoints = Number((durationPoints * intensityPoints).toFixed(2))
+        let mScore = 0
+        if (totalBalancePoints > 100) {
+          mScore = 100
+        } else if (totalBalancePoints < 0) {
+          mScore = 0
+        } else {
+          mScore = totalBalancePoints
+        }
+        return (
+          {
+            mScore,
+            totalBalancePoints
+          }
+        )
+      }
 
 
     return (<>

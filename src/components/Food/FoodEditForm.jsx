@@ -52,14 +52,122 @@ function EditFood() {
         history.push('/food')
     }
 
-    function DeleteFood () {
+    async function DeleteFood () {
+        const calculatedFoodScore = await foodScoreCalc()
+
         dispatch({
             type: 'DELETE_FOOD',
             payload: foodItemID[0].id
         })
+        dispatch({
+            type: 'CURRENT_FOOD_SCORE',
+            payload: {
+                score_f:calculatedFoodScore.fScore,
+            }
+        })
         history.push('/food')
     }
 
+    function foodScoreCalc() {
+        let qualityPoints = foodItemID[0].quality
+        let quantityPoints = 0
+        let snackPoints = 0
+        let fastingPoints = 0
+        let totalBalancePoints = 0
+        switch (foodItemID[0].quantity) {
+          case -5:
+            quantityPoints = 75
+            break;
+          case -4:
+            quantityPoints = 60
+            break;
+          case -3:
+            quantityPoints = 45
+            break;
+          case -2:
+            quantityPoints = 30
+            break;
+          case -1:
+            quantityPoints = 15
+            break;
+          case 0:
+            quantityPoints = 0
+            break;
+          case 1:
+            quantityPoints = 15
+            break;
+          case 2:
+            quantityoints = 30
+            break;
+          case 3:
+            quantityPoints = 45
+            break;
+          case 4:
+            quantityPoints = 60
+            break;
+          case 5:
+            quantityPoints = 75
+            break;
+          default:
+            quantityPoints = 0
+        }
+        switch (foodItemID[0].snack) {
+          case 0:
+            snackPoints = 0
+            break;
+          case 1:
+            snackPoints = 10
+            break;
+          case 2:
+            snackPoints = 20
+            break;
+          case 3:
+            snackPoints = 30
+            break;
+          case 4:
+            snackPoints = 40
+            break;
+          case 5:
+            snackPoints = 50
+            break;
+          default:
+            snackPoints = 0
+        }
+        switch (foodItemID[0].fasting) {
+          case 0:
+            fastingPoints = 1
+            break;
+          case 1:
+            fastingPoints = 1.22
+            break;
+          case 2:
+            fastingPoints = 1.33
+            break;
+          case 3:
+            fastingPoints = 1.44
+            break;
+          case 4:
+            fastingPoints = 1.5
+            break;
+          default:
+            fastingPoints = 1
+        }
+        totalBalancePoints = Number(((qualityPoints - snackPoints - quantityPoints) * fastingPoints).toFixed(2))
+        let fScore = 0
+        if(totalBalancePoints > 100) {
+          fScore = 100
+        } else if (totalBalancePoints < 0) {
+          fScore = 0
+        } else {
+          fScore = totalBalancePoints
+        }
+        return (
+            {
+                fScore,
+                totalBalancePoints
+            }
+        )
+      }
 
 
     return (<>
