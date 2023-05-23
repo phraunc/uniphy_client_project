@@ -53,10 +53,19 @@ function* deleteFood(action) {
   }
 }
 
-function* updateBalanceFood(action) {
+function* incrementBalanceFood(action) {
   // console.log('our update balance score saga:', action.payload)
   try{
-    yield axios.put(`./api/food/update/`, action.payload)
+    yield axios.put(`./api/food/increment/`, action.payload)
+  } catch (err) {
+    console.log('error in update food balance score saga', err)
+  }
+}
+
+function* decrementBalanceFood(action) {
+  // console.log('our update balance score saga:', action.payload)
+  try{
+    yield axios.put(`./api/food/decrement/`, action.payload)
   } catch (err) {
     console.log('error in update food balance score saga', err)
   }
@@ -68,7 +77,8 @@ function* foodSaga() {
   yield takeEvery("UPDATE_FOOD", putFood);
   yield takeEvery("DELETE_FOOD", deleteFood);
   yield takeLatest("GET_FOOD_ID", getFoodId);
-  yield takeLatest("UPDATE_FOOD_SCORE", updateBalanceFood);
+  yield takeLatest("UPDATE_FOOD_SCORE", incrementBalanceFood);
+  yield takeLatest("CURRENT_FOOD_SCORE", decrementBalanceFood);
 }
 
 export default foodSaga;

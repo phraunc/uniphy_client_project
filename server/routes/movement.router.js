@@ -105,7 +105,7 @@ router.put("/edit/:id", rejectUnauthenticated, (req, res) => {
     });
 });
 
-router.put('/update/', rejectUnauthenticated, (req, res) => {
+router.put('/increment/', rejectUnauthenticated, (req, res) => {
   const sqlText = `UPDATE balance_score 
   SET "score_m"=LEAST("score_m" + $1, 100) WHERE balance_score.date = current_date AND balance_score.user_id = $2`
   const sqlValue = [
@@ -121,5 +121,22 @@ router.put('/update/', rejectUnauthenticated, (req, res) => {
   })
 
 })
+
+router.put('/decrement/', rejectUnauthenticated, (req, res) => {
+    const sqlText = `UPDATE balance_score 
+    SET "score_m"=LEAST("score_m" - $1, 100) WHERE balance_score.date = current_date AND balance_score.user_id = $2`
+    const sqlValue = [
+       req.body.score_m,
+      req.user.id
+    ]
+  
+    pool.query(sqlText, sqlValue)
+    .then((result) => {
+      res.sendStatus(200)
+    }).catch((err) => {
+      res.sendStatus(500)
+    })
+  
+  })
 
 module.exports = router;

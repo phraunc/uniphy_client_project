@@ -35,11 +35,11 @@ function Food() {
     history.push("/foodform");
   }
 
-
   if (!BS) {
     <CircularProgress color="secondary" />
 
   } else
+
   return (
     <>
       <div>

@@ -45,12 +45,120 @@ function EditWork() {
         history.push('/work')
     }
 
-    function DeleteWork() {
+    async function DeleteWork() {
+        const calculatedWorkScore = await workScoreCalc()
+
         dispatch({
             type: 'DELETE_WORK',
             payload: workItemID[0].id
         })
+        dispatch({
+            type: 'CURRENT_WORK_SCORE',
+            payload: {
+                score_w:calculatedWorkScore.wScore,
+            }
+        })
         history.push('/work')
+    }
+
+    async function workScoreCalc() {
+        let fulfillmentPoints = 0
+        let workLoadPoints = 0
+        let totalBalancePoints = 0
+
+        switch (workItemID[0].workload) {
+            case -5:
+                workLoadPoints = 0
+                break;
+            case -4:
+                workLoadPoints = 10
+                break;
+            case -3:
+                workLoadPoints = 20
+                break;
+            case -2:
+                workLoadPoints = 30
+                break;
+            case -1:
+                workLoadPoints = 40
+                break;
+
+            case 0:
+                workLoadPoints = 50
+                break;
+            case 1:
+                workLoadPoints = 60
+                break;
+            case 2:
+                workLoadPoints = 70
+                break;
+            case 3:
+                workLoadPoints = 80
+                break;
+            case 4:
+                workLoadPoints = 90
+                break;
+            case 5:
+                workLoadPoints = 100
+                break;
+            default:
+                workLoadPoints = 0
+        }
+        switch (workItemID[0].fullfillment) {
+            case 0:
+                fulfillmentPoints = 1
+                break;
+            case 1:
+                fulfillmentPoints = 1.1
+                break;
+            case 2:
+                fulfillmentPoints = 1.2
+                break;
+            case 3:
+                fulfillmentPoints = 1.3
+                break;
+            case 4:
+                fulfillmentPoints = 1.4
+                break;
+            case 5:
+                fulfillmentPoints = 1.5
+                break;
+            case 6:
+                fulfillmentPoints = 1.6
+                break;
+            case 7:
+                fulfillmentPoints = 1.7
+                break;
+            case 8:
+                fulfillmentPoints = 1.8
+                break;
+            case 9:
+                fulfillmentPoints = 1.9
+                break;
+            case 10:
+                fulfillmentPoints = 2
+                break;
+
+            default:
+                fulfillmentPoints = 1
+        }
+
+        totalBalancePoints = Number((workLoadPoints * fulfillmentPoints).toFixed(2))
+        let wScore = 0
+        if (totalBalancePoints > 100) {
+            wScore = 100
+        } else if (totalBalancePoints < 0) {
+            wScore = 0
+        } else {
+            wScore = totalBalancePoints
+        }
+        return (
+            {
+                wScore,
+                totalBalancePoints
+            }
+
+        )
     }
 
     return (<>

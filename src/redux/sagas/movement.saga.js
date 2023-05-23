@@ -50,14 +50,23 @@ function* deleteMovement(action) {
   }
 }
 
-function* updateBalanceMovement(action) {
-  // console.log('our update balance score saga:', action.payload)
-  try{
-    yield axios.put(`./api/movement/update/`, action.payload)
-  } catch (err) {
-    console.log('error in update movement balance score saga', err)
+function* incrementBalanceMovement(action) {
+    // console.log('our update balance score saga:', action.payload)
+    try{
+      yield axios.put(`./api/movement/increment/`, action.payload)
+    } catch (err) {
+      console.log('error in update food balance score saga', err)
+    }
   }
-}
+  
+  function* decrementBalanceMovement(action) {
+    // console.log('our update balance score saga:', action.payload)
+    try{
+      yield axios.put(`./api/movement/decrement/`, action.payload)
+    } catch (err) {
+      console.log('error in update food balance score saga', err)
+    }
+  }
 
 function* MovementSaga() {
   yield takeEvery("GET_MOVEMENT", getMovement);
@@ -65,7 +74,8 @@ function* MovementSaga() {
   yield takeEvery("UPDATE_MOVEMENT", putMovement);
   yield takeEvery("DELETE_MOVEMENT", deleteMovement);
   yield takeLatest("GET_MOVEMENT_ID", getMovementId);
-  yield takeLatest("UPDATE_MOVEMENT_SCORE", updateBalanceMovement)
+  yield takeLatest("UPDATE_MOVEMENT_SCORE", incrementBalanceMovement);
+  yield takeLatest("CURRENT_MOVEMENT_SCORE", decrementBalanceMovement);
 }
 
 export default MovementSaga;

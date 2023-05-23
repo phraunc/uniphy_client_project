@@ -49,12 +49,84 @@ function EditSleep() {
         })
         history.push('/sleep')
     }
-    function DeleteSleep () {
+
+    async function DeleteSleep (event) {
+        event.preventDefault();
+        const calculatedSleepScore = await sleepScoreCalc();
+
         dispatch({
             type: 'DELETE_SLEEP',
             payload: sleepId[0].id
         })
+        dispatch({
+            type: "CURRENT_SLEEP_SCORE",
+            payload: {
+              score_s:calculatedSleepScore.sScore,
+            }
+          })
         history.push('/sleep')
+    }
+
+    function sleepScoreCalc() {
+        let durationPoints = sleepId[0].duration
+        let qualityPoints = 0
+        let screenPoints = 0
+        let totalBalancePoints = 0
+        switch (sleepId[0].quality) {
+            case 0:
+                qualityPoints = .6
+                break;
+            case 1:
+                qualityPoints = .8
+                break;
+            case 2:
+                qualityPoints = 1
+                break;
+            case 3:
+                qualityPoints = 1.11
+                break;
+            case 4:
+                qualityPoints = 1.22
+                break;
+            case 5:
+                qualityPoints = 1.35
+                break;
+            default:
+                qualityPoints = 1
+        }
+        switch (sleepId[0].screenTime) {
+            case 0:
+                screenPoints = .8
+                break;
+            case 1:
+                screenPoints = .9
+                break;
+            case 2:
+                screenPoints = 1
+                break;
+            case 3:
+                screenPoints = 1.25
+                break;
+            default:
+                screenPoints = 1
+        }
+
+        totalBalancePoints = Number((durationPoints * qualityPoints * screenPoints).toFixed(2))
+        let sScore = 0
+        if (totalBalancePoints > 100) {
+            sScore = 100
+        } else if (totalBalancePoints < 0) {
+            sScore = 0
+        } else {
+            sScore = totalBalancePoints
+        }
+        return (
+            {
+                sScore,
+                totalBalancePoints
+            }
+
+        )
     }
 
 

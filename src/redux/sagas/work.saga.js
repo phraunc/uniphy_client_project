@@ -51,12 +51,21 @@ function* deleteWork(action) {
     console.log("error in Work delete_Saga", err);
   }
 }
-function* updateBalanceWork(action) {
+function* incrementBalanceWork(action) {
   // console.log('our update balance score saga:', action.payload)
   try{
-    yield axios.put(`./api/work/update/`, action.payload)
+    yield axios.put(`./api/work/increment/`, action.payload)
   } catch (err) {
-    console.log('error in update work balance score saga', err)
+    console.log('error in update food balance score saga', err)
+  }
+}
+
+function* decrementBalanceWork(action) {
+  // console.log('our update balance score saga:', action.payload)
+  try{
+    yield axios.put(`./api/work/decrement/`, action.payload)
+  } catch (err) {
+    console.log('error in update food balance score saga', err)
   }
 }
 
@@ -66,7 +75,8 @@ function* WorkSaga() {
   yield takeEvery("UPDATE_WORK", putWork);
   yield takeEvery("DELETE_WORK", deleteWork);
   yield takeLatest("GET_WORK_ID", getWorkId);
-  yield takeLatest("UPDATE_WORK_SCORE", updateBalanceWork);
+  yield takeLatest("UPDATE_WORK_SCORE", incrementBalanceWork);
+  yield takeLatest("CURRENT_WORK_SCORE", decrementBalanceWork);
 
 }
 

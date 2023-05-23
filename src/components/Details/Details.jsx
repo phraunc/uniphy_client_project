@@ -131,6 +131,7 @@ function DetailsPage({ bgcolor, progress, height, onClick }) {
         <Line
           data={lineChartData}
         />
+        
       </div>
       <br/>
       <br/>

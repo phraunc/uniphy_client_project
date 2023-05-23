@@ -17,23 +17,18 @@ import {
   MenuItem,
   Select,
   TextField,
+  Typography, 
 } from "@mui/material";
 
 function FoodForm() {
   const history = useHistory();
   const dispatch = useDispatch();
 
-
   const [addQuality, setAddQuality] = useState(0);
   const [addQuantity, setAddQuantity] = useState(0);
   const [addSnack, setAddSnack] = useState(0);
   const [addWater, setAddWater] = useState(0);
   const [addFasting, setAddFasting] = useState(0);
-
-  const handleHome = () => {
-    // console.log("history test");
-    history.push("/home");
-  };
 
   async function addFood  (event)  {
     event.preventDefault();
@@ -174,11 +169,15 @@ function FoodForm() {
 
   return (
     <>
-
-      <h1>Food Form</h1>
+    <center>
+    <Typography mb={4} variant="h4" mt={3} sx={{color: '#457B9D'}}>
+      Food Form
+    </Typography> 
+    </center>
       <div>
+        <center>
         <form onSubmit={addFood}>
-          <TextField
+          <TextField 
             label="Food Quality"
             variant="outlined"
             type="number"
@@ -191,7 +190,7 @@ function FoodForm() {
           <br />
           <br />
           <Box sx={{ minWidth: 120 }}>
-            <FormControl fullWidth>
+            <FormControl sx={{minWidth: 200} }>
               <InputLabel id="demo-simple-select-label">Quantity</InputLabel>
               <Select
                 labelId="demo-simple-select-label"
@@ -215,7 +214,7 @@ function FoodForm() {
             </FormControl>
             <br />
             <br />
-            <FormControl fullWidth>
+            <FormControl sx={{minWidth: 200} }>
               <InputLabel id="demo-simple-select-label">Snacks</InputLabel>
               <Select
                 labelId="demo-simple-select-label"
@@ -234,7 +233,7 @@ function FoodForm() {
             </FormControl>
             <br />
             <br />
-            <FormControl fullWidth>
+            <FormControl sx={{minWidth: 200} }>
               <InputLabel id="demo-simple-select-label">Water</InputLabel>
               <Select
                 labelId="demo-simple-select-label"
@@ -253,7 +252,7 @@ function FoodForm() {
             </FormControl>
             <br />
             <br />
-            <FormControl fullWidth>
+            <FormControl sx={{minWidth: 200} }>
               <InputLabel id="demo-simple-select-label">Fasting</InputLabel>
               <Select
                 labelId="demo-simple-select-label"
@@ -277,7 +276,7 @@ function FoodForm() {
               display="flex"
               justifyContent="flex-end"
               alignItems="flex-end">
-              <Button variant="contained" type="submit" >Submit</Button>
+              <Button sx={{backgroundColor: '#2f5f98'}}variant="contained" type="submit" >Submit</Button>
             </Box>
             <br />
             <br />
@@ -290,9 +289,8 @@ function FoodForm() {
               <Button variant="contained" onClick={cancelFood} >Cancel</Button>
             </Box>
           </Box>
-
-
         </form>
+        </center>
       </div>
     </>
   );

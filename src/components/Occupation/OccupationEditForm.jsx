@@ -45,12 +45,42 @@ function EditOccupation() {
         history.push('/occupation')
     }
 
-    function DeleteOccupation() {
+    async function DeleteOccupation(event) {
+        event.preventDefault();
+        const calculatedOccupationScore = await occupationScoreCalc()
         dispatch({
             type: 'DELETE_OCCUPATION',
             payload: occupationItemID[0].id
         })
+        dispatch({
+            type: "CURRENT_OCCUPATION_SCORE",
+            payload: {
+              score_o: calculatedOccupationScore.oScore,
+            }
+          })
         history.push('/occupation')
+    }
+
+    function occupationScoreCalc () {
+        let totalBalancePoints = 0
+        let durationPoints = occupationItemID[0].duration * .75
+        totalBalancePoints = Number((durationPoints).toFixed(2))
+        let oScore = 0
+        if (totalBalancePoints > 100) {
+            oScore = 100
+        } else if (totalBalancePoints < 0) {
+            oScore = 0
+        } else {
+            oScore = totalBalancePoints
+        }
+        return (
+            {
+                oScore,
+                totalBalancePoints
+            }
+
+        )
+
     }
 
     return (<>
