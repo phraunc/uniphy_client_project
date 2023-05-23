@@ -30,6 +30,7 @@ function Nav() {
 
     <Box sx={{ position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 10, color: "white"}}>
 
+      <BottomNavigation value={value} onChange={(event, newValue) => { setValue(newValue) }} sx={{ backgroundColor: '#457B9D'}}>
       <BottomNavigation value={value} onChange={(event, newValue) => { setValue(newValue) }} sx={{ backgroundColor: '#2f5f98'}}>
 
       {user.id &&

@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-
 import {
     Radio,
     RadioGroup,
@@ -17,24 +16,18 @@ import {
     Select,
     TextField,
 } from "@mui/material";
-
 function SocialActivityForm() {
     const history = useHistory();
     const dispatch = useDispatch();
-
-
     const [addWhom, setAddWhom] = useState('');
     const [addDescription, setAddDescription] = useState('');
     const [addDuration, setAddDuration] = useState(0);
     const [addOnline, setAddOnline] = useState(true);
     const [addRating, setAddRating] = useState(1)
-
-
     const handleHome = () => {
         // console.log("history test");
         history.push("/home");
     };
-
     async function addSocialActivity(event)  {
         event.preventDefault();
         const calculatedSocialScore = await socialPointsCalc()
@@ -54,7 +47,6 @@ function SocialActivityForm() {
         setAddDescription('')
         setAddDuration(0)
         setAddOnline(false)
-
        // console.log('AFTER')
        dispatch({
         type: "UPDATE_SOCIAL_SCORE",
@@ -62,16 +54,11 @@ function SocialActivityForm() {
           score_sa:calculatedSocialScore.saScore,
         }
       })
-
-
         history.push("/social");
-
     };
-
     const cancelSocialActivity = () => {
         history.push("/social")
     }
-
     async function socialPointsCalc() {
         let durationPoints = addDuration
         let ratingPoints = 0
@@ -109,13 +96,10 @@ function SocialActivityForm() {
                 saScore,
                 totalBalancePoints
             }
-
         )
     }
-
     return (
         <>
-
             <h1>Social Activity</h1>
             <div>
                 <form onSubmit={addSocialActivity}>
@@ -145,7 +129,6 @@ function SocialActivityForm() {
                             <MenuItem value={2}>Good</MenuItem>
                             <MenuItem value={3}>Great</MenuItem>
                             <MenuItem value={4}>Amazing</MenuItem>
-
                         </Select>
                     </FormControl>
                     <br />
@@ -159,12 +142,10 @@ function SocialActivityForm() {
                                 value={addOnline}
                                 label="In Person"
                                 placeholder="Whom was it with"
-
                                 onChange={(event) => setAddOnline(event.target.value)}
                             >
                                 <MenuItem value={true}>In Person</MenuItem>
                                 <MenuItem value={false}>Online</MenuItem>
-
                             </Select>
                         </FormControl>
                         <br />
@@ -181,17 +162,14 @@ function SocialActivityForm() {
                         />
                         <br />
                         <br />
-
                         <TextField
                             label="Notes"
                             variant="outlined"
                             type="text"
                             placeholder="Notes about it"
-
                             value={addDescription}
                             onChange={(event) => setAddDescription(event.target.value)}
                         />
-
                         <Box
                             m={1}
                             mt={3}
@@ -210,14 +188,20 @@ function SocialActivityForm() {
                             alignItems="flex-end">
                             <Button variant="contained" onClick={cancelSocialActivity} >Cancel</Button>
                         </Box>
-
                     </Box>
-
-
                 </form>
             </div>
         </>
     );
 }
-
 export default SocialActivityForm;
+
+
+
+
+
+
+
+
+
+

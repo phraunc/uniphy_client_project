@@ -190,7 +190,7 @@ function App() {
             <h1>404</h1>
           </Route>
         </Switch>
-        <Footer />
+        {/* <Footer /> */}
       </div>
     </Router>
     
