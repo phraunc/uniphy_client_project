@@ -19,6 +19,9 @@ function Occupation() {
         dispatch({
             type: "GET_OCCUPATION"
         })
+        dispatch({
+            type: "GET_BALANCE_SCORE"
+        })
     }, [])
 
     const handleHome = () => {
@@ -41,14 +44,14 @@ function Occupation() {
                         <div className="App1">
                             <div className="textContainer">
                                 {Math.round(Number(BS.score_o))}
-                                <div className="minute">Balance Score</div>
+                                <div className="minute">Occupation Score</div>
                             </div>
                             <CircleSlider
                                 ref={slider}
                                 value={Math.round(Number(BS.score_o))}
                                 stepSize={5}
                                 size={250}
-                                max={500}
+                                max={100}
                                 gradientColorFrom="#ec008c"
                                 gradientColorTo="#31356e"
                                 knobRadius={20}

@@ -21,6 +21,9 @@ function Sleep() {
         dispatch({
             type: "GET_SLEEP"
         })
+        dispatch({
+            type: "GET_BALANCE_SCORE"
+        })
     }, [])
 
     const handleHome = () => {
@@ -44,14 +47,14 @@ function Sleep() {
                     <div className="App1">
                         <div className="textContainer">
                             {Math.round(Number(BS.score_s))}
-                            <div className="minute">Balance Score</div>
+                            <div className="minute">Sleep Score</div>
                         </div>
                         <CircleSlider
                             ref={slider}
                             value={Math.round(Number(BS.score_s))}
                             stepSize={5}
                             size={250}
-                            max={500}
+                            max={100}
                             gradientColorFrom="#ec008c"
                             gradientColorTo="#31356e"
                             knobRadius={20}
