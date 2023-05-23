@@ -159,7 +159,7 @@ function UserPage({ bgcolor, progress, height, onClick }) {
 
           {!user.is_started ?
             <Box
-              mr={3}
+              mr={2}
               mt={8}
               display="flex"
               justifyContent="flex-end"
@@ -169,7 +169,7 @@ function UserPage({ bgcolor, progress, height, onClick }) {
                 onClick={startDay}>Start Day</Button>
             </Box>
             : <>
-              <Box mt={8} ml={4}>
+              <Box mt={8} ml={3}>
                 <Button
                   variant='contained'
                   onClick={endDay}>End Day</Button>

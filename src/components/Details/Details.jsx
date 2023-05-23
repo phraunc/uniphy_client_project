@@ -129,6 +129,7 @@ function DetailsPage ({ bgcolor, progress, height, onClick }) {
         <Line
           data={lineChartData}
         />
+        
       </div>
         <Progressbar parentBgColor="lightgrey" bgcolor="#31356e" pillarName= 'Movement:' progress={Math.round(Number(BS.score_m))} height={30}/>
         <Progressbar parentBgColor="lightgrey" bgcolor="orange" pillarName= 'Movement Average:' progress={Math.round(Number(BSaverages.movement_score))} height={30}/>

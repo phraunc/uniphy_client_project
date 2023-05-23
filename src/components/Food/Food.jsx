@@ -34,9 +34,6 @@ function Food() {
     history.push("/foodform");
   }
 
-
-
-
   return (
     <>
       <div>
