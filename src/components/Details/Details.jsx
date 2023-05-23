@@ -140,11 +140,6 @@ function DetailsPage ({ bgcolor, progress, height, onClick }) {
         <Progressbar parentBgColor="lightgrey" bgcolor="orange" pillarName= 'Food Average:' progress={Math.round(Number(BSaverages.food_score))} height={30} />
         <Progressbar parentBgColor="lightgrey" bgcolor="#704e85" pillarName= 'Sleep:' progress={Math.round(Number(BS.score_s))} height={30} />
         <Progressbar parentBgColor="lightgrey" bgcolor="orange" pillarName= 'Sleep Average:' progress={Math.round(Number(BSaverages.sleep_score))} height={30} />
-        <Progressbar parentBgColor="lightgrey" bgcolor="#31356e" pillarName= 'Movement:' progress={Math.round(Number(BS.score_m))} height={40} />
-        <Progressbar parentBgColor="lightgrey" bgcolor="#6ce5e8" pillarName= 'Social:' progress={Math.round(Number(BS.score_sa))} height={40} />
-        <Progressbar parentBgColor="lightgrey" bgcolor="#41b8d5" pillarName= 'Occupation:' progress={Math.round(Number(BS.score_o))} height={40} />
-        <Progressbar parentBgColor="lightgrey" bgcolor="#2f5f98" pillarName= 'Food:' progress={Math.round(Number(BS.score_f))} height={40} />
-        <Progressbar parentBgColor="lightgrey" bgcolor="#704e85" pillarName= 'Sleep:' progress={Math.round(Number(BS.score_s))} height={40} />
         {/* <Progressbar bgcolor="purple" progress={BS.score_w} height={40} onClick={() => history.push("/work")} /> */}
       </>)
 }
