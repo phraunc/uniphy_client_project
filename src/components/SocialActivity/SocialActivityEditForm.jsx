@@ -55,7 +55,7 @@ function EditSocialActivity() {
         history.push('/social')
     }
 
-    function DeleteSocialActivity() {
+    
     async function DeleteSocialActivity () {
         const calculatedSocialScore = await socialPointsCalc()
         dispatch({
@@ -219,5 +219,5 @@ function EditSocialActivity() {
         </div>
     </>)
 }
-}
+
 export default EditSocialActivity;
