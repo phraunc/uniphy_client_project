@@ -8,7 +8,8 @@ const Progress_bar = ({bgcolor,progress, height, onClick, score, pillarName, par
         width: '90%',
         backgroundColor: parentBgColor,
         borderRadius: 10,
-        margin: '20px',
+        margin: '20px 20px 5px 20px '
+        
         
       }
       

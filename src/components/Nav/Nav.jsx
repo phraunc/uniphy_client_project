@@ -100,7 +100,7 @@ function Nav() {
 
     <Box sx={{ position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 10, color: "white"}}>
 
-      <BottomNavigation value={value} onChange={(event, newValue) => { setValue(newValue) }} sx={{ backgroundColor: '#31356e'}}>
+      <BottomNavigation value={value} onChange={(event, newValue) => { setValue(newValue) }} sx={{ backgroundColor: '#457B9D'}}>
 
       {user.id &&
         <BottomNavigationAction sx={{color: "white"}} label="LogOut" value="logout" icon={<Logout />} className="navLink" onClick={() => dispatch({ type: 'LOGOUT' })}/>
