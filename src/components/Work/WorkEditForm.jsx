@@ -210,6 +210,7 @@ function EditWork() {
                     <Box
                         m={1}
                         mt={3}
+                        className="bottomSpace"
                         display="flex"
                         justifyContent="flex-end"
                         alignItems="flex-end">

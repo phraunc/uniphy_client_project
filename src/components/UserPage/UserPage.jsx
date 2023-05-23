@@ -215,6 +215,7 @@ function UserPage({ bgcolor, progress, height, onClick }) {
             <Box
               mr={2}
               mt={8}
+              className="bottomSpace"
               display="flex"
               justifyContent="flex-end"
               alignItems="flex-end"
@@ -223,17 +224,13 @@ function UserPage({ bgcolor, progress, height, onClick }) {
                 onClick={startDay}>Start Day</Button>
             </Box>
             : <>
-              <Box mt={8} ml={3} mb={6}>
+              <Box mt={8} ml={3} className="bottomSpace">
                 <Button
                   variant='contained'
                   onClick={endDay}>End Day</Button>
               </Box>
             </>
           }
-              <br/>
-              <br/>
-              <br/>
-              <br/>
         </div>
       </div>
 

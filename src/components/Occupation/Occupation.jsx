@@ -67,10 +67,9 @@ function Occupation() {
                         <OccupationHistoryContainer item={occupationStore} />
                     </div>
                     <div style={{ display: "flex", justifyContent: "center" }}>
-                        <img src={manualAddOccupation} alt="addOccupationButton" onClick={occupationForm} width={200} height={50} />
+                        <img src={manualAddOccupation} alt="addOccupationButton" onClick={occupationForm} width={200} height={50} className="btnBottom"/>
                     </div>
                 </div>
-
             </>
         );
 }
