@@ -34,7 +34,7 @@ function OccupationForm() {
         history.push("/home");
     };
 
-    async function addOccupation  (event)  {
+    async function addOccupation(event) {
         event.preventDefault();
         const calculatedOccupationScore = await occupationScoreCalc()
         dispatch({
@@ -53,9 +53,9 @@ function OccupationForm() {
         dispatch({
             type: "UPDATE_OCCUPATION_SCORE",
             payload: {
-              score_o: calculatedOccupationScore.oScore,
+                score_o: calculatedOccupationScore.oScore,
             }
-          })
+        })
 
         history.push("/occupation");
     };
@@ -64,7 +64,7 @@ function OccupationForm() {
         history.push("/occupation")
     }
 
-    async function occupationScoreCalc () {
+    async function occupationScoreCalc() {
         let totalBalancePoints = 0
         let durationPoints = addDuration * .75
         totalBalancePoints = Number((durationPoints).toFixed(2))
@@ -88,66 +88,66 @@ function OccupationForm() {
 
     return (
         <>
-          <Typography mb={4} mt={3} variant="h4" sx={{color: '#457B9D'}} >
-           Occupation Form
-      </Typography>
+            <center>
+                <Typography mb={4} mt={3} variant="h4" sx={{ color: '#457B9D' }} >
+                    Occupation Form
+                </Typography>
+            </center>
             <div>
                 <center>
-                <form onSubmit={addOccupation}>
-                    <TextField
-                        label="Occupation title"
-                        variant="outlined"
-                        type="text"
-                        placeholder=""
-                        value={addTitle}
-                        onChange={(event) => setAddTitle(event.target.value)}
-                    />
-                    <br />
-                    <br />
-                    <Box sx={{ minWidth: 120 }}>
+                    <form onSubmit={addOccupation}>
                         <TextField
-                            label="Occupation duration"
-                            variant="outlined"
-                            type="number"
-                            min='1'
-                            max='10'
-                            placeholder=""
-                            value={addDuration}
-                            onChange={(event) => setAddDuration(event.target.value)}
-                        />
-                        <br />
-                        <br />
-                        <TextField
-                            label="Occupation description"
+                            label="Occupation Title"
                             variant="outlined"
                             type="text"
                             placeholder=""
-                            value={addDescription}
-                            onChange={(event) => setAddDescription(event.target.value)}
+                            value={addTitle}
+                            onChange={(event) => setAddTitle(event.target.value)}
                         />
                         <br />
                         <br />
-                        <Box
-                            m={2}
-                            mt={3}
-                            display="flex"
-                            justifyContent="flex-end"
-                            alignItems="flex-end">
-                            <Button variant="contained" type="submit"  sx={{backgroundColor: '#457B9D'}}>Submit</Button>
+                        <Box sx={{ minWidth: 120 }}>
+                            <TextField
+                                label="How Long? (min)"
+                                variant="outlined"
+                                type="number"
+                                min='1'
+                                max='10'
+                                placeholder=""
+                                value={addDuration}
+                                onChange={(event) => setAddDuration(event.target.value)} />
+                            <br />
+                            <br />
+                            <TextField
+                                label="Description"
+                                variant="outlined"
+                                type="text"
+                                placeholder=""
+                                value={addDescription}
+                                onChange={(event) => setAddDescription(event.target.value)} />
+                            <br />
+                            <br />
+                            <Box
+                                m={3}
+                                mt={3}
+                                display="flex"
+                                justifyContent="flex-end"
+                                alignItems="flex-end">
+                                <Button variant="contained" type="submit" sx={{ backgroundColor: '#457B9D' }}>Submit</Button>
+                            </Box>
+                            <br />
+                            <br />
+                            <Box
+                                m={3}
+                                mt={3}
+                                className="bottomSpace"
+                                display="flex"
+                                justifyContent="flex-end"
+                                alignItems="flex-end">
+                                <Button variant="outlined" onClick={cancelOccupation} >Cancel</Button>
+                            </Box>
                         </Box>
-                        <br />
-                        <br />
-                        <Box
-                            m={2}
-                            mt={3}
-                            className="bottomSpace"
-                            display="flex"
-                            justifyContent="flex-end"
-                            alignItems="flex-end">
-                            <Button variant="outlined" onClick={cancelOccupation} >Cancel</Button>
-                        </Box>
-                    </Box>
-                </form>
+                    </form>
                 </center>
             </div>
         </>

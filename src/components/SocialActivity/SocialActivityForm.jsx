@@ -30,7 +30,7 @@ function SocialActivityForm() {
         // console.log("history test");
         history.push("/home");
     };
-    async function addSocialActivity(event)  {
+    async function addSocialActivity(event) {
         event.preventDefault();
         const calculatedSocialScore = await socialPointsCalc()
         dispatch({
@@ -49,13 +49,13 @@ function SocialActivityForm() {
         setAddDescription('')
         setAddDuration(0)
         setAddOnline(false)
-       // console.log('AFTER')
-       dispatch({
-        type: "UPDATE_SOCIAL_SCORE",
-        payload: {
-          score_sa:calculatedSocialScore.saScore,
-        }
-      })
+        // console.log('AFTER')
+        dispatch({
+            type: "UPDATE_SOCIAL_SCORE",
+            payload: {
+                score_sa: calculatedSocialScore.saScore,
+            }
+        })
         history.push("/social");
     };
     const cancelSocialActivity = () => {
@@ -102,102 +102,102 @@ function SocialActivityForm() {
     }
     return (
         <>
-        <center>
-        <Typography mb={4} mt={3} variant="h4" sx={{color: '#457B9D'}} >
-           Social Activity Form
-      </Typography>
-      </center>
+            <center>
+                <Typography mb={4} mt={3} variant="h4" sx={{ color: '#457B9D' }} >
+                    Social Activity Form
+                </Typography>
+            </center>
             <div>
                 <center>
-                <form onSubmit={addSocialActivity}>
-                    <TextField
-                        label="Whom"
-                        variant="outlined"
-                        type="text"
-                        placeholder="Whom was it with"
-                        // min="1"
-                        // max="100"
-                        value={addWhom}
-                        onChange={(event) => setAddWhom(event.target.value)}
-                    />
-                    <br />
-                    <br />
-                    <FormControl sx={{ minWidth: 195 }}>
-                        <InputLabel id="demo-simple-select-label">Rating</InputLabel>
-                        <Select
-                            labelId="demo-simple-select-label"
-                            id="demo-simple-select"
-                            value={addRating}
-                            label="Rating"
-                            onChange={(event) => setAddRating(event.target.value)}
-                        >
-                            <MenuItem value={0}>Meh</MenuItem>
-                            <MenuItem value={1}>Ok</MenuItem>
-                            <MenuItem value={2}>Good</MenuItem>
-                            <MenuItem value={3}>Great</MenuItem>
-                            <MenuItem value={4}>Amazing</MenuItem>
-                        </Select>
-                    </FormControl>
-                    <br />
-                    <br />
-                    <Box sx={{ minWidth: 120 }}>
+                    <form onSubmit={addSocialActivity}>
+                        <TextField
+                            label="Whom"
+                            variant="outlined"
+                            type="text"
+                            placeholder="Whom was it with"
+                            // min="1"
+                            // max="100"
+                            value={addWhom}
+                            onChange={(event) => setAddWhom(event.target.value)}
+                        />
+                        <br />
+                        <br />
                         <FormControl sx={{ minWidth: 195 }}>
-                            <InputLabel id="demo-simple-select-label">Where</InputLabel>
+                            <InputLabel id="demo-simple-select-label">Rating</InputLabel>
                             <Select
                                 labelId="demo-simple-select-label"
                                 id="demo-simple-select"
-                                value={addOnline}
-                                label="In Person"
-                                placeholder="Whom was it with"
-                                onChange={(event) => setAddOnline(event.target.value)}
+                                value={addRating}
+                                label="Rating"
+                                onChange={(event) => setAddRating(event.target.value)}
                             >
-                                <MenuItem value={true}>In Person</MenuItem>
-                                <MenuItem value={false}>Online</MenuItem>
+                                <MenuItem value={0}>Meh</MenuItem>
+                                <MenuItem value={1}>Ok</MenuItem>
+                                <MenuItem value={2}>Good</MenuItem>
+                                <MenuItem value={3}>Great</MenuItem>
+                                <MenuItem value={4}>Amazing</MenuItem>
                             </Select>
                         </FormControl>
                         <br />
                         <br />
-                        <TextField
-                            label="Duration"
-                            variant="outlined"
-                            type="number"
-                            placeholder="Time in minutes"
-                            min="1"
-                            max="1000"
-                            value={addDuration}
-                            onChange={(event) => setAddDuration(event.target.value)}
-                        />
-                        <br />
-                        <br />
-                        <TextField
-                            label="Notes"
-                            variant="outlined"
-                            type="text"
-                            placeholder="Notes about it"
-                            value={addDescription}
-                            onChange={(event) => setAddDescription(event.target.value)}
-                        />
-                        <Box
-                            m={2}
-                            mt={3}
-                            display="flex"
-                            justifyContent="flex-end"
-                            alignItems="flex-end">
-                            <Button variant="contained" type="submit" sx={{backgroundColor: '#457B9D'}} >Submit</Button>
+                        <Box sx={{ minWidth: 120 }}>
+                            <FormControl sx={{ minWidth: 195 }}>
+                                <InputLabel id="demo-simple-select-label">Where</InputLabel>
+                                <Select
+                                    labelId="demo-simple-select-label"
+                                    id="demo-simple-select"
+                                    value={addOnline}
+                                    label="In Person"
+                                    placeholder="Whom was it with"
+                                    onChange={(event) => setAddOnline(event.target.value)}
+                                >
+                                    <MenuItem value={true}>In Person</MenuItem>
+                                    <MenuItem value={false}>Online</MenuItem>
+                                </Select>
+                            </FormControl>
+                            <br />
+                            <br />
+                            <TextField
+                                label="Duration"
+                                variant="outlined"
+                                type="number"
+                                placeholder="Time in minutes"
+                                min="1"
+                                max="1000"
+                                value={addDuration}
+                                onChange={(event) => setAddDuration(event.target.value)}
+                            />
+                            <br />
+                            <br />
+                            <TextField
+                                label="Notes"
+                                variant="outlined"
+                                type="text"
+                                placeholder="Notes about it"
+                                value={addDescription}
+                                onChange={(event) => setAddDescription(event.target.value)}
+                            />
+                            <Box
+                                m={3}
+                                mt={3}
+                                display="flex"
+                                justifyContent="flex-end"
+                                alignItems="flex-end">
+                                <Button variant="contained" type="submit" sx={{ backgroundColor: '#457B9D' }} >Submit</Button>
+                            </Box>
+                            <br />
+                            <br />
+                            <Box
+                                m={3}
+                                mt={3}
+                                className="bottomSpace"
+                                display="flex"
+                                justifyContent="flex-end"
+                                alignItems="flex-end">
+                                <Button variant="outlined" onClick={cancelSocialActivity} >Cancel</Button>
+                            </Box>
                         </Box>
-                        <br />
-                        <br />
-                        <Box
-                            m={2}
-                            mt={3}
-                            className="bottomSpace"
-                            display="flex"
-                            justifyContent="flex-end"
-                            alignItems="flex-end">
-                            <Button variant="outlined" onClick={cancelSocialActivity} >Cancel</Button>
-                        </Box>
-                    </Box>
-                </form>
+                    </form>
                 </center>
             </div>
         </>

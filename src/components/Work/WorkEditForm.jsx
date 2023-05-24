@@ -26,9 +26,9 @@ function EditWork() {
     const workItemID = useSelector(store => store.rootWorkReducer.workReducerSingle)
     const history = useHistory();
 
-    const [addNote, setAddNote] = useState(0)
-    const [addWorkload, setAddWorkload] = useState(0)
-    const [addFullfillment, setAddFullfillment] = useState(0)
+    const [addNote, setAddNote] = useState('')
+    const [addWorkload, setAddWorkload] = useState('')
+    const [addFullfillment, setAddFullfillment] = useState('')
     const [openAlert, setOpenAlert] = useState(false)
 
 
@@ -167,90 +167,90 @@ function EditWork() {
     }
 
     return (<>
-    <center>
-    <Typography mb={4} mt={3} variant="h4" sx={{color: '#457B9D'}} >
-           Work Form
-      </Typography>
-      </center>
-        <div>
         <center>
-            <form onSubmit={saveChanges}>
-                <TextField
-                    label="Work/School"
-                    variant="outlined"
-                    type="text"
-                    placeholder=""
-                    value={addNote}
-                    onChange={(event) => setAddNote(event.target.value)}
-                />
-                <br />
-                <br />
-                <Box sx={{ minWidth: 120 }}>
-                <FormControl sx={{ minWidth: 195 }}>
-                        <InputLabel id="demo-simple-select-label">Workload</InputLabel>
-                        <Select
-                            labelId="demo-simple-select-label"
-                            id="demo-simple-select"
-                            value={addWorkload}
-                            label="quantity"
-                            onChange={(event) => setAddWorkload(event.target.value)}
-                        >
-                            <MenuItem value={-5}>Feeling Buried</MenuItem>
-                            <MenuItem value={-4}>Drowning In Tasks</MenuItem>
-                            <MenuItem value={-3}>Feeling Exhausted</MenuItem>
-                            <MenuItem value={-2}>Running On Empty</MenuItem>
-                            <MenuItem value={-1}>Treading Water</MenuItem>
-                            <MenuItem value={0}>Staying Afloat</MenuItem>
-                            <MenuItem value={1}>Finding Balance</MenuItem>
-                            <MenuItem value={2}>In The Groove</MenuItem>
-                            <MenuItem value={3}>Smooth Sailing</MenuItem>
-                            <MenuItem value={4}>Master Of The Craft</MenuItem>
-                            <MenuItem value={5}>Overdrive</MenuItem>
-
-                        </Select>
-                    </FormControl>
-                    <br />
-                    <br />
+            <Typography mb={4} mt={3} variant="h4" sx={{ color: '#457B9D' }} >
+                Work Form
+            </Typography>
+        </center>
+        <div>
+            <center>
+                <form onSubmit={saveChanges}>
                     <TextField
-                        label="Work Fullfillment 1-10"
+                        label="Work/School"
                         variant="outlined"
                         type="text"
-                        placeholder="Fullfilled?"
-                        value={addFullfillment}
-                        onChange={(event) => setAddFullfillment(event.target.value)}
+                        placeholder=""
+                        value={addNote}
+                        onChange={(event) => setAddNote(event.target.value)}
                     />
                     <br />
                     <br />
-                    <Box
-                        m={2}
-                        mt={3}
-                        display="flex"
-                        justifyContent="flex-end"
-                        alignItems="flex-end">
-                        <Button variant="contained" sx={{ color: '#FF4646', borderColor: '#FF4646', mr: 20 }} onClick={() => setOpenAlert(true)}>Delete</Button>
-                        <Button variant="contained" type="submit"  sx={{backgroundColor: '#457B9D'}}>Save </Button>
+                    <Box sx={{ minWidth: 120 }}>
+                        <FormControl sx={{ minWidth: 195 }}>
+                            <InputLabel id="demo-simple-select-label">Workload</InputLabel>
+                            <Select
+                                labelId="demo-simple-select-label"
+                                id="demo-simple-select"
+                                value={addWorkload}
+                                label="quantity"
+                                onChange={(event) => setAddWorkload(event.target.value)}
+                            >
+                                <MenuItem value={-5}>Feeling Buried</MenuItem>
+                                <MenuItem value={-4}>Drowning In Tasks</MenuItem>
+                                <MenuItem value={-3}>Feeling Exhausted</MenuItem>
+                                <MenuItem value={-2}>Running On Empty</MenuItem>
+                                <MenuItem value={-1}>Treading Water</MenuItem>
+                                <MenuItem value={0}>Staying Afloat</MenuItem>
+                                <MenuItem value={1}>Finding Balance</MenuItem>
+                                <MenuItem value={2}>In The Groove</MenuItem>
+                                <MenuItem value={3}>Smooth Sailing</MenuItem>
+                                <MenuItem value={4}>Master Of The Craft</MenuItem>
+                                <MenuItem value={5}>Overdrive</MenuItem>
+
+                            </Select>
+                        </FormControl>
+                        <br />
+                        <br />
+                        <TextField
+                            label="Work Fullfillment (1-10)"
+                            variant="outlined"
+                            type="text"
+                            placeholder="Fullfilled?"
+                            value={addFullfillment}
+                            onChange={(event) => setAddFullfillment(event.target.value)}
+                        />
+                        <br />
+                        <br />
+                        <Box
+                            m={3}
+                            mt={3}
+                            display="flex"
+                            justifyContent="flex-end"
+                            alignItems="flex-end">
+                            <Button variant="outlined" sx={{ color: '#FF4646', borderColor: '#FF4646', mr: 20 }} onClick={() => setOpenAlert(true)}>Delete</Button>
+                            <Button variant="contained" type="submit" sx={{ backgroundColor: '#457B9D' }}>Save </Button>
+                        </Box>
+                        <br />
+                        <br />
+                        <Box
+                            m={3}
+                            mt={3}
+                            className="bottomSpace"
+                            display="flex"
+                            justifyContent="flex-end"
+                            alignItems="flex-end">
+                            <Button variant="outlined" onClick={cancelWork} >Cancel</Button>
+                        </Box>
                     </Box>
-                    <br />
-                    <br />
-                    <Box
-                        m={2}
-                        mt={3}
-                        className="bottomSpace"
-                        display="flex"
-                        justifyContent="flex-end"
-                        alignItems="flex-end">
-                        <Button variant="outlined" onClick={cancelWork} >Cancel</Button>
-                    </Box>
-                </Box>
-                <Dialog
-                    open={openAlert}>
-                    <DialogContent>
-                        Are you sure you want to Delete?
-                    </DialogContent>
-                    <Button onClick={DeleteWork}>Yes</Button>
-                    <Button onClick={() => setOpenAlert(false)}>No</Button>
-                </Dialog>
-            </form>
+                    <Dialog
+                        open={openAlert}>
+                        <DialogContent>
+                            Are you sure you want to Delete?
+                        </DialogContent>
+                        <Button onClick={DeleteWork}>Yes</Button>
+                        <Button onClick={() => setOpenAlert(false)}>No</Button>
+                    </Dialog>
+                </form>
             </center>
         </div>
     </>)

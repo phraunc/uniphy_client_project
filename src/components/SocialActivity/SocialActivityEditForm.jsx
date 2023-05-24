@@ -53,7 +53,6 @@ function EditSocialActivity() {
                 online: addOnline,
                 rating: addRating,
             }
-
         })
         history.push('/social')
     }
@@ -118,15 +117,15 @@ function EditSocialActivity() {
 
     return (<>
         <center>
-            <Typography mb={4} mt={3} variant="h4" sx={{ color: '#6ce5e8' }}>
-                Social Activity Edit Form
+            <Typography mb={4} mt={3} variant="h4" sx={{ color: '#457B9D' }}>
+                Social Activity Form
             </Typography>
 
         </center>
         <div>
-            <FormControl onSubmit={saveChanges}>
+            <form onSubmit={saveChanges}>
                 <center>
-                 
+
                     <TextField
                         label="Whom"
                         variant="outlined"
@@ -166,11 +165,9 @@ function EditSocialActivity() {
                             label="In Person"
                             placeholder="Whom was it with"
 
-                            onChange={(event) => setAddOnline(event.target.value)}
-                        >
+                            onChange={(event) => setAddOnline(event.target.value)}>
                             <MenuItem value={true}>In Person</MenuItem>
                             <MenuItem value={false}>Online</MenuItem>
-
                         </Select>
                     </FormControl>
 
@@ -195,34 +192,33 @@ function EditSocialActivity() {
                         variant="outlined"
                         type="text"
                         placeholder="Whom was it with"
-
                         value={addDescription}
                         onChange={(event) => setAddDescription(event.target.value)}
                     />
                 </center>
 
 
-                    <Box
-                        m={1}
-                        mt={3}
-                        display="flex"
-                        justifyContent="flex-end"
-                        alignItems="flex-end">
-                        <Button variant="contained" sx={{ mr: 20, color: '#FF4646', borderColor: '#FF4646' }} onClick={() => setOpenAlert(true)}>Delete</Button>
-                        <Button variant="contained" type="submit" sx={{ backgroundColor: '#6ce5e8' }} >Save</Button>
-                    </Box>
-                    <br />
-                    <br />
-                    <Box
-                        m={1}
-                        mt={3}
-                        className="bottomSpace"
-                        display="flex"
-                        justifyContent="flex-end"
-                        alignItems="flex-end">
-                        <Button variant="contained" onClick={cancelFood} >Cancel</Button>
-                    </Box>
+                <Box
+                    m={3}
+                    mt={3}
+                    display="flex"
+                    justifyContent="flex-end"
+                    alignItems="flex-end">
+                    <Button variant="outlined" sx={{ mr: 15, color: '#FF4646', borderColor: '#FF4646' }} onClick={() => setOpenAlert(true)}>Delete</Button>
+                    <Button variant="contained" type="submit" sx={{ backgroundColor: '#457B9D' }} >Save</Button>
                 </Box>
+                <br />
+                <br />
+                <Box
+                    m={3}
+                    mt={3}
+                    className="bottomSpace"
+                    display="flex"
+                    justifyContent="flex-end"
+                    alignItems="flex-end">
+                    <Button variant="outlined" onClick={cancelFood} >Cancel</Button>
+                </Box>
+
 
                 <Dialog
                     open={openAlert}>
@@ -233,7 +229,6 @@ function EditSocialActivity() {
                     <Button onClick={() => setOpenAlert(false)}>No</Button>
                 </Dialog>
             </form>
-            </FormControl>
         </div>
     </>)
 }

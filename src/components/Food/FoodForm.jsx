@@ -17,7 +17,7 @@ import {
   MenuItem,
   Select,
   TextField,
-  Typography, 
+  Typography,
 } from "@mui/material";
 
 function FoodForm() {
@@ -30,7 +30,7 @@ function FoodForm() {
   const [addWater, setAddWater] = useState();
   const [addFasting, setAddFasting] = useState();
 
-  async function addFood  (event)  {
+  async function addFood(event) {
     event.preventDefault();
     const calculatedFoodScore = await foodScoreCalc()
     dispatch({
@@ -53,7 +53,7 @@ function FoodForm() {
     dispatch({
       type: "UPDATE_FOOD_SCORE",
       payload: {
-        score_f:calculatedFoodScore.fScore,
+        score_f: calculatedFoodScore.fScore,
       }
     })
 
@@ -151,7 +151,7 @@ function FoodForm() {
     }
     totalBalancePoints = Number(((qualityPoints - snackPoints - quantityPoints) * fastingPoints).toFixed(2))
     let fScore = 0
-    if(totalBalancePoints > 100) {
+    if (totalBalancePoints > 100) {
       fScore = 100
     } else if (totalBalancePoints < 0) {
       fScore = 0
@@ -159,138 +159,138 @@ function FoodForm() {
       fScore = totalBalancePoints
     }
     return (
-        {
-            fScore,
-            totalBalancePoints
-        }
+      {
+        fScore,
+        totalBalancePoints
+      }
 
     )
   }
 
   return (
     <>
-    <center>
-    <Typography mb={4} variant="h4" mt={3} sx={{color: '#457B9D'}}>
-      Food Form
-    </Typography> 
-    </center>
+      <center>
+        <Typography mb={4} variant="h4" mt={3} sx={{ color: '#457B9D' }}>
+          Food Form
+        </Typography>
+      </center>
       <div>
         <center>
-        <form onSubmit={addFood}>
-          <TextField 
-            label="Food Quality"
-            variant="outlined"
-            type="number"
-            placeholder="1-100"
-            min="1"
-            max="100"
-            value={addQuality}
-            onChange={(event) => setAddQuality(event.target.value)}
-          />
-          <br />
-          <br />
-          <Box sx={{ minWidth: 120 }}>
-            <FormControl sx={{minWidth: 200} }>
-              <InputLabel id="demo-simple-select-label">Quantity</InputLabel>
-              <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                value={addQuantity}
-                label="quantity"
-                onChange={(event) => setAddQuantity(event.target.value)}
-              >
-                <MenuItem value={-5}>Very Hungry</MenuItem>
-                <MenuItem value={-4}>Moderately Hungry</MenuItem>
-                <MenuItem value={-3}>Somewhat Hungry</MenuItem>
-                <MenuItem value={-2}>Hungry</MenuItem>
-                <MenuItem value={-1}>A Little Hungry</MenuItem>
-                <MenuItem value={0}>Feeling Good</MenuItem>
-                <MenuItem value={1}>A Little Too Much</MenuItem>
-                <MenuItem value={2}>Too Much</MenuItem>
-                <MenuItem value={3}>Somewhat Too Much</MenuItem>
-                <MenuItem value={4}>Moderately Too Much</MenuItem>
-                <MenuItem value={5}>Very Full</MenuItem>
-              </Select>
-            </FormControl>
+          <form onSubmit={addFood}>
+            <TextField
+              label="Food Quality"
+              variant="outlined"
+              type="number"
+              placeholder="1-100"
+              min="1"
+              max="100"
+              value={addQuality}
+              onChange={(event) => setAddQuality(event.target.value)}
+            />
             <br />
             <br />
-            <FormControl sx={{minWidth: 200} }>
-              <InputLabel id="demo-simple-select-label">Snacks</InputLabel>
-              <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                value={addSnack}
-                label="snacks"
-                onChange={(event) => setAddSnack(event.target.value)}
-              >
-                <MenuItem value={0}>No Snacks</MenuItem>
-                <MenuItem value={1}>One Snack</MenuItem>
-                <MenuItem value={2}>Two Snacks</MenuItem>
-                <MenuItem value={3}>Three Snacks</MenuItem>
-                <MenuItem value={4}>Four Snacks</MenuItem>
-                <MenuItem value={5}>Five or More Snacks</MenuItem>
-              </Select>
-            </FormControl>
-            <br />
-            <br />
-            <FormControl sx={{minWidth: 200} }>
-              <InputLabel id="demo-simple-select-label">Water</InputLabel>
-              <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                value={addWater}
-                label="water"
-                onChange={(event) => setAddWater(event.target.value)}
-              >
-                <MenuItem value={0}>0 Ltr</MenuItem>
-                <MenuItem value={1}>.5 Ltr</MenuItem>
-                <MenuItem value={2}>1 Ltr</MenuItem>
-                <MenuItem value={3}>1.5 Ltr</MenuItem>
-                <MenuItem value={4}>2 Ltr</MenuItem>
-                <MenuItem value={5}>2.5 Ltr</MenuItem>
-              </Select>
-            </FormControl>
-            <br />
-            <br />
-            <FormControl sx={{minWidth: 200} }>
-              <InputLabel id="demo-simple-select-label">Fasting</InputLabel>
-              <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                value={addFasting}
-                label="fasting"
-                onChange={(event) => setAddFasting(event.target.value)}
-              >
-                <MenuItem value={0}>Fewer Then 12</MenuItem>
-                <MenuItem value={1}>12-14 Hrs</MenuItem>
-                <MenuItem value={2}>14-16 Hrs</MenuItem>
-                <MenuItem value={3}>16-24 Hrs</MenuItem>
-                <MenuItem value={4}>24+ Hrs</MenuItem>
-              </Select>
-            </FormControl>
-            <br />
-            <br />
-            <Box
-              m={2}
-              mt={3}
-              display="flex"
-              justifyContent="flex-end"
-              alignItems="flex-end">
-              <Button sx={{backgroundColor: '#2f5f98'}}variant="contained" type="submit" >Submit</Button>
+            <Box sx={{ minWidth: 120 }}>
+              <FormControl sx={{ minWidth: 200 }}>
+                <InputLabel id="demo-simple-select-label">Quantity</InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={addQuantity}
+                  label="quantity"
+                  onChange={(event) => setAddQuantity(event.target.value)}
+                >
+                  <MenuItem value={-5}>Very Hungry</MenuItem>
+                  <MenuItem value={-4}>Moderately Hungry</MenuItem>
+                  <MenuItem value={-3}>Somewhat Hungry</MenuItem>
+                  <MenuItem value={-2}>Hungry</MenuItem>
+                  <MenuItem value={-1}>A Little Hungry</MenuItem>
+                  <MenuItem value={0}>Feeling Good</MenuItem>
+                  <MenuItem value={1}>A Little Too Much</MenuItem>
+                  <MenuItem value={2}>Too Much</MenuItem>
+                  <MenuItem value={3}>Somewhat Too Much</MenuItem>
+                  <MenuItem value={4}>Moderately Too Much</MenuItem>
+                  <MenuItem value={5}>Very Full</MenuItem>
+                </Select>
+              </FormControl>
+              <br />
+              <br />
+              <FormControl sx={{ minWidth: 200 }}>
+                <InputLabel id="demo-simple-select-label">Snacks</InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={addSnack}
+                  label="snacks"
+                  onChange={(event) => setAddSnack(event.target.value)}
+                >
+                  <MenuItem value={0}>No Snacks</MenuItem>
+                  <MenuItem value={1}>One Snack</MenuItem>
+                  <MenuItem value={2}>Two Snacks</MenuItem>
+                  <MenuItem value={3}>Three Snacks</MenuItem>
+                  <MenuItem value={4}>Four Snacks</MenuItem>
+                  <MenuItem value={5}>Five or More Snacks</MenuItem>
+                </Select>
+              </FormControl>
+              <br />
+              <br />
+              <FormControl sx={{ minWidth: 200 }}>
+                <InputLabel id="demo-simple-select-label">Water</InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={addWater}
+                  label="water"
+                  onChange={(event) => setAddWater(event.target.value)}
+                >
+                  <MenuItem value={0}>0 Ltr</MenuItem>
+                  <MenuItem value={1}>.5 Ltr</MenuItem>
+                  <MenuItem value={2}>1 Ltr</MenuItem>
+                  <MenuItem value={3}>1.5 Ltr</MenuItem>
+                  <MenuItem value={4}>2 Ltr</MenuItem>
+                  <MenuItem value={5}>2.5 Ltr</MenuItem>
+                </Select>
+              </FormControl>
+              <br />
+              <br />
+              <FormControl sx={{ minWidth: 200 }}>
+                <InputLabel id="demo-simple-select-label">Fasting</InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={addFasting}
+                  label="fasting"
+                  onChange={(event) => setAddFasting(event.target.value)}
+                >
+                  <MenuItem value={0}>Fewer Then 12</MenuItem>
+                  <MenuItem value={1}>12-14 Hrs</MenuItem>
+                  <MenuItem value={2}>14-16 Hrs</MenuItem>
+                  <MenuItem value={3}>16-24 Hrs</MenuItem>
+                  <MenuItem value={4}>24+ Hrs</MenuItem>
+                </Select>
+              </FormControl>
+              <br />
+              <br />
+              <Box
+                m={3}
+                mt={3}
+                display="flex"
+                justifyContent="flex-end"
+                alignItems="flex-end">
+                <Button sx={{ backgroundColor: '#2f5f98' }} variant="contained" type="submit" >Submit</Button>
+              </Box>
+              <br />
+              <br />
+              <Box
+                m={3}
+                mt={3}
+                className="bottomSpace"
+                display="flex"
+                justifyContent="flex-end"
+                alignItems="flex-end">
+                <Button variant="outlined" onClick={cancelFood} >Cancel</Button>
+              </Box>
             </Box>
-            <br />
-            <br />
-            <Box
-              m={2}
-              mt={3}
-              className="bottomSpace"
-              display="flex"
-              justifyContent="flex-end"
-              alignItems="flex-end">
-              <Button variant="outlined" onClick={cancelFood} >Cancel</Button>
-            </Box>
-          </Box>
-        </form>
+          </form>
         </center>
       </div>
     </>

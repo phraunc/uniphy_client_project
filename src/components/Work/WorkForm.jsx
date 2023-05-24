@@ -57,9 +57,9 @@ function WorkForm() {
         dispatch({
             type: "UPDATE_WORK_SCORE",
             payload: {
-              score_w:calculatedWorkScore.wScore,
+                score_w: calculatedWorkScore.wScore,
             }
-          })
+        })
 
         history.push("/work");
     };
@@ -173,85 +173,85 @@ function WorkForm() {
 
     return (
         <>
-        <center>
-    <Typography mb={4} mt={3} variant="h4" sx={{color: '#457B9D'}} >
-         Work Form
-      </Typography>
-      </center>
+            <center>
+                <Typography mb={4} mt={3} variant="h4" sx={{ color: '#457B9D' }} >
+                    Work Form
+                </Typography>
+            </center>
             <div>
                 <center>
-                <form onSubmit={addWork}>
+                    <form onSubmit={addWork}>
 
-                    <FormControl sx={{ minWidth: 195 }}>
-                        <InputLabel id="demo-simple-select-label">Workload</InputLabel>
-                        <Select
-                            labelId="demo-simple-select-label"
-                            id="demo-simple-select"
-                            value={addWorkload}
-                            label="quantity"
-                            onChange={(event) => setAddWorkload(event.target.value)}
-                        >
-                            <MenuItem value={-5}>Feeling Buried</MenuItem>
-                            <MenuItem value={-4}>Drowning In Tasks</MenuItem>
-                            <MenuItem value={-3}>Burning The Candle At Both Ends</MenuItem>
-                            <MenuItem value={-2}>Running On Empty</MenuItem>
-                            <MenuItem value={-1}>Treading Water</MenuItem>
-                            <MenuItem value={0}>Staying Afloat</MenuItem>
-                            <MenuItem value={1}>Finding Balance</MenuItem>
-                            <MenuItem value={2}>In The Groove</MenuItem>
-                            <MenuItem value={3}>Smooth Sailing</MenuItem>
-                            <MenuItem value={4}>Master Of The Craft</MenuItem>
-                            <MenuItem value={5}>Overdrive</MenuItem>
+                        <FormControl sx={{ minWidth: 195 }}>
+                            <InputLabel id="demo-simple-select-label">Workload</InputLabel>
+                            <Select
+                                labelId="demo-simple-select-label"
+                                id="demo-simple-select"
+                                value={addWorkload}
+                                label="quantity"
+                                onChange={(event) => setAddWorkload(event.target.value)}
+                            >
+                                <MenuItem value={-5}>Feeling Buried</MenuItem>
+                                <MenuItem value={-4}>Drowning In Tasks</MenuItem>
+                                <MenuItem value={-3}>Burning The Candle At Both Ends</MenuItem>
+                                <MenuItem value={-2}>Running On Empty</MenuItem>
+                                <MenuItem value={-1}>Treading Water</MenuItem>
+                                <MenuItem value={0}>Staying Afloat</MenuItem>
+                                <MenuItem value={1}>Finding Balance</MenuItem>
+                                <MenuItem value={2}>In The Groove</MenuItem>
+                                <MenuItem value={3}>Smooth Sailing</MenuItem>
+                                <MenuItem value={4}>Master Of The Craft</MenuItem>
+                                <MenuItem value={5}>Overdrive</MenuItem>
 
-                        </Select>
-                    </FormControl>
-                    <br />
-                    <br />
-                    <TextField
-                        label="Work Fullfillment"
-                        variant="outlined"
-                        type="number"
-                        placeholder="1 - 10"
-                        min="1"
-                        max="10"
-                        value={addFullfillment}
-                        onChange={(event) => setAddFullfillment(Number(event.target.value))}
-                    />
-                    <br />
-                    <br />
-                    <Box sx={{ minWidth: 120 }}>
+                            </Select>
+                        </FormControl>
+                        <br />
+                        <br />
                         <TextField
-                            label="Notes"
+                            label="Work Fullfillment"
                             variant="outlined"
-                            type="text"
-                            placeholder="Notes"
-
-                            value={addNote}
-                            onChange={(event) => setAddNote(event.target.value)}
+                            type="number"
+                            placeholder="1 - 10"
+                            min="1"
+                            max="10"
+                            value={addFullfillment}
+                            onChange={(event) => setAddFullfillment(Number(event.target.value))}
                         />
                         <br />
                         <br />
-                        <Box
-                            m={2}
-                            mt={3}
-                            display="flex"
-                            justifyContent="flex-end"
-                            alignItems="flex-end">
-                            <Button variant="contained" type="submit"  sx={{backgroundColor: '#457B9D'}}>Submit</Button>
+                        <Box sx={{ minWidth: 120 }}>
+                            <TextField
+                                label="Notes"
+                                variant="outlined"
+                                type="text"
+                                placeholder="Notes"
+
+                                value={addNote}
+                                onChange={(event) => setAddNote(event.target.value)}
+                            />
+                            <br />
+                            <br />
+                            <Box
+                                m={3}
+                                mt={3}
+                                display="flex"
+                                justifyContent="flex-end"
+                                alignItems="flex-end">
+                                <Button variant="contained" type="submit" sx={{ backgroundColor: '#457B9D' }}>Submit</Button>
+                            </Box>
+                            <br />
+                            <br />
+                            <Box
+                                m={3}
+                                mt={3}
+                                className="bottomSpace"
+                                display="flex"
+                                justifyContent="flex-end"
+                                alignItems="flex-end">
+                                <Button variant="outlined" onClick={cancelWork} >Cancel</Button>
+                            </Box>
                         </Box>
-                        <br />
-                        <br />
-                        <Box
-                            m={2}
-                            mt={3}
-                            className="bottomSpace"
-                            display="flex"
-                            justifyContent="flex-end"
-                            alignItems="flex-end">
-                            <Button variant="outlined" onClick={cancelWork} >Cancel</Button>
-                        </Box>
-                    </Box>
-                </form>
+                    </form>
                 </center>
             </div>
         </>
