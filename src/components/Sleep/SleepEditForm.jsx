@@ -34,6 +34,19 @@ function EditSleep() {
     const [addDuration, setAddDuration] = useState();
     const [openAlert, setOpenAlert] = useState(false)
 
+
+    useEffect(() => {
+        // Update the component state when foodItemID changes
+        if (sleepId.length > 0) {
+            setAddQuality(sleepId[0]?.quality|| '');
+            setScreenTime(sleepId[0]?.screen_time || '');
+            setStartSleep(sleepId[0]?.start_sleep || '');
+            setEndSleep(sleepId[0]?.end_sleep || '');
+            setAddDuration(sleepId[0]?.duration || '');
+        }
+    }, [sleepId]);
+
+
     function cancelSleep() {
         history.push("/sleep")
     }
