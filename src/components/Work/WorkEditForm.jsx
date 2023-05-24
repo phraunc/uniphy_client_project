@@ -175,14 +175,7 @@ function EditWork() {
         <div>
             <center>
                 <form onSubmit={saveChanges}>
-                    <TextField
-                        label="Work/School"
-                        variant="outlined"
-                        type="text"
-                        placeholder=""
-                        value={addNote}
-                        onChange={(event) => setAddNote(event.target.value)}
-                    />
+                  
                     <br />
                     <br />
                     <Box sx={{ minWidth: 120 }}>
@@ -212,15 +205,26 @@ function EditWork() {
                         <br />
                         <br />
                         <TextField
-                            label="Work Fullfillment (1-10)"
+                            label="Work Fullfillment"
                             variant="outlined"
-                            type="text"
-                            placeholder="Fullfilled?"
+                            type="number"
+                            placeholder="1 - 10"
+                            min="1"
+                            max="10"
                             value={addFullfillment}
                             onChange={(event) => setAddFullfillment(event.target.value)}
                         />
                         <br />
                         <br />
+                        <TextField
+                                label="Notes"
+                                variant="outlined"
+                                type="text"
+                                placeholder="Notes"
+
+                                value={addNote}
+                                onChange={(event) => setAddNote(event.target.value)}
+                            />
                         <Box
                             m={3}
                             mt={3}
@@ -232,6 +236,7 @@ function EditWork() {
                         </Box>
                         <br />
                         <br />
+                        
                         <Box
                             m={3}
                             mt={3}
