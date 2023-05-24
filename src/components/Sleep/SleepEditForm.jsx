@@ -27,18 +27,19 @@ function EditSleep() {
     const dispatch = useDispatch();
     const sleepId = useSelector(store => store.rootSleepReducer.sleepReducerSingle)
 
-    const [addQuality, setAddQuality] = useState();
-    const [addScreenTime, setScreenTime] = useState();
-    const [addStartSleep, setStartSleep] = useState();
-    const [addEndSleep, setEndSleep] = useState();
-    const [addDuration, setAddDuration] = useState();
+    const [addQuality, setAddQuality] = useState('');
+    const [addScreenTime, setScreenTime] = useState('');
+    const [addStartSleep, setStartSleep] = useState('');
+    const [addEndSleep, setEndSleep] = useState('');
+    const [addDuration, setAddDuration] = useState('');
     const [openAlert, setOpenAlert] = useState(false)
 
 
     useEffect(() => {
-        // Update the component state when foodItemID changes
+        // Update the component state when sleepID changes
+        console.log('the sleep id from the store.',sleepId)
         if (sleepId.length > 0) {
-            setAddQuality(sleepId[0]?.quality|| '');
+            setAddQuality(sleepId[0]?.quality || '');
             setScreenTime(sleepId[0]?.screen_time || '');
             setStartSleep(sleepId[0]?.start_sleep || '');
             setEndSleep(sleepId[0]?.end_sleep || '');

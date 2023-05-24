@@ -38,6 +38,7 @@ function EditSocialActivity() {
 
     useEffect(() => {
         // Update the component state when foodItemID changes
+        console.log('SOCIALSSTOREID', socialStoreID)
         if (socialStoreID.length > 0) {
             setAddWhom(socialStoreID[0]?.whom || '');
             setAddDescription(socialStoreID[0]?.description || '');
