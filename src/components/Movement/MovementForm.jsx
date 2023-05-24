@@ -161,16 +161,8 @@ function MovementForm() {
                     
                     <br />
                     <br />
-                    <TextField
-                        label="Manual Time Duration"
-                        variant="outlined"
-                        type="text"
-                        placeholder="Time 00:00:00"
-                        value={addTime}
-                        onChange={(event) => setAddTime(event.target.value)} />
                 </center>
-                <br/>
-                <br/>
+  
                     <Box
                         m={3}
                         mt={3}
