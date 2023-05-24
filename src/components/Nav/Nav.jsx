@@ -12,8 +12,6 @@ import { Box } from '@mui/material';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom';
 
 
-
-
 function Nav() {
   const user = useSelector((store) => store.user);
   const history = useHistory();

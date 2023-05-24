@@ -1,6 +1,8 @@
+import { useContext } from 'react';
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
+import { SnackbarContext } from '../SnackbarProvider/SnackbarProvider';
 import {
     Radio,
     RadioGroup,
@@ -23,13 +25,21 @@ function SocialActivityForm() {
     const dispatch = useDispatch();
     const [addWhom, setAddWhom] = useState('');
     const [addDescription, setAddDescription] = useState('');
-    const [addDuration, setAddDuration] = useState();
-    const [addOnline, setAddOnline] = useState();
-    const [addRating, setAddRating] = useState()
+    const [addDuration, setAddDuration] = useState('');
+    const [addOnline, setAddOnline] = useState('');
+    const [addRating, setAddRating] = useState('');
+
     const handleHome = () => {
         // console.log("history test");
         history.push("/home");
     };
+
+    const { openSnackbar } = useContext(SnackbarContext);
+
+    const handleClick = () => {
+      openSnackbar('Snackbar message!');
+    };
+
     async function addSocialActivity(event) {
         event.preventDefault();
         const calculatedSocialScore = await socialPointsCalc()
@@ -47,8 +57,8 @@ function SocialActivityForm() {
         })
         setAddWhom('')
         setAddDescription('')
-        setAddDuration(0)
-        setAddOnline(false)
+        setAddDuration('')
+        setAddOnline('')
         // console.log('AFTER')
         dispatch({
             type: "UPDATE_SOCIAL_SCORE",
@@ -56,6 +66,7 @@ function SocialActivityForm() {
                 score_sa: calculatedSocialScore.saScore,
             }
         })
+        handleClick();
         history.push("/social");
     };
     const cancelSocialActivity = () => {
@@ -82,7 +93,7 @@ function SocialActivityForm() {
                 ratingPoints = 1.3
                 break;
             default:
-                screenPoints = 1
+                ratingPoints = 1
         }
         totalBalancePoints = Number((durationPoints * ratingPoints).toFixed(2))
         let saScore = 0

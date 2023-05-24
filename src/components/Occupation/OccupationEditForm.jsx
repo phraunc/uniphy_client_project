@@ -99,7 +99,7 @@ function EditOccupation() {
             <center>
                 <form onSubmit={saveChanges}>
                     <TextField
-                        label="Occupation title"
+                        label="Occupation Title"
                         variant="outlined"
                         type="text"
                         placeholder=""
@@ -110,7 +110,7 @@ function EditOccupation() {
                     <br />
                     <Box sx={{ minWidth: 120 }}>
                         <TextField
-                            label="Occupation duration"
+                            label="Duration"
                             variant="outlined"
                             type="text"
                             placeholder=""
@@ -120,7 +120,7 @@ function EditOccupation() {
                         <br />
                         <br />
                         <TextField
-                            label="Occupation description"
+                            label="Description"
                             variant="outlined"
                             type="text"
                             placeholder=""

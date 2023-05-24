@@ -1,9 +1,9 @@
+import { useContext } from 'react';
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import Stopwatch from "../Movement/Stopwatch.jsx";
-// import { createTheme, ThemeProvider } from '@mui/material/styles';
-
+import { SnackbarContext } from '../SnackbarProvider/SnackbarProvider'
 import {
     Radio,
     RadioGroup,
@@ -30,6 +30,12 @@ function MovementForm() {
     const [addIntensity, setAddIntensity] = useState('');
     const [addTime, setAddTime] = useState('');
 
+    const { openSnackbar } = useContext(SnackbarContext);
+
+    const handleClick = () => {
+      openSnackbar('Snackbar message!');
+    };
+
     async function addMovement(event) {
         event.preventDefault();
         // console.log('this is the time', addTime)
@@ -45,15 +51,15 @@ function MovementForm() {
             }
         })
         setAddTitle("")
-        setAddTime(0)
-        setAddIntensity(0)
+        setAddTime('')
+        setAddIntensity('')
         dispatch({
             type: "UPDATE_MOVEMENT_SCORE",
             payload: {
                 score_m: calculatedMovementScore.mScore,
             }
         })
-
+        handleClick()
         history.push("/movement");
 
     };
@@ -94,7 +100,7 @@ function MovementForm() {
                 intensityPoints = 3
                 break;
             default:
-                qualityPoints = 1
+                intensityPoints = 1
         }
         totalBalancePoints = Number((durationPoints * intensityPoints).toFixed(2))
         let mScore = 0
@@ -150,10 +156,21 @@ function MovementForm() {
                             </Select>
                         </FormControl>
 
-                    </center>
-                    <center>
+            
                         <Stopwatch addTime={addTime} setAddTime={setAddTime} /> {/* Pass addTime and setAddTime as props */}
-                    </center>
+                    
+                    <br />
+                    <br />
+                    <TextField
+                        label="Manual Time Duration"
+                        variant="outlined"
+                        type="text"
+                        placeholder="Time 00:00:00"
+                        value={addTime}
+                        onChange={(event) => setAddTime(event.target.value)} />
+                </center>
+                <br/>
+                <br/>
                     <Box
                         m={3}
                         mt={3}

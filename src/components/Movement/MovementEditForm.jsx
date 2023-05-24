@@ -107,7 +107,7 @@ function EditMovement() {
                 intensityPoints = 3
                 break;
             default:
-                qualityPoints = 1
+                intensityPoints = 1
         }
         totalBalancePoints = Number((durationPoints * intensityPoints).toFixed(2))
         let mScore = 0
@@ -149,7 +149,7 @@ function EditMovement() {
                         label="Duration"
                         variant="outlined"
                         type="text"
-                        placeholder="Time"
+                        placeholder="Time 00:00:00"
                         value={addTime}
                         onChange={(event) => setAddTime(event.target.value)} />
                     <br />

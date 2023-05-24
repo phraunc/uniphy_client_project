@@ -1,8 +1,9 @@
+import { useContext } from 'react';
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import WorkEdit from "./WorkEditForm";
-
+import { SnackbarContext } from '../SnackbarProvider/SnackbarProvider';
 import {
     Radio,
     RadioGroup,
@@ -28,11 +29,15 @@ function WorkForm() {
     const [addWorkload, setAddWorkload] = useState()
     const [addFullfillment, setAddFullfillment] = useState()
 
-
-
     const handleHome = () => {
         // console.log("history test");
         history.push("/home");
+    };
+
+    const { openSnackbar } = useContext(SnackbarContext);
+
+    const handleClick = () => {
+      openSnackbar('Snackbar message!');
     };
 
     async function addWork(event) {
@@ -60,7 +65,7 @@ function WorkForm() {
                 score_w: calculatedWorkScore.wScore,
             }
         })
-
+        handleClick();
         history.push("/work");
     };
 
