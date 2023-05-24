@@ -1,8 +1,9 @@
+import { useContext } from 'react';
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import EditOccupation from "./OccupationEditForm";
-
+import { SnackbarContext } from '../SnackbarProvider/SnackbarProvider';
 import {
     Radio,
     RadioGroup,
@@ -24,14 +25,20 @@ function OccupationForm() {
     const history = useHistory();
     const dispatch = useDispatch();
 
-    const [addTitle, setAddTitle] = useState();
-    const [addDuration, setAddDuration] = useState();
-    const [addDescription, setAddDescription] = useState();
+    const [addTitle, setAddTitle] = useState('');
+    const [addDuration, setAddDuration] = useState('');
+    const [addDescription, setAddDescription] = useState('');
 
 
     const handleHome = () => {
         // console.log("history test");
         history.push("/home");
+    };
+
+    const { openSnackbar } = useContext(SnackbarContext);
+
+    const handleClick = () => {
+      openSnackbar('Snackbar message!');
     };
 
     async function addOccupation(event) {
@@ -47,16 +54,16 @@ function OccupationForm() {
                 total_points: calculatedOccupationScore.totalBalancePoints
             }
         })
-        setAddTitle(0)
-        setAddDuration(0)
-        setAddDescription(0)
+        setAddTitle('')
+        setAddDuration('')
+        setAddDescription('')
         dispatch({
             type: "UPDATE_OCCUPATION_SCORE",
             payload: {
                 score_o: calculatedOccupationScore.oScore,
             }
         })
-
+        handleClick();
         history.push("/occupation");
     };
 
@@ -108,12 +115,12 @@ function OccupationForm() {
                         <br />
                         <Box sx={{ minWidth: 120 }}>
                             <TextField
-                                label="How Long? (min)"
+                                label="Duration"
                                 variant="outlined"
                                 type="number"
                                 min='1'
                                 max='10'
-                                placeholder=""
+                                placeholder="Time in minutes"
                                 value={addDuration}
                                 onChange={(event) => setAddDuration(event.target.value)} />
                             <br />
@@ -122,7 +129,7 @@ function OccupationForm() {
                                 label="Description"
                                 variant="outlined"
                                 type="text"
-                                placeholder=""
+                                placeholder="Decription"
                                 value={addDescription}
                                 onChange={(event) => setAddDescription(event.target.value)} />
                             <br />

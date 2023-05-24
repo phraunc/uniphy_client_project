@@ -23,7 +23,7 @@ const Progress_bar = ({bgcolor,progress, height, onClick, score, pillarName, par
       
       const progresstext = {
         display: 'block',
-        width: '90%',
+        width: '200px',
         padding: 10,
         color: 'white',
         fontWeight: 900,

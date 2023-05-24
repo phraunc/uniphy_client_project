@@ -93,7 +93,7 @@ function EditSocialActivity() {
                 ratingPoints = 1.3
                 break;
             default:
-                screenPoints = 1
+                ratingPoints = 1
         }
         totalBalancePoints = Number((durationPoints * ratingPoints).toFixed(2))
         let saScore = 0
