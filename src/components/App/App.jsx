@@ -37,9 +37,11 @@ import WorkForm from "../Work/WorkForm";
 import WorkEditForm from "../Work/WorkEditForm";
 import DetailsPage from "../Details/Details";
 import SnackbarProvider from "../SnackbarProvider/SnackbarProvider";
+import UniphyLandingPage from "../LandingPage/UniphyLandingPage"
 
 
 function App() {
+
   const dispatch = useDispatch();
 
   const user = useSelector((store) => store.user);
@@ -51,6 +53,7 @@ function App() {
   
 
   return (
+   
     <Router>
       <div>
         <Nav />
@@ -181,7 +184,7 @@ function App() {
               <Redirect to="/user" />
             ) : (
               // Otherwise, show the Landing page
-              <LandingPage />
+              <UniphyLandingPage />
             )}
           </Route>
 
@@ -190,9 +193,10 @@ function App() {
             <h1>404</h1>
           </Route>
         </Switch>
-        <Footer />
+        {/* <Footer /> */}
       </div>
     </Router>
+    
   );
 }
 

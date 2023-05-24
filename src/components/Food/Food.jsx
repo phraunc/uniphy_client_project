@@ -6,6 +6,7 @@ import backIcon from '../img/backIcon.png'
 import manualAddFood from '../img/manualAddFoodBtn.png'
 import EditFood from "./FoodEditForm";
 import { CircleSlider } from "react-circle-slider";
+import CircularProgress from '@mui/material/CircularProgress';
 
 
 function Food() {
@@ -22,7 +23,7 @@ function Food() {
     })
     dispatch({
       type: "GET_BALANCE_SCORE"
-  })
+    })
   }, [])
 
   const handleHome = () => {
@@ -34,8 +35,10 @@ function Food() {
     history.push("/foodform");
   }
 
+  if (!BS) {
+    <CircularProgress color="secondary" />
 
-
+  } else
 
   return (
     <>
@@ -69,7 +72,7 @@ function Food() {
           <HistoryContainer item={foodStore} />
         </div>
         <div style={{ display: "flex", justifyContent: "center" }}>
-          <img src={manualAddFood} alt="addFoodButton" onClick={foodForm} width={300} />
+          <img src={manualAddFood} alt="addFoodButton" onClick={foodForm} width={200} height={50} className="btnBottom"/>
         </div>
 
       </div>

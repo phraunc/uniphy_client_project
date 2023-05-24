@@ -73,7 +73,7 @@ function Work() {
                     <HistoryWorkContainer item={workStore} />
                 </div>
                 <div style={{ display: "flex", justifyContent: "center" }}>
-                    <img src={manualAddWorkBtn} alt="addWorkButton" onClick={workForm} width={300} />
+                    <img src={manualAddWorkBtn} alt="addWorkButton" onClick={workForm} width={200} height={50} className="btnBottom"/>
                 </div>
             </div>
         </>

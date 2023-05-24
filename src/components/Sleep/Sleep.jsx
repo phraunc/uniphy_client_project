@@ -5,6 +5,7 @@ import { useHistory } from "react-router-dom";
 import SleepHistoryContainer from "../HistoryContainer/SleepHistoryContainer";
 import manualAddSleep from '../img/manualAddSleepBtn.png';
 import { CircleSlider } from "react-circle-slider";
+import CircularProgress from '@mui/material/CircularProgress';
 
 
 
@@ -36,6 +37,9 @@ function Sleep() {
         history.push('/sleepform')
     }
 
+    if (!BS) {
+        <CircularProgress color="secondary" />
+      } else
     return (
         <>
             <div>
@@ -68,7 +72,7 @@ function Sleep() {
                     <SleepHistoryContainer item={sleepStore} />
                 </div>
                 <div style={{ display: "flex", justifyContent: "center" }}>
-                    <img src={manualAddSleep} alt="addSleepButton" onClick={sleepForm} width={300} />
+                    <img src={manualAddSleep} alt="addSleepButton" onClick={sleepForm} width={200} height={50} className="btnBottom"/>
                 </div>
 
             </div>

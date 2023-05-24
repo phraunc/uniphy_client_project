@@ -86,10 +86,11 @@ router.delete("/:id", rejectUnauthenticated, (req, res) => {
 
 router.put("/edit/:id", rejectUnauthenticated, (req, res) => {
   const sqlText = `UPDATE "social_activity"
-    SET "whom"=$1, "description"=$2, "duration"=$3, "online"=$4
-    WHERE "social_activity".id = $5 AND user_id = $6;`;
+    SET "whom"=$1, "rating"=$2, "description"=$3, "duration"=$4, "online"=$5
+    WHERE "social_activity".id = $6 AND user_id = $7;`;
   sqlValue = [
     req.body.whom,
+    req.body.rating,
     req.body.description,
     req.body.duration,
     req.body.online,
@@ -108,9 +109,26 @@ router.put("/edit/:id", rejectUnauthenticated, (req, res) => {
     });
 });
 
-router.put('/update/', rejectUnauthenticated, (req, res) => {
+router.put('/increment/', rejectUnauthenticated, (req, res) => {
   const sqlText = `UPDATE balance_score 
   SET "score_sa"=LEAST("score_sa" + $1, 100) WHERE balance_score.date = current_date AND balance_score.user_id = $2`
+  const sqlValue = [
+     req.body.score_sa,
+    req.user.id
+  ]
+
+  pool.query(sqlText, sqlValue)
+  .then((result) => {
+    res.sendStatus(200)
+  }).catch((err) => {
+    res.sendStatus(500)
+  })
+
+})
+
+router.put('/decrement/', rejectUnauthenticated, (req, res) => {
+  const sqlText = `UPDATE balance_score 
+  SET "score_sa"=LEAST("score_sa" - $1, 100) WHERE balance_score.date = current_date AND balance_score.user_id = $2`
   const sqlValue = [
      req.body.score_sa,
     req.user.id

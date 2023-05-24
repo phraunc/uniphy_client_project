@@ -34,7 +34,5 @@ export default function* rootSaga() {
     WorkSaga(),
     balanceScoreSaga(),
     is_started(),
-
-
   ]);
 }
