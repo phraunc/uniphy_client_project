@@ -22,7 +22,7 @@ function Nav() {
   const [value, setValue] = useState(0);
 
   const linkToUser = () => {
-    history.push("/user")
+    history.push("/home")
   }
 
 

@@ -30,7 +30,7 @@ function FoodForm() {
 
 
   const [addQuality, setAddQuality] = useState(0);
-  const [addQuantity, setAddQuantity] = useState(0);
+  const [addQuantity, setAddQuantity] = useState();
   const [addSnack, setAddSnack] = useState(0);
   const [addWater, setAddWater] = useState(0);
   const [addFasting, setAddFasting] = useState(0);
@@ -215,15 +215,15 @@ function FoodForm() {
                   onChange={(event) => setAddQuantity(event.target.value)}
                 >
                   <MenuItem value={-5}>Very Hungry</MenuItem>
-                  <MenuItem value={-4}>Moderately Hungry</MenuItem>
-                  <MenuItem value={-3}>Somewhat Hungry</MenuItem>
-                  <MenuItem value={-2}>Hungry</MenuItem>
+                  <MenuItem value={-4}>Hungry</MenuItem>
+                  <MenuItem value={-3}>Moderately Hungry</MenuItem>
+                  <MenuItem value={-2}>Somewhat Hungry</MenuItem>
                   <MenuItem value={-1}>A Little Hungry</MenuItem>
                   <MenuItem value={0}>Feeling Good</MenuItem>
                   <MenuItem value={1}>A Little Too Much</MenuItem>
-                  <MenuItem value={2}>Too Much</MenuItem>
-                  <MenuItem value={3}>Somewhat Too Much</MenuItem>
-                  <MenuItem value={4}>Moderately Too Much</MenuItem>
+                  <MenuItem value={2}>Somewhat Too Much</MenuItem>
+                  <MenuItem value={3}>Moderately Too Much</MenuItem>
+                  <MenuItem value={4}>Too Much</MenuItem>
                   <MenuItem value={5}>Very Full</MenuItem>
                 </Select>
               </FormControl>

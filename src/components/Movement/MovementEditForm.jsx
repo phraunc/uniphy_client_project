@@ -33,6 +33,17 @@ function EditMovement() {
     const [addIntensity, setAddIntensity] = useState('');
     const [addTime, setAddTime] = useState("");
 
+
+    useEffect(() => {
+        // Update the component state when foodItemID changes
+        if (movementItemID.length > 0) {
+            setAddTitle(movementItemID[0]?.title || '');
+            setAddIntensity(movementItemID[0]?.intensity || '');
+            setAddTime(movementItemID[0]?.duration || '');
+        }
+    }, [movementItemID]);
+
+
     const cancelMovement = () => {
         history.push('/movement')
     }
