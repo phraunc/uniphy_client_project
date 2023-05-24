@@ -1,8 +1,9 @@
+import * as React from 'react';
+import { useContext } from 'react';
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import EditFood from "./FoodEditForm";
-
 import {
   Radio,
   RadioGroup,
@@ -13,22 +14,37 @@ import {
   Slider,
   Stack,
   Button,
+  Snackbar,
   InputLabel,
   MenuItem,
   Select,
   TextField,
   Typography,
 } from "@mui/material";
+import MuiAlert, { AlertProps } from '@mui/material/Alert';
+import { SnackbarContext } from '../SnackbarProvider/SnackbarProvider'
 
 function FoodForm() {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  const [addQuality, setAddQuality] = useState();
-  const [addQuantity, setAddQuantity] = useState();
-  const [addSnack, setAddSnack] = useState();
-  const [addWater, setAddWater] = useState();
-  const [addFasting, setAddFasting] = useState();
+
+  const [addQuality, setAddQuality] = useState(0);
+  const [addQuantity, setAddQuantity] = useState(0);
+  const [addSnack, setAddSnack] = useState(0);
+  const [addWater, setAddWater] = useState(0);
+  const [addFasting, setAddFasting] = useState(0);
+
+  const handleHome = () => {
+    // console.log("history test");
+    history.push("/home");
+  };
+
+  const { openSnackbar } = useContext(SnackbarContext);
+
+  const handleClick = () => {
+    openSnackbar('Snackbar message!');
+  };
 
   async function addFood(event) {
     event.preventDefault();
@@ -56,9 +72,8 @@ function FoodForm() {
         score_f: calculatedFoodScore.fScore,
       }
     })
-
-    history.push("/food");
-
+    handleClick()
+    history.push("/food")
   };
 
   const cancelFood = () => {
@@ -163,9 +178,9 @@ function FoodForm() {
         fScore,
         totalBalancePoints
       }
-
     )
   }
+
 
   return (
     <>
@@ -261,7 +276,7 @@ function FoodForm() {
                   label="fasting"
                   onChange={(event) => setAddFasting(event.target.value)}
                 >
-                  <MenuItem value={0}>Fewer Then 12</MenuItem>
+                  <MenuItem valuehttps://github.com/phraunc/uniphy_client_project/pull/24/conflict?name=src%252Fcomponents%252FUserPage%252FProgressBar.jsx&ancestor_oid=ab1e39d8459e410f0395b06cf1ce70a7008871ea&base_oid=a9add497e8482120a6feb06285be59845e3a027e&head_oid=902942e22375acd1b093fedbf862f10d3da8fdf7={0}>Fewer Then 12</MenuItem>
                   <MenuItem value={1}>12-14 Hrs</MenuItem>
                   <MenuItem value={2}>14-16 Hrs</MenuItem>
                   <MenuItem value={3}>16-24 Hrs</MenuItem>
