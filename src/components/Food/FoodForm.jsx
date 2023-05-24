@@ -188,6 +188,7 @@ function FoodForm() {
         <Typography mb={4} variant="h4" mt={3} sx={{ color: '#457B9D' }}>
           Food Form
         </Typography>
+        <p>(For the Day)</p>
       </center>
       <div>
         <center>

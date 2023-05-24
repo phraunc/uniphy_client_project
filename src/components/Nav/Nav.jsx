@@ -10,6 +10,7 @@ import HomeIcon from '@mui/icons-material/Home';
 import Logout from '@mui/icons-material/Logout';
 import { Box } from '@mui/material';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom';
+import FolderIcon from '@mui/icons-material/Folder'
 
 
 
@@ -28,17 +29,19 @@ function Nav() {
 
   return (
 
-    <Box sx={{ position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 10, color: "white"}}>
+    <Box sx={{ position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 10, color: "white" }}>
 
-      <BottomNavigation value={value} onChange={(event, newValue) => { setValue(newValue) }} sx={{ backgroundColor: '#2f5f98'}}>
+      <BottomNavigation value={value} onChange={(event, newValue) => { setValue(newValue) }} sx={{ backgroundColor: '#2f5f98' }}>
 
-      {user.id &&
-        <BottomNavigationAction sx={{color: "white"}} label="LogOut" value="logout" icon={<Logout />} className="navLink" onClick={() => dispatch({ type: 'LOGOUT' })}/>
+        {user.id &&
+          <BottomNavigationAction sx={{ color: "white" }} label="LogOut" value="logout" icon={<Logout />} className="navLink" onClick={() => dispatch({ type: 'LOGOUT' })} />
         }
-
-      {user.id &&
-        <BottomNavigationAction sx={{color: "white"}} label="Home" value="nearby" icon={<HomeIcon />} className="navLink" onClick={linkToUser} />
-      }
+        {user.id &&
+          <BottomNavigationAction label="About" value="about" icon={<FolderIcon />} className="navLink" onClick={() => history.push('/about')} />
+        }
+        {user.id &&
+          <BottomNavigationAction sx={{ color: "white" }} label="Home" value="nearby" icon={<HomeIcon />} className="navLink" onClick={linkToUser} />
+        }
 
       </BottomNavigation>
     </Box>
