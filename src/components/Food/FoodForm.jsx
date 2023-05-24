@@ -276,7 +276,7 @@ function FoodForm() {
                   label="fasting"
                   onChange={(event) => setAddFasting(event.target.value)}
                 >
-                  <MenuItem valuehttps://github.com/phraunc/uniphy_client_project/pull/24/conflict?name=src%252Fcomponents%252FUserPage%252FProgressBar.jsx&ancestor_oid=ab1e39d8459e410f0395b06cf1ce70a7008871ea&base_oid=a9add497e8482120a6feb06285be59845e3a027e&head_oid=902942e22375acd1b093fedbf862f10d3da8fdf7={0}>Fewer Then 12</MenuItem>
+                  <MenuItem value={0}>Fewer Then 12</MenuItem>
                   <MenuItem value={1}>12-14 Hrs</MenuItem>
                   <MenuItem value={2}>14-16 Hrs</MenuItem>
                   <MenuItem value={3}>16-24 Hrs</MenuItem>
