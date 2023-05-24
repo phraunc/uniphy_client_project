@@ -198,7 +198,7 @@ function WorkForm() {
                             >
                                 <MenuItem value={-5}>Feeling Buried</MenuItem>
                                 <MenuItem value={-4}>Drowning In Tasks</MenuItem>
-                                <MenuItem value={-3}>Burning The Candle At Both Ends</MenuItem>
+                                <MenuItem value={-3}>Feeling Exhausted</MenuItem>
                                 <MenuItem value={-2}>Running On Empty</MenuItem>
                                 <MenuItem value={-1}>Treading Water</MenuItem>
                                 <MenuItem value={0}>Staying Afloat</MenuItem>
