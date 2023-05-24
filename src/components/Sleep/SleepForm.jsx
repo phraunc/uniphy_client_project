@@ -1,7 +1,8 @@
+import { useContext } from 'react';
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-
+import { SnackbarContext } from '../SnackbarProvider/SnackbarProvider';
 import {
     Radio,
     RadioGroup,
@@ -31,6 +32,11 @@ function SleepForm() {
     const [addEndSleep, setEndSleep] = useState('');
     const [addDuration, setAddDuration] = useState('');
 
+    const { openSnackbar } = useContext(SnackbarContext);
+
+    const handleClick = () => {
+      openSnackbar('Snackbar message!');
+    };
 
     function cancelSleep() {
         history.push("/sleep")
@@ -61,6 +67,7 @@ function SleepForm() {
                 score_s: calculatedSleepScore.sScore,
             }
         })
+        handleClick();
         history.push('/sleep')
 
     }

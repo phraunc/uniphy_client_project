@@ -29,11 +29,12 @@ function FoodForm() {
   const dispatch = useDispatch();
 
 
-  const [addQuality, setAddQuality] = useState(0);
-  const [addQuantity, setAddQuantity] = useState();
-  const [addSnack, setAddSnack] = useState(0);
-  const [addWater, setAddWater] = useState(0);
-  const [addFasting, setAddFasting] = useState(0);
+
+  const [addQuality, setAddQuality] = useState('');
+  const [addQuantity, setAddQuantity] = useState('');
+  const [addSnack, setAddSnack] = useState('');
+  const [addWater, setAddWater] = useState('');
+  const [addFasting, setAddFasting] = useState('');
 
   const handleHome = () => {
     // console.log("history test");
@@ -61,11 +62,11 @@ function FoodForm() {
         total_points: calculatedFoodScore.totalBalancePoints
       }
     })
-    setAddQuality(1)
-    setAddQuantity(0)
-    setAddSnack(0)
-    setAddWater(0)
-    setAddFasting(0)
+    setAddQuality('')
+    setAddQuantity('')
+    setAddSnack('')
+    setAddWater('')
+    setAddFasting('')
     dispatch({
       type: "UPDATE_FOOD_SCORE",
       payload: {
@@ -109,7 +110,7 @@ function FoodForm() {
         quantityPoints = 15
         break;
       case 2:
-        quantityoints = 30
+        quantityPoints = 30
         break;
       case 3:
         quantityPoints = 45

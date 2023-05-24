@@ -13,8 +13,6 @@ import { useHistory } from 'react-router-dom/cjs/react-router-dom';
 import FolderIcon from '@mui/icons-material/Folder'
 
 
-
-
 function Nav() {
   const user = useSelector((store) => store.user);
   const history = useHistory();

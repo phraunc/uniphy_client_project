@@ -189,6 +189,7 @@ function EditFood() {
 
 
     return (<>
+    
         <center>
             <Typography mb={4} mt={3} variant="h4" sx={{ color: '#457B9D' }} >
                 Food Form
