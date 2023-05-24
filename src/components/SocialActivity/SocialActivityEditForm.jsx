@@ -36,6 +36,17 @@ function EditSocialActivity() {
     const [openAlert, setOpenAlert] = useState(false)
 
 
+    useEffect(() => {
+        // Update the component state when foodItemID changes
+        if (socialStoreID.length > 0) {
+            setAddWhom(socialStoreID[0]?.whom || '');
+            setAddDescription(socialStoreID[0]?.description || '');
+            setAddDuration(socialStoreID[0]?.duration || '');
+            setAddOnline(socialStoreID[0]?.online || '');
+            setAddRating(socialStoreID[0]?.rating || '');
+        }
+    }, [socialStoreID]);
+
 
     const cancelFood = () => {
         history.push('/social')

@@ -36,6 +36,20 @@ function EditFood() {
     const [openAlert, setOpenAlert] = useState(false)
 
 
+
+    useEffect(() => {
+        // Update the component state when foodItemID changes
+        if (foodItemID.length > 0) {
+            setAddQuality(foodItemID[0]?.quality || '');
+            setAddQuantity(foodItemID[0]?.quantity || '');
+            setAddSnack(foodItemID[0]?.snack || '');
+            setAddWater(foodItemID[0]?.water || '');
+            setAddFasting(foodItemID[0]?.fasting || '');
+        }
+    }, [foodItemID]);
+
+
+
     const cancelFood = () => {
         history.push('/food')
     }
@@ -207,16 +221,16 @@ function EditFood() {
                                 onChange={(event) => setAddQuantity(event.target.value)}
                             >
                                 <MenuItem value={-5}>Very Hungry</MenuItem>
-                                <MenuItem value={-4}>Moderately Hungry</MenuItem>
-                                <MenuItem value={-3}>Somewhat Hungry</MenuItem>
-                                <MenuItem value={-2}>Hungry</MenuItem>
+                                <MenuItem value={-4}>Hungry</MenuItem>
+                                <MenuItem value={-3}>Moderately Hungry</MenuItem>
+                                <MenuItem value={-2}>Somewhat Hungry</MenuItem>
                                 <MenuItem value={-1}>A Little Hungry</MenuItem>
                                 <MenuItem value={0}>Feeling Good</MenuItem>
                                 <MenuItem value={1}>A Little Too Much</MenuItem>
-                                <MenuItem value={2}>Too Much</MenuItem>
-                                <MenuItem value={3}>Somewhat Too Much</MenuItem>
-                                <MenuItem value={4}>Moderately Too Much</MenuItem>
-                                <MenuItem value={5}>Very Full...AMERICA!!</MenuItem>
+                                <MenuItem value={2}>Somewhat Too Much</MenuItem>
+                                <MenuItem value={3}>Moderately Too Much</MenuItem>
+                                <MenuItem value={4}>Too Much</MenuItem>
+                                <MenuItem value={5}>Very Full</MenuItem>
                             </Select>
                         </FormControl>
                         <br />

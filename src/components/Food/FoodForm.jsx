@@ -29,6 +29,7 @@ function FoodForm() {
   const dispatch = useDispatch();
 
 
+
   const [addQuality, setAddQuality] = useState('');
   const [addQuantity, setAddQuantity] = useState('');
   const [addSnack, setAddSnack] = useState('');
@@ -109,7 +110,7 @@ function FoodForm() {
         quantityPoints = 15
         break;
       case 2:
-        quantityoints = 30
+        quantityPoints = 30
         break;
       case 3:
         quantityPoints = 45
@@ -188,6 +189,7 @@ function FoodForm() {
         <Typography mb={4} variant="h4" mt={3} sx={{ color: '#457B9D' }}>
           Food Form
         </Typography>
+        <p>(For the Day)</p>
       </center>
       <div>
         <center>
@@ -215,15 +217,15 @@ function FoodForm() {
                   onChange={(event) => setAddQuantity(event.target.value)}
                 >
                   <MenuItem value={-5}>Very Hungry</MenuItem>
-                  <MenuItem value={-4}>Moderately Hungry</MenuItem>
-                  <MenuItem value={-3}>Somewhat Hungry</MenuItem>
-                  <MenuItem value={-2}>Hungry</MenuItem>
+                  <MenuItem value={-4}>Hungry</MenuItem>
+                  <MenuItem value={-3}>Moderately Hungry</MenuItem>
+                  <MenuItem value={-2}>Somewhat Hungry</MenuItem>
                   <MenuItem value={-1}>A Little Hungry</MenuItem>
                   <MenuItem value={0}>Feeling Good</MenuItem>
                   <MenuItem value={1}>A Little Too Much</MenuItem>
-                  <MenuItem value={2}>Too Much</MenuItem>
-                  <MenuItem value={3}>Somewhat Too Much</MenuItem>
-                  <MenuItem value={4}>Moderately Too Much</MenuItem>
+                  <MenuItem value={2}>Somewhat Too Much</MenuItem>
+                  <MenuItem value={3}>Moderately Too Much</MenuItem>
+                  <MenuItem value={4}>Too Much</MenuItem>
                   <MenuItem value={5}>Very Full</MenuItem>
                 </Select>
               </FormControl>

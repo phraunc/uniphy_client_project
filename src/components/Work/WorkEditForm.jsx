@@ -32,6 +32,16 @@ function EditWork() {
     const [openAlert, setOpenAlert] = useState(false)
 
 
+    useEffect(() => {
+        // Update the component state when foodItemID changes
+        if (workItemID.length > 0) {
+            setAddNote(workItemID[0]?.note || '');
+            setAddWorkload(workItemID[0]?.workload || '');
+            setAddFullfillment(workItemID[0]?.fullfillment || '');
+        }
+    }, [workItemID]);
+
+
     const cancelWork = () => {
         history.push("/work")
     }
