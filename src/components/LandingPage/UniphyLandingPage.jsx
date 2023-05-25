@@ -58,7 +58,7 @@ function LandingPage() {
   }; // end registerUser
 
   const onLogin = (event) => {
-    history.push("/login");
+    history.push("/home");
   };
 
   //   const handleSubmit = (event) => {

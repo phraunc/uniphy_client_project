@@ -67,7 +67,8 @@ function App() {
             exact
             path="/about"
           >
-            <AboutPage />
+            {user.id ? (
+            <AboutPage />) : (<Redirect to="/home" />)}
           </Route>
 
           {/* For protected routes, the view could show one of several things on the same route.
@@ -105,7 +106,7 @@ function App() {
             {user.id ? (
               // If the user is already logged in,
               // redirect them to the /user page
-              <Redirect to="/user" />
+              <Redirect to="/home" />
             ) : (
               // Otherwise, show the registration page
               <UniphyLandingPage />
