@@ -16,8 +16,8 @@ function AboutPage() {
           <p>LinkedIn: </p>
           <p>Github: </p>
           <li>Anthony Cole</li>
-          <p>LinkedIn: </p>
-          <p>Github: </p>
+          <p>LinkedIn: <a href="https://www.linkedin.com/in/anthony-cole-750309247/">www.linkedin.com/in/anthony-cole-750309247/</a></p>
+          <p>Github: <a href="https://github.com/phraunc">https://github.com/phraunc</a></p>
           <li>Adam Shepard</li>
           <p>LinkedIn: </p>
           <p>Github: </p>
