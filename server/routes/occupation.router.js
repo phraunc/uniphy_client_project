@@ -5,15 +5,10 @@ const {
 } = require("../modules/authentication-middleware");
 const router = express.Router();
 
-/**
- * GET route template
- */
 router.get("/", rejectUnauthenticated, (req, res) => {
-  // GET route code here
   const sqlText = `SELECT * FROM occupation
   WHERE user_id = $1 ORDER BY id DESC;`;
-  pool
-    .query(sqlText, [req.user.id])
+  pool.query(sqlText, [req.user.id])
     .then((result) => {
       res.send(result.rows);
     })
@@ -27,7 +22,6 @@ router.get("/", rejectUnauthenticated, (req, res) => {
 router.get('/details/:id', rejectUnauthenticated, (req, res) => {
   const sqlText = `SELECT * FROM occupation WHERE occupation.id = $1`
   const sqlValue = [req.params.id]
-
   pool.query(sqlText, sqlValue)
     .then((result) => {
       res.send(result.rows)
@@ -36,13 +30,8 @@ router.get('/details/:id', rejectUnauthenticated, (req, res) => {
       console.log('error in GET by ID Occupation Route', err)
       res.sendStatus(500)
     })
-
 })
 
-
-/**
- * POST route template
- */
 router.post("/", rejectUnauthenticated, (req, res) => {
   // POST route code here
   const sqlText = `INSERT INTO occupation (user_id, score_o, title, duration, description, total_points)
@@ -53,10 +42,8 @@ router.post("/", rejectUnauthenticated, (req, res) => {
     req.body.title,
     req.body.duration,
     req.body.description,
-    req.body.total_points
-  ];
-  pool
-    .query(sqlText, sqlValue)
+    req.body.total_points];
+  pool.query(sqlText, sqlValue)
     .then((result) => {
       res.sendStatus(200);
     })
@@ -69,9 +56,7 @@ router.post("/", rejectUnauthenticated, (req, res) => {
 router.delete("/:id", rejectUnauthenticated, (req, res) => {
   const sqlText = `DELETE FROM "occupation" WHERE "occupation".id = $1 AND user_id = $2;`;
   const sqlValue = [req.params.id, req.user.id];
-
-  pool
-    .query(sqlText, sqlValue)
+  pool.query(sqlText, sqlValue)
     .then(() => {
       res.sendStatus(200);
     })
@@ -91,10 +76,8 @@ router.put("/edit/:id", rejectUnauthenticated, (req, res) => {
     req.body.duration,
     req.body.description,
     req.params.id,
-    req.user.id
-  ];
-  pool
-    .query(sqlText, sqlValue)
+    req.user.id];
+  pool.query(sqlText, sqlValue)
     .then(() => {
       res.sendStatus(200);
     })
@@ -108,34 +91,28 @@ router.put('/increment/', rejectUnauthenticated, (req, res) => {
   const sqlText = `UPDATE balance_score 
   SET "score_o"=LEAST("score_o" + $1, 100) WHERE balance_score.date = current_date AND balance_score.user_id = $2`
   const sqlValue = [
-     req.body.score_o,
-    req.user.id
-  ]
-
+    req.body.score_o,
+    req.user.id]
   pool.query(sqlText, sqlValue)
-  .then((result) => {
-    res.sendStatus(200)
-  }).catch((err) => {
-    res.sendStatus(500)
-  })
-
+    .then((result) => {
+      res.sendStatus(200)
+    }).catch((err) => {
+      res.sendStatus(500)
+    })
 })
 
 router.put('/decrement/', rejectUnauthenticated, (req, res) => {
   const sqlText = `UPDATE balance_score 
   SET "score_o"=LEAST("score_o" - $1, 100) WHERE balance_score.date = current_date AND balance_score.user_id = $2`
   const sqlValue = [
-     req.body.score_o,
-    req.user.id
-  ]
-
+    req.body.score_o,
+    req.user.id]
   pool.query(sqlText, sqlValue)
-  .then((result) => {
-    res.sendStatus(200)
-  }).catch((err) => {
-    res.sendStatus(500)
-  })
-
+    .then((result) => {
+      res.sendStatus(200)
+    }).catch((err) => {
+      res.sendStatus(500)
+    })
 })
 
 module.exports = router;
