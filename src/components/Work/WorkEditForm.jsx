@@ -47,8 +47,6 @@ function EditWork() {
         event.preventDefault();
         let calculatedWorkScore = await workScoreCalc()
         const testScore = calculatedWorkScore.wScore
-        console.log('this is calculatedWorkScore:', calculatedWorkScore)
-        console.log('this is calculatedWorkScore.wScore:', calculatedWorkScore.wScore)
 
         const newWorkScore = calculatedWorkScore.wScore - BS
         console.log('this is newWorkScore', newWorkScore)

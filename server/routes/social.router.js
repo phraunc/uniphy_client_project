@@ -86,10 +86,11 @@ router.delete("/:id", rejectUnauthenticated, (req, res) => {
 
 router.put("/edit/:id", rejectUnauthenticated, (req, res) => {
   const sqlText = `UPDATE "social_activity"
-    SET "whom"=$1, "rating"=$2, "description"=$3, "duration"=$4, "online"=$5
-    WHERE "social_activity".id = $6 AND user_id = $7;`;
+    SET "whom"=$1, "score_sa"=$2, "rating"=$3, "description"=$4, "duration"=$5, "online"=$6
+    WHERE "social_activity".id = $7 AND user_id = $8;`;
   sqlValue = [
     req.body.whom,
+    req.body.score_sa,
     req.body.rating,
     req.body.description,
     req.body.duration,
