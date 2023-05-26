@@ -11,6 +11,9 @@ import {
     TextField,
     Typography,
 } from "@mui/material";
+import Modal from "@mui/material";
+import Dialog from '@mui/material/Dialog';
+import DialogContent from '@mui/material/DialogContent';
 
 function EditMovement() {
     const dispatch = useDispatch();
@@ -184,7 +187,7 @@ function EditMovement() {
                     display="flex"
                     justifyContent="flex-end"
                     alignItems="flex-end">
-                    <Button variant="outlined" sx={{ mr: 15, color: '#FF4646', borderColor: '#FF4646' }} onClick={DeleteMovement}>Delete</Button>
+                    <Button variant="outlined" sx={{ mr: 15, color: '#FF4646', borderColor: '#FF4646' }} onClick={() => setOpenAlert(true)}>Delete</Button>
                     <Button variant="contained" type="submit" sx={{ backgroundColor: '#457B9D' }} >Save</Button>
                 </Box>
                 <br />
@@ -198,6 +201,14 @@ function EditMovement() {
                     alignItems="flex-end">
                     <Button variant="outlined" onClick={cancelMovement} >Cancel</Button>
                 </Box>
+                <Dialog
+                        open={openAlert}>
+                        <DialogContent>
+                            Are you sure you want to Delete?
+                        </DialogContent>
+                        <Button onClick={DeleteMovement}>Yes</Button>
+                        <Button onClick={() => setOpenAlert(false)}>No</Button>
+                    </Dialog>
             </form>
         </div>
     </>)
