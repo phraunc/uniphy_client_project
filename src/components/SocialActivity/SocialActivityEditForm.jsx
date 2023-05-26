@@ -49,7 +49,6 @@ function EditSocialActivity() {
         }
     }, [socialStoreID]);
 
-
     const cancelFood = () => {
         history.push('/social')
     }
@@ -58,7 +57,6 @@ function EditSocialActivity() {
         event.preventDefault();
         const calculatedSocialScore = await socialPointsCalc()
         const testScore = calculatedSocialScore.saScore
-
         const newSocialScore = calculatedSocialScore.saScore - BS
         console.log('this is newSocialScore', newSocialScore)
 
