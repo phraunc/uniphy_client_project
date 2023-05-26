@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import Modal from '@mui/material/Modal';
 import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
 import {
@@ -21,13 +20,10 @@ import {
     Typography,
 } from "@mui/material";
 
-
-
 function EditSocialActivity() {
     const dispatch = useDispatch();
     const socialStoreID = useSelector(store => store.rootSocialReducer.socialReducer)
     const history = useHistory();
-
     const [addWhom, setAddWhom] = useState('');
     const [addDescription, setAddDescription] = useState('');
     const [addDuration, setAddDuration] = useState(0);
