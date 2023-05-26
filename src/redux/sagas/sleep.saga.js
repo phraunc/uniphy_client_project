@@ -3,9 +3,9 @@ import axios from "axios";
 
 function* getSleepId(action) {
   // console.log('here is our payload for getsleepID', action.payload)
-  try{
+  try {
     const foodID = yield axios.get(`./api/sleep/details/${action.payload}`);
-    yield put({ type: 'SET_SLEEP_ID', payload: foodID.data})
+    yield put({ type: 'SET_SLEEP_ID', payload: foodID.data })
   } catch (err) {
     console.log("error in get sleep id saga.", err)
   }
@@ -53,7 +53,7 @@ function* deleteSleep(action) {
 
 function* incrementBalanceSleep(action) {
   // console.log('our update balance score saga:', action.payload)
-  try{
+  try {
     yield axios.put(`./api/sleep/increment/`, action.payload)
   } catch (err) {
     console.log('error in update food balance score saga', err)
@@ -62,7 +62,7 @@ function* incrementBalanceSleep(action) {
 
 function* decrementBalanceSleep(action) {
   // console.log('our update balance score saga:', action.payload)
-  try{
+  try {
     yield axios.put(`./api/sleep/decrement/`, action.payload)
   } catch (err) {
     console.log('error in update food balance score saga', err)

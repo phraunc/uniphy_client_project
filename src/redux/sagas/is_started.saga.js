@@ -8,7 +8,7 @@ function* is_startedNow(action) {
         yield put({ type: 'FETCH_USER' });
     } catch (err) {
         console.log('inside PUT saga is-started', err)
-}
+    }
 }
 
 function* is_started() {
