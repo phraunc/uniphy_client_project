@@ -6,7 +6,7 @@ const balanceScoreReducer = (state = {}, action) => {
       let Dateyear = DateParts[0];
       let checkDate = `${Dateyear}`;
       // console.log('this is our new date from DB ', checkDate);
-      return {...action.payload[0], checkDate};
+      return { ...action.payload[0], checkDate };
     }
   }
   return state;
