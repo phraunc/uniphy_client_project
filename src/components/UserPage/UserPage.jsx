@@ -49,7 +49,7 @@ function UserPage({ bgcolor, progress, height, onClick }) {
   const month = String(currentDate.getMonth() + 1).padStart(2, '0');
   const day = String(currentDate.getDate()).padStart(2, '0');
   const formattedDate = `${year}-${month}-${day}`;
-  console.log('this is our formatted date: ', formattedDate);
+  // console.log('this is our formatted date: ', formattedDate);
 
   const [todaysDate, setTodaysDate] = useState();
 
@@ -61,7 +61,6 @@ function UserPage({ bgcolor, progress, height, onClick }) {
     dispatch({
       type: "GET_BALANCE_SCORE"
     })
-    console.log('DATTTTTEWEEE', BS)
   }, []);
 
 
