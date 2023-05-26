@@ -13,7 +13,6 @@ function Occupation() {
     const dispatch = useDispatch();
     const occupationStore = useSelector(store => store.rootOccupationReducer.occupationReducer);
     const BS = useSelector((store) => store.balanceScoreReducer);
-
     const [keyValue, setKeyValue] = useState(0)
 
     useEffect(() => {

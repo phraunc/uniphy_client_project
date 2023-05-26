@@ -16,7 +16,6 @@ const socialReducerSingle = (state = {}, action) => {
    return state;
 };
 
-
 const rootSocialReducer = combineReducers({
    socialReducer,
    socialReducerSingle

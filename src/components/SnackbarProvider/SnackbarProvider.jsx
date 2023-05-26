@@ -28,7 +28,7 @@ function SnackbarProvider({ children }) {
         <Alert onClose={handleCloseSnackbar} severity="success">
           Success!
         </Alert>
-        </div>
+      </div>
       </Snackbar>
     </SnackbarContext.Provider>
   );

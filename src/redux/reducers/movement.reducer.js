@@ -16,7 +16,6 @@ const MovementReducerSingle = (state = {}, action) => {
     return state;
 };
 
-
 const rootMovementReducer = combineReducers({
     MovementReducer,
     MovementReducerSingle

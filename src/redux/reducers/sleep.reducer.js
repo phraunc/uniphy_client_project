@@ -16,7 +16,6 @@ const sleepReducerSingle = (state = {}, action) => {
    return state;
 };
 
-
 const rootSleepReducer = combineReducers({
    sleepReducer,
    sleepReducerSingle

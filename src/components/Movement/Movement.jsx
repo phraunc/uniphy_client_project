@@ -4,7 +4,6 @@ import { useHistory } from "react-router-dom";
 import HistoryContainerMovement from "../Movement/HistoryContainerMovement";
 import backIcon from '../img/backIcon.png'
 import manualAddMovement from '../img/manualAddMovementBtn.png'
-import Stopwatch from "../Movement/Stopwatch.jsx";
 import { CircleSlider } from "react-circle-slider";
 import CircularProgress from '@mui/material/CircularProgress';
 
@@ -14,12 +13,9 @@ function Movement() {
     const slider = useRef(null);
     const history = useHistory();
     const dispatch = useDispatch();
-
     const movementStore = useSelector(store => store.rootMovementReducer.MovementReducer)
     const BS = useSelector((store) => store.balanceScoreReducer);
     const [keyValue, setKeyValue] = useState(0);
-
-
 
     useEffect(() => {
         dispatch({
