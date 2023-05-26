@@ -48,7 +48,7 @@ function FoodForm() {
   };
 
   async function addFood(event) {
-    event.Default();
+    event.preventDefault();
     const calculatedFoodScore = await foodScoreCalc()
     dispatch({
       type: 'POST_FOOD',

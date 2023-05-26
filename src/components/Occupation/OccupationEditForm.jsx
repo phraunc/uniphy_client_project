@@ -22,14 +22,12 @@ function EditOccupation() {
     const BS = useSelector((store) => store.balanceScoreReducer.score_o);
 
     useEffect(() => {
-        // Update the component state when foodItemID changes
         if (occupationItemID.length > 0) {
             setAddTitle(occupationItemID[0]?.title || '');
             setAddDuration(occupationItemID[0]?.duration || '');
             setAddDescription(occupationItemID[0]?.description || '');
         }
     }, [occupationItemID]);
-
 
     const cancelOccupation = () => {
         history.push("/occupation")
