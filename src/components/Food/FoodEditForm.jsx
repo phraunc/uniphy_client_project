@@ -279,7 +279,7 @@ function EditFood() {
                                 label="fasting"
                                 onChange={(event) => setAddFasting(event.target.value)}
                             >
-                                <MenuItem value={0}>Fewer Then 12</MenuItem>
+                                <MenuItem value={0}>Fewer Than 12</MenuItem>
                                 <MenuItem value={1}>12-14 Hrs</MenuItem>
                                 <MenuItem value={2}>14-16 Hrs</MenuItem>
                                 <MenuItem value={3}>16-24 Hrs</MenuItem>

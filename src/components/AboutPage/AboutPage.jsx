@@ -12,7 +12,7 @@ function AboutPage() {
       <div>
         <ul>
           <h3>Our Team:</h3>
-          <li>Samantha Marlow</li>
+          <li>Samantha Marlowe</li>
           <p>LinkedIn: <a href="https://www.linkedin.com/in/samantha-c-marlowe/">https://www.linkedin.com/in/samantha-c-marlowe/</a></p>
           <p>Github: <a href="https://github.com/sam4class">https://github.com/sam4class</a></p>
           <li>Anthony Cole</li>
