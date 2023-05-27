@@ -120,3 +120,42 @@ VALUES ('1', 'Worked From Home', '-2', '3');
 
 INSERT INTO balance_score (user_id, balance_score, score_m, score_sa, score_o, score_f, score_s)
 VALUES ('1', '100', '20', '20', '20', '20', '20');
+
+
+
+
+-- test inputs
+
+INSERT INTO movement (user_id, score_m, title, duration, intensity, total_points)
+VALUES ('16', '15.00', 'biking', '28', '3', '15.00'),
+ ('16', '9.00', 'running', '12', '3', '9.00'),
+ ('16', '17.00', 'swimming', '28', '3', '17.00');
+ 
+INSERT INTO balance_score (user_id, score_m, score_sa, score_o, score_f, score_s, score_w)
+Values ('16', '41.00', '50.00', '52.00', '71,00', '65.00', '80.00');
+
+INSERT INTO social_activity (user_id, score_sa, whom, rating, description, duration, online, total_points)
+VALUES ('16', '23.00', 'Friends', '2', 'Quick hang before dinner', '45', 'false', '23.00'),
+('16', '17.00', 'Friends', '1', 'Trivia Night', '45', 'false', '17.00'),
+('16', '10.00', 'Friends', '1', 'BBQ', '45', 'false', '10.00');
+
+
+INSERT INTO occupation (user_id, score_o, title, duration, description, total_points)
+VALUES ('16', '32.00', 'Relaxing', '45', 'Meditation', '32.00'),
+('16', '7.00', 'Reading', '8', 'Teen murder mystery The Naturals', '7.00'),
+('16', '13.00', 'Playing Video Games', '45', 'Skyrim', '13.00');
+
+INSERT INTO food (user_id, score_f, quality, quantity, snack, water, fasting, total_points)
+VALUES ('16', '27.00', '45', '2', '2', '3', '0', '27.00'),
+('16', '12.00', '23', '2', '5', '1', '0', '12.00'),
+('16', '32.00', '79', '1', '2', '1', '0', '32.00');
+
+INSERT INTO sleep (user_id, score_s, quality, duration, screen_time, start_sleep, end_sleep, total_points)
+VALUES ('16', '23.00', '4', '45', '2', '9', '8', '23.00'),
+('16', '31.00', '3', '65', '1', '9', '12', '31.00'),
+('16', '11.00', '5', '14', '3', '9', '34', '11.00');
+
+INSERT INTO work_school (user_id, score_w, note, workload, fullfillment, total_points)
+VALUES ('16', '45.00', 'Worked From Home', '0', '3', '45.00'),
+('16', '23.00', 'In the Office', '2', '2', '23.00'),
+('16', '12.00', 'Worked From Home', '1', '3', '12.00');
