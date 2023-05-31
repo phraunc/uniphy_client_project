@@ -70,7 +70,7 @@ function Food() {
           <HistoryContainer item={foodStore} />
         </div>
         <div style={{ display: "flex", justifyContent: "center" }}>
-          <img src={manualAddFood} alt="addFoodButton" onClick={foodForm} width={200} height={50} className="btnBottom"/>
+          <img src={manualAddFood} alt="addFoodButton" onClick={foodForm} width={200} height={60} className="btnBottom"/>
         </div>
 
       </div>

@@ -70,7 +70,7 @@ function Movement() {
                         <HistoryContainerMovement item={movementStore} />
                     </div>
                     <div style={{ display: "flex", justifyContent: "center"}}>
-                        <img src={manualAddMovement} alt="addMovementButton" onClick={movementForm} width={200} height={50} className="btnBottom" />
+                        <img src={manualAddMovement} alt="addMovementButton" onClick={movementForm} width={200} height={60} className="btnBottom" />
                     </div>
                 </>
 
