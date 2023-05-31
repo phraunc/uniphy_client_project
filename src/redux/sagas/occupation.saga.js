@@ -51,7 +51,7 @@ function* deleteOccupation(action) {
 
 function* incrementBalanceOccupation(action) {
   // console.log('our update balance score saga:', action.payload)
-  try{
+  try {
     yield axios.put(`./api/occupation/increment/`, action.payload)
   } catch (err) {
     console.log('error in update food balance score saga', err)
@@ -60,7 +60,7 @@ function* incrementBalanceOccupation(action) {
 
 function* decrementBalanceOccupation(action) {
   // console.log('our update balance score saga:', action.payload)
-  try{
+  try {
     yield axios.put(`./api/occupation/decrement/`, action.payload)
   } catch (err) {
     console.log('error in update food balance score saga', err)

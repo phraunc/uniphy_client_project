@@ -5,15 +5,10 @@ const {
 } = require("../modules/authentication-middleware");
 const router = express.Router();
 
-/**
- * GET route template
- */
 router.get("/", rejectUnauthenticated, (req, res) => {
-  // GET route code here
   const sqlText = `SELECT * FROM work_school
   WHERE user_id = $1 ORDER BY id DESC;`;
-  pool
-    .query(sqlText, [req.user.id])
+  pool.query(sqlText, [req.user.id])
     .then((result) => {
       res.send(result.rows);
     })
@@ -27,7 +22,6 @@ router.get("/", rejectUnauthenticated, (req, res) => {
 router.get('/details/:id', rejectUnauthenticated, (req, res) => {
   const sqlText = `SELECT * FROM work_school WHERE work_school.id = $1`
   const sqlValue = [req.params.id]
-
   pool.query(sqlText, sqlValue)
     .then((result) => {
       res.send(result.rows)
@@ -36,15 +30,9 @@ router.get('/details/:id', rejectUnauthenticated, (req, res) => {
       console.log('error in GET by ID work_school Route', err)
       res.sendStatus(500)
     })
-
 })
 
-
-/**
- * POST route template
- */
 router.post("/", rejectUnauthenticated, (req, res) => {
-  // POST route code here
   const sqlText = `INSERT INTO work_school (user_id, score_w, note, workload, fullfillment, total_points)
   VALUES ($1, $2, $3, $4, $5, $6);`;
   const sqlValue = [
@@ -53,10 +41,8 @@ router.post("/", rejectUnauthenticated, (req, res) => {
     req.body.note,
     req.body.workload,
     req.body.fullfillment,
-    req.body.total_points
-  ];
-  pool
-    .query(sqlText, sqlValue)
+    req.body.total_points];
+  pool.query(sqlText, sqlValue)
     .then((result) => {
       res.sendStatus(200);
     })
@@ -69,9 +55,7 @@ router.post("/", rejectUnauthenticated, (req, res) => {
 router.delete("/:id", rejectUnauthenticated, (req, res) => {
   const sqlText = `DELETE FROM "work_school" WHERE "work_school".id = $1 AND user_id = $2;`;
   const sqlValue = [req.params.id, req.user.id];
-
-  pool
-    .query(sqlText, sqlValue)
+  pool.query(sqlText, sqlValue)
     .then(() => {
       res.sendStatus(200);
     })
@@ -83,17 +67,16 @@ router.delete("/:id", rejectUnauthenticated, (req, res) => {
 
 router.put("/edit/:id", rejectUnauthenticated, (req, res) => {
   const sqlText = `UPDATE "work_school"
-    SET "note"=$1, "workload"=$2, "fullfillment"=$3
-    WHERE "work_school".id = $4 AND user_id = $5;`;
+    SET "score_w"=$1, "note"=$2, "workload"=$3, "fullfillment"=$4
+    WHERE "work_school".id = $5 AND user_id = $6;`;
   sqlValue = [
+    req.body.score_w,
     req.body.note,
     req.body.workload,
     req.body.fullfillment,
     req.params.id,
-    req.user.id,
-  ];
-  pool
-    .query(sqlText, sqlValue)
+    req.user.id,];
+  pool.query(sqlText, sqlValue)
     .then(() => {
       res.sendStatus(200);
     })
@@ -107,34 +90,28 @@ router.put('/increment/', rejectUnauthenticated, (req, res) => {
   const sqlText = `UPDATE balance_score 
   SET "score_w"=LEAST("score_w" + $1, 100) WHERE balance_score.date = current_date AND balance_score.user_id = $2`
   const sqlValue = [
-     req.body.score_w,
-    req.user.id
-  ]
-
+    req.body.score_w,
+    req.user.id]
   pool.query(sqlText, sqlValue)
-  .then((result) => {
-    res.sendStatus(200)
-  }).catch((err) => {
-    res.sendStatus(500)
-  })
-
+    .then((result) => {
+      res.sendStatus(200)
+    }).catch((err) => {
+      res.sendStatus(500)
+    })
 })
 
 router.put('/decrement/', rejectUnauthenticated, (req, res) => {
   const sqlText = `UPDATE balance_score 
   SET "score_w"=LEAST("score_w" - $1, 100) WHERE balance_score.date = current_date AND balance_score.user_id = $2`
   const sqlValue = [
-     req.body.score_w,
-    req.user.id
-  ]
-
+    req.body.score_w,
+    req.user.id]
   pool.query(sqlText, sqlValue)
-  .then((result) => {
-    res.sendStatus(200)
-  }).catch((err) => {
-    res.sendStatus(500)
-  })
-
+    .then((result) => {
+      res.sendStatus(200)
+    }).catch((err) => {
+      res.sendStatus(500)
+    })
 })
 
 module.exports = router;

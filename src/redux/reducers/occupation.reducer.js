@@ -16,7 +16,6 @@ const occupationReducerSingle = (state = {}, action) => {
     return state;
 };
 
-
 const rootOccupationReducer = combineReducers({
     occupationReducer,
     occupationReducerSingle

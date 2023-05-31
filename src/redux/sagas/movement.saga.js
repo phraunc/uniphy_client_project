@@ -3,16 +3,16 @@ import axios from "axios";
 
 function* getMovementId(action) {
   // console.log('SAGA GetMovementID', action.payload) getting it here
-  try{
+  try {
     const movementID = yield axios.get(`./api/movement/details/${action.payload}`);
-    yield put({ type: 'SET_MOVEMENT_ID', payload: movementID.data})
+    yield put({ type: 'SET_MOVEMENT_ID', payload: movementID.data })
   } catch (err) {
     console.log("error in get movement id saga.", err)
   }
 }
 
 function* getMovement(action) {
-    console.log('inside GET saga movement')
+  console.log('inside GET saga movement')
   try {
     const movementPillar = yield axios.get("./api/movement", action.payload);
     yield put({ type: "SET_MOVEMENT", payload: movementPillar.data });
@@ -51,22 +51,22 @@ function* deleteMovement(action) {
 }
 
 function* incrementBalanceMovement(action) {
-    // console.log('our update balance score saga:', action.payload)
-    try{
-      yield axios.put(`./api/movement/increment/`, action.payload)
-    } catch (err) {
-      console.log('error in update food balance score saga', err)
-    }
+  // console.log('our update balance score saga:', action.payload)
+  try {
+    yield axios.put(`./api/movement/increment/`, action.payload)
+  } catch (err) {
+    console.log('error in update food balance score saga', err)
   }
-  
-  function* decrementBalanceMovement(action) {
-    // console.log('our update balance score saga:', action.payload)
-    try{
-      yield axios.put(`./api/movement/decrement/`, action.payload)
-    } catch (err) {
-      console.log('error in update food balance score saga', err)
-    }
+}
+
+function* decrementBalanceMovement(action) {
+  // console.log('our update balance score saga:', action.payload)
+  try {
+    yield axios.put(`./api/movement/decrement/`, action.payload)
+  } catch (err) {
+    console.log('error in update food balance score saga', err)
   }
+}
 
 function* MovementSaga() {
   yield takeEvery("GET_MOVEMENT", getMovement);

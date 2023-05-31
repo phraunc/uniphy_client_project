@@ -1,18 +1,11 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import Modal from '@mui/material/Modal';
 import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
 import {
-    Radio,
-    RadioGroup,
-    FormControlLabel,
     FormControl,
-    FormLabel,
     Box,
-    Slider,
-    Stack,
     Button,
     InputLabel,
     MenuItem,
@@ -21,24 +14,19 @@ import {
     Typography,
 } from "@mui/material";
 
-
-
 function EditFood() {
     const dispatch = useDispatch();
     const foodItemID = useSelector(store => store.rootFoodReducer.foodReducerSingle)
     const history = useHistory();
-
     const [addQuality, setAddQuality] = useState('');
     const [addQuantity, setAddQuantity] = useState('');
     const [addSnack, setAddSnack] = useState('');
     const [addWater, setAddWater] = useState('');
     const [addFasting, setAddFasting] = useState('');
     const [openAlert, setOpenAlert] = useState(false)
-
-
+    const BS = useSelector((store) => store.balanceScoreReducer.score_f);
 
     useEffect(() => {
-        // Update the component state when foodItemID changes
         if (foodItemID.length > 0) {
             setAddQuality(foodItemID[0]?.quality || '');
             setAddQuantity(foodItemID[0]?.quantity || '');
@@ -48,18 +36,21 @@ function EditFood() {
         }
     }, [foodItemID]);
 
-
-
     const cancelFood = () => {
         history.push('/food')
     }
 
-    const saveChanges = () => {
-        //console.log('This is the foodItem.id that we are sending our payload', foodItemID)
+    async function saveChanges() {
+        event.preventDefault();
+        const calculatedFoodScore = await foodScoreCalc()
+        const testScore = calculatedFoodScore.fScore
+        const newFoodScore = calculatedFoodScore.fScore - BS
+        console.log('this is newFoodScore', newFoodScore)
         dispatch({
             type: 'UPDATE_FOOD',
             payload: {
                 id: foodItemID[0].id,
+                score_f: testScore,
                 quality: addQuality,
                 quantity: addQuantity,
                 snack: addSnack,
@@ -67,10 +58,17 @@ function EditFood() {
                 fasting: addFasting,
             }
         })
+        dispatch({
+            type: 'UPDATE_FOOD_SCORE',
+            payload: {
+                score_f: newFoodScore,
+            }
+        })
         history.push('/food')
     }
 
     async function DeleteFood() {
+        event.preventDefault();
         const calculatedFoodScore = await foodScoreCalc()
 
         dispatch({
@@ -87,12 +85,12 @@ function EditFood() {
     }
 
     function foodScoreCalc() {
-        let qualityPoints = foodItemID[0].quality
+        let qualityPoints = addQuality
         let quantityPoints = 0
         let snackPoints = 0
         let fastingPoints = 0
         let totalBalancePoints = 0
-        switch (foodItemID[0].quantity) {
+        switch (addQuantity) {
             case -5:
                 quantityPoints = 75
                 break;
@@ -129,7 +127,7 @@ function EditFood() {
             default:
                 quantityPoints = 0
         }
-        switch (foodItemID[0].snack) {
+        switch (addSnack) {
             case 0:
                 snackPoints = 0
                 break;
@@ -151,7 +149,7 @@ function EditFood() {
             default:
                 snackPoints = 0
         }
-        switch (foodItemID[0].fasting) {
+        switch (addFasting) {
             case 0:
                 fastingPoints = 1
                 break;
@@ -187,9 +185,8 @@ function EditFood() {
         )
     }
 
-
     return (<>
-    
+
         <center>
             <Typography mb={4} mt={3} variant="h4" sx={{ color: '#457B9D' }} >
                 Food Form
@@ -282,7 +279,7 @@ function EditFood() {
                                 label="fasting"
                                 onChange={(event) => setAddFasting(event.target.value)}
                             >
-                                <MenuItem value={0}>Fewer Then 12</MenuItem>
+                                <MenuItem value={0}>Fewer Than 12</MenuItem>
                                 <MenuItem value={1}>12-14 Hrs</MenuItem>
                                 <MenuItem value={2}>14-16 Hrs</MenuItem>
                                 <MenuItem value={3}>16-24 Hrs</MenuItem>

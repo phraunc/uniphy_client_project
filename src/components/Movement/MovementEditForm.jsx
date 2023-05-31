@@ -1,19 +1,9 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import Modal from '@mui/material/Modal';
-import Dialog from '@mui/material/Dialog';
-import DialogContent from '@mui/material/DialogContent';
-import Stopwatch from "./Stopwatch";
 import {
-    Radio,
-    RadioGroup,
-    FormControlLabel,
     FormControl,
-    FormLabel,
     Box,
-    Slider,
-    Stack,
     Button,
     InputLabel,
     MenuItem,
@@ -21,8 +11,9 @@ import {
     TextField,
     Typography,
 } from "@mui/material";
-
-
+import Modal from "@mui/material";
+import Dialog from '@mui/material/Dialog';
+import DialogContent from '@mui/material/DialogContent';
 
 function EditMovement() {
     const dispatch = useDispatch();
@@ -32,7 +23,7 @@ function EditMovement() {
     const [addTitle, setAddTitle] = useState("");
     const [addIntensity, setAddIntensity] = useState('');
     const [addTime, setAddTime] = useState("");
-
+    const BS = useSelector((store) => store.balanceScoreReducer.score_m);
 
     useEffect(() => {
         // Update the component state when foodItemID changes
@@ -48,26 +39,33 @@ function EditMovement() {
         history.push('/movement')
     }
 
-    const saveChanges = (event) => {
+   async function saveChanges (){
         event.preventDefault();
-        //console.log('movementItem.id in edit movement', movementItemID)
-        // console.log('movementItem.id in edit movement', movementItemID)
+        const calculatedMovementScore = await movementScoreCalc();
+        const testScore = calculatedMovementScore.mScore
+        const newMovementScore = calculatedMovementScore.mScore - BS
+        console.log('this is newMovementScore', newMovementScore)
         dispatch({
             type: 'UPDATE_MOVEMENT',
             payload: {
                 id: movementItemID[0].id,
+                score_m: testScore,
                 title: addTitle,
                 duration: addTime,
                 intensity: addIntensity,
             }
         })
 
+        dispatch({
+            type: "UPDATE_MOVEMENT_SCORE",
+            payload: {
+                score_m: newMovementScore,
+            }
+        })
         setAddTitle("")
         setAddTime(0)
         setAddIntensity(0)
-
         history.push("/movement");
-
     };
 
     async function DeleteMovement(event) {
@@ -89,7 +87,7 @@ function EditMovement() {
     async function movementScoreCalc() {
         let totalBalancePoints = 0
         let intensityPoints = 0
-        let TimeParts = movementItemID[0].duration.split(':')
+        let TimeParts = addTime.split(':')
         let hours = parseInt(TimeParts[0]);
         let minutes = parseInt(TimeParts[1]);
         let seconds = parseInt(TimeParts[2]);
@@ -101,7 +99,7 @@ function EditMovement() {
             durationPoints = 1
         }
 
-        switch (movementItemID[0].intensity) {
+        switch (addIntensity) {
             case 0:
                 intensityPoints = 1
                 break;
@@ -139,7 +137,6 @@ function EditMovement() {
 
     return (<>
         <center>
-
             <Typography mb={4} mt={3} variant="h4" sx={{ color: '#457B9D' }}>
                 Movement Form
             </Typography>
@@ -190,7 +187,7 @@ function EditMovement() {
                     display="flex"
                     justifyContent="flex-end"
                     alignItems="flex-end">
-                    <Button variant="outlined" sx={{ mr: 15, color: '#FF4646', borderColor: '#FF4646' }} onClick={DeleteMovement}>Delete</Button>
+                    <Button variant="outlined" sx={{ mr: 15, color: '#FF4646', borderColor: '#FF4646' }} onClick={() => setOpenAlert(true)}>Delete</Button>
                     <Button variant="contained" type="submit" sx={{ backgroundColor: '#457B9D' }} >Save</Button>
                 </Box>
                 <br />
@@ -204,6 +201,14 @@ function EditMovement() {
                     alignItems="flex-end">
                     <Button variant="outlined" onClick={cancelMovement} >Cancel</Button>
                 </Box>
+                <Dialog
+                        open={openAlert}>
+                        <DialogContent>
+                            Are you sure you want to Delete?
+                        </DialogContent>
+                        <Button onClick={DeleteMovement}>Yes</Button>
+                        <Button onClick={() => setOpenAlert(false)}>No</Button>
+                    </Dialog>
             </form>
         </div>
     </>)

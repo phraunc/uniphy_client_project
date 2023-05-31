@@ -1,23 +1,12 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import Modal from '@mui/material/Modal';
 import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
 
 import {
-    Radio,
-    RadioGroup,
-    FormControlLabel,
-    FormControl,
-    FormLabel,
     Box,
-    Slider,
-    Stack,
     Button,
-    InputLabel,
-    MenuItem,
-    Select,
     TextField,
     Typography,
 } from "@mui/material";
@@ -30,32 +19,41 @@ function EditOccupation() {
     const [addDuration, setAddDuration] = useState('');
     const [addDescription, setAddDescription] = useState('');
     const [openAlert, setOpenAlert] = useState(false)
-
+    const BS = useSelector((store) => store.balanceScoreReducer.score_o);
 
     useEffect(() => {
-        // Update the component state when foodItemID changes
         if (occupationItemID.length > 0) {
             setAddTitle(occupationItemID[0]?.title || '');
             setAddDuration(occupationItemID[0]?.duration || '');
             setAddDescription(occupationItemID[0]?.description || '');
-
         }
     }, [occupationItemID]);
-
 
     const cancelOccupation = () => {
         history.push("/occupation")
     }
 
-    const saveChanges = () => {
-        //console.log('This is the occupationItem.id that we are sending our payload', occupationItemID)
+    async function saveChanges() {
+        event.preventDefault();
+        const calculatedOccupationScore = await occupationScoreCalc()
+        const testScore = calculatedOccupationScore.oScore
+        const newOccupationScore = calculatedOccupationScore.oScore - BS
+        console.log('this is newOccupationScore', newOccupationScore)
         dispatch({
             type: 'UPDATE_OCCUPATION',
             payload: {
                 id: occupationItemID[0].id,
+                score_o: testScore,
                 title: addTitle,
                 duration: addDuration,
                 description: addDescription,
+            }
+        })
+
+        dispatch({
+            type: "UPDATE_OCCUPATION_SCORE",
+            payload: {
+                score_o: newOccupationScore,
             }
         })
         history.push('/occupation')
@@ -79,7 +77,7 @@ function EditOccupation() {
 
     function occupationScoreCalc() {
         let totalBalancePoints = 0
-        let durationPoints = occupationItemID[0].duration * .75
+        let durationPoints = addDuration * .75
         totalBalancePoints = Number((durationPoints).toFixed(2))
         let oScore = 0
         if (totalBalancePoints > 100) {
@@ -94,9 +92,7 @@ function EditOccupation() {
                 oScore,
                 totalBalancePoints
             }
-
         )
-
     }
 
     return (<>
@@ -105,7 +101,6 @@ function EditOccupation() {
                 Occupation Form
             </Typography>
         </center>
-
         <div>
             <center>
                 <form onSubmit={saveChanges}>

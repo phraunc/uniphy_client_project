@@ -33,6 +33,7 @@ function EditSleep() {
     const [addEndSleep, setEndSleep] = useState('');
     const [addDuration, setAddDuration] = useState('');
     const [openAlert, setOpenAlert] = useState(false)
+    const BS = useSelector((store) => store.balanceScoreReducer.score_s);
 
 
     useEffect(() => {
@@ -52,17 +53,29 @@ function EditSleep() {
         history.push("/sleep")
     }
 
-    function saveChanges(event) {
+    async function saveChanges() {
         event.preventDefault()
+        const calculatedSleepScore = await sleepScoreCalc();
+        const testScore = calculatedSleepScore.sScore
+        const newSleepScore = calculatedSleepScore.sScore - BS
+        console.log('this is newSleepScore', newSleepScore)
+
         dispatch({
             type: 'UPDATE_SLEEP',
             payload: {
                 id: sleepId[0].id,
+                score_s: testScore,
                 duration: addDuration,
                 quality: addQuality,
                 screen_time: addScreenTime,
                 start_sleep: addStartSleep,
                 end_sleep: addEndSleep,
+            }
+        })
+        dispatch({
+            type: "UPDATE_SLEEP_SCORE",
+            payload: {
+                score_s: newSleepScore,
             }
         })
         history.push('/sleep')
@@ -86,11 +99,11 @@ function EditSleep() {
     }
 
     function sleepScoreCalc() {
-        let durationPoints = sleepId[0].duration
+        let durationPoints = addDuration
         let qualityPoints = 0
         let screenPoints = 0
         let totalBalancePoints = 0
-        switch (sleepId[0].quality) {
+        switch (addQuality) {
             case 0:
                 qualityPoints = .6
                 break;
@@ -112,7 +125,7 @@ function EditSleep() {
             default:
                 qualityPoints = 1
         }
-        switch (sleepId[0].screenTime) {
+        switch (addScreenTime) {
             case 0:
                 screenPoints = .8
                 break;
@@ -143,10 +156,8 @@ function EditSleep() {
                 sScore,
                 totalBalancePoints
             }
-
         )
     }
-
 
     return (<>
         <center>

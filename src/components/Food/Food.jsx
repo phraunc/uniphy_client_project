@@ -4,10 +4,8 @@ import { useHistory } from "react-router-dom";
 import HistoryContainer from "../HistoryContainer/HistoryContainer";
 import backIcon from '../img/backIcon.png'
 import manualAddFood from '../img/manualAddFoodBtn.png'
-import EditFood from "./FoodEditForm";
 import { CircleSlider } from "react-circle-slider";
 import CircularProgress from '@mui/material/CircularProgress';
-
 
 function Food() {
   const slider = useRef(null);

@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import Modal from '@mui/material/Modal';
 import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
 import {
@@ -21,19 +20,17 @@ import {
     Typography,
 } from "@mui/material";
 
-
-
 function EditSocialActivity() {
     const dispatch = useDispatch();
     const socialStoreID = useSelector(store => store.rootSocialReducer.socialReducer)
     const history = useHistory();
-
     const [addWhom, setAddWhom] = useState('');
     const [addDescription, setAddDescription] = useState('');
     const [addDuration, setAddDuration] = useState(0);
     const [addOnline, setAddOnline] = useState(true);
     const [addRating, setAddRating] = useState(1)
     const [openAlert, setOpenAlert] = useState(false)
+    const BS = useSelector((store) => store.balanceScoreReducer.score_sa);
 
 
     useEffect(() => {
@@ -48,22 +45,34 @@ function EditSocialActivity() {
         }
     }, [socialStoreID]);
 
-
     const cancelFood = () => {
         history.push('/social')
     }
 
-    const saveChanges = () => {
-        //console.log('This is the SocialActivity.id that we are sending our payload', socialStoreID)
+    async function saveChanges() {
+        event.preventDefault();
+        const calculatedSocialScore = await socialPointsCalc()
+        const testScore = calculatedSocialScore.saScore
+        const newSocialScore = calculatedSocialScore.saScore - BS
+        console.log('this is newSocialScore', newSocialScore)
+
         dispatch({
             type: 'UPDATE_SOCIAL',
             payload: {
                 id: socialStoreID[0].id,
+                score_sa: testScore,
                 whom: addWhom,
                 description: addDescription,
                 duration: addDuration,
                 online: addOnline,
                 rating: addRating,
+            }
+        })
+
+         dispatch({
+            type: "UPDATE_SOCIAL_SCORE",
+            payload: {
+                score_sa: newSocialScore,
             }
         })
         history.push('/social')
@@ -85,10 +94,10 @@ function EditSocialActivity() {
     }
 
     function socialPointsCalc() {
-        let durationPoints = socialStoreID[0].duration
+        let durationPoints = addDuration
         let ratingPoints = 0
         let totalBalancePoints = 0
-        switch (socialStoreID[0].rating) {
+        switch (addRating) {
             case 0:
                 ratingPoints = .9
                 break;
@@ -111,9 +120,11 @@ function EditSocialActivity() {
         let saScore = 0
         if (totalBalancePoints > 100) {
             saScore = 100
-        } else if (totalBalancePoints < 0) {
-            saScore = 0
-        } else {
+        } 
+        // else if (totalBalancePoints < 0) {
+        //     saScore = 0
+        // }
+         else {
             saScore = totalBalancePoints
         }
         return (
@@ -169,7 +180,7 @@ function EditSocialActivity() {
                     <br />
                     <br />
                     <FormControl sx={{ minWidth: 200 }}>
-                        <InputLabel id="demo-simple-select-label">Where</InputLabel>
+                        <InputLabel id="demo-simple-select-label">How</InputLabel>
                         <Select
                             labelId="demo-simple-select-label"
                             id="demo-simple-select"

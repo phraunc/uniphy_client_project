@@ -16,7 +16,6 @@ const workReducerSingle = (state = {}, action) => {
     return state;
 };
 
-
 const rootWorkReducer = combineReducers({
     workReducer,
     workReducerSingle

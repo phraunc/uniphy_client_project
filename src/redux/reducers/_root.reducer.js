@@ -10,8 +10,6 @@ import rootWorkReducer from './work.reducer';
 import balanceScoreReducer from './balance_score.reducer';
 import averageBalanceScoreReducer from './scoreAverages.reducer';
 
-
-
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
 // This is imported in index.js as rootSaga

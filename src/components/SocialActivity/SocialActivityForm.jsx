@@ -153,7 +153,7 @@ function SocialActivityForm() {
                         <br />
                         <Box sx={{ minWidth: 120 }}>
                             <FormControl sx={{ minWidth: 195 }}>
-                                <InputLabel id="demo-simple-select-label">Where</InputLabel>
+                                <InputLabel id="demo-simple-select-label">How</InputLabel>
                                 <Select
                                     labelId="demo-simple-select-label"
                                     id="demo-simple-select"

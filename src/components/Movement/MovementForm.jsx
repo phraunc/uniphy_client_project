@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import Stopwatch from "../Movement/Stopwatch.jsx";
 import { SnackbarContext } from '../SnackbarProvider/SnackbarProvider'
+import Modal from '@mui/material';
 import {
     Radio,
     RadioGroup,

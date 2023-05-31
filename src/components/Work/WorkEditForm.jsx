@@ -25,15 +25,13 @@ function EditWork() {
     const dispatch = useDispatch();
     const workItemID = useSelector(store => store.rootWorkReducer.workReducerSingle)
     const history = useHistory();
-
     const [addNote, setAddNote] = useState('')
     const [addWorkload, setAddWorkload] = useState('')
     const [addFullfillment, setAddFullfillment] = useState('')
     const [openAlert, setOpenAlert] = useState(false)
-
+    const BS = useSelector((store) => store.balanceScoreReducer.score_w);
 
     useEffect(() => {
-        // Update the component state when foodItemID changes
         if (workItemID.length > 0) {
             setAddNote(workItemID[0]?.note || '');
             setAddWorkload(workItemID[0]?.workload || '');
@@ -41,20 +39,33 @@ function EditWork() {
         }
     }, [workItemID]);
 
-
     const cancelWork = () => {
         history.push("/work")
     }
 
-    const saveChanges = () => {
-        console.log('This is the workItem.id that we are sending our payload', workItemID)
+    async function saveChanges() {
+        event.preventDefault();
+        let calculatedWorkScore = await workScoreCalc()
+        const testScore = calculatedWorkScore.wScore
+
+        const newWorkScore = calculatedWorkScore.wScore - BS
+        console.log('this is newWorkScore', newWorkScore)
+
         dispatch({
             type: 'UPDATE_WORK',
             payload: {
                 id: workItemID[0].id,
+                score_w: testScore,
                 note: addNote,
                 workload: addWorkload,
                 fullfillment: addFullfillment,
+            }
+        })
+
+        dispatch({
+            type: 'UPDATE_WORK_SCORE',
+            payload: {
+                score_w: newWorkScore,
             }
         })
         history.push('/work')
@@ -81,7 +92,7 @@ function EditWork() {
         let workLoadPoints = 0
         let totalBalancePoints = 0
 
-        switch (workItemID[0].workload) {
+        switch (addWorkload) {
             case -5:
                 workLoadPoints = 0
                 break;
@@ -97,7 +108,6 @@ function EditWork() {
             case -1:
                 workLoadPoints = 40
                 break;
-
             case 0:
                 workLoadPoints = 50
                 break;
@@ -119,7 +129,7 @@ function EditWork() {
             default:
                 workLoadPoints = 0
         }
-        switch (workItemID[0].fullfillment) {
+        switch (addFullfillment) {
             case 0:
                 fulfillmentPoints = 1
                 break;
@@ -162,9 +172,11 @@ function EditWork() {
         let wScore = 0
         if (totalBalancePoints > 100) {
             wScore = 100
-        } else if (totalBalancePoints < 0) {
-            wScore = 0
-        } else {
+        } 
+        // else if (totalBalancePoints < 0) {
+        //     wScore = 0
+        // }
+         else {
             wScore = totalBalancePoints
         }
         return (
